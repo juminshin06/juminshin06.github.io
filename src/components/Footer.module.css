@@ -1,0 +1,94 @@
+.footer {
+  background: #111111;
+  padding: 4rem 4rem 3rem;
+}
+
+.inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* ── Top: name + tagline ── */
+.top {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.name {
+  font-size: 1.4rem;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.90);
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.tagline {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.35);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+/* ── Links row ── */
+.linksRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.emailBtn {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #111111;
+  background: rgba(255, 255, 255, 0.92);
+  border: none;
+  padding: 0.48rem 1.2rem;
+  border-radius: 999px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 200ms, transform 200ms;
+  white-space: nowrap;
+}
+.emailBtn:hover { background: #ffffff; transform: translateY(-2px); }
+
+.divider {
+  width: 1px;
+  height: 1.1rem;
+  background: rgba(255, 255, 255, 0.15);
+  margin: 0 0.25rem;
+  flex-shrink: 0;
+}
+
+.link {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.50);
+  text-decoration: none;
+  padding: 0.4rem 0.6rem;
+  border-radius: 6px;
+  transition: color 200ms;
+}
+.link:hover { color: rgba(255, 255, 255, 0.90); }
+
+/* ── Copyright ── */
+.copy {
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.25);
+  letter-spacing: 0.04em;
+  margin: 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+@media (max-width: 640px) {
+  .footer { padding: 3rem 1.5rem 2.5rem; }
+  .name { font-size: 1.2rem; }
+}

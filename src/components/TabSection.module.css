@@ -1,0 +1,53 @@
+.wrapper {
+  background: #ffffff;
+}
+
+/* ── Sticky tab bar ─────────────────────────────── */
+
+.tabBar {
+  display: flex;
+  border-bottom: 1px solid #e8e8e8;
+  padding: 0 3rem;
+  position: sticky;
+  top: 60px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  z-index: 50;
+}
+
+.tab {
+  font-family: inherit;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: #aaaaaa;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: 1rem 1.6rem;
+  cursor: pointer;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: color 200ms, border-color 200ms;
+  margin-bottom: -1px;
+}
+
+.tab:hover {
+  color: #333333;
+}
+
+.active {
+  color: #111111;
+  border-bottom-color: #111111;
+}
+
+@media (max-width: 540px) {
+  .tabBar {
+    padding: 0 1.5rem;
+  }
+
+  .tab {
+    padding: 0.85rem 1rem;
+    font-size: 0.72rem;
+  }
+}

@@ -1,0 +1,84 @@
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.2rem 2.5rem;
+  transition: background 300ms ease, backdrop-filter 300ms ease, box-shadow 300ms ease;
+}
+
+.scrolled {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
+}
+
+.logo {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #111111;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  opacity: 0.85;
+  transition: opacity 200ms;
+}
+
+.logo:hover {
+  opacity: 1;
+}
+
+.links {
+  list-style: none;
+  display: flex;
+  gap: 2.2rem;
+  margin: 0;
+  padding: 0;
+}
+
+.link {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: #666666;
+  text-decoration: none;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: color 200ms;
+}
+
+.link:hover {
+  color: #111111;
+}
+
+/* Life button styled as link */
+.linkBtn {
+  font-family: inherit;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: #666666;
+  background: none;
+  border: none;
+  padding: 0;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 200ms;
+}
+
+.linkBtn:hover {
+  color: #111111;
+}
+
+@media (max-width: 540px) {
+  .nav {
+    padding: 1rem 1.5rem;
+  }
+
+  .links {
+    gap: 1.4rem;
+  }
+}

@@ -1,0 +1,166 @@
+/* ═══════════════════════════════════════════════════
+   STACKED DECK  (lives inside LandingSection)
+═══════════════════════════════════════════════════ */
+
+.stack {
+  position: relative;
+  width: 370px;
+  height: 370px;
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: opacity 320ms ease, transform 320ms ease;
+  align-self: flex-start;
+  margin-top: 2rem;
+  margin-left: 2rem;
+}
+
+.stackHidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.88);
+}
+
+.stackCard {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 330px;
+  height: 330px;
+  margin-left: -165px;
+  margin-top: -165px;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  will-change: transform;
+}
+
+.stack:hover .stackCard {
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.10);
+}
+
+/* "Click to explore" hint below the stack */
+.stackHint {
+  position: absolute;
+  bottom: -3.2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: #aaaaaa;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* ═══════════════════════════════════════════════════
+   OVERLAY  (fixed, full-screen, portal to body)
+═══════════════════════════════════════════════════ */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(255, 255, 255, 0.86);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  cursor: pointer;
+  animation: overlayIn 300ms ease both;
+}
+
+.overlayClosing {
+  animation: overlayOut 380ms ease forwards;
+}
+
+@keyframes overlayIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes overlayOut {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+/* ═══════════════════════════════════════════════════
+   EXPANDED CARD
+═══════════════════════════════════════════════════ */
+
+.card {
+  position: absolute;
+  /* start at deck's origin position */
+  top:  var(--start-top);
+  left: var(--start-left);
+
+  width: 300px;
+  height: 300px;
+  border-radius: 6px;
+  border: none;
+  overflow: hidden;
+  cursor: pointer;
+
+  opacity: 0;
+  transform: rotate(0deg) translate(-50%, -50%) scale(0.65);
+  transition:
+    top       620ms cubic-bezier(0.34, 1.25, 0.64, 1) var(--delay, 0ms),
+    left      620ms cubic-bezier(0.34, 1.25, 0.64, 1) var(--delay, 0ms),
+    transform 580ms cubic-bezier(0.34, 1.35, 0.64, 1) var(--delay, 0ms),
+    opacity   280ms ease                               var(--delay, 0ms),
+    box-shadow 200ms ease;
+
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.10);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0;
+  will-change: top, left, transform, opacity;
+}
+
+/* spread to final position */
+.cardVisible {
+  top:  var(--top);
+  left: var(--left);
+  opacity: 1;
+  transform: rotate(var(--r)) translate(-50%, -50%);
+}
+
+.cardVisible:hover {
+  transform: rotate(var(--r)) translate(-50%, -58%) scale(1.06);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.14);
+  transition:
+    transform  200ms cubic-bezier(0.34, 1.4, 0.64, 1),
+    box-shadow 200ms ease;
+}
+
+/* ── Card label gradient ─────────────────────────── */
+
+.cardLabel {
+  padding: 0.75rem 0.85rem;
+  background: linear-gradient(to top, rgba(0,0,0,0.60) 0%, transparent 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 0.18rem;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 240ms ease 350ms, transform 240ms ease 350ms;
+}
+
+.cardVisible .cardLabel {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.cardTitle {
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.cardMeta {
+  font-size: 0.62rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.70);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}

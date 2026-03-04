@@ -1,0 +1,98 @@
+[
+  {
+    "id": "ev-001",
+    "category": "Hackathon",
+    "title": "HackSC 2025",
+    "description": "24-hour hackathon at USC. Built an accessibility tool to help users with motor disabilities navigate digital interfaces more intuitively.",
+    "year": 2025,
+    "emoji": "💻"
+  },
+  {
+    "id": "ev-002",
+    "category": "Hackathon",
+    "title": "TreeHacks 2024",
+    "description": "Stanford's flagship hackathon. Collaborated with a four-person team to design and prototype a mental-health journaling app with AI reflection prompts.",
+    "year": 2024,
+    "emoji": "🌳"
+  },
+  {
+    "id": "ev-003",
+    "category": "Company Tour",
+    "title": "Google LA Office Tour",
+    "description": "Visited Google's Los Angeles campus for a UX deep-dive session and networking dinner with product designers and researchers.",
+    "year": 2024,
+    "emoji": "🏢"
+  },
+  {
+    "id": "ev-004",
+    "category": "Company Tour",
+    "title": "Disney Imagineering Tour",
+    "description": "Behind-the-scenes tour of Disney's Imagineering campus, exploring how storytelling, physical design, and technology converge to create memorable guest experiences.",
+    "year": 2024,
+    "emoji": "✨"
+  },
+  {
+    "id": "ev-005",
+    "category": "Conference",
+    "title": "SXSW Interactive 2025",
+    "description": "Attended panels on AI ethics, the future of spatial computing, and human-centered design at South by Southwest in Austin.",
+    "year": 2025,
+    "emoji": "🎪"
+  },
+  {
+    "id": "ev-006",
+    "category": "Workshop",
+    "title": "Google Design Sprint",
+    "description": "Completed a 5-day design sprint workshop, working through the full sprint methodology — mapping, sketching, deciding, prototyping, and testing with real users.",
+    "year": 2024,
+    "emoji": "🎨"
+  },
+  {
+    "id": "aw-001",
+    "category": "Award",
+    "title": "1st Place — Newegg Gamer Zone Workshop",
+    "description": "WD & UGREEN Educational Technology Workshop. Proposed a next-generation PC café service model with character collaborations and an immersive gaming space.",
+    "year": 2026,
+    "emoji": "🏆"
+  },
+  {
+    "id": "aw-002",
+    "category": "Award",
+    "title": "USC IYA Vibe Coding Hackathon Award",
+    "description": "Designed an automated messaging app supporting medication adherence and communication for elderly patients, delivering a functional MVP within four hours.",
+    "year": 2026,
+    "emoji": "🏅"
+  },
+  {
+    "id": "aw-003",
+    "category": "Award",
+    "title": "Seoul Mayor's Award",
+    "description": "Social Problem Solving Prize at Human City Design University Workshop. Recognized for innovative human-centered urban design thinking.",
+    "year": 2021,
+    "emoji": "🥇"
+  },
+  {
+    "id": "aw-004",
+    "category": "Award",
+    "title": "Korea+Sweden Young Design Award",
+    "description": "International design competition for young designers. Received the award twice — Excellence Prize (Nov 2020) and full award (Oct 2021).",
+    "year": 2021,
+    "emoji": "🎨"
+  },
+  {
+    "id": "aw-005",
+    "category": "Scholarship",
+    "title": "Lotte Scholarship Foundation",
+    "description": "Competitive scholarship awarded in recognition of academic excellence and potential for positive social contribution.",
+    "year": 2023,
+    "emoji": "📜"
+  },
+  {
+    "id": "aw-006",
+    "category": "Scholarship",
+    "title": "Hongik University Internal Scholarship",
+    "description": "Merit-based scholarship from Hongik University for sustained academic performance across the BFA and Game Software programs.",
+    "year": 2023,
+    "emoji": "🎓"
+  }
+]

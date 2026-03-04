@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bloom — Procedural 3D Flowers</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.min.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #ffffff;
+      overflow: hidden;
+      font-family: sans-serif;
+    }
+    #canvas-container {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+    }
+    /* Glassmorphism overlay */
+    #glass-overlay {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      backdrop-filter: blur(0.4px) saturate(1.15);
+      -webkit-backdrop-filter: blur(0.4px) saturate(1.15);
+      z-index: 2;
+    }
+    /* Dither grain via SVG feTurbulence */
+    #grain-overlay {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.045;
+      z-index: 3;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+      background-size: 300px 300px;
+    }
+    canvas { display: block; }
+  </style>
+</head>
+<body>
+  <div id="canvas-container">
+    <div id="glass-overlay"></div>
+    <div id="grain-overlay"></div>
+  </div>
+
+  <script>
+  // ─── Seeded RNG (xorshift32) ───────────────────────────────────────────────
+  class RNG {
+    constructor(seed) {
+      this.s = seed >>> 0 || 1;
+    }
+    next() {
+      let x = this.s;
+      x ^= x << 13; x ^= x >> 17; x ^= x << 5;
+      this.s = x >>> 0;
+      return (this.s >>> 0) / 0xFFFFFFFF;
+    }
+    f(lo, hi) { return lo + this.next() * (hi - lo); }
+    i(lo, hi) { return Math.floor(this.f(lo, hi + 1)); }
+    pick(arr) { return arr[this.i(0, arr.length - 1)]; }
+  }
+
+  // ─── Color palettes ────────────────────────────────────────────────────────
+  const PETALS = [
+    [230, 160, 180], // deep rose
+    [180, 150, 220], // violet
+    [240, 170, 140], // coral
+    [140, 200, 210], // teal
+    [220, 195, 120], // ochre
+    [190, 130, 180], // plum
+    [160, 200, 170], // sage
+    [210, 175, 200], // mauve
+    [235, 185, 120], // amber
+    [175, 205, 235], // periwinkle
+  ];
+  const GREENS = [
+    [120, 160, 130], // sage
+    [140, 175, 145], // eucalyptus
+    [100, 145, 120], // deep sage
+    [155, 185, 155], // soft mint
+  ];
+
+  // ─── Species configs ────────────────────────────────────────────────────────
+  function species(rng) {
+    const types = [
+      { name: 'rose',       n: 5,  len: 1.0,  wid: 0.55, rings: 3, warp: 0.18 },
+      { name: 'magnolia',   n: 6,  len: 1.2,  wid: 0.45, rings: 2, warp: 0.08 },
+      { name: 'anemone',    n: 8,  len: 0.75, wid: 0.40, rings: 2, warp: 0.12 },
+      { name: 'ranunculus', n: 6,  len: 0.85, wid: 0.50, rings: 4, warp: 0.20 },
+      { name: 'clematis',   n: 6,  len: 1.1,  wid: 0.42, rings: 2, warp: 0.10 },
+      { name: 'cosmos',     n: 8,  len: 0.95, wid: 0.38, rings: 2, warp: 0.07 },
+    ];
+    return rng.pick(types);
+  }
+
+  // ─── p5 sketch ─────────────────────────────────────────────────────────────
+  const sketch = (p) => {
+    const COLS = 5, ROWS = 4, COUNT = COLS * ROWS;
+    let flowers = [];
+    let fpg;      // offscreen graphics for flower layer
+    let cellW, cellH;
+    let mouseFlower = -1;
+
+    // ── Core petal renderer ──────────────────────────────────────────────────
+    // Petal is built as a parametric 3D surface (Rhodonea width profile),
+    // rotated around Z-axis, then perspective-projected.
+    function drawPetal3D(pg, len, wid, openAngle, petalAngleZ, col, alpha, warp, sz, cx, cy) {
+      const SEGS = 14;
+      const cosO = Math.cos(openAngle);
+      const sinO = Math.sin(openAngle);
+      const cosZ = Math.cos(petalAngleZ);
+      const sinZ = Math.sin(petalAngleZ);
+
+      // Build left/right edges of petal in 3D, project to 2D
+      const pts = [];
+      for (let i = 0; i <= SEGS; i++) {
+        const t = i / SEGS;               // 0→1 along petal length
+        const localLen = len * t * sz;
+        // Rhodonea width profile: sin(π·t) gives wide middle, pointed tip
+        const halfW = wid * sz * Math.sin(Math.PI * t) * 0.5;
+        // Warp: slight curvature inward near tip
+        const warpY = warp * sz * t * t;
+
+        for (const side of [-1, 1]) {
+          // 3D point before Z-rotation: petal lies in XZ plane, opened by openAngle
+          const px3 = side * halfW;
+          const py3 = localLen * cosO - warpY;
+          const pz3 = localLen * sinO;
+
+          // Rotate around Z-axis by petalAngleZ
+          const px2 = px3 * cosZ - py3 * sinZ;
+          const py2 = px3 * sinZ + py3 * cosZ;
+
+          // Perspective projection (simple, z offset = 200)
+          const zOff = 200 + pz3 * 0.5;
+          const scale = 200 / zOff;
+          pts.push([cx + px2 * scale, cy + py2 * scale, side]);
+        }
+      }
+
+      // Separate left and right edge points, build polygon
+      const left = [], right = [];
+      for (let i = 0; i <= SEGS; i++) {
+        left.push(pts[i * 2]);       // side = -1
+        right.push(pts[i * 2 + 1]); // side = +1
+      }
+
+      pg.push();
+      pg.noStroke();
+      pg.fill(col[0], col[1], col[2], alpha);
+      pg.beginShape();
+      for (const pt of left)  pg.vertex(pt[0], pt[1]);
+      for (const pt of [...right].reverse()) pg.vertex(pt[0], pt[1]);
+      pg.endShape(p.CLOSE);
+      pg.pop();
+    }
+
+    // ── Flower class ──────────────────────────────────────────────────────────
+    class Flower {
+      constructor(cx, cy, seed) {
+        this.cx = cx;
+        this.cy = cy;
+        this.rng = new RNG(seed);
+        const sp = species(this.rng);
+        this.name   = sp.name;
+        this.n      = sp.n;
+        this.len    = sp.len;
+        this.wid    = sp.wid;
+        this.rings  = sp.rings;
+        this.warp   = sp.warp;
+        this.sz     = this.rng.f(0.85, 1.35) * Math.min(cellW, cellH) * 0.38;
+        this.col    = this.rng.pick(PETALS);
+        this.green  = this.rng.pick(GREENS);
+        this.dep    = this.rng.f(0, 1);      // depth layer
+        this.REST   = 0.55;
+        this.FULL   = Math.PI * 0.46;
+        this.angle  = this.REST;
+        this.target = this.REST;
+        this.halo   = 0;
+        // Stem: Brownian path
+        this.stemPts = this._buildStem();
+        // Leaves
+        this.leaves = this._buildLeaves();
+        // Per-ring and per-petal phase offsets for varied layering
+        this.ringOffsets = Array.from({ length: this.rings }, (_, r) =>
+          (r / this.rings) * (Math.PI / this.n) * this.rng.f(0.5, 1.2)
+        );
+      }
+
+      _buildStem() {
+        const pts = [];
+        const bottom = this.cy + this.sz * 1.6;
+        let x = this.cx, y = bottom;
+        pts.push([x, y]);
+        const steps = 8;
+        for (let i = 0; i < steps; i++) {
+          x += this.rng.f(-6, 6);
+          y -= (bottom - this.cy) / steps;
+          pts.push([x, y]);
+        }
+        return pts;
+      }
+
+      _buildLeaves() {
+        const leaves = [];
+        const stemMid = Math.floor(this.stemPts.length / 2);
+        for (let side of [-1, 1]) {
+          const idx = stemMid + this.rng.i(-1, 1);
+          const base = this.stemPts[Math.min(idx, this.stemPts.length - 1)];
+          const angle = side * this.rng.f(0.4, 0.9);
+          const len = this.sz * this.rng.f(0.3, 0.5);
+          leaves.push({ base, angle, len, side });
+        }
+        return leaves;
+      }
+
+      setHover(on) {
+        this.target = on ? this.FULL : this.REST;
+      }
+
+      update() {
+        this.angle += (this.target - this.angle) * 0.08;
+        this.halo  += (((this.target > this.REST) ? 1 : 0) - this.halo) * 0.06;
+      }
+
+      drawStem(pg) {
+        pg.push();
+        pg.noFill();
+        const g = this.green;
+        pg.stroke(g[0], g[1], g[2], 200);
+        pg.strokeWeight(1.5);
+        pg.beginShape();
+        for (const [x, y] of this.stemPts) pg.curveVertex(x, y);
+        pg.endShape();
+
+        // Leaves
+        for (const lf of this.leaves) {
+          const [bx, by] = lf.base;
+          const ex = bx + Math.cos(lf.angle - Math.PI * 0.5) * lf.len;
+          const ey = by + Math.sin(lf.angle - Math.PI * 0.5) * lf.len;
+          const cx1 = bx + Math.cos(lf.angle) * lf.len * 0.4;
+          const cy1 = by + Math.sin(lf.angle) * lf.len * 0.4;
+          pg.fill(g[0], g[1], g[2], 180);
+          pg.noStroke();
+          pg.beginShape();
+          pg.vertex(bx, by);
+          pg.bezierVertex(cx1, cy1, ex + lf.side * 6, ey - 4, ex, ey);
+          pg.bezierVertex(bx + lf.side * 3, by - 3, bx, by, bx, by);
+          pg.endShape(p.CLOSE);
+        }
+        pg.pop();
+      }
+
+      drawBloom(pg) {
+        const cx = this.cx, cy = this.cy;
+
+        // Glow halo when hovered
+        if (this.halo > 0.01) {
+          const c = this.col;
+          pg.push();
+          pg.noStroke();
+          const haloR = this.sz * 1.4 * this.halo;
+          for (let r = haloR; r > 0; r -= haloR / 6) {
+            const a = (r / haloR) * 35 * this.halo;
+            pg.fill(c[0], c[1], c[2], a);
+            pg.ellipse(cx, cy, r * 2, r * 2);
+          }
+          pg.pop();
+        }
+
+        // Soft bloom blur: draw ghost copies offset at low alpha before main pass
+        const ghostOffsets = [
+          [-1,-1],[ 1,-1],[-1, 1],[ 1, 1],
+          [-2, 0],[ 2, 0],[ 0,-2],[ 0, 2],
+        ];
+        for (const [dx, dy] of ghostOffsets) {
+          this._drawPetals(pg, cx + dx * 0.6, cy + dy * 0.6, 35);
+        }
+
+        // Main draw pass
+        this._drawPetals(pg, cx, cy, null);
+      }
+
+      _drawPetals(pg, cx, cy, forceAlpha) {
+        const baseAlpha = forceAlpha !== null ? forceAlpha : (155 + this.dep * 75);
+        for (let ring = 0; ring < this.rings; ring++) {
+          const ringScale = 1 - ring * 0.18;
+          const ringAlpha = forceAlpha !== null
+            ? forceAlpha * (1 - ring * 0.2)
+            : baseAlpha * (1 - ring * 0.1);
+          const offset = this.ringOffsets[ring];
+          const openA = this.angle * (1 - ring * 0.12);
+
+          for (let i = 0; i < this.n; i++) {
+            const angle = (2 * Math.PI * i / this.n) + offset;
+            drawPetal3D(
+              pg,
+              this.len * ringScale,
+              this.wid * ringScale,
+              openA,
+              angle,
+              this.col,
+              ringAlpha,
+              this.warp,
+              this.sz * ringScale,
+              cx, cy
+            );
+          }
+        }
+
+        // Center disc
+        const c = this.col;
+        const discR = this.sz * 0.13;
+        pg.push();
+        pg.noStroke();
+        // Darker center
+        pg.fill(c[0] * 0.6, c[1] * 0.6, c[2] * 0.6, forceAlpha !== null ? forceAlpha : 220);
+        pg.ellipse(cx, cy, discR * 2, discR * 2);
+        // Highlight dot
+        if (forceAlpha === null) {
+          pg.fill(255, 255, 255, 120);
+          pg.ellipse(cx - discR * 0.25, cy - discR * 0.25, discR * 0.7, discR * 0.7);
+        }
+        pg.pop();
+      }
+    }
+
+    // ── buildScene ────────────────────────────────────────────────────────────
+    function buildScene() {
+      flowers = [];
+      for (let row = 0; row < ROWS; row++) {
+        for (let col = 0; col < COLS; col++) {
+          const cx = cellW * (col + 0.5);
+          const cy = cellH * (row + 0.5);
+          const seed = (row * COLS + col + 1) * 9973;
+          flowers.push(new Flower(cx, cy, seed));
+        }
+      }
+      // Sort by depth so deeper flowers draw first
+      flowers.sort((a, b) => a.dep - b.dep);
+    }
+
+    // ── p5 lifecycle ──────────────────────────────────────────────────────────
+    p.setup = () => {
+      const cnv = p.createCanvas(p.windowWidth, p.windowHeight);
+      cnv.parent('canvas-container');
+      p.pixelDensity(Math.min(window.devicePixelRatio, 2));
+
+      cellW = p.width  / COLS;
+      cellH = p.height / ROWS;
+
+      fpg = p.createGraphics(p.width, p.height);
+      fpg.pixelDensity(Math.min(window.devicePixelRatio, 2));
+
+      buildScene();
+      p.frameRate(60);
+    };
+
+    p.windowResized = () => {
+      p.resizeCanvas(p.windowWidth, p.windowHeight);
+      fpg.resizeCanvas(p.width, p.height);
+      cellW = p.width  / COLS;
+      cellH = p.height / ROWS;
+      buildScene();
+    };
+
+    p.draw = () => {
+      // Detect hover
+      const mx = p.mouseX, my = p.mouseY;
+      mouseFlower = -1;
+      for (let i = 0; i < flowers.length; i++) {
+        const f = flowers[i];
+        const d = Math.hypot(mx - f.cx, my - f.cy);
+        const hovered = d < f.sz * 1.1;
+        f.setHover(hovered);
+        if (hovered) mouseFlower = i;
+      }
+
+      // Update animations
+      for (const f of flowers) f.update();
+
+      // ── Draw to offscreen buffer ──
+      fpg.clear();
+      fpg.background(252, 250, 248);   // warm white
+
+      // Stems first (behind petals)
+      for (const f of flowers) f.drawStem(fpg);
+
+      // Blooms
+      for (const f of flowers) f.drawBloom(fpg);
+
+      // ── Composite to main canvas ──
+      p.background(252, 250, 248);
+      p.image(fpg, 0, 0);
+
+      // Cursor indicator
+      if (mouseFlower >= 0) {
+        p.push();
+        p.noFill();
+        p.stroke(180, 180, 200, 80);
+        p.strokeWeight(1);
+        p.ellipse(mx, my, 28, 28);
+        p.pop();
+      }
+    };
+  };
+
+  new p5(sketch);
+  </script>
+</body>
+</html>

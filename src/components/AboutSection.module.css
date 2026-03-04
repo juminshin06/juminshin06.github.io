@@ -1,0 +1,556 @@
+.about {
+  background: #ffffff;
+  padding: 5rem 4rem 8rem;
+  min-height: 100vh;
+}
+
+/* ═══════════════════════════════════════════════════
+   HERO ZONE
+═══════════════════════════════════════════════════ */
+
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 6rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding-bottom: 4rem;
+  align-items: start;
+}
+
+.heroText {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.heroPhoto { /* static — scrolls away with hero */ }
+
+/* ── Name ── */
+
+.nameRow {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.name {
+  font-size: clamp(2.6rem, 4.5vw, 4.2rem);
+  font-weight: 300;
+  color: #111111;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin: 0;
+}
+
+.roleTag {
+  font-size: 0.75rem;
+  color: #aaaaaa;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin: 0;
+}
+
+.meta {
+  display: flex;
+  gap: 1.4rem;
+  margin-top: 0.25rem;
+}
+
+.meta span {
+  font-size: 0.8rem;
+  color: #999999;
+  letter-spacing: 0.02em;
+}
+
+/* ── Bio ── */
+
+.bio {
+  font-size: 1.08rem;
+  line-height: 1.82;
+  color: #333333;
+  max-width: 520px;
+  margin: 0;
+}
+
+/* ── Links ── */
+
+.linksWrapper { display: flex; flex-direction: column; gap: 0; }
+
+.toastRow {
+  height: 2rem;
+  display: flex;
+  align-items: center;
+}
+
+.toast {
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: #22c55e;
+  background: rgba(34, 197, 94, 0.08);
+  border: 1px solid rgba(34, 197, 94, 0.25);
+  padding: 0.3rem 0.9rem;
+  border-radius: 999px;
+  opacity: 0;
+  transform: translateY(4px) scale(0.95);
+  transition: opacity 220ms ease, transform 220ms ease;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.toastVisible { opacity: 1; transform: translateY(0) scale(1); }
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.linkPrimary {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #ffffff;
+  background: #111111;
+  border: 1px solid #111111;
+  padding: 0.5rem 1.2rem;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: background 200ms, transform 200ms;
+  cursor: pointer;
+  font-family: inherit;
+}
+.linkPrimary:hover { background: #333333; border-color: #333333; transform: translateY(-2px); }
+
+.linkSecondary {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #333333;
+  background: transparent;
+  border: 1px solid rgba(0,0,0,0.25);
+  padding: 0.5rem 1.2rem;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: background 200ms, color 200ms, transform 200ms;
+}
+.linkSecondary:hover { background: #111111; color: #ffffff; border-color: #111111; transform: translateY(-2px); }
+
+.linkDivider {
+  width: 1px;
+  height: 1.2rem;
+  background: #e0e0e0;
+  margin: 0 0.25rem;
+  flex-shrink: 0;
+}
+
+.linkGhost {
+  font-size: 0.78rem;
+  color: #999999;
+  text-decoration: none;
+  padding: 0.4rem 0.5rem;
+  border-radius: 6px;
+  transition: color 200ms;
+}
+.linkGhost:hover { color: #111111; }
+
+/* ── Photo ── */
+
+.photo {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  object-position: top center;
+  border-radius: 20px;
+  display: block;
+}
+
+.photoPlaceholder {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 20px;
+  background: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.photoPlaceholder span { font-size: 3.5rem; font-weight: 700; color: #cccccc; }
+
+/* ═══════════════════════════════════════════════════
+   MARQUEE TICKER — full-bleed interest band
+═══════════════════════════════════════════════════ */
+
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.ticker {
+  margin: 3rem -4rem 0;
+  overflow: hidden;
+  background: #111111;
+  height: 2.2rem;
+  display: flex;
+  align-items: center;
+}
+
+.tickerTrack {
+  display: flex;
+  white-space: nowrap;
+  animation: marquee 28s linear infinite;
+  will-change: transform;
+}
+
+.tickerInner {
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.75);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding-right: 0;
+  flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════════════════════
+   SECTION SCAFFOLDING
+═══════════════════════════════════════════════════ */
+
+.sections {
+  max-width: 1100px;
+  margin: 4rem auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.block { display: flex; flex-direction: column; gap: 0; }
+
+.blockLabel {
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: #cccccc;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  margin: 0;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #ebebeb;
+  margin-bottom: 1.25rem;
+}
+
+/* ═══════════════════════════════════════════════════
+   WORK EXPERIENCE — niteesh-style table rows
+═══════════════════════════════════════════════════ */
+
+.workTable {
+  display: flex;
+  flex-direction: column;
+}
+
+.workRow {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 2.5rem;
+  padding: 1.6rem 0;
+  border-bottom: 1px solid #f0f0f0;
+  align-items: start;
+}
+
+.workRow:first-child {
+  border-top: 1px solid #f0f0f0;
+}
+
+.workRowFeatured .workRowTitle {
+  color: #111111;
+}
+
+.workRowFeatured .workRowPeriod::before {
+  content: '★ ';
+  font-size: 0.6rem;
+  opacity: 0.5;
+}
+
+.workRowLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  padding-top: 0.1rem;
+}
+
+.workRowPeriod {
+  font-size: 0.73rem;
+  color: #aaaaaa;
+  line-height: 1.4;
+  letter-spacing: 0.01em;
+}
+
+.workKeyBadge {
+  font-size: 0.58rem;
+  font-weight: 700;
+  color: #ffffff;
+  background: #111111;
+  padding: 0.18rem 0.55rem;
+  border-radius: 999px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  width: fit-content;
+}
+
+.workRowRight {
+  display: flex;
+  flex-direction: column;
+}
+
+.workRowTitle {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #111111;
+  margin: 0 0 0.2rem;
+  line-height: 1.3;
+}
+
+.workRowCompany {
+  font-size: 0.8rem;
+  color: #888888;
+  margin: 0 0 0.75rem;
+  font-weight: 400;
+}
+
+.workRowImpact {
+  font-size: 0.82rem;
+  color: #666666;
+  line-height: 1.72;
+  margin: 0;
+}
+
+/* ═══════════════════════════════════════════════════
+   EDUCATION — logo-prominent rows
+═══════════════════════════════════════════════════ */
+
+.eduList { display: flex; flex-direction: column; }
+
+.eduRow {
+  display: flex;
+  align-items: center;
+  gap: 1.4rem;
+  padding: 1.4rem 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.eduLogoWrap {
+  width: 64px;
+  height: 64px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.eduInitials {
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.04em;
+}
+
+.eduInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  flex: 1;
+}
+
+.eduSchool {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #111111;
+  margin: 0;
+  line-height: 1.25;
+}
+
+.eduDegree {
+  font-size: 0.83rem;
+  color: #888888;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.eduYear {
+  font-size: 0.72rem;
+  color: #bbbbbb;
+  font-weight: 500;
+  white-space: nowrap;
+  letter-spacing: 0.03em;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════════════════════
+   RESEARCH PROJECTS + PUBLICATIONS — side-by-side grid
+═══════════════════════════════════════════════════ */
+
+.researchPubGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3.5rem;
+  align-items: start;
+}
+
+.simpleList {
+  display: flex;
+  flex-direction: column;
+}
+
+.simpleItem {
+  padding: 1rem 0;
+  border-bottom: 1px solid #f0f0f0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.simpleItem:first-child {
+  border-top: 1px solid #f0f0f0;
+}
+
+.simpleYear {
+  font-size: 0.67rem;
+  color: #bbbbbb;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.simpleTitle {
+  font-size: 0.87rem;
+  font-weight: 600;
+  color: #111111;
+  margin: 0;
+  line-height: 1.45;
+}
+
+.simpleSub {
+  font-size: 0.75rem;
+  color: #999999;
+  margin: 0;
+}
+
+.minimalBadge {
+  display: inline-block;
+  font-size: 0.56rem;
+  font-weight: 700;
+  color: #666666;
+  border: 1px solid #dddddd;
+  padding: 0.08rem 0.4rem;
+  border-radius: 3px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  margin-left: 0.5rem;
+  vertical-align: middle;
+  position: relative;
+  top: -1px;
+}
+
+/* ═══════════════════════════════════════════════════
+   RECOGNITION — niteesh-style row list
+═══════════════════════════════════════════════════ */
+
+.recGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  align-items: start;
+}
+
+.recCol {
+  display: flex;
+  flex-direction: column;
+}
+
+.recCol:first-child {
+  padding-right: 3rem;
+  border-right: 1px solid #ebebeb;
+}
+
+.recCol:last-child {
+  padding-left: 3rem;
+}
+
+.recGroup {
+  padding: 1.2rem 0 1.4rem;
+  border-bottom: 1px solid #f0f0f0;
+}
+.recGroup:first-child { border-top: 1px solid #f0f0f0; }
+.recGroup:last-child { border-bottom: none; }
+
+.recGroupLabel {
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: #cccccc;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  margin: 0 0 0.75rem;
+}
+
+.recRow {
+  display: flex;
+  gap: 1.8rem;
+  align-items: baseline;
+  padding: 0.42rem 0;
+}
+
+.recYear {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #cccccc;
+  flex-shrink: 0;
+  width: 52px;
+  letter-spacing: 0.02em;
+}
+
+.recTitle {
+  font-size: 0.84rem;
+  color: #444444;
+  line-height: 1.4;
+}
+
+
+/* ═══════════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════════ */
+
+@media (max-width: 960px) {
+  .about { padding: 4rem 2.5rem 6rem; }
+
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .heroPhoto { max-width: 240px; }
+
+  .photo, .photoPlaceholder { border-radius: 16px; }
+
+  .ticker { margin: 3rem -2.5rem 0; }
+
+  .workRow { grid-template-columns: 120px 1fr; gap: 1.5rem; }
+
+  .researchPubGrid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .recGrid { grid-template-columns: 1fr; gap: 0; }
+  .recCol:first-child { padding-right: 0; border-right: none; }
+  .recCol:last-child { padding-left: 0; }
+}
+
+@media (max-width: 640px) {
+  .about { padding: 3.5rem 1.5rem 5rem; }
+
+  .name { font-size: clamp(2.4rem, 9vw, 3.5rem); }
+  .bio { font-size: 0.98rem; }
+
+  .ticker { margin: 2.5rem -1.5rem 0; }
+
+  .workRow { grid-template-columns: 1fr; gap: 0.4rem; }
+  .workRowLeft { flex-direction: row; align-items: center; flex-wrap: wrap; gap: 0.5rem; }
+
+  .eduRow { flex-wrap: wrap; }
+  .eduYear { margin-left: 0; order: -1; width: 100%; padding-top: 0; }
+}

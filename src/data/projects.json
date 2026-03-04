@@ -1,0 +1,117 @@
+[
+  {
+    "id": "proj-001",
+    "title": "Project Title 1",
+    "type": "UX/UI",
+    "team": "Team",
+    "role": "Lead UX Designer",
+    "year": 2025,
+    "thumbnail": "",
+    "hoverImage": "",
+    "color": "#E8E8E8",
+    "href": "",
+    "description": "A user-centered design project focused on improving accessibility and streamlining user flow across key touchpoints.",
+    "duration": "Jan 2025 – Apr 2025",
+    "tools": ["Figma", "Miro", "UserZoom"],
+    "content": [
+      { "type": "heading", "value": "Overview" },
+      { "type": "text", "value": "Add your project overview here. Describe the problem space, goals, and context." },
+      { "type": "image", "src": "", "caption": "Add an image caption here." }
+    ]
+  },
+  {
+    "id": "proj-002",
+    "title": "Project Title 2",
+    "type": "Product",
+    "team": "Solo",
+    "role": "Product Designer",
+    "year": 2025,
+    "thumbnail": "",
+    "hoverImage": "",
+    "color": "#DCDCDC",
+    "href": "",
+    "description": "End-to-end product design from discovery research through high-fidelity prototyping and usability testing.",
+    "duration": "Mar 2025 – Jun 2025",
+    "tools": ["Figma", "Framer", "Notion"],
+    "content": [
+      { "type": "heading", "value": "Overview" },
+      { "type": "text", "value": "Add your project overview here." }
+    ]
+  },
+  {
+    "id": "proj-003",
+    "title": "Project Title 3",
+    "type": "3D",
+    "team": "Solo",
+    "role": "3D Artist",
+    "year": 2024,
+    "thumbnail": "",
+    "hoverImage": "",
+    "color": "#D4D4D4",
+    "href": "",
+    "description": "Experimental 3D visualization exploring spatial design and motion as communication tools.",
+    "duration": "Sep 2024 – Dec 2024",
+    "tools": ["Blender", "Cinema 4D", "After Effects"],
+    "content": [
+      { "type": "heading", "value": "Overview" },
+      { "type": "text", "value": "Add your project overview here." }
+    ]
+  },
+  {
+    "id": "proj-004",
+    "title": "Project Title 4",
+    "type": "UX/UI",
+    "team": "Team",
+    "role": "UX Researcher",
+    "year": 2024,
+    "thumbnail": "",
+    "hoverImage": "",
+    "color": "#CCCCCC",
+    "href": "",
+    "description": "Mixed-methods UX research and iterative design for a collaborative digital platform.",
+    "duration": "Jun 2024 – Sep 2024",
+    "tools": ["Figma", "Dovetail", "Lookback"],
+    "content": [
+      { "type": "heading", "value": "Overview" },
+      { "type": "text", "value": "Add your project overview here." }
+    ]
+  },
+  {
+    "id": "proj-005",
+    "title": "Project Title 5",
+    "type": "Branding",
+    "team": "Solo",
+    "role": "Brand Designer",
+    "year": 2024,
+    "thumbnail": "",
+    "hoverImage": "",
+    "color": "#C8C8C8",
+    "href": "",
+    "description": "Brand identity system including visual language, typography, and motion guidelines.",
+    "duration": "Mar 2024 – May 2024",
+    "tools": ["Figma", "Illustrator", "Photoshop"],
+    "content": [
+      { "type": "heading", "value": "Overview" },
+      { "type": "text", "value": "Add your project overview here." }
+    ]
+  },
+  {
+    "id": "proj-006",
+    "title": "Project Title 6",
+    "type": "UX/UI",
+    "team": "Team",
+    "role": "Interaction Designer",
+    "year": 2023,
+    "thumbnail": "",
+    "hoverImage": "",
+    "color": "#C0C0C0",
+    "href": "",
+    "description": "Interaction design and prototyping for a mobile-first healthcare application.",
+    "duration": "Sep 2023 – Dec 2023",
+    "tools": ["Figma", "Principle", "Maze"],
+    "content": [
+      { "type": "heading", "value": "Overview" },
+      { "type": "text", "value": "Add your project overview here." }
+    ]
+  }
+]
