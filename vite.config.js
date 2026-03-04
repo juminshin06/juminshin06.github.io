@@ -1,11 +1,9 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// base: './' uses relative paths — works for both user pages (username.github.io)
-// and project pages (username.github.io/repo-name) on GitHub Pages.
 export default defineConfig({
   plugins: [react()],
-  base: './',
+  base: '/',
   build: {
     rollupOptions: {
       output: {
