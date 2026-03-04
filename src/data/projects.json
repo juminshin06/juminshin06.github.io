@@ -1,13 +1,13 @@
 [
   {
     "id": "proj-001",
-    "title": "Project Title 1",
+    "title": "Johnson & Johnson MedTech",
     "type": "UX/UI",
     "team": "Team",
     "role": "Lead UX Designer",
     "year": 2025,
-    "thumbnail": "",
-    "hoverImage": "",
+    "thumbnail": "/assets/projects/jj-medtech.png",
+    "hoverImage": "/assets/projects/jj-medtech.png",
     "color": "#E8E8E8",
     "href": "",
     "description": "A user-centered design project focused on improving accessibility and streamlining user flow across key touchpoints.",
@@ -16,12 +16,12 @@
     "content": [
       { "type": "heading", "value": "Overview" },
       { "type": "text", "value": "Add your project overview here. Describe the problem space, goals, and context." },
-      { "type": "image", "src": "", "caption": "Add an image caption here." }
+      { "type": "image", "src": "/assets/projects/jj-medtech.png", "caption": "Johnson & Johnson MedTech — UI Screens" }
     ]
   },
   {
     "id": "proj-002",
-    "title": "Project Title 2",
+    "title": "ARS Pharma",
     "type": "Product",
     "team": "Solo",
     "role": "Product Designer",
@@ -40,7 +40,7 @@
   },
   {
     "id": "proj-003",
-    "title": "Project Title 3",
+    "title": "Newegg Gamer Zone (WD & UGREEN)",
     "type": "3D",
     "team": "Solo",
     "role": "3D Artist",
@@ -59,7 +59,7 @@
   },
   {
     "id": "proj-004",
-    "title": "Project Title 4",
+    "title": "2026 USC IYA Vibe Coding Hackathon",
     "type": "UX/UI",
     "team": "Team",
     "role": "UX Researcher",
@@ -78,7 +78,7 @@
   },
   {
     "id": "proj-005",
-    "title": "Project Title 5",
+    "title": "Designing a Language Model-Based Authoring Tool Prototype for Interactive Storytelling",
     "type": "Branding",
     "team": "Solo",
     "role": "Brand Designer",
@@ -97,7 +97,7 @@
   },
   {
     "id": "proj-006",
-    "title": "Project Title 6",
+    "title": "A Study on the Design of Exterior Doors and Indicators for Improved Usability Electric Vehicle Charging Ports",
     "type": "UX/UI",
     "team": "Team",
     "role": "Interaction Designer",
