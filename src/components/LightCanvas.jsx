@@ -1,11 +1,12 @@
 /**
  * LightCanvas — Grainy Organic Blobs
  *
- * Pastel elliptical gradients · animated film-grain overlay · mouse-driven 3D lighting.
- * Screen-blended, transparent canvas, no rectangular frame.
+ * Pastel soft blobs on white/light background · animated film-grain ·
+ * mouse-driven 3D lighting (offset radial gradient + specular highlight).
+ * Fully transparent canvas, no rectangular frame.
  *
  * Interactions:
- *   • Mouse position → shifts light source across all blobs (3D highlight)
+ *   • Mouse → shifts light source (3D highlight moves across blobs)
  *   • Auto-drifts when cursor is outside
  *   • Perlin noise → organic position + scale + angle animation
  *   • Click → bright flash pulse
@@ -28,16 +29,14 @@ export default function LightCanvas() {
       let smX = 0, smY = 0   // smoothed light vector  −1..1
 
       // ── Blob config ─────────────────────────────────────────
-      // nx/ny : centre (0-1 of canvas)   rw/rh : radii (fraction of W/H)
-      // ang   : base tilt (radians)      rgb   : base colour
-      // ns    : Perlin seed offset
+      // Lighter pastel values so they read beautifully on a white background
       const BLOBS = [
-        { nx: 0.36, ny: 0.50, rw: 0.60, rh: 0.38, ang: -0.35, rgb: [175, 110, 255], ns:  0 },
-        { nx: 0.65, ny: 0.44, rw: 0.52, rh: 0.32, ang:  0.60, rgb: [ 68, 185, 255], ns: 17 },
-        { nx: 0.50, ny: 0.61, rw: 0.44, rh: 0.54, ang:  1.12, rgb: [255, 118, 172], ns: 34 },
-        { nx: 0.26, ny: 0.54, rw: 0.38, rh: 0.34, ang: -0.82, rgb: [255, 196, 96 ], ns: 51 },
-        { nx: 0.72, ny: 0.54, rw: 0.44, rh: 0.48, ang:  0.27, rgb: [ 98, 224, 192], ns: 68 },
-        { nx: 0.48, ny: 0.36, rw: 0.48, rh: 0.28, ang: -0.18, rgb: [255, 158, 112], ns: 85 },
+        { nx: 0.38, ny: 0.50, rw: 0.58, rh: 0.36, ang: -0.35, rgb: [200, 155, 255], a: 0.62, ns:  0 },
+        { nx: 0.64, ny: 0.44, rw: 0.50, rh: 0.31, ang:  0.62, rgb: [140, 205, 255], a: 0.58, ns: 17 },
+        { nx: 0.50, ny: 0.62, rw: 0.42, rh: 0.52, ang:  1.12, rgb: [255, 170, 210], a: 0.58, ns: 34 },
+        { nx: 0.25, ny: 0.53, rw: 0.36, rh: 0.32, ang: -0.82, rgb: [255, 224, 140], a: 0.52, ns: 51 },
+        { nx: 0.73, ny: 0.55, rw: 0.42, rh: 0.46, ang:  0.28, rgb: [150, 232, 208], a: 0.55, ns: 68 },
+        { nx: 0.49, ny: 0.36, rw: 0.46, rh: 0.27, ang: -0.18, rgb: [255, 198, 162], a: 0.56, ns: 85 },
       ]
 
       // ── Film grain (half-res for performance) ───────────────
@@ -56,7 +55,7 @@ export default function LightCanvas() {
         for (let i = 0; i < d.length; i += 4) {
           const v = (Math.random() * 255) | 0
           d[i] = d[i + 1] = d[i + 2] = v
-          d[i + 3] = 50
+          d[i + 3] = 255   // full alpha — opacity controlled via globalAlpha below
         }
         grainCtx.putImageData(id, 0, 0)
       }
@@ -89,7 +88,7 @@ export default function LightCanvas() {
         // Refresh grain every 2 frames → ~30 fps film-grain flicker
         if (p.frameCount % 2 === 0) updateGrain()
 
-        // ── Blobs ───────────────────────────────────────────
+        // ── Draw blobs (source-over — safe on any background) ─
         BLOBS.forEach((b, i) => {
           const dX  = (p.noise(b.ns,       t) - 0.5) * 0.14
           const dY  = (p.noise(b.ns + 100, t) - 0.5) * 0.11
@@ -100,19 +99,28 @@ export default function LightCanvas() {
           const rx  = b.rw * W * br
           const ry  = b.rh * H * br
           const ang = b.ang + (p.noise(b.ns + 300, t * 0.7) - 0.5) * 0.28
-          drawBlob(ctx, bx, by, rx, ry, ang, b.rgb)
+          drawBlob(ctx, bx, by, rx, ry, ang, b.rgb, b.a)
         })
 
-        // ── Grain overlay ────────────────────────────────────
+        // ── Grain: source-atop clips it to blob areas only ────
+        // (prevents grain from spilling onto the white background)
         ctx.save()
-        ctx.globalCompositeOperation = 'overlay'
+        ctx.globalCompositeOperation = 'source-atop'
+        ctx.globalAlpha = 0.10
         ctx.drawImage(grainCv, 0, 0, W, H)
         ctx.restore()
 
-        // ── Soft vignette (darkens blob edges) ───────────────
-        const vg = ctx.createRadialGradient(W / 2, H / 2, H * 0.04, W / 2, H / 2, H * 0.94)
+        // ── Overlay grain for texture depth ──────────────────
+        ctx.save()
+        ctx.globalCompositeOperation = 'overlay'
+        ctx.globalAlpha = 0.18
+        ctx.drawImage(grainCv, 0, 0, W, H)
+        ctx.restore()
+
+        // ── Edge vignette (darkens blob periphery) ────────────
+        const vg = ctx.createRadialGradient(W / 2, H / 2, H * 0.05, W / 2, H / 2, H * 0.94)
         vg.addColorStop(0, 'rgba(0,0,0,0)')
-        vg.addColorStop(1, 'rgba(0,0,0,0.24)')
+        vg.addColorStop(1, 'rgba(0,0,0,0.18)')
         ctx.save()
         ctx.fillStyle = vg
         ctx.fillRect(0, 0, W, H)
@@ -121,8 +129,8 @@ export default function LightCanvas() {
         // ── Click flash ──────────────────────────────────────
         if (flashA > 0.02) {
           ctx.save()
-          ctx.globalCompositeOperation = 'screen'
-          ctx.globalAlpha = flashA * 0.50
+          ctx.globalCompositeOperation = 'source-atop'
+          ctx.globalAlpha = flashA * 0.45
           ctx.fillStyle = '#ffffff'
           ctx.fillRect(0, 0, W, H)
           ctx.restore()
@@ -131,41 +139,39 @@ export default function LightCanvas() {
       }
 
       // ── Draw one organic blob ────────────────────────────────
-      // Uses rotated+scaled unit circle with offset radial gradient
-      // to simulate a 3D-lit volume.
-      function drawBlob(ctx, cx, cy, rx, ry, ang, rgb) {
+      function drawBlob(ctx, cx, cy, rx, ry, ang, rgb, baseA) {
         const [r, g, b] = rgb
         // Light offset in blob-local normalised space (−1..1)
         const lx = smX * 0.28
         const ly = smY * 0.23
 
         ctx.save()
-        ctx.globalCompositeOperation = 'screen'
+        // NOTE: source-over (default) — blends naturally on any background
         ctx.translate(cx, cy)
         ctx.rotate(ang)
         ctx.scale(rx, ry)
 
-        // Body: bright at light side → transparent at edge
+        // Body: bright focal point at light side → transparent at edge
         const gr = ctx.createRadialGradient(lx, ly, 0, 0, 0, 1)
-        gr.addColorStop(0.00, `rgba(${r},${g},${b},0.88)`)
-        gr.addColorStop(0.28, `rgba(${r},${g},${b},0.66)`)
-        gr.addColorStop(0.62, `rgba(${r},${g},${b},0.22)`)
-        gr.addColorStop(1.00, `rgba(${r},${g},${b},0.00)`)
+        gr.addColorStop(0.00, `rgba(${r},${g},${b},${baseA})`)
+        gr.addColorStop(0.30, `rgba(${r},${g},${b},${(baseA * 0.74).toFixed(3)})`)
+        gr.addColorStop(0.65, `rgba(${r},${g},${b},${(baseA * 0.26).toFixed(3)})`)
+        gr.addColorStop(1.00, `rgba(${r},${g},${b},0)`)
 
         ctx.beginPath()
         ctx.arc(0, 0, 1, 0, Math.PI * 2)
         ctx.fillStyle = gr
         ctx.fill()
 
-        // Specular: small white glow at light position
-        const sx = lx * 0.60, sy = ly * 0.60
-        const sg = ctx.createRadialGradient(sx, sy, 0, sx, sy, 0.22)
-        sg.addColorStop(0.0, 'rgba(255,255,255,0.52)')
-        sg.addColorStop(0.6, 'rgba(255,255,255,0.08)')
-        sg.addColorStop(1.0, 'rgba(255,255,255,0.00)')
+        // Specular: small white glow at light-source position
+        const sx = lx * 0.62, sy = ly * 0.62
+        const sg = ctx.createRadialGradient(sx, sy, 0, sx, sy, 0.24)
+        sg.addColorStop(0.0, `rgba(255,255,255,${(baseA * 0.80).toFixed(3)})`)
+        sg.addColorStop(0.5, `rgba(255,255,255,${(baseA * 0.18).toFixed(3)})`)
+        sg.addColorStop(1.0, 'rgba(255,255,255,0)')
 
         ctx.beginPath()
-        ctx.arc(sx, sy, 0.22, 0, Math.PI * 2)
+        ctx.arc(sx, sy, 0.24, 0, Math.PI * 2)
         ctx.fillStyle = sg
         ctx.fill()
 
