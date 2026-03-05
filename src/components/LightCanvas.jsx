@@ -1,3 +1,17 @@
+/**
+ * LightCanvas — Holographic Neural Crystal
+ *
+ * 3D crystalline node network rendered via manual perspective projection.
+ * No rectangular frame, fully transparent canvas.
+ *
+ * Interactions:
+ *   • Mouse position → real-time X/Y axis rotation
+ *   • Auto-rotation when cursor is outside
+ *   • Click → radial pulse wave propagates from center outward
+ *   • Depth-sorted rendering (back → front) for correct layering
+ *   • Per-node multi-layer bloom glow, depth-attenuated
+ */
+
 import { useEffect, useRef } from 'react'
 import p5 from 'p5'
 import styles from './LightCanvas.module.css'
@@ -10,330 +24,271 @@ export default function LightCanvas() {
     if (!containerRef.current || p5Ref.current) return
 
     const sketch = (p) => {
-      // ── palette ──────────────────────────────────────
-      const PALETTE = [
-        [155, 211, 255],  // accent blue
-        [180, 145, 255],  // violet
-        [255, 255, 255],  // white
-        [100, 200, 255],  // cyan
-        [220, 185, 255],  // lavender
-        [255, 235, 155],  // warm gold
-        [130, 220, 255],  // sky
-      ]
 
-      let orbs       = []
-      let bursts     = []
-      let shockwaves = []
-      let trail      = []
-      let lastMX = -999, lastMY = -999, trailClock = 0
+      // ── 3D rotation helpers (standard matrices) ───────
+      function rotateX(x, y, z, a) {
+        const c = Math.cos(a), s = Math.sin(a)
+        return { x, y: y * c - z * s, z: y * s + z * c }
+      }
+      function rotateY(x, y, z, a) {
+        const c = Math.cos(a), s = Math.sin(a)
+        return { x: x * c + z * s, y, z: -x * s + z * c }
+      }
+      function project(x, y, z, cx, cy, fov = 520) {
+        const sc = fov / (fov + z)
+        return { sx: x * sc + cx, sy: y * sc + cy, scale: sc, z }
+      }
 
-      // ─────────────────────────────────────────────────
-      //  Orb  — large luminous sphere that absorbs light
-      // ─────────────────────────────────────────────────
-      class Orb {
-        constructor() {
-          this.color       = PALETTE[Math.floor(p.random(PALETTE.length))]
-          this.baseSize    = p.random(18, 48)
-          this.size        = this.baseSize
-          this.x           = p.random(p.width)
-          this.y           = p.random(p.height)
-          this.vx          = p.random(-0.5, 0.5)
-          this.vy          = p.random(-0.5, 0.5)
-          this.phase       = p.random(Math.PI * 2)
-          this.breathSpeed = p.random(0.010, 0.022)
-          this.baseAlpha   = p.random(110, 210)
-          this.alpha       = this.baseAlpha
-          this.absorb      = 0   // 0 → 1
+      // ── Node ──────────────────────────────────────────
+      class Node3D {
+        constructor(x, y, z, inner = false) {
+          this.ox = x; this.oy = y; this.oz = z
+          this.baseR    = inner ? p.random(2.5, 6) : p.random(4, 12)
+          this.r        = this.baseR
+          this.phase    = p.random(Math.PI * 2)
+          this.bspeed   = p.random(0.009, 0.021)  // breath speed
+          this.pulse    = 0      // 0..1, decays
+          this.pQueue   = -1     // queued delay (frames), -1 = not queued
+          this.connections = 0
         }
 
         update() {
-          this.phase += this.breathSpeed
-
-          // gentle drift oscillation
-          this.vx += Math.sin(this.phase * 0.28) * 0.009
-          this.vy += Math.cos(this.phase * 0.35) * 0.009
-
-          // mouse absorption
-          const dx = p.mouseX - this.x
-          const dy = p.mouseY - this.y
-          const d  = Math.hypot(dx, dy)
-          const R  = 240
-          if (d < R && d > 1) {
-            const t      = Math.pow(1 - d / R, 1.6)
-            this.absorb  = Math.min(1, this.absorb + t * 0.09)
-            const force  = t * t * 0.14
-            this.vx     += (dx / d) * force
-            this.vy     += (dy / d) * force
-          } else {
-            this.absorb = Math.max(0, this.absorb - 0.045)
+          // pulse queue countdown
+          if (this.pQueue > 0) {
+            this.pQueue--
+          } else if (this.pQueue === 0) {
+            this.pulse  = 1
+            this.pQueue = -1
           }
-
-          this.vx *= 0.955
-          this.vy *= 0.955
-          this.x  += this.vx
-          this.y  += this.vy
-
-          // wrap
-          const M = 80
-          if (this.x < -M) this.x = p.width  + M
-          if (this.x > p.width  + M) this.x  = -M
-          if (this.y < -M) this.y = p.height + M
-          if (this.y > p.height + M) this.y  = -M
-
-          // breathe + swell when absorbing
-          const breath  = Math.sin(this.phase) * 0.14
-          this.size     = this.baseSize * (1 + breath + this.absorb * 2.8)
-          this.alpha    = this.baseAlpha + this.absorb * 160
-        }
-
-        draw() {
-          const [r, g, b] = this.color
-          const a = this.alpha
-          const s = this.size
-          p.noStroke()
-
-          // mega halo when absorbing
-          if (this.absorb > 0.08) {
-            p.fill(r, g, b, a * this.absorb * 0.05)
-            p.circle(this.x, this.y, s * 9.5)
-            p.fill(r, g, b, a * this.absorb * 0.08)
-            p.circle(this.x, this.y, s * 6.5)
-          }
-
-          // standard bloom layers
-          p.fill(r, g, b, a * 0.06)
-          p.circle(this.x, this.y, s * 5.8)
-          p.fill(r, g, b, a * 0.14)
-          p.circle(this.x, this.y, s * 3.2)
-          p.fill(r, g, b, a * 0.38)
-          p.circle(this.x, this.y, s * 1.7)
-          p.fill(r, g, b, Math.min(255, a * 1.1))
-          p.circle(this.x, this.y, s * 0.65)
-
-          // white-hot core when fully absorbing
-          if (this.absorb > 0.25) {
-            p.fill(255, 255, 255, this.absorb * 220)
-            p.circle(this.x, this.y, s * 0.22)
-          }
+          // decay
+          this.pulse *= 0.918
+          // breathe
+          const breath = Math.sin(this.phase += this.bspeed) * 0.16
+          this.r = this.baseR * (1 + breath + this.pulse * 2.2)
         }
       }
 
-      // ─────────────────────────────────────────────────
-      //  Shockwave  — expanding ring on click
-      // ─────────────────────────────────────────────────
-      class Shockwave {
-        constructor(x, y, delay = 0) {
-          this.x     = x
-          this.y     = y
-          this.r     = delay > 0 ? -delay * 6 : 0  // stagger start
-          this.speed = 9
-          this.maxR  = Math.hypot(p.width, p.height) * 0.75
-          this.life  = 1.0
-          this.color = [200, 230, 255]
-        }
+      // ── Build geometry ─────────────────────────────────
+      let nodes = [], edges = []
+      const OUTER_R    = 160
+      const INNER_R    = 88
+      const EDGE_LIMIT = 132  // max 3D distance to form edge
 
-        update() {
-          if (this.r < 0) { this.r += this.speed; return }
-          this.r    += this.speed
-          this.speed = Math.max(4, this.speed * 0.975)
-          this.life  = Math.max(0, 1 - this.r / this.maxR)
-        }
-
-        draw() {
-          if (this.r <= 0) return
-          const [r, g, b] = this.color
-          const a  = this.life * 200
-          const sw = this.life * 3.5 + 0.5
-          p.noFill()
-          p.stroke(r, g, b, a)
-          p.strokeWeight(sw)
-          p.circle(this.x, this.y, this.r * 2)
-          // softer trailing ring
-          if (this.r > 40) {
-            p.stroke(r, g, b, a * 0.35)
-            p.strokeWeight(sw * 0.5)
-            p.circle(this.x, this.y, (this.r - 35) * 2)
-          }
-        }
-
-        isDead() { return this.life <= 0.008 }
+      function fibSphere(count, r) {
+        const phi = Math.PI * (3 - Math.sqrt(5))
+        return Array.from({ length: count }, (_, i) => {
+          const y   = 1 - (i / (count - 1)) * 2
+          const rad = Math.sqrt(Math.max(0, 1 - y * y))
+          const t   = phi * i
+          return [Math.cos(t) * rad * r, y * r, Math.sin(t) * rad * r]
+        })
       }
 
-      // ─────────────────────────────────────────────────
-      //  Burst particle  — flies out on click / absorb
-      // ─────────────────────────────────────────────────
-      class Burst {
-        constructor(x, y, big = false) {
-          const angle  = p.random(Math.PI * 2)
-          const speed  = big ? p.random(2.5, 14) : p.random(1.5, 5.5)
-          this.x     = x + Math.cos(angle) * p.random(0, big ? 30 : 10)
-          this.y     = y + Math.sin(angle) * p.random(0, big ? 30 : 10)
-          this.vx    = Math.cos(angle) * speed
-          this.vy    = Math.sin(angle) * speed
-          this.life  = 1.0
-          this.decay = big ? p.random(0.010, 0.022) : p.random(0.020, 0.040)
-          this.size  = big ? p.random(10, 32) : p.random(4, 14)
-          const bc   = [
-            [255, 255, 255],
-            [255, 245, 145],
-            [200, 240, 255],
-            [185, 155, 255],
-            [155, 211, 255],
-            [255, 205, 100],
-          ]
-          this.color = bc[Math.floor(p.random(bc.length))]
-        }
+      function buildScene() {
+        nodes = []; edges = []
 
-        update() {
-          this.vx   *= 0.935
-          this.vy   *= 0.935
-          this.x    += this.vx
-          this.y    += this.vy
-          this.life -= this.decay
-        }
+        // Outer shell — 44 nodes, Fibonacci sphere
+        fibSphere(44, OUTER_R).forEach(([x, y, z]) => nodes.push(new Node3D(x, y, z, false)))
+        // Mid shell — 18 nodes
+        fibSphere(18, INNER_R).forEach(([x, y, z]) => nodes.push(new Node3D(x, y, z, true)))
+        // Dense inner core — 5 nodes
+        fibSphere(5, 40).forEach(([x, y, z]) => nodes.push(new Node3D(x, y, z, true)))
 
-        draw() {
-          const [r, g, b] = this.color
-          const a = this.life
-          const s = this.size * a
-          p.noStroke()
-          p.fill(r, g, b, a * 230 * 0.07)
-          p.circle(this.x, this.y, s * 6.5)
-          p.fill(r, g, b, a * 230 * 0.28)
-          p.circle(this.x, this.y, s * 2.6)
-          p.fill(r, g, b, a * 230)
-          p.circle(this.x, this.y, s * 0.8)
-          if (a > 0.4) {
-            p.fill(255, 255, 255, a * 195)
-            p.circle(this.x, this.y, s * 0.28)
-          }
-        }
-
-        isDead() { return this.life <= 0 }
-      }
-
-      // ─────────────────────────────────────────────────
-      //  Trail point  — fading light where cursor passed
-      // ─────────────────────────────────────────────────
-      class Trail {
-        constructor(x, y) {
-          this.x    = x
-          this.y    = y
-          this.life = 1.0
-          this.size = p.random(6, 18)
-        }
-        update() { this.life -= 0.030 }
-        draw() {
-          const a = this.life
-          p.noStroke()
-          p.fill(155, 211, 255, a * 35)
-          p.circle(this.x, this.y, this.size * 5)
-          p.fill(220, 240, 255, a * 70)
-          p.circle(this.x, this.y, this.size * 1.6)
-        }
-        isDead() { return this.life <= 0 }
-      }
-
-      // ─────────────────────────────────────────────────
-      //  Setup & Draw
-      // ─────────────────────────────────────────────────
-      p.setup = () => {
-        const w  = containerRef.current?.offsetWidth  || 500
-        const h  = containerRef.current?.offsetHeight || 540
-        const cv = p.createCanvas(w, h)
-        cv.style('display', 'block')
-        p.frameRate(60)
-        for (let i = 0; i < 20; i++) orbs.push(new Orb())
-      }
-
-      p.draw = () => {
-        p.clear()
-
-        const mx = p.mouseX, my = p.mouseY
-        const inCanvas = mx > 0 && mx < p.width && my > 0 && my < p.height
-
-        // ── mouse trail ───────────────────────────────
-        trailClock++
-        if (inCanvas && Math.hypot(mx - lastMX, my - lastMY) > 5 && trailClock > 2) {
-          trail.push(new Trail(mx, my))
-          lastMX = mx; lastMY = my; trailClock = 0
-        }
-        trail = trail.filter(t => !t.isDead())
-        trail.forEach(t => { t.update(); t.draw() })
-
-        // ── absorption tendrils (orb → cursor) ────────
-        if (inCanvas) {
-          orbs.forEach(o => {
-            if (o.absorb < 0.15) return
-            const [r, g, b] = o.color
-            p.stroke(r, g, b, o.absorb * 65)
-            p.strokeWeight(o.absorb * 2.2)
-            p.line(o.x, o.y, mx, my)
-          })
-        }
-
-        // ── orb connection lines ──────────────────────
-        for (let i = 0; i < orbs.length; i++) {
-          for (let j = i + 1; j < orbs.length; j++) {
-            const d = Math.hypot(orbs[i].x - orbs[j].x, orbs[i].y - orbs[j].y)
-            if (d < 130) {
-              const t      = 1 - d / 130
-              const absorb = (orbs[i].absorb + orbs[j].absorb) * 0.5
-              p.stroke(155, 211, 255, t * 22 + absorb * 50)
-              p.strokeWeight(0.5 + absorb * 2)
-              p.line(orbs[i].x, orbs[i].y, orbs[j].x, orbs[j].y)
+        // Edges: O(n²) for clarity — n≈67, fast enough
+        for (let i = 0; i < nodes.length; i++) {
+          for (let j = i + 1; j < nodes.length; j++) {
+            const d = Math.hypot(
+              nodes[i].ox - nodes[j].ox,
+              nodes[i].oy - nodes[j].oy,
+              nodes[i].oz - nodes[j].oz
+            )
+            if (d < EDGE_LIMIT) {
+              edges.push({ a: i, b: j, d })
+              nodes[i].connections++
+              nodes[j].connections++
             }
           }
         }
-        p.noStroke()
+      }
 
-        // ── orbs ──────────────────────────────────────
-        orbs.forEach(o => { o.update(); o.draw() })
+      // ── Rotation state ─────────────────────────────────
+      let curRX = 0.28, curRY = 0.0
+      let tgtRX = 0.28, tgtRY = 0.0
+      let autoRY = 0
+      let hovering = false
 
-        // ── shockwaves ────────────────────────────────
-        shockwaves = shockwaves.filter(s => !s.isDead())
-        shockwaves.forEach(s => { s.update(); s.draw() })
-        p.noStroke()
+      // ── Radial pulse from center ────────────────────────
+      function firePulse() {
+        const FPS      = 60
+        const DURATION = 1.6  // seconds for wave to reach edge
+        nodes.forEach(n => {
+          const dist  = Math.hypot(n.ox, n.oy, n.oz)
+          const delay = Math.round((dist / OUTER_R) * DURATION * FPS)
+          n.pQueue = delay
+        })
+      }
 
-        // ── burst particles ───────────────────────────
-        bursts = bursts.filter(b => !b.isDead())
-        bursts.forEach(b => { b.update(); b.draw() })
+      // ── Ambient slow pulse every ~4s ───────────────────
+      let ambientTimer = 0
 
-        // ── cursor glow ───────────────────────────────
-        if (inCanvas) {
+      // ── Setup ─────────────────────────────────────────
+      p.setup = () => {
+        const cv = p.createCanvas(
+          containerRef.current.offsetWidth,
+          containerRef.current.offsetHeight
+        )
+        cv.style('display', 'block')
+        p.frameRate(60)
+        buildScene()
+      }
+
+      // ── Draw ───────────────────────────────────────────
+      p.draw = () => {
+        p.clear()   // transparent background every frame
+
+        const cx = p.width * 0.5, cy = p.height * 0.5
+        const mx = p.mouseX, my = p.mouseY
+        hovering = mx > 0 && mx < p.width && my > 0 && my < p.height
+
+        // Rotation target from mouse
+        if (hovering) {
+          tgtRY = ((mx - cx) / cx) * Math.PI * 1.35
+          tgtRX = ((my - cy) / cy) * Math.PI * 0.52
+        } else {
+          autoRY += 0.0035
+        }
+        curRX += (tgtRX - curRX) * 0.055
+        curRY += (tgtRY - curRY) * 0.055
+
+        // Ambient pulse
+        ambientTimer++
+        if (ambientTimer > 240) { firePulse(); ambientTimer = 0 }
+
+        // Update nodes
+        nodes.forEach(n => n.update())
+
+        // Project nodes to screen
+        const proj = nodes.map(n => {
+          let v = rotateX(n.ox, n.oy, n.oz, curRX)
+          v     = rotateY(v.x,  v.y,  v.z,  curRY + autoRY)
+          return project(v.x, v.y, v.z, cx, cy)
+        })
+
+        // ── Collect & depth-sort drawables ─────────────
+        const drawList = []
+
+        edges.forEach(e => {
+          const pa = proj[e.a], pb = proj[e.b]
+          drawList.push({
+            type: 'edge',
+            pa, pb,
+            edgeDist: e.d,
+            z: (pa.z + pb.z) * 0.5,
+            pulse: (nodes[e.a].pulse + nodes[e.b].pulse) * 0.5,
+          })
+        })
+        nodes.forEach((n, i) => {
+          drawList.push({ type: 'node', n, p3: proj[i], z: proj[i].z })
+        })
+
+        // Back → front (descending Z = deepest first)
+        drawList.sort((a, b) => b.z - a.z)
+
+        drawList.forEach(item => {
+          if (item.type === 'edge') renderEdge(item)
+          else                      renderNode(item)
+        })
+
+        // Cursor halo
+        if (hovering) {
           const pulse = Math.sin(p.frameCount * 0.09) * 0.28 + 1
           p.noStroke()
-          p.fill(200, 230, 255, 10)
-          p.circle(mx, my, 100 * pulse)
-          p.fill(220, 240, 255, 22)
-          p.circle(mx, my, 38 * pulse)
-          p.fill(255, 255, 255, 55)
-          p.circle(mx, my, 9)
+          p.fill(155, 211, 255, 8)
+          p.circle(mx, my, 130 * pulse)
+          p.fill(200, 230, 255, 16)
+          p.circle(mx, my, 48 * pulse)
+          p.fill(255, 255, 255, 46)
+          p.circle(mx, my, 10)
         }
       }
 
-      // ── click: shockwave + mega burst ────────────────
+      // ── Render helpers ─────────────────────────────────
+
+      function depthFactor(z) {
+        // z ∈ [-OUTER_R*1.4 … +OUTER_R*1.4] after rotation
+        return p.map(z, -240, 240, 0.95, 0.08)
+      }
+
+      function renderEdge({ pa, pb, edgeDist, z, pulse }) {
+        const df   = depthFactor(z)
+        const base = p.map(edgeDist, 0, EDGE_LIMIT, 80, 8) * df
+        const r    = 100 + pulse * 155
+        const g    = 190 + pulse * 65
+        const b    = 255
+
+        p.stroke(r, g, b, base + pulse * 155)
+        p.strokeWeight((0.45 + pulse * 2.5) * df + 0.25)
+        p.line(pa.sx, pa.sy, pb.sx, pb.sy)
+      }
+
+      function renderNode({ n, p3 }) {
+        const { sx, sy, scale, z } = p3
+        const df    = depthFactor(z)
+        const pulse = n.pulse
+        const s     = n.r * scale   // screen-space radius
+
+        // Colour: cool blue → warm white-gold when pulsing
+        const nr = 100 + Math.min(155, pulse * 200)
+        const ng = 185 + Math.min(70, pulse * 70)
+        const nb = 255
+
+        p.noStroke()
+
+        // ── Layer 1: mega halo (visible only during strong pulse)
+        if (pulse > 0.18) {
+          p.fill(nr, ng, nb, df * 8 * pulse)
+          p.circle(sx, sy, s * 20)
+          p.fill(nr, ng, nb, df * 16 * pulse)
+          p.circle(sx, sy, s * 11)
+        }
+
+        // ── Layer 2: standard outer bloom
+        p.fill(nr, ng, nb, df * 20)
+        p.circle(sx, sy, s * 7)
+
+        // ── Layer 3: mid glow
+        p.fill(nr, ng, nb, df * 55)
+        p.circle(sx, sy, s * 3.5)
+
+        // ── Layer 4: inner glow
+        p.fill(nr, ng, nb, df * 130)
+        p.circle(sx, sy, s * 1.7)
+
+        // ── Layer 5: solid core
+        p.fill(nr, ng, nb, Math.min(255, df * 215))
+        p.circle(sx, sy, s * 0.72)
+
+        // ── Layer 6: white-hot nucleus (pulse only)
+        if (pulse > 0.28) {
+          p.fill(255, 255, 255, df * pulse * 235)
+          p.circle(sx, sy, s * 0.30)
+        }
+      }
+
+      // ── Interactions ───────────────────────────────────
       p.mouseClicked = () => {
-        if (p.mouseX < 0 || p.mouseX > p.width || p.mouseY < 0 || p.mouseY > p.height) return
-
-        // 3 staggered shockwave rings
-        shockwaves.push(new Shockwave(p.mouseX, p.mouseY, 0))
-        shockwaves.push(new Shockwave(p.mouseX, p.mouseY, 5))
-        shockwaves.push(new Shockwave(p.mouseX, p.mouseY, 12))
-
-        // 55 dramatic burst particles
-        for (let i = 0; i < 55; i++) bursts.push(new Burst(p.mouseX, p.mouseY, true))
-
-        // Force nearby orbs to max-absorb
-        orbs.forEach(o => {
-          const d = Math.hypot(p.mouseX - o.x, p.mouseY - o.y)
-          if (d < 320) o.absorb = Math.min(1, o.absorb + (1 - d / 320) * 0.95)
-        })
+        if (!hovering) return
+        firePulse()
+        // Reset ambient timer so we don't double-fire soon
+        ambientTimer = 0
       }
 
       p.windowResized = () => {
         if (!containerRef.current) return
-        p.resizeCanvas(containerRef.current.offsetWidth, containerRef.current.offsetHeight)
+        p.resizeCanvas(
+          containerRef.current.offsetWidth,
+          containerRef.current.offsetHeight
+        )
       }
     }
 

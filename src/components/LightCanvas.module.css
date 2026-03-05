@@ -1,15 +1,15 @@
-/* ── LightCanvas container ────────────────────────── */
+/* ── LightCanvas — no rectangular clip, fully transparent ── */
 
 .wrap {
   flex: 1;
   min-width: 300px;
-  max-width: 580px;
+  max-width: 620px;
   align-self: stretch;
-  min-height: 420px;
+  min-height: 400px;
   position: relative;
   cursor: crosshair;
-  border-radius: 28px;
-  overflow: hidden;
+  /* intentionally no border-radius / overflow-hidden:
+     the 3D glow halos should bleed freely */
 }
 
 .wrap canvas {
@@ -19,9 +19,6 @@
   height: 100% !important;
 }
 
-/* hide on tablet / mobile — keep layout clean */
 @media (max-width: 900px) {
-  .wrap {
-    display: none;
-  }
+  .wrap { display: none; }
 }
