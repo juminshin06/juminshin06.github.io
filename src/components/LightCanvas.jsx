@@ -1,20 +1,23 @@
 /**
- * LightCanvas — Grainy Organic Blobs
+ * LightCanvas — Grainy Organic Blobs (Dark Edition)
  *
- * Pastel soft blobs on white/light background · animated film-grain ·
- * mouse-driven 3D lighting (offset radial gradient + specular highlight).
- * Fully transparent canvas, no rectangular frame.
+ * Dark background card with screen-blended vivid blobs + animated film grain.
+ * Screen blend on dark = luminous, jewel-toned result (like the reference images).
+ * Mouse-driven 3D lighting via offset radial gradient + specular highlight.
  *
  * Interactions:
- *   • Mouse → shifts light source (3D highlight moves across blobs)
- *   • Auto-drifts when cursor is outside
- *   • Perlin noise → organic position + scale + angle animation
- *   • Click → bright flash pulse
+ *   • Mouse → shifts light source (bright spot moves across each blob = 3D)
+ *   • Auto-drifts smoothly when cursor is outside
+ *   • Perlin noise → organic position / scale / angle per blob
+ *   • Click → bright flash burst
  */
 
 import { useEffect, useRef } from 'react'
 import p5 from 'p5'
 import styles from './LightCanvas.module.css'
+
+// Dark card background colour
+const BG_R = 12, BG_G = 10, BG_B = 28   // #0C0A1C — deep indigo-black
 
 export default function LightCanvas() {
   const containerRef = useRef(null)
@@ -28,18 +31,17 @@ export default function LightCanvas() {
       let flashA = 0
       let smX = 0, smY = 0   // smoothed light vector  −1..1
 
-      // ── Blob config ─────────────────────────────────────────
-      // Lighter pastel values so they read beautifully on a white background
+      // ── Vivid blobs — screen-blended on dark bg ──────────────
+      // rw/rh are large so blobs overflow the canvas edges (organic, not boxed)
       const BLOBS = [
-        { nx: 0.38, ny: 0.50, rw: 0.58, rh: 0.36, ang: -0.35, rgb: [200, 155, 255], a: 0.62, ns:  0 },
-        { nx: 0.64, ny: 0.44, rw: 0.50, rh: 0.31, ang:  0.62, rgb: [140, 205, 255], a: 0.58, ns: 17 },
-        { nx: 0.50, ny: 0.62, rw: 0.42, rh: 0.52, ang:  1.12, rgb: [255, 170, 210], a: 0.58, ns: 34 },
-        { nx: 0.25, ny: 0.53, rw: 0.36, rh: 0.32, ang: -0.82, rgb: [255, 224, 140], a: 0.52, ns: 51 },
-        { nx: 0.73, ny: 0.55, rw: 0.42, rh: 0.46, ang:  0.28, rgb: [150, 232, 208], a: 0.55, ns: 68 },
-        { nx: 0.49, ny: 0.36, rw: 0.46, rh: 0.27, ang: -0.18, rgb: [255, 198, 162], a: 0.56, ns: 85 },
+        { nx: 0.34, ny: 0.50, rw: 0.76, rh: 0.48, ang: -0.32, rgb: [148,  85, 245], ns:  0 },
+        { nx: 0.70, ny: 0.43, rw: 0.64, rh: 0.38, ang:  0.58, rgb: [ 62, 162, 250], ns: 17 },
+        { nx: 0.48, ny: 0.66, rw: 0.52, rh: 0.60, ang:  1.10, rgb: [248,  85, 148], ns: 34 },
+        { nx: 0.20, ny: 0.48, rw: 0.40, rh: 0.34, ang: -0.78, rgb: [245, 172,  58], ns: 51 },
+        { nx: 0.76, ny: 0.58, rw: 0.48, rh: 0.54, ang:  0.25, rgb: [ 55, 205, 168], ns: 68 },
       ]
 
-      // ── Film grain (half-res for performance) ───────────────
+      // ── Film grain (half-res for perf, animated) ─────────────
       function initGrain(W, H) {
         grainCv        = document.createElement('canvas')
         grainCv.width  = Math.ceil(W / 2)
@@ -55,12 +57,12 @@ export default function LightCanvas() {
         for (let i = 0; i < d.length; i += 4) {
           const v = (Math.random() * 255) | 0
           d[i] = d[i + 1] = d[i + 2] = v
-          d[i + 3] = 255   // full alpha — opacity controlled via globalAlpha below
+          d[i + 3] = 255
         }
         grainCtx.putImageData(id, 0, 0)
       }
 
-      // ── Setup ───────────────────────────────────────────────
+      // ── Setup ────────────────────────────────────────────────
       p.setup = () => {
         const cv = p.createCanvas(
           containerRef.current.offsetWidth,
@@ -71,107 +73,92 @@ export default function LightCanvas() {
         initGrain(p.width, p.height)
       }
 
-      // ── Draw ────────────────────────────────────────────────
+      // ── Draw ─────────────────────────────────────────────────
       p.draw = () => {
-        p.clear()
+        // Solid dark background — makes screen blend pop like the reference
+        p.background(BG_R, BG_G, BG_B)
+
         const ctx = p.drawingContext
         const W = p.width, H = p.height
-        const t = p.frameCount * 0.0040
+        const t = p.frameCount * 0.004
 
-        // Smooth light-source position (−1..1)
+        // Smooth light-source direction (−1..1)
         const inside = p.mouseX > 0 && p.mouseX < W && p.mouseY > 0 && p.mouseY < H
-        const tx = inside ? (p.mouseX / W - 0.5) * 2 : Math.sin(t * 0.88) * 0.52
-        const ty = inside ? (p.mouseY / H - 0.5) * 2 : Math.cos(t * 0.70) * 0.40
-        smX += (tx - smX) * 0.052
-        smY += (ty - smY) * 0.052
+        const tx = inside ? (p.mouseX / W - 0.5) * 2 : Math.sin(t * 0.88) * 0.55
+        const ty = inside ? (p.mouseY / H - 0.5) * 2 : Math.cos(t * 0.70) * 0.42
+        smX += (tx - smX) * 0.05
+        smY += (ty - smY) * 0.05
 
-        // Refresh grain every 2 frames → ~30 fps film-grain flicker
+        // Refresh grain every 2 frames (30 fps flicker = authentic film grain)
         if (p.frameCount % 2 === 0) updateGrain()
 
-        // ── Draw blobs (source-over — safe on any background) ─
+        // ── Blobs ───────────────────────────────────────────
         BLOBS.forEach((b, i) => {
-          const dX  = (p.noise(b.ns,       t) - 0.5) * 0.14
-          const dY  = (p.noise(b.ns + 100, t) - 0.5) * 0.11
-          const dir = i % 2 === 0 ? 1 : -0.65
+          const dX  = (p.noise(b.ns,       t) - 0.5) * 0.13
+          const dY  = (p.noise(b.ns + 100, t) - 0.5) * 0.10
+          const dir = i % 2 === 0 ? 1 : -0.6
           const bx  = (b.nx + dX + smX * 0.05 * dir) * W
           const by  = (b.ny + dY + smY * 0.04 * dir) * H
-          const br  = 1 + (p.noise(b.ns + 200, t * 1.2) - 0.5) * 0.10
+          const br  = 1 + (p.noise(b.ns + 200, t * 1.1) - 0.5) * 0.08
           const rx  = b.rw * W * br
           const ry  = b.rh * H * br
-          const ang = b.ang + (p.noise(b.ns + 300, t * 0.7) - 0.5) * 0.28
-          drawBlob(ctx, bx, by, rx, ry, ang, b.rgb, b.a)
+          const ang = b.ang + (p.noise(b.ns + 300, t * 0.65) - 0.5) * 0.25
+          drawBlob(ctx, bx, by, rx, ry, ang, b.rgb)
         })
 
-        // ── Grain: source-atop clips it to blob areas only ────
-        // (prevents grain from spilling onto the white background)
-        ctx.save()
-        ctx.globalCompositeOperation = 'source-atop'
-        ctx.globalAlpha = 0.10
-        ctx.drawImage(grainCv, 0, 0, W, H)
-        ctx.restore()
-
-        // ── Overlay grain for texture depth ──────────────────
+        // ── Grain overlay (overlay on dark bg = deep, rich texture) ─
         ctx.save()
         ctx.globalCompositeOperation = 'overlay'
-        ctx.globalAlpha = 0.18
+        ctx.globalAlpha = 0.30
         ctx.drawImage(grainCv, 0, 0, W, H)
         ctx.restore()
 
-        // ── Edge vignette (darkens blob periphery) ────────────
-        const vg = ctx.createRadialGradient(W / 2, H / 2, H * 0.05, W / 2, H / 2, H * 0.94)
-        vg.addColorStop(0, 'rgba(0,0,0,0)')
-        vg.addColorStop(1, 'rgba(0,0,0,0.18)')
-        ctx.save()
-        ctx.fillStyle = vg
-        ctx.fillRect(0, 0, W, H)
-        ctx.restore()
-
-        // ── Click flash ──────────────────────────────────────
+        // ── Flash ────────────────────────────────────────────
         if (flashA > 0.02) {
           ctx.save()
-          ctx.globalCompositeOperation = 'source-atop'
-          ctx.globalAlpha = flashA * 0.45
+          ctx.globalCompositeOperation = 'screen'
+          ctx.globalAlpha = flashA * 0.65
           ctx.fillStyle = '#ffffff'
           ctx.fillRect(0, 0, W, H)
           ctx.restore()
-          flashA *= 0.86
+          flashA *= 0.85
         }
       }
 
-      // ── Draw one organic blob ────────────────────────────────
-      function drawBlob(ctx, cx, cy, rx, ry, ang, rgb, baseA) {
+      // ── Single blob: screen-blended elliptical gradient + specular ─
+      function drawBlob(ctx, cx, cy, rx, ry, ang, rgb) {
         const [r, g, b] = rgb
-        // Light offset in blob-local normalised space (−1..1)
-        const lx = smX * 0.28
-        const ly = smY * 0.23
+        // Light offset in blob-local normalised space
+        const lx = smX * 0.30
+        const ly = smY * 0.26
 
         ctx.save()
-        // NOTE: source-over (default) — blends naturally on any background
+        ctx.globalCompositeOperation = 'screen'
         ctx.translate(cx, cy)
         ctx.rotate(ang)
         ctx.scale(rx, ry)
 
-        // Body: bright focal point at light side → transparent at edge
+        // Body: bright at light side, fades to dark (bg shows through = 3D depth)
         const gr = ctx.createRadialGradient(lx, ly, 0, 0, 0, 1)
-        gr.addColorStop(0.00, `rgba(${r},${g},${b},${baseA})`)
-        gr.addColorStop(0.30, `rgba(${r},${g},${b},${(baseA * 0.74).toFixed(3)})`)
-        gr.addColorStop(0.65, `rgba(${r},${g},${b},${(baseA * 0.26).toFixed(3)})`)
-        gr.addColorStop(1.00, `rgba(${r},${g},${b},0)`)
+        gr.addColorStop(0.00, `rgba(${r},${g},${b},0.92)`)
+        gr.addColorStop(0.28, `rgba(${r},${g},${b},0.70)`)
+        gr.addColorStop(0.60, `rgba(${r},${g},${b},0.22)`)
+        gr.addColorStop(1.00, `rgba(${r},${g},${b},0.00)`)
 
         ctx.beginPath()
         ctx.arc(0, 0, 1, 0, Math.PI * 2)
         ctx.fillStyle = gr
         ctx.fill()
 
-        // Specular: small white glow at light-source position
-        const sx = lx * 0.62, sy = ly * 0.62
-        const sg = ctx.createRadialGradient(sx, sy, 0, sx, sy, 0.24)
-        sg.addColorStop(0.0, `rgba(255,255,255,${(baseA * 0.80).toFixed(3)})`)
-        sg.addColorStop(0.5, `rgba(255,255,255,${(baseA * 0.18).toFixed(3)})`)
-        sg.addColorStop(1.0, 'rgba(255,255,255,0)')
+        // Specular: bright white glow at light-source position
+        const sx = lx * 0.55, sy = ly * 0.55
+        const sg = ctx.createRadialGradient(sx, sy, 0, sx, sy, 0.28)
+        sg.addColorStop(0.0, 'rgba(255,255,255,0.88)')
+        sg.addColorStop(0.4, 'rgba(255,255,255,0.22)')
+        sg.addColorStop(1.0, 'rgba(255,255,255,0.00)')
 
         ctx.beginPath()
-        ctx.arc(sx, sy, 0.24, 0, Math.PI * 2)
+        ctx.arc(sx, sy, 0.28, 0, Math.PI * 2)
         ctx.fillStyle = sg
         ctx.fill()
 
