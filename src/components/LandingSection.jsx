@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import styles from './LandingSection.module.css'
-import CardDeck from './CardDeck'
 
 const INTERESTS = ['Data', 'Health', 'AI', 'Design', 'User Experience']
 
@@ -47,7 +46,6 @@ export default function LandingSection() {
           </div>
         </div>
 
-        <CardDeck />
       </div>
 
       {/* ── Bottom bar ── */}

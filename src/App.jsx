@@ -7,6 +7,7 @@ import ProjectsSection from './components/ProjectsSection'
 import ProjectPage from './components/ProjectPage'
 import LifePage from './components/LifePage'
 import Footer from './components/Footer'
+import CardDeck from './components/CardDeck'
 
 export default function App() {
   const [currentProject, setCurrentProject] = useState(null)
@@ -101,6 +102,7 @@ export default function App() {
         <AboutSection />
       </main>
       <Footer />
+      <CardDeck />
     </>
   )
 }
