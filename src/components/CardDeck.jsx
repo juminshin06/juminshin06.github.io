@@ -5,13 +5,6 @@ import styles from './CardDeck.module.css'
 
 const COLORS = ['#E8E8E8', '#DCDCDC', '#D4D4D4', '#CCCCCC', '#C8C8C8', '#C0C0C0']
 
-// Mini stack offsets for the floating trigger
-const MINI_STACKED = [
-  { r: -8, x:  0, y:  0 },
-  { r:  5, x:  3, y:  3 },
-  { r: -3, x: -2, y:  6 },
-]
-
 // Spread positions (% of viewport) — 3 cards
 const EXPANDED = [
   { top: 42, left: 16, r: -10 },
@@ -27,8 +20,7 @@ export default function CardDeck() {
   const closeTimer            = useRef(null)
   const btnRef                = useRef(null)
 
-  const topProjects  = projects.slice(0, 3)
-  const miniProjects = projects.slice(0, 3)
+  const topProjects = projects.slice(0, 3)
 
   useEffect(() => {
     if (open) {
@@ -77,20 +69,33 @@ export default function CardDeck() {
         onClick={handleOpen}
         aria-label="프로젝트 카드 보기"
       >
-        <div className={styles.miniStack}>
-          {miniProjects.map((p, i) => (
-            <div
-              key={p.id}
-              className={styles.miniCard}
-              style={{
-                background: getCardBg(p, i),
-                transform: `rotate(${MINI_STACKED[i].r}deg) translate(${MINI_STACKED[i].x}px, ${MINI_STACKED[i].y}px)`,
-                zIndex: 3 - i,
-              }}
-            />
-          ))}
-        </div>
-        <span className={styles.floatLabel}>{projects.length}</span>
+        {/* Pretty stacked-cards icon */}
+        <svg
+          className={styles.deckIcon}
+          viewBox="0 0 32 32"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+        >
+          {/* back card */}
+          <rect x="3"  y="10" width="18" height="14" rx="3"
+            fill="rgba(0,90,0,0.18)" transform="rotate(-11 12 17)" />
+          {/* middle card */}
+          <rect x="11" y="9"  width="18" height="14" rx="3"
+            fill="rgba(0,90,0,0.28)" transform="rotate(7 20 16)" />
+          {/* front card */}
+          <rect x="7"  y="10" width="18" height="14" rx="3"
+            fill="rgba(0,90,0,0.65)" />
+          {/* arrow → "open" affordance */}
+          <path
+            d="M13 17L17.5 17M15.5 14.5L17.5 17L15.5 19.5"
+            stroke="rgba(210,255,80,0.95)"
+            strokeWidth="1.7"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+        <span className={styles.floatLabel}>Click</span>
       </button>
 
       {/* ── Expanded overlay (portal) ── */}

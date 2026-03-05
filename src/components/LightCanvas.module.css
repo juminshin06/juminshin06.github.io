@@ -1,0 +1,27 @@
+/* ── LightCanvas container ────────────────────────── */
+
+.wrap {
+  flex: 1;
+  min-width: 260px;
+  max-width: 520px;
+  align-self: center;
+  height: 460px;
+  position: relative;
+  cursor: crosshair;
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+.wrap canvas {
+  position: absolute;
+  inset: 0;
+  width:  100% !important;
+  height: 100% !important;
+}
+
+/* hide on small screens — keep layout clean */
+@media (max-width: 900px) {
+  .wrap {
+    display: none;
+  }
+}

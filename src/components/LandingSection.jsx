@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
 import styles from './LandingSection.module.css'
+import LightCanvas from './LightCanvas'
 
-const INTERESTS = ['Data', 'Health', 'AI', 'Design', 'User Experience']
+const INTERESTS = ['Design', 'Engineering', 'AI', 'Interaction', 'Systems']
 
 export default function LandingSection() {
   const [copied, setCopied]               = useState(false)
@@ -33,10 +34,10 @@ export default function LandingSection() {
         <div className={styles.content}>
           <p className={styles.greeting}>Hi, I'm Jumin Shin</p>
           <p className={styles.description}>
-            <strong>UX Designer</strong> &amp; <strong>Researcher</strong>{' '}
-            passionate about creating{' '}
-            <strong>human-centered</strong> experiences through
-            research, design, and data analytics.
+            <strong>Design Engineer</strong>{' '}
+            crafting interactive digital products where{' '}
+            <strong>design meets code</strong> —
+            human-centered, research-driven.
           </p>
           <div className={styles.ticker}>
             <span className={styles.tickerLabel}>Interested in</span>
@@ -46,6 +47,7 @@ export default function LandingSection() {
           </div>
         </div>
 
+        <LightCanvas />
       </div>
 
       {/* ── Bottom bar ── */}
