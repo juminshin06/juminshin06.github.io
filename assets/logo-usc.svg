@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <circle cx="100" cy="100" r="99" fill="white"/>
+  <!-- Outer border -->
+  <circle cx="100" cy="100" r="97" fill="none" stroke="#990000" stroke-width="3.5"/>
+  <!-- Inner ring -->
+  <circle cx="100" cy="100" r="78" fill="none" stroke="#990000" stroke-width="1.2"/>
+  <!-- Innermost ring -->
+  <circle cx="100" cy="100" r="60" fill="none" stroke="#990000" stroke-width="1.2"/>
+
+  <!-- Sunburst rays at top -->
+  <line x1="100" y1="40" x2="100" y2="52" stroke="#990000" stroke-width="1.5"/>
+  <line x1="84" y1="43" x2="88" y2="55" stroke="#990000" stroke-width="1.5"/>
+  <line x1="70" y1="52" x2="77" y2="61" stroke="#990000" stroke-width="1.5"/>
+  <line x1="116" y1="43" x2="112" y2="55" stroke="#990000" stroke-width="1.5"/>
+  <line x1="130" y1="52" x2="123" y2="61" stroke="#990000" stroke-width="1.5"/>
+
+  <!-- Three torches -->
+  <!-- Center torch -->
+  <line x1="100" y1="62" x2="100" y2="100" stroke="#990000" stroke-width="2"/>
+  <ellipse cx="100" cy="60" rx="4" ry="6" fill="#990000"/>
+  <path d="M 97 60 Q 100 52 103 60" fill="#990000"/>
+  <!-- Left torch -->
+  <line x1="84" y1="70" x2="84" y2="100" stroke="#990000" stroke-width="1.8"/>
+  <ellipse cx="84" cy="68" rx="3.5" ry="5" fill="#990000"/>
+  <path d="M 81.5 68 Q 84 61 86.5 68" fill="#990000"/>
+  <!-- Right torch -->
+  <line x1="116" y1="70" x2="116" y2="100" stroke="#990000" stroke-width="1.8"/>
+  <ellipse cx="116" cy="68" rx="3.5" ry="5" fill="#990000"/>
+  <path d="M 113.5 68 Q 116 61 118.5 68" fill="#990000"/>
+
+  <!-- Shield -->
+  <path d="M 78 100 L 100 100 L 122 100 L 122 118 L 100 130 L 78 118 Z" fill="none" stroke="#990000" stroke-width="1.5"/>
+
+  <!-- 1880 -->
+  <text x="100" y="118" font-family="Georgia,serif" font-size="13" fill="#990000" text-anchor="middle" font-weight="bold" letter-spacing="1">1880</text>
+
+  <!-- UNIVERSITY OF SOUTHERN CALIFORNIA arc top -->
+  <defs>
+    <path id="topArcUSC" d="M 22,100 A 78,78 0 0,1 178,100"/>
+  </defs>
+  <text font-family="Arial,sans-serif" font-size="6.8" fill="#990000" letter-spacing="0.8" font-weight="600">
+    <textPath href="#topArcUSC" startOffset="5%">UNIVERSITY OF SOUTHERN CALIFORNIA</textPath>
+  </text>
+
+  <!-- Motto PALMAM QUI MERUIT FERAT arc bottom -->
+  <defs>
+    <path id="bottomArcUSC" d="M 26,108 A 74,74 0 0,0 174,108"/>
+  </defs>
+  <text font-family="Arial,sans-serif" font-size="6.5" fill="#990000" letter-spacing="0.5" font-style="italic">
+    <textPath href="#bottomArcUSC" startOffset="10%">PALMAM QUI MERUIT FERAT</textPath>
+  </text>
+</svg>
