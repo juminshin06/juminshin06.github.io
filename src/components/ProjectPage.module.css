@@ -2,7 +2,7 @@
 
 .page {
   min-height: 100vh;
-  background: #ffffff;
+  background: transparent;
   padding: 8rem 4rem 8rem;
   max-width: 1100px;
   margin: 0 auto;
@@ -17,32 +17,30 @@
 /* ── Back button ──────────────────────────────────── */
 
 .back {
-  font-family: inherit;
-  font-size: 0.8rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
   font-weight: 400;
-  color: #999999;
+  color: var(--muted);
   background: none;
   border: none;
   cursor: pointer;
   padding: 0;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
   margin-bottom: 4rem;
   display: block;
   transition: color 200ms;
 }
 
-.back:hover { color: #111111; }
+.back:hover { color: var(--lime); }
 
 /* ── Hero ────────────────────────────────────────── */
 
-.hero {
-  margin-bottom: 4rem;
-}
+.hero { margin-bottom: 4rem; }
 
 .title {
   font-size: clamp(3.2rem, 8vw, 7rem);
   font-weight: 300;
-  color: #111111;
+  color: var(--dark);
   letter-spacing: -0.04em;
   line-height: 1.0;
   margin: 0 0 1.6rem;
@@ -50,7 +48,7 @@
 
 .description {
   font-size: 1.05rem;
-  color: #666666;
+  color: var(--text-sub);
   line-height: 1.78;
   max-width: 680px;
   margin: 0;
@@ -61,7 +59,7 @@
 .metaGrid {
   display: flex;
   gap: 0;
-  border-top: 1px solid #e8e8e8;
+  border-top: 1px solid var(--border);
   margin-bottom: 5rem;
 }
 
@@ -71,9 +69,10 @@
 }
 
 .metaLabel {
-  font-size: 0.65rem;
-  font-weight: 600;
-  color: #bbbbbb;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 500;
+  color: var(--muted-light);
   letter-spacing: 0.14em;
   display: block;
   margin-bottom: 0.8rem;
@@ -81,27 +80,25 @@
 
 .metaLine {
   border: none;
-  border-top: 1px solid #eeeeee;
+  border-top: 1px solid var(--border);
   margin: 0 0 1rem;
 }
 
 .metaValue {
-  font-size: 0.92rem;
+  font-size: 0.9rem;
   font-weight: 500;
-  color: #111111;
+  color: var(--text);
   line-height: 1.5;
 }
 
 /* ── Content blocks ─────────────────────────────── */
 
-.body {
-  max-width: 740px;
-}
+.body { max-width: 740px; }
 
 .blockHeading {
   font-size: 1.55rem;
   font-weight: 600;
-  color: #111111;
+  color: var(--dark);
   letter-spacing: -0.02em;
   margin: 3.5rem 0 1rem;
   line-height: 1.2;
@@ -114,63 +111,145 @@
   margin: 0 0 1.6rem;
 }
 
-.blockImage {
-  margin: 2.5rem 0;
-}
+.blockImage { margin: 2.5rem 0; }
 
 .blockImage img {
   width: 100%;
-  border-radius: 16px;
+  border-radius: 10px;
   display: block;
 }
 
 .imagePlaceholder {
   width: 100%;
   aspect-ratio: 16 / 9;
-  border-radius: 16px;
-  background: #f5f5f5;
+  border-radius: 10px;
+  background: var(--bg-alt);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 0.82rem;
-  color: #bbbbbb;
+  color: var(--muted-light);
   font-style: italic;
 }
 
 .blockImage figcaption {
-  font-size: 0.78rem;
-  color: #aaaaaa;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--muted-light);
   margin-top: 0.7rem;
   text-align: center;
 }
 
-.blockPdf {
-  margin: 1.5rem 0;
-}
+.blockPdf { margin: 1.5rem 0; }
 
 .pdfLink {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  font-size: 0.88rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
   font-weight: 500;
-  color: #111111;
-  border: 1.5px solid #111111;
-  border-radius: 999px;
+  color: var(--dark);
+  border: 1.5px solid var(--dark);
+  border-radius: 4px;
   padding: 0.6rem 1.4rem;
   text-decoration: none;
-  transition: background 200ms, color 200ms;
+  transition: background 200ms, border-color 200ms;
 }
 
 .pdfLink:hover {
-  background: #111111;
-  color: #ffffff;
+  background: var(--lime);
+  border-color: var(--lime);
 }
 
 .pdfPlaceholder {
   font-size: 0.82rem;
-  color: #bbbbbb;
+  color: var(--muted-light);
   font-style: italic;
+}
+
+/* ── Prev / Next navigation ─────────────────────── */
+
+.projectNav {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-top: 6rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.navBtn {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1rem 1.5rem;
+  cursor: pointer;
+  font-family: inherit;
+  text-align: left;
+  transition: border-color 200ms, background 200ms, transform 200ms;
+  flex: 1;
+  max-width: 400px;
+}
+
+.navBtn:hover:not(:disabled) {
+  border-color: var(--lime);
+  background: var(--lime-dim);
+  transform: translateY(-2px);
+}
+
+.navDisabled,
+.navBtn:disabled {
+  opacity: 0.22;
+  cursor: default;
+  pointer-events: none;
+}
+
+.navNext {
+  margin-left: auto;
+  justify-content: flex-end;
+}
+
+.navArrow {
+  font-size: 1.1rem;
+  color: var(--muted);
+  flex-shrink: 0;
+  transition: color 200ms, transform 200ms;
+}
+
+.navBtn:hover:not(:disabled) .navArrow { color: var(--dark); }
+.navPrev:hover:not(:disabled) .navArrow { transform: translateX(-3px); }
+.navNext:hover:not(:disabled) .navArrow { transform: translateX(3px); }
+
+.navInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 0;
+}
+
+.navNext .navInfo { align-items: flex-end; }
+
+.navHint {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  color: var(--muted-light);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.navTitle {
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--text);
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 280px;
 }
 
 /* ── Responsive ─────────────────────────────────── */
@@ -180,6 +259,10 @@
   .metaGrid { flex-wrap: wrap; }
   .metaItem { flex: 1 1 45%; }
   .title { font-size: clamp(2.4rem, 10vw, 4rem); }
+  .projectNav { flex-direction: column; }
+  .navBtn { max-width: 100%; }
+  .navNext { margin-left: 0; justify-content: flex-start; }
+  .navNext .navInfo { align-items: flex-start; }
 }
 
 @media (max-width: 480px) {

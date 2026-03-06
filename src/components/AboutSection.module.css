@@ -1,5 +1,6 @@
 .about {
-  background: #ffffff;
+  background: transparent;
+  
   padding: 5rem 4rem 8rem;
   min-height: 100vh;
 }
@@ -35,10 +36,10 @@
 }
 
 .name {
-  font-size: clamp(2.6rem, 4.5vw, 4.2rem);
-  font-weight: 300;
-  color: #111111;
-  letter-spacing: -0.03em;
+  font-size: clamp(2.8rem, 4.5vw, 4.4rem);
+  font-weight: 200;
+  color: #0a0a0a;
+  letter-spacing: -0.04em;
   line-height: 1;
   margin: 0;
 }
@@ -67,11 +68,12 @@
 /* ── Bio ── */
 
 .bio {
-  font-size: 1.08rem;
-  line-height: 1.82;
-  color: #333333;
-  max-width: 520px;
+  font-size: 1.05rem;
+  line-height: 1.88;
+  color: #3a3a3a;
+  max-width: 500px;
   margin: 0;
+  letter-spacing: -0.01em;
 }
 
 /* ── Links ── */
@@ -87,11 +89,11 @@
 .toast {
   font-size: 0.72rem;
   font-weight: 500;
-  color: #22c55e;
-  background: rgba(34, 197, 94, 0.08);
-  border: 1px solid rgba(34, 197, 94, 0.25);
+  color: var(--dark);
+  background: var(--lime);
+  border: 1px solid var(--lime);
   padding: 0.3rem 0.9rem;
-  border-radius: 999px;
+  border-radius: 3px;
   opacity: 0;
   transform: translateY(4px) scale(0.95);
   transition: opacity 220ms ease, transform 220ms ease;
@@ -109,32 +111,35 @@
 }
 
 .linkPrimary {
-  font-size: 0.8rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
   font-weight: 600;
-  color: #ffffff;
-  background: #111111;
-  border: 1px solid #111111;
+  color: var(--dark);
+  background: var(--lime);
+  border: 1.5px solid var(--lime);
   padding: 0.5rem 1.2rem;
-  border-radius: 999px;
+  border-radius: 3px;
   text-decoration: none;
-  transition: background 200ms, transform 200ms;
+  transition: opacity 200ms, transform 200ms;
   cursor: pointer;
-  font-family: inherit;
+  letter-spacing: 0.04em;
 }
-.linkPrimary:hover { background: #333333; border-color: #333333; transform: translateY(-2px); }
+.linkPrimary:hover { opacity: 0.85; transform: translateY(-2px); }
 
 .linkSecondary {
-  font-size: 0.8rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
   font-weight: 500;
-  color: #333333;
+  color: var(--dark);
   background: transparent;
-  border: 1px solid rgba(0,0,0,0.25);
+  border: 1.5px solid var(--border);
   padding: 0.5rem 1.2rem;
-  border-radius: 999px;
+  border-radius: 3px;
   text-decoration: none;
-  transition: background 200ms, color 200ms, transform 200ms;
+  transition: background 200ms, border-color 200ms, transform 200ms;
+  letter-spacing: 0.04em;
 }
-.linkSecondary:hover { background: #111111; color: #ffffff; border-color: #111111; transform: translateY(-2px); }
+.linkSecondary:hover { background: var(--lime); border-color: var(--lime); transform: translateY(-2px); }
 
 .linkDivider {
   width: 1px;
@@ -145,14 +150,15 @@
 }
 
 .linkGhost {
-  font-size: 0.78rem;
-  color: #999999;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--muted);
   text-decoration: none;
   padding: 0.4rem 0.5rem;
-  border-radius: 6px;
+  letter-spacing: 0.04em;
   transition: color 200ms;
 }
-.linkGhost:hover { color: #111111; }
+.linkGhost:hover { color: var(--dark); }
 
 /* ── Photo ── */
 
@@ -186,7 +192,7 @@
 }
 
 .ticker {
-  margin: 3rem -4rem 0;
+  margin: 0;
   overflow: hidden;
   background: #111111;
   height: 2.2rem;
@@ -220,21 +226,31 @@
   margin: 4rem auto 0;
   display: flex;
   flex-direction: column;
-  gap: 4rem;
+  gap: 5rem;
 }
 
-.block { display: flex; flex-direction: column; gap: 0; }
+.block {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 0;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
 
 .blockLabel {
-  font-size: 0.6rem;
-  font-weight: 700;
-  color: #cccccc;
+  font-size: 0.62rem;
+  font-weight: 800;
+  color: #888888;
   text-transform: uppercase;
   letter-spacing: 0.18em;
   margin: 0;
   padding-bottom: 1rem;
-  border-bottom: 1px solid #ebebeb;
-  margin-bottom: 1.25rem;
+  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 1.5rem;
 }
 
 /* ═══════════════════════════════════════════════════
@@ -284,12 +300,13 @@
 }
 
 .workKeyBadge {
+  font-family: var(--font-mono);
   font-size: 0.58rem;
   font-weight: 700;
-  color: #ffffff;
-  background: #111111;
+  color: var(--dark);
+  background: var(--lime);
   padding: 0.18rem 0.55rem;
-  border-radius: 999px;
+  border-radius: 3px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   width: fit-content;
@@ -302,10 +319,11 @@
 
 .workRowTitle {
   font-size: 0.95rem;
-  font-weight: 700;
-  color: #111111;
-  margin: 0 0 0.2rem;
+  font-weight: 600;
+  color: #0a0a0a;
+  margin: 0 0 0.18rem;
   line-height: 1.3;
+  letter-spacing: -0.01em;
 }
 
 .workRowCompany {
@@ -344,13 +362,16 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  overflow: hidden;
+  background: transparent;
 }
 
-.eduInitials {
-  font-size: 0.7rem;
-  font-weight: 800;
-  color: #ffffff;
-  letter-spacing: 0.04em;
+.eduLogoImg {
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: 14px;
+  display: block;
 }
 
 .eduInfo {
@@ -361,11 +382,12 @@
 }
 
 .eduSchool {
-  font-size: 1rem;
-  font-weight: 700;
-  color: #111111;
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: #0a0a0a;
   margin: 0;
   line-height: 1.25;
+  letter-spacing: -0.01em;
 }
 
 .eduDegree {
@@ -512,8 +534,6 @@
   color: #444444;
   line-height: 1.4;
 }
-
-
 /* ═══════════════════════════════════════════════════
    RESPONSIVE
 ═══════════════════════════════════════════════════ */
@@ -530,8 +550,6 @@
 
   .photo, .photoPlaceholder { border-radius: 16px; }
 
-  .ticker { margin: 3rem -2.5rem 0; }
-
   .workRow { grid-template-columns: 120px 1fr; gap: 1.5rem; }
 
   .researchPubGrid { grid-template-columns: 1fr; gap: 2.5rem; }
@@ -545,8 +563,6 @@
 
   .name { font-size: clamp(2.4rem, 9vw, 3.5rem); }
   .bio { font-size: 0.98rem; }
-
-  .ticker { margin: 2.5rem -1.5rem 0; }
 
   .workRow { grid-template-columns: 1fr; gap: 0.4rem; }
   .workRowLeft { flex-direction: row; align-items: center; flex-wrap: wrap; gap: 0.5rem; }

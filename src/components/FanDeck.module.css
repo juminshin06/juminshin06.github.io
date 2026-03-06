@@ -1,0 +1,95 @@
+/* ── FanDeck — 3D rotating cylinder carousel ── */
+
+/* Scene: sets the perspective for the 3D space */
+.scene {
+  flex: 1;
+  align-self: center;
+  perspective: 900px;
+  perspective-origin: 50% 38%;   /* slightly aerial view */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 280px;
+  overflow: visible;
+}
+
+/* Carousel group: the spinning cylinder */
+.carousel {
+  position: relative;
+  width: 155px;
+  height: 210px;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* ── Individual card ───────────────────────────── */
+
+.card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 155px;
+  height: 210px;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  padding: 0;
+
+  /* Hide cards facing away — creates clean carousel look */
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+
+  /* Shadow is animated via inline style */
+  transition: box-shadow 0.3s ease;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  will-change: transform;
+}
+
+/* ── Label overlay ─────────────────────────────── */
+
+.label {
+  padding: 0.65rem 0.85rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.74) 0%, transparent 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 0.12rem;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.24s ease, transform 0.24s ease;
+}
+
+.labelOn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.title {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.3;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  text-align: left;
+}
+
+.meta {
+  font-size: 0.58rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.72);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  text-align: left;
+}
+
+/* ── Mobile: hide on small screens ────────────── */
+
+@media (max-width: 900px) {
+  .scene { display: none; }
+}

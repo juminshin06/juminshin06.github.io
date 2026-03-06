@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <circle cx="100" cy="100" r="100" fill="#CC0000"/>
+  <!-- TU Berlin angular mark in white -->
+  <!-- Horizontal bar (top of T) -->
+  <rect x="30" y="38" width="116" height="30" fill="white" rx="1"/>
+  <!-- Right vertical stem (descends from right portion of bar) -->
+  <rect x="98" y="68" width="48" height="86" fill="white" rx="1"/>
+  <!-- Left diagonal wedge — forms the characteristic angular cut -->
+  <polygon points="30,68 76,68 30,114" fill="white"/>
+  <!-- berlin tag: white rectangle with red text -->
+  <rect x="120" y="108" width="56" height="26" fill="white" rx="2"/>
+  <text x="148" y="126" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="400" fill="#CC0000" text-anchor="middle" letter-spacing="0.5">berlin</text>
+</svg>

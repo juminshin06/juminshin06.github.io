@@ -1,7 +1,7 @@
 import styles from './ProjectPage.module.css'
 import projects from '../data/projects.json'
 
-export default function ProjectPage({ projectId, onBack }) {
+export default function ProjectPage({ projectId, onBack, onPrev, onNext, hasPrev, hasNext, prevTitle, nextTitle }) {
   const project = projects.find(p => p.id === projectId)
   if (!project) return null
 
@@ -16,27 +16,26 @@ export default function ProjectPage({ projectId, onBack }) {
         {description && <p className={styles.description}>{description}</p>}
       </div>
 
-      {/* ── Meta grid (Role / Type / Duration / Tools / Year) ── */}
       <div className={styles.metaGrid}>
         <div className={styles.metaItem}>
           <span className={styles.metaLabel}>MY ROLE</span>
           <hr className={styles.metaLine} />
-          <span className={styles.metaValue}>{role || '—'}</span>
+          <span className={styles.metaValue}>{role || ''}</span>
         </div>
         <div className={styles.metaItem}>
           <span className={styles.metaLabel}>TYPE</span>
           <hr className={styles.metaLine} />
-          <span className={styles.metaValue}>{type || '—'}</span>
+          <span className={styles.metaValue}>{type || ''}</span>
         </div>
         <div className={styles.metaItem}>
           <span className={styles.metaLabel}>DURATION</span>
           <hr className={styles.metaLine} />
-          <span className={styles.metaValue}>{duration || '—'}</span>
+          <span className={styles.metaValue}>{duration || ''}</span>
         </div>
         <div className={styles.metaItem}>
           <span className={styles.metaLabel}>TOOLS</span>
           <hr className={styles.metaLine} />
-          <span className={styles.metaValue}>{tools?.join(', ') || '—'}</span>
+          <span className={styles.metaValue}>{tools?.join(', ') || ''}</span>
         </div>
         <div className={styles.metaItem}>
           <span className={styles.metaLabel}>YEAR</span>
@@ -45,9 +44,6 @@ export default function ProjectPage({ projectId, onBack }) {
         </div>
       </div>
 
-      {/* ── Free-form content blocks ── */}
-      {/* To add content: edit projects.json → content array.
-          Supported types: "heading", "text", "image", "pdf" */}
       <div className={styles.body}>
         {content.map((block, i) => {
           if (block.type === 'heading')
@@ -81,6 +77,35 @@ export default function ProjectPage({ projectId, onBack }) {
 
           return null
         })}
+      </div>
+
+      {/* Prev / Next navigation */}
+      <div className={styles.projectNav}>
+        <button
+          className={`${styles.navBtn} ${styles.navPrev} ${!hasPrev ? styles.navDisabled : ''}`}
+          onClick={onPrev}
+          disabled={!hasPrev}
+          aria-label="Previous project"
+        >
+          <span className={styles.navArrow}>←</span>
+          <span className={styles.navInfo}>
+            <span className={styles.navHint}>Previous</span>
+            {prevTitle && <span className={styles.navTitle}>{prevTitle}</span>}
+          </span>
+        </button>
+
+        <button
+          className={`${styles.navBtn} ${styles.navNext} ${!hasNext ? styles.navDisabled : ''}`}
+          onClick={onNext}
+          disabled={!hasNext}
+          aria-label="Next project"
+        >
+          <span className={styles.navInfo}>
+            <span className={styles.navHint}>Next</span>
+            {nextTitle && <span className={styles.navTitle}>{nextTitle}</span>}
+          </span>
+          <span className={styles.navArrow}>→</span>
+        </button>
       </div>
     </div>
   )

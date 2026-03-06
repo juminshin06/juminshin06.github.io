@@ -6,7 +6,7 @@ const footerLinks = [
   { label: 'GitHub',    href: 'https://github.com/juminshin06/juminshin06' },
   { label: 'Scholar',   href: 'https://scholar.google.com/citations?user=RxmsjhAAAAAJ&hl=ko' },
   { label: 'Instagram', href: 'https://www.instagram.com/' },
-  { label: 'Resume',    href: '/resume.pdf' },
+  { label: 'Resume',    href: '/assets/Jumin_portfolio.pdf' },
 ]
 
 export default function Footer() {

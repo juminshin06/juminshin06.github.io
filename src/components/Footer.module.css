@@ -1,5 +1,5 @@
 .footer {
-  background: #111111;
+  background: #071510;
   padding: 4rem 4rem 3rem;
 }
 
@@ -11,7 +11,6 @@
   gap: 2rem;
 }
 
-/* ── Top: name + tagline ── */
 .top {
   display: flex;
   flex-direction: column;
@@ -27,15 +26,15 @@
 }
 
 .tagline {
-  font-size: 0.7rem;
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.35);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.30);
   letter-spacing: 0.14em;
   text-transform: uppercase;
   margin: 0;
 }
 
-/* ── Links row ── */
 .linksRow {
   display: flex;
   flex-wrap: wrap;
@@ -44,48 +43,49 @@
 }
 
 .emailBtn {
-  font-size: 0.78rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
   font-weight: 600;
-  color: #111111;
-  background: rgba(255, 255, 255, 0.92);
+  color: var(--dark);
+  background: var(--lime);
   border: none;
-  padding: 0.48rem 1.2rem;
-  border-radius: 999px;
+  padding: 0.42rem 1.1rem;
+  border-radius: 3px;
   cursor: pointer;
-  font-family: inherit;
-  transition: background 200ms, transform 200ms;
+  transition: opacity 200ms, transform 200ms;
   white-space: nowrap;
 }
-.emailBtn:hover { background: #ffffff; transform: translateY(-2px); }
+.emailBtn:hover { opacity: 0.88; transform: translateY(-1px); }
 
 .divider {
   width: 1px;
   height: 1.1rem;
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.12);
   margin: 0 0.25rem;
   flex-shrink: 0;
 }
 
 .link {
-  font-size: 0.78rem;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.50);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.40);
   text-decoration: none;
-  padding: 0.4rem 0.6rem;
-  border-radius: 6px;
+  padding: 0.3rem 0.5rem;
+  letter-spacing: 0.04em;
   transition: color 200ms;
 }
-.link:hover { color: rgba(255, 255, 255, 0.90); }
+.link:hover { color: var(--lime); }
 
-/* ── Copyright ── */
 .copy {
-  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
   font-weight: 400;
-  color: rgba(255, 255, 255, 0.25);
-  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.18);
+  letter-spacing: 0.06em;
   margin: 0;
   padding-top: 1.5rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 @media (max-width: 640px) {

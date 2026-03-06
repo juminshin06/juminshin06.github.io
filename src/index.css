@@ -1,15 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Inter:wght@300;400;500;600;700&display=swap');
+
 :root {
-  --white: #ffffff;
-  --sea-blue: #e6f7ff;
-  --light-sky: #d7f0ff;
-  --accent-blue: #9bd3ff;
-  --text-dark: #1a2a3a;
-  --text-medium: #4a7a9b;
-  --text-light: #7aaec8;
-  --radius-lg: 20px;
-  --radius-xl: 28px;
-  --shadow-soft: 0 4px 24px rgba(155, 211, 255, 0.25);
-  --shadow-hover: 0 12px 48px rgba(155, 211, 255, 0.45);
+  /* Green / Pixel brand — Terra Labs inspired */
+  --lime:       #00D68F;
+  --lime-dim:   rgba(0, 214, 143, 0.10);
+  --lime-glow:  rgba(0, 214, 143, 0.35);
+  --dark:       #0A1F14;
+  --text:       #1A2A1F;
+  --text-sub:   #4A6B5A;
+  --muted:      #7A9A88;
+  --muted-light:#A8C4B4;
+  --border:     #C8E8D8;
+  --bg:         #F2FFF7;
+  --bg-alt:     #E6FAF0;
+  --font-mono:  'DM Mono', 'Courier New', monospace;
+
+  /* Legacy aliases */
+  --white:        #F2FFF7;
+  --text-dark:    #0A1F14;
+  --text-medium:  #4A6B5A;
+  --text-light:   #7A9A88;
+  --radius-lg:    10px;
+  --radius-xl:    16px;
+  --shadow-soft:  0 4px 20px rgba(0, 80, 40, 0.07);
+  --shadow-hover: 0 8px 36px rgba(0, 80, 40, 0.14);
 }
 
 *,
@@ -22,24 +36,20 @@
 
 html {
   scroll-behavior: smooth;
-  /* GlobalCursor renders a custom cursor bubble everywhere */
   cursor: none;
 }
 
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  background: var(--white);
-  color: var(--text-dark);
+  background: var(--bg);
+  color: var(--text);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   cursor: none;
 }
 
-/* Keep native cursor on touch devices — GlobalCursor handles pointer only */
 @media (hover: none) {
-  html, body {
-    cursor: auto;
-  }
+  html, body { cursor: auto; }
 }
 
 @keyframes bounce {
@@ -49,7 +59,7 @@ body {
 
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(24px); }
-  to { opacity: 1; transform: translateY(0); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 img {

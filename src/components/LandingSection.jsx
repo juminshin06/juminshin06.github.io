@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import styles from './LandingSection.module.css'
-import LightCanvas from './LightCanvas'
+import FanDeck from './FanDeck'
 
 const INTERESTS = ['Design', 'Engineering', 'AI', 'Interaction', 'Systems']
 
@@ -36,7 +36,7 @@ export default function LandingSection() {
           <p className={styles.description}>
             <strong>Design Engineer</strong>{' '}
             crafting interactive digital products where{' '}
-            <strong>design meets code</strong> —
+            <strong>design meets code,</strong>
             human-centered, research-driven.
           </p>
           <div className={styles.ticker}>
@@ -47,7 +47,7 @@ export default function LandingSection() {
           </div>
         </div>
 
-        <LightCanvas />
+        <FanDeck />
       </div>
 
       {/* ── Bottom bar ── */}

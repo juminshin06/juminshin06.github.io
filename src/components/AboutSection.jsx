@@ -7,7 +7,7 @@ const links = [
   { label: 'GitHub',     href: 'https://github.com/juminshin06/juminshin06' },
   { label: 'Scholar',    href: 'https://scholar.google.com/citations?user=RxmsjhAAAAAJ&hl=ko' },
   { label: 'Instagram',  href: 'https://www.instagram.com/' },
-  { label: 'Resume',     href: '/resume.pdf' },
+  { label: 'Resume',     href: '/assets/Jumin_portfolio.pdf' },
 ]
 
 const education = [
@@ -15,19 +15,19 @@ const education = [
     year: '2024 –',
     degree: 'M.S. Integrated Design, Business & Technology',
     school: 'University of Southern California',
-    initials: 'USC', logoBg: '#990000',
+    logo: '/assets/logo-usc.svg',
   },
   {
     year: '2022 – 23',
     degree: 'International Exchange Program',
-    school: 'Exchange Student',
-    initials: 'EX', logoBg: '#444444',
+    school: 'TU Berlin',
+    logo: '/assets/logo-tu-berlin.svg',
   },
   {
     year: '– 2024',
     degree: 'BFA Design Convergence  ·  BS Game Software',
-    school: 'Hongik University — Dual Degree',
-    initials: 'HU', logoBg: '#1a4fa8',
+    school: 'Hongik University, Dual Degree',
+    logo: '/assets/logo-hongik.svg',
   },
 ]
 
@@ -43,7 +43,7 @@ const workExperience = [
     period: 'Nov 2023 – Jun 2024',
     title: 'UX Researcher & Designer',
     company: 'Macromill Embrain',
-    impact: 'Led research for Samsung Electronics, Hyundai Motors, and SK — Galaxy personalization studies, SUV in-cabin experience design, and an AI employee platform presented at an executive generative AI workshop.',
+    impact: 'Led research for Samsung Electronics, Hyundai Motors, and SK: Galaxy personalization studies, SUV in-cabin experience design, and an AI employee platform presented at an executive generative AI workshop.',
     featured: true,
   },
   {
@@ -131,7 +131,7 @@ const awardGroups = [
     category: 'Scholarships & Grants',
     items: [
       { year: '2023',      title: 'Lotte Scholarship Foundation' },
-      { year: '2021–22',   title: 'Korea Student Aid Foundation — Arts & Sports Vision' },
+      { year: '2021–22',   title: 'Korea Student Aid Foundation, Arts & Sports Vision' },
       { year: '2019–23',   title: 'Hongik University Internal Scholarship' },
     ],
   },
@@ -154,6 +154,18 @@ export default function AboutSection() {
   }
 
   return (
+    <>
+      {/* ── Marquee ticker — sits just above the Ability section ── */}
+      <div className={styles.ticker} aria-hidden="true">
+        <div className={styles.tickerTrack}>
+          {[0, 1].map((i) => (
+            <span key={i} className={styles.tickerInner}>
+              Health &nbsp;·&nbsp; Data Analytics &nbsp;·&nbsp; Generative AI &nbsp;·&nbsp; UX Research &nbsp;·&nbsp; HCI &nbsp;·&nbsp; Accessibility &nbsp;·&nbsp; Design Systems &nbsp;·&nbsp; Machine Learning &nbsp;·&nbsp; Human Behavior &nbsp;·&nbsp; Spatial Computing &nbsp;·&nbsp; Interaction Design &nbsp;·&nbsp; Computer Vision &nbsp;·&nbsp;&ensp;
+            </span>
+          ))}
+        </div>
+      </div>
+
     <section className={styles.about} id="about" aria-label="About">
 
       {/* ── Hero: positioning + photo ── */}
@@ -168,7 +180,7 @@ export default function AboutSection() {
           </div>
 
           <p className={styles.bio}>
-            I work at the crossroads of HCI research, AI systems, and UX design —
+            I work at the crossroads of HCI research, AI systems, and UX design,
             translating behavioral complexity into experiences that are
             analytically rigorous and deeply human.
           </p>
@@ -204,17 +216,6 @@ export default function AboutSection() {
         </div>
       </div>
 
-      {/* ── Marquee ticker ── */}
-      <div className={styles.ticker} aria-hidden="true">
-        <div className={styles.tickerTrack}>
-          {[0, 1].map((i) => (
-            <span key={i} className={styles.tickerInner}>
-              Health &nbsp;·&nbsp; Data Analytics &nbsp;·&nbsp; Generative AI &nbsp;·&nbsp; UX Research &nbsp;·&nbsp; HCI &nbsp;·&nbsp; Accessibility &nbsp;·&nbsp; Design Systems &nbsp;·&nbsp; Machine Learning &nbsp;·&nbsp; Human Behavior &nbsp;·&nbsp; Spatial Computing &nbsp;·&nbsp; Interaction Design &nbsp;·&nbsp; Computer Vision &nbsp;·&nbsp;&ensp;
-            </span>
-          ))}
-        </div>
-      </div>
-
       {/* ── Full-width sections ── */}
       <div className={styles.sections}>
 
@@ -245,10 +246,10 @@ export default function AboutSection() {
         <div className={styles.block}>
           <h3 className={styles.blockLabel}>Education</h3>
           <div className={styles.eduList}>
-            {education.map(({ year, degree, school, initials, logoBg }) => (
+            {education.map(({ year, degree, school, logo }) => (
               <div key={degree} className={styles.eduRow}>
-                <div className={styles.eduLogoWrap} style={{ background: logoBg }} aria-hidden="true">
-                  <span className={styles.eduInitials}>{initials}</span>
+                <div className={styles.eduLogoWrap} aria-hidden="true">
+                  <img src={logo} alt={school} className={styles.eduLogoImg} />
                 </div>
                 <div className={styles.eduInfo}>
                   <p className={styles.eduSchool}>{school}</p>
@@ -330,5 +331,6 @@ export default function AboutSection() {
       </div>
 
     </section>
+    </>
   )
 }

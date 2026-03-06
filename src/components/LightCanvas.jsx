@@ -1,189 +1,257 @@
 /**
- * LightCanvas — Grainy Organic Blobs (Dark Edition)
+ * LightCanvas — Smooth 3D Aurora Orbs
  *
- * Dark background card with screen-blended vivid blobs + animated film grain.
- * Screen blend on dark = luminous, jewel-toned result (like the reference images).
- * Mouse-driven 3D lighting via offset radial gradient + specular highlight.
- *
- * Interactions:
- *   • Mouse → shifts light source (bright spot moves across each blob = 3D)
- *   • Auto-drifts smoothly when cursor is outside
- *   • Perlin noise → organic position / scale / angle per blob
- *   • Click → bright flash burst
+ * Meta/Apple portfolio-style interactive canvas:
+ *   • No grain/noise — pure smooth radial gradients
+ *   • 3D card tilt (±20°) tracks mouse position
+ *   • 5 floating orbs with parallax depth layers
+ *   • Specular highlights per orb respond to mouse light direction
+ *   • Cursor spotlight halo
+ *   • Click → expanding ripple rings
+ *   • Scale + glow intensifies on hover
  */
 
 import { useEffect, useRef } from 'react'
-import p5 from 'p5'
 import styles from './LightCanvas.module.css'
 
-// Dark card background colour
-const BG_R = 12, BG_G = 10, BG_B = 28   // #0C0A1C — deep indigo-black
+const ORBS = [
+  { x: 0.30, y: 0.45, r: 0.58, rgb: [130,  75, 255], depth: 1.00 }, // violet  — front
+  { x: 0.68, y: 0.38, r: 0.50, rgb: [ 45, 150, 255], depth: 0.65 }, // azure
+  { x: 0.52, y: 0.68, r: 0.54, rgb: [255,  70, 145], depth: 0.82 }, // rose
+  { x: 0.20, y: 0.62, r: 0.38, rgb: [255, 158,  42], depth: 0.38 }, // amber  — far
+  { x: 0.80, y: 0.56, r: 0.46, rgb: [ 40, 205, 168], depth: 0.55 }, // teal
+]
 
 export default function LightCanvas() {
-  const containerRef = useRef(null)
-  const p5Ref        = useRef(null)
+  const wrapRef   = useRef(null)
+  const canvasRef = useRef(null)
+  const stRef     = useRef({
+    mx: 0.5, my: 0.5,   // raw mouse (normalised 0–1 inside wrap)
+    sx: 0.5, sy: 0.5,   // smoothed mouse
+    tx: 0,   ty: 0,     // target tilt (degrees)
+    rx: 0,   ry: 0,     // current tilt (degrees)
+    inside: false,
+    t: 0,
+    ripples: [],
+    dotGrid: null,      // offscreen canvas for dot grid
+  })
 
   useEffect(() => {
-    if (!containerRef.current || p5Ref.current) return
+    const wrap   = wrapRef.current
+    const canvas = canvasRef.current
+    if (!wrap || !canvas) return
 
-    const sketch = (p) => {
-      let grainCv, grainCtx
-      let flashA = 0
-      let smX = 0, smY = 0   // smoothed light vector  −1..1
+    const ctx = canvas.getContext('2d')
+    const st  = stRef.current
+    let raf
 
-      // ── Vivid blobs — screen-blended on dark bg ──────────────
-      // rw/rh are large so blobs overflow the canvas edges (organic, not boxed)
-      const BLOBS = [
-        { nx: 0.34, ny: 0.50, rw: 0.76, rh: 0.48, ang: -0.32, rgb: [148,  85, 245], ns:  0 },
-        { nx: 0.70, ny: 0.43, rw: 0.64, rh: 0.38, ang:  0.58, rgb: [ 62, 162, 250], ns: 17 },
-        { nx: 0.48, ny: 0.66, rw: 0.52, rh: 0.60, ang:  1.10, rgb: [248,  85, 148], ns: 34 },
-        { nx: 0.20, ny: 0.48, rw: 0.40, rh: 0.34, ang: -0.78, rgb: [245, 172,  58], ns: 51 },
-        { nx: 0.76, ny: 0.58, rw: 0.48, rh: 0.54, ang:  0.25, rgb: [ 55, 205, 168], ns: 68 },
-      ]
+    // ── Resize ────────────────────────────────────────────────
+    const resize = () => {
+      canvas.width  = wrap.offsetWidth
+      canvas.height = wrap.offsetHeight
+      buildDotGrid(canvas.width, canvas.height)
+    }
 
-      // ── Film grain (half-res for perf, animated) ─────────────
-      function initGrain(W, H) {
-        grainCv        = document.createElement('canvas')
-        grainCv.width  = Math.ceil(W / 2)
-        grainCv.height = Math.ceil(H / 2)
-        grainCtx       = grainCv.getContext('2d')
-        updateGrain()
-      }
-
-      function updateGrain() {
-        const w = grainCv.width, h = grainCv.height
-        const id = grainCtx.createImageData(w, h)
-        const d  = id.data
-        for (let i = 0; i < d.length; i += 4) {
-          const v = (Math.random() * 255) | 0
-          d[i] = d[i + 1] = d[i + 2] = v
-          d[i + 3] = 255
-        }
-        grainCtx.putImageData(id, 0, 0)
-      }
-
-      // ── Setup ────────────────────────────────────────────────
-      p.setup = () => {
-        const cv = p.createCanvas(
-          containerRef.current.offsetWidth,
-          containerRef.current.offsetHeight
-        )
-        cv.style('display', 'block')
-        p.frameRate(60)
-        initGrain(p.width, p.height)
-      }
-
-      // ── Draw ─────────────────────────────────────────────────
-      p.draw = () => {
-        // Solid dark background — makes screen blend pop like the reference
-        p.background(BG_R, BG_G, BG_B)
-
-        const ctx = p.drawingContext
-        const W = p.width, H = p.height
-        const t = p.frameCount * 0.004
-
-        // Smooth light-source direction (−1..1)
-        const inside = p.mouseX > 0 && p.mouseX < W && p.mouseY > 0 && p.mouseY < H
-        const tx = inside ? (p.mouseX / W - 0.5) * 2 : Math.sin(t * 0.88) * 0.55
-        const ty = inside ? (p.mouseY / H - 0.5) * 2 : Math.cos(t * 0.70) * 0.42
-        smX += (tx - smX) * 0.05
-        smY += (ty - smY) * 0.05
-
-        // Refresh grain every 2 frames (30 fps flicker = authentic film grain)
-        if (p.frameCount % 2 === 0) updateGrain()
-
-        // ── Blobs ───────────────────────────────────────────
-        BLOBS.forEach((b, i) => {
-          const dX  = (p.noise(b.ns,       t) - 0.5) * 0.13
-          const dY  = (p.noise(b.ns + 100, t) - 0.5) * 0.10
-          const dir = i % 2 === 0 ? 1 : -0.6
-          const bx  = (b.nx + dX + smX * 0.05 * dir) * W
-          const by  = (b.ny + dY + smY * 0.04 * dir) * H
-          const br  = 1 + (p.noise(b.ns + 200, t * 1.1) - 0.5) * 0.08
-          const rx  = b.rw * W * br
-          const ry  = b.rh * H * br
-          const ang = b.ang + (p.noise(b.ns + 300, t * 0.65) - 0.5) * 0.25
-          drawBlob(ctx, bx, by, rx, ry, ang, b.rgb)
-        })
-
-        // ── Grain overlay (overlay on dark bg = deep, rich texture) ─
-        ctx.save()
-        ctx.globalCompositeOperation = 'overlay'
-        ctx.globalAlpha = 0.30
-        ctx.drawImage(grainCv, 0, 0, W, H)
-        ctx.restore()
-
-        // ── Flash ────────────────────────────────────────────
-        if (flashA > 0.02) {
-          ctx.save()
-          ctx.globalCompositeOperation = 'screen'
-          ctx.globalAlpha = flashA * 0.65
-          ctx.fillStyle = '#ffffff'
-          ctx.fillRect(0, 0, W, H)
-          ctx.restore()
-          flashA *= 0.85
+    // Pre-render dot grid once per resize (perf: not per frame)
+    const buildDotGrid = (W, H) => {
+      const off = document.createElement('canvas')
+      off.width = W; off.height = H
+      const octx = off.getContext('2d')
+      octx.fillStyle = 'rgba(255,255,255,0.09)'
+      const spacing = 26
+      for (let gx = spacing; gx < W; gx += spacing) {
+        for (let gy = spacing; gy < H; gy += spacing) {
+          octx.beginPath()
+          octx.arc(gx, gy, 1.1, 0, Math.PI * 2)
+          octx.fill()
         }
       }
+      st.dotGrid = off
+    }
 
-      // ── Single blob: screen-blended elliptical gradient + specular ─
-      function drawBlob(ctx, cx, cy, rx, ry, ang, rgb) {
-        const [r, g, b] = rgb
-        // Light offset in blob-local normalised space
-        const lx = smX * 0.30
-        const ly = smY * 0.26
+    resize()
+    window.addEventListener('resize', resize)
 
-        ctx.save()
-        ctx.globalCompositeOperation = 'screen'
-        ctx.translate(cx, cy)
-        ctx.rotate(ang)
-        ctx.scale(rx, ry)
+    // ── Mouse tracking (from landing section for wide area) ──
+    const section = wrap.closest('section') || document.body
 
-        // Body: bright at light side, fades to dark (bg shows through = 3D depth)
-        const gr = ctx.createRadialGradient(lx, ly, 0, 0, 0, 1)
-        gr.addColorStop(0.00, `rgba(${r},${g},${b},0.92)`)
-        gr.addColorStop(0.28, `rgba(${r},${g},${b},0.70)`)
-        gr.addColorStop(0.60, `rgba(${r},${g},${b},0.22)`)
-        gr.addColorStop(1.00, `rgba(${r},${g},${b},0.00)`)
+    const onMove = (e) => {
+      const wr = wrap.getBoundingClientRect()
+      const inWrap =
+        e.clientX >= wr.left && e.clientX <= wr.right &&
+        e.clientY >= wr.top  && e.clientY <= wr.bottom
 
-        ctx.beginPath()
-        ctx.arc(0, 0, 1, 0, Math.PI * 2)
-        ctx.fillStyle = gr
-        ctx.fill()
-
-        // Specular: bright white glow at light-source position
-        const sx = lx * 0.55, sy = ly * 0.55
-        const sg = ctx.createRadialGradient(sx, sy, 0, sx, sy, 0.28)
-        sg.addColorStop(0.0, 'rgba(255,255,255,0.88)')
-        sg.addColorStop(0.4, 'rgba(255,255,255,0.22)')
-        sg.addColorStop(1.0, 'rgba(255,255,255,0.00)')
-
-        ctx.beginPath()
-        ctx.arc(sx, sy, 0.28, 0, Math.PI * 2)
-        ctx.fillStyle = sg
-        ctx.fill()
-
-        ctx.restore()
-      }
-
-      // ── Interactions ─────────────────────────────────────────
-      p.mouseClicked = () => {
-        const { width: W, height: H } = p
-        if (p.mouseX > 0 && p.mouseX < W && p.mouseY > 0 && p.mouseY < H) flashA = 1
-      }
-
-      p.windowResized = () => {
-        if (!containerRef.current) return
-        p.resizeCanvas(
-          containerRef.current.offsetWidth,
-          containerRef.current.offsetHeight
-        )
-        initGrain(p.width, p.height)
+      if (inWrap) {
+        st.mx = (e.clientX - wr.left) / wr.width
+        st.my = (e.clientY - wr.top)  / wr.height
+        st.inside = true
+        st.tx = (st.my - 0.5) * -22
+        st.ty = (st.mx - 0.5) *  22
+      } else {
+        // Gentle influence from section area when not directly on wrap
+        const sr = section.getBoundingClientRect()
+        const px = (e.clientX - sr.left) / sr.width
+        const py = (e.clientY - sr.top)  / sr.height
+        st.mx = px * 0.6 + 0.2
+        st.my = py * 0.6 + 0.2
+        st.inside = false
+        st.tx = (py - 0.5) * -6
+        st.ty = (px - 0.5) *  6
       }
     }
 
-    p5Ref.current = new p5(sketch, containerRef.current)
-    return () => { p5Ref.current?.remove(); p5Ref.current = null }
+    const onLeave = () => {
+      st.inside = false
+      st.tx = 0; st.ty = 0
+    }
+
+    const onClick = (e) => {
+      const wr = wrap.getBoundingClientRect()
+      const inWrap =
+        e.clientX >= wr.left && e.clientX <= wr.right &&
+        e.clientY >= wr.top  && e.clientY <= wr.bottom
+      if (!inWrap) return
+      const x = (e.clientX - wr.left) / wr.width
+      const y = (e.clientY - wr.top)  / wr.height
+      // Three staggered rings for satisfying burst
+      st.ripples.push({ x, y, r: 0.00, alpha: 1.00 })
+      st.ripples.push({ x, y, r: 0.04, alpha: 0.65 })
+      st.ripples.push({ x, y, r: 0.10, alpha: 0.40 })
+    }
+
+    section.addEventListener('mousemove', onMove)
+    section.addEventListener('mouseleave', onLeave)
+    wrap.addEventListener('click', onClick)
+
+    // ── Draw helpers ──────────────────────────────────────────
+
+    const drawOrb = (cx, cy, rad, [r, g, b]) => {
+      const gr = ctx.createRadialGradient(cx, cy, 0, cx, cy, rad)
+      gr.addColorStop(0.00, `rgba(${r},${g},${b},0.92)`)
+      gr.addColorStop(0.30, `rgba(${r},${g},${b},0.68)`)
+      gr.addColorStop(0.65, `rgba(${r},${g},${b},0.18)`)
+      gr.addColorStop(1.00, `rgba(${r},${g},${b},0.00)`)
+      ctx.globalCompositeOperation = 'screen'
+      ctx.globalAlpha = 1
+      ctx.beginPath()
+      ctx.arc(cx, cy, rad, 0, Math.PI * 2)
+      ctx.fillStyle = gr
+      ctx.fill()
+    }
+
+    const drawSpecular = (cx, cy, rad, lx, ly) => {
+      // Bright highlight dot at light-source side of each orb
+      const sx = cx + lx * rad * 0.38
+      const sy = cy + ly * rad * 0.32
+      const sr = rad * 0.30
+      const sg = ctx.createRadialGradient(sx, sy, 0, sx, sy, sr)
+      sg.addColorStop(0.00, 'rgba(255,255,255,0.90)')
+      sg.addColorStop(0.40, 'rgba(255,255,255,0.22)')
+      sg.addColorStop(1.00, 'rgba(255,255,255,0.00)')
+      ctx.globalCompositeOperation = 'screen'
+      ctx.globalAlpha = 1
+      ctx.beginPath()
+      ctx.arc(sx, sy, sr, 0, Math.PI * 2)
+      ctx.fillStyle = sg
+      ctx.fill()
+    }
+
+    // ── Main loop ─────────────────────────────────────────────
+    const loop = () => {
+      st.t += 0.005
+      const W = canvas.width, H = canvas.height, t = st.t
+
+      // Smooth mouse & tilt
+      const lf = 0.07
+      st.sx += (st.mx - st.sx) * lf
+      st.sy += (st.my - st.sy) * lf
+      st.rx += (st.tx - st.rx) * 0.09
+      st.ry += (st.ty - st.ry) * 0.09
+
+      // Apply 3D transform + hover scale to wrap
+      const sc = st.inside ? 1.02 : 1.0
+      wrap.style.transform =
+        `perspective(900px) rotateX(${st.rx}deg) rotateY(${st.ry}deg) scale(${sc})`
+
+      // Light vector (−1..1) from smoothed mouse
+      const lx = (st.sx - 0.5) * 2
+      const ly = (st.sy - 0.5) * 2
+
+      // ── Background ──────────────────────────────────────────
+      ctx.globalCompositeOperation = 'source-over'
+      ctx.globalAlpha = 1
+      const bg = ctx.createRadialGradient(W * 0.42, H * 0.36, 0, W * 0.5, H * 0.5, W * 0.92)
+      bg.addColorStop(0, '#170d32')
+      bg.addColorStop(1, '#070414')
+      ctx.fillStyle = bg
+      ctx.fillRect(0, 0, W, H)
+
+      // Dot grid
+      if (st.dotGrid) {
+        ctx.globalCompositeOperation = 'source-over'
+        ctx.globalAlpha = 1
+        ctx.drawImage(st.dotGrid, 0, 0)
+      }
+
+      // ── Orbs with parallax depth ─────────────────────────────
+      ORBS.forEach((orb, i) => {
+        const wave  = Math.sin(t * 0.72 + i * 1.45) * 0.038
+        const waveY = Math.cos(t * 0.58 + i * 1.12) * 0.028
+        const parX  = (st.sx - 0.5) * orb.depth * 0.16
+        const parY  = (st.sy - 0.5) * orb.depth * 0.12
+        const cx    = (orb.x + wave  + parX) * W
+        const cy    = (orb.y + waveY + parY) * H
+        const rad   = orb.r * Math.min(W, H) * (1 + Math.sin(t * 0.42 + i) * 0.04)
+
+        drawOrb(cx, cy, rad, orb.rgb)
+        drawSpecular(cx, cy, rad, lx, ly)
+      })
+
+      // ── Cursor spotlight ─────────────────────────────────────
+      if (st.inside) {
+        const mx = st.sx * W, my = st.sy * H
+        const mg = ctx.createRadialGradient(mx, my, 0, mx, my, 130)
+        mg.addColorStop(0.0, 'rgba(255,255,255,0.28)')
+        mg.addColorStop(0.4, 'rgba(255,255,255,0.07)')
+        mg.addColorStop(1.0, 'rgba(255,255,255,0.00)')
+        ctx.globalCompositeOperation = 'screen'
+        ctx.globalAlpha = 1
+        ctx.beginPath()
+        ctx.arc(mx, my, 130, 0, Math.PI * 2)
+        ctx.fillStyle = mg
+        ctx.fill()
+      }
+
+      // ── Ripple rings ─────────────────────────────────────────
+      ctx.globalCompositeOperation = 'source-over'
+      st.ripples = st.ripples.filter(rp => rp.alpha > 0.012)
+      for (const rp of st.ripples) {
+        rp.r    += 0.013
+        rp.alpha *= 0.91
+        ctx.beginPath()
+        ctx.arc(rp.x * W, rp.y * H, rp.r * Math.max(W, H), 0, Math.PI * 2)
+        ctx.strokeStyle = `rgba(255,255,255,${rp.alpha})`
+        ctx.lineWidth   = 1.5
+        ctx.stroke()
+      }
+
+      raf = requestAnimationFrame(loop)
+    }
+
+    raf = requestAnimationFrame(loop)
+
+    return () => {
+      cancelAnimationFrame(raf)
+      section.removeEventListener('mousemove', onMove)
+      section.removeEventListener('mouseleave', onLeave)
+      wrap.removeEventListener('click', onClick)
+      window.removeEventListener('resize', resize)
+    }
   }, [])
 
-  return <div ref={containerRef} className={styles.wrap} />
+  return (
+    <div ref={wrapRef} className={styles.wrap}>
+      <canvas ref={canvasRef} className={styles.canvas} />
+    </div>
+  )
 }

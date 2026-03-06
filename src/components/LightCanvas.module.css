@@ -1,4 +1,4 @@
-/* ── LightCanvas — dark card with rounded corners ── */
+/* ── LightCanvas — 3D Aurora Orbs card ── */
 
 .wrap {
   flex: 1;
@@ -8,21 +8,31 @@
   min-height: 400px;
   position: relative;
   cursor: crosshair;
-  border-radius: 20px;
+  border-radius: 24px;
   overflow: hidden;
-  /* Subtle purple glow + depth shadow */
+  will-change: transform;
+  transform-style: preserve-3d;
+  transition: box-shadow 0.5s ease;
   box-shadow:
-    0 0  60px rgba(148, 85, 245, 0.18),
-    0 24px 64px rgba(0, 0, 0, 0.30);
+    0   0  80px rgba(130,  75, 255, 0.20),
+    0   0  40px rgba( 45, 150, 255, 0.10),
+    0  32px 80px rgba(  0,   0,   0, 0.40);
 }
 
-.wrap canvas {
+.wrap:hover {
+  box-shadow:
+    0   0 110px rgba(130,  75, 255, 0.34),
+    0   0  60px rgba( 45, 150, 255, 0.18),
+    0  42px 100px rgba(  0,   0,   0, 0.55);
+}
+
+.canvas {
   position: absolute;
   inset: 0;
   width:  100% !important;
   height: 100% !important;
   display: block;
-  border-radius: 20px;
+  border-radius: 24px;
 }
 
 @media (max-width: 900px) {

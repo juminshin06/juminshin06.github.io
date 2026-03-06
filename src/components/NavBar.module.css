@@ -12,24 +12,24 @@
 }
 
 .scrolled {
-  background: rgba(255, 255, 255, 0.88);
+  background: rgba(242, 255, 247, 0.90);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
+  box-shadow: 0 1px 0 var(--border);
 }
 
 .logo {
-  font-size: 0.95rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
   font-weight: 600;
-  color: #111111;
-  letter-spacing: -0.01em;
+  color: var(--dark);
+  letter-spacing: 0.04em;
   text-decoration: none;
-  opacity: 0.85;
-  transition: opacity 200ms;
+  transition: color 200ms;
 }
 
 .logo:hover {
-  opacity: 1;
+  color: var(--lime);
 }
 
 .links {
@@ -41,44 +41,39 @@
 }
 
 .link {
-  font-size: 0.78rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
   font-weight: 500;
-  color: #666666;
+  color: var(--muted);
   text-decoration: none;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   transition: color 200ms;
 }
 
 .link:hover {
-  color: #111111;
+  color: var(--dark);
 }
 
-/* Life button styled as link */
 .linkBtn {
-  font-family: inherit;
-  font-size: 0.78rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
   font-weight: 500;
-  color: #666666;
+  color: var(--muted);
   background: none;
   border: none;
   padding: 0;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   cursor: pointer;
   transition: color 200ms;
 }
 
 .linkBtn:hover {
-  color: #111111;
+  color: var(--dark);
 }
 
 @media (max-width: 540px) {
-  .nav {
-    padding: 1rem 1.5rem;
-  }
-
-  .links {
-    gap: 1.4rem;
-  }
+  .nav { padding: 1rem 1.5rem; }
+  .links { gap: 1.4rem; }
 }

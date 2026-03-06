@@ -34,9 +34,10 @@ function ProjectRow({ project }) {
 export default function ProjectsSection() {
   const [activeFilter, setActiveFilter] = useState('All')
 
-  const filtered = activeFilter === 'All'
+  const filtered = [...(activeFilter === 'All'
     ? projects
-    : projects.filter(p => p.type === activeFilter)
+    : projects.filter(p => p.type === activeFilter))
+  ].sort((a, b) => b.year - a.year)
 
   return (
     <section className={styles.projects} id="projects" aria-label="Projects">
@@ -53,23 +54,25 @@ export default function ProjectsSection() {
         ))}
       </div>
 
-      <div className={styles.listHeader} aria-hidden="true">
-        <span className={styles.colThumbHead} />
-        <span className={styles.colTitle}>Project</span>
-        <span className={styles.colType}>Type</span>
-        <span className={styles.colTeam}>Role</span>
-        <span className={styles.colYear}>Year</span>
-        <span className={styles.colArrow} />
-      </div>
+      <div className={styles.listContainer}>
+        <div className={styles.listHeader} aria-hidden="true">
+          <span className={styles.colThumbHead} />
+          <span className={styles.colTitle}>Project</span>
+          <span className={styles.colType}>Type</span>
+          <span className={styles.colTeam}>Role</span>
+          <span className={styles.colYear}>Year</span>
+          <span className={styles.colArrow} />
+        </div>
 
-      <div className={styles.list}>
-        {filtered.length === 0 ? (
-          <p className={styles.empty}>No projects in this category yet.</p>
-        ) : (
-          filtered.map(project => (
-            <ProjectRow key={project.id} project={project} />
-          ))
-        )}
+        <div className={styles.list}>
+          {filtered.length === 0 ? (
+            <p className={styles.empty}>No projects in this category yet.</p>
+          ) : (
+            filtered.map(project => (
+              <ProjectRow key={project.id} project={project} />
+            ))
+          )}
+        </div>
       </div>
     </section>
   )
