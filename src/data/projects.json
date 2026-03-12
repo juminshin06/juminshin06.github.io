@@ -1,26 +1,5 @@
 [
   {
-    "id": "proj-001",
-    "title": "Johnson & Johnson MedTech",
-    "type": "UX/UI",
-    "team": "Team",
-    "role": "Lead UX Designer",
-    "year": 2025,
-    "thumbnail": "/assets/projects/jj-medtech.png",
-    "hoverImage": "/assets/projects/jj-medtech.png",
-    "color": "#E8E8E8",
-    "accentColor": "#FF4D7C",
-    "href": "",
-    "description": "A user-centered design project focused on improving accessibility and streamlining user flow across key touchpoints.",
-    "duration": "Jan 2025 – Apr 2025",
-    "tools": ["Figma", "Miro", "UserZoom"],
-    "content": [
-      { "type": "heading", "value": "Overview" },
-      { "type": "text", "value": "Add your project overview here. Describe the problem space, goals, and context." },
-      { "type": "image", "src": "/assets/projects/jj-medtech.png", "caption": "Johnson & Johnson MedTech, UI Screens" }
-    ]
-  },
-  {
     "id": "proj-002",
     "title": "B4Q4 Widget: Cheil Worldwide",
     "type": "UX/UI",
@@ -60,7 +39,8 @@
     "tools": ["Figma", "Framer"],
     "content": [
       { "type": "heading", "value": "Overview" },
-      { "type": "text", "value": "Add your project overview here." }
+      { "type": "text", "value": "Rapid UX/UI design sprint during USC IYA's Vibe Coding Hackathon. Built a diabetes management text service helping patients make safer, smarter decisions through conversational AI." },
+      { "type": "iframe", "src": "https://pitchdeck-blond.vercel.app/", "label": "Live Pitch Deck", "height": 720 }
     ]
   },
   {
@@ -80,7 +60,8 @@
     "tools": ["Figma", "Adobe Premiere", "Runway ML"],
     "content": [
       { "type": "heading", "value": "Overview" },
-      { "type": "text", "value": "Add your project overview here." }
+      { "type": "text", "value": "Exploring how AI tools can transform video production workflows and marketing content creation at scale. A strategic pitch deck developed for Lemonlight x Walmart x Citrus Mind collaboration." },
+      { "type": "pdf", "src": "/assets/projects/ai-blueprint.pdf", "label": "AI-Powered Content Blueprint — Full Deck" }
     ]
   },
   {
@@ -260,7 +241,8 @@
     "tools": ["Figma", "React", "Node.js"],
     "content": [
       { "type": "heading", "value": "Overview" },
-      { "type": "text", "value": "Add your project overview here." }
+      { "type": "text", "value": "Full-stack UX/UI design and development for Fairads, a platform promoting transparent and equitable advertising practices." },
+      { "type": "pdf", "src": "/assets/projects/fairads-2026.pdf", "label": "FairAds — Full Case Study" }
     ]
   }
 ]

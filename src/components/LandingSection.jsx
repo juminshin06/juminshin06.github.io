@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import styles from './LandingSection.module.css'
 import FanDeck from './FanDeck'
+import profilePhoto from '../assets/profile.png'
 
 const INTERESTS = ['Design', 'Engineering', 'AI', 'Interaction', 'Systems']
 
@@ -8,6 +9,15 @@ export default function LandingSection() {
   const [copied, setCopied]               = useState(false)
   const [tickerIdx, setTickerIdx]         = useState(0)
   const [tickerVisible, setTickerVisible] = useState(true)
+  const [face, setFace]                   = useState({ x: 0, y: 0, show: false })
+
+  const handleMouseMove = useCallback((e) => {
+    const rect = e.currentTarget.getBoundingClientRect()
+    setFace({ x: e.clientX - rect.left, y: e.clientY - rect.top, show: true })
+  }, [])
+  const handleMouseLeave = useCallback(() => {
+    setFace(f => ({ ...f, show: false }))
+  }, [])
 
   useEffect(() => {
     const id = setInterval(() => {
@@ -31,7 +41,20 @@ export default function LandingSection() {
     <section className={styles.landing}>
       {/* ── Hero: text + card deck ── */}
       <div className={styles.heroLayout}>
-        <div className={styles.content}>
+        <div
+          className={styles.content}
+          onMouseMove={handleMouseMove}
+          onMouseLeave={handleMouseLeave}
+        >
+          {face.show && (
+            <div
+              className={styles.faceCursor}
+              style={{ '--fx': `${face.x}px`, '--fy': `${face.y}px` }}
+              aria-hidden="true"
+            >
+              <img src={profilePhoto} alt="" />
+            </div>
+          )}
           <p className={styles.greeting}>Hi, I'm Jumin Shin</p>
           <p className={styles.description}>
             <strong>Design Engineer</strong>{' '}

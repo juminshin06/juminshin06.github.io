@@ -206,13 +206,15 @@ export default function AboutSection() {
         </div>
 
         <div className={styles.heroPhoto}>
-          {profilePhoto ? (
-            <img src={profilePhoto} alt="Jumin Shin" className={styles.photo} />
-          ) : (
-            <div className={styles.photoPlaceholder} aria-hidden="true">
-              <span>JS</span>
-            </div>
-          )}
+          <div className={styles.photoFrame}>
+            {profilePhoto ? (
+              <img src={profilePhoto} alt="Jumin Shin" className={styles.photo} />
+            ) : (
+              <div className={styles.photoPlaceholder} aria-hidden="true">
+                <span>JS</span>
+              </div>
+            )}
+          </div>
         </div>
       </div>
 
