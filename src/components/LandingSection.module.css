@@ -128,6 +128,28 @@
 .tickerIn  { opacity: 1; transform: translateY(0); }
 .tickerOut { opacity: 0; transform: translateY(-1.2rem); }
 
+/* ── School logos strip ───────────────────────────── */
+
+.schoolLogos {
+  display: flex;
+  align-items: center;
+  gap: 1.4rem;
+  margin-top: 2rem;
+}
+
+.schoolLogo {
+  height: 28px;
+  width: auto;
+  opacity: 0.22;
+  filter: grayscale(1);
+  transition: opacity 250ms ease, filter 250ms ease;
+}
+
+.schoolLogo:hover {
+  opacity: 0.65;
+  filter: grayscale(0);
+}
+
 /* ── Bottom bar ───────────────────────────────────── */
 
 .bottomBar {

@@ -68,6 +68,12 @@ export default function LandingSection() {
               {INTERESTS[tickerIdx]}
             </span>
           </div>
+
+          <div className={styles.schoolLogos}>
+            <img src="/assets/logo-usc.svg"        alt="USC"            className={styles.schoolLogo} />
+            <img src="/assets/logo-hongik.svg"     alt="Hongik University" className={styles.schoolLogo} />
+            <img src="/assets/logo-tu-berlin.svg"  alt="TU Berlin"      className={styles.schoolLogo} />
+          </div>
         </div>
 
         <FanDeck />

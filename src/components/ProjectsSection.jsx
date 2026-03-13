@@ -23,12 +23,8 @@ function ProjectCard({ project }) {
           <div className={styles.cardImgPlaceholder} />
         )}
         {password && <span className={styles.lockBadge} aria-label="Password protected">🔒</span>}
-      </div>
-      <div className={styles.cardInfo}>
-        <h3 className={styles.cardTitle}>{title}</h3>
-        <div className={styles.cardMeta}>
-          <span className={styles.cardType}>{type}</span>
-          {role && <span className={styles.cardRole}>{role}</span>}
+        <div className={styles.cardOverlay}>
+          <h3 className={styles.cardTitle}>{title}</h3>
         </div>
       </div>
     </button>

@@ -93,7 +93,6 @@ export default function LifePage({ onBack }) {
               />
             )}
             <div className={`${styles.leftPageInner} ${leftEv.image ? styles.leftPageInnerOver : ''}`}>
-              <span className={styles.bigEmoji}>{leftEv.emoji}</span>
               <div className={styles.leftMeta}>
                 <span className={styles.catBadge} style={{ color: leftEv.image ? '#fff' : leftAccent.dark, background: 'rgba(0,0,0,0.32)' }}>
                   {leftEv.category}
