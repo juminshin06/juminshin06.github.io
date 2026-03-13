@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import styles from './ProjectPage.module.css'
 import projects from '../data/projects.json'
 
@@ -11,11 +12,14 @@ function hexToRgba(hex, alpha) {
 
 export default function ProjectPage({ projectId, onBack, onPrev, onNext, hasPrev, hasNext, prevTitle, nextTitle }) {
   const project = projects.find(p => p.id === projectId)
+  const [unlocked, setUnlocked] = useState(!project?.password)
+  const [pwInput, setPwInput]   = useState('')
+  const [pwError, setPwError]   = useState(false)
+
   if (!project) return null
 
-  const { title, type, role, year, duration, tools, description, content = [], accentColor } = project
+  const { title, type, role, year, duration, tools, description, content = [], accentColor, password } = project
 
-  // Full-page blobby gradient — applied to the entire page background
   const pageBg = accentColor ? {
     background: [
       `radial-gradient(ellipse 75% 55% at 8% 18%,  ${hexToRgba(accentColor, 0.13)} 0%, transparent 68%)`,
@@ -27,6 +31,47 @@ export default function ProjectPage({ projectId, onBack, onPrev, onNext, hasPrev
       `#F2FFF7`,
     ].join(', '),
   } : {}
+
+  const handleUnlock = () => {
+    if (pwInput === password) {
+      setUnlocked(true)
+      setPwError(false)
+    } else {
+      setPwError(true)
+      setPwInput('')
+      setTimeout(() => setPwError(false), 1400)
+    }
+  }
+
+  // Password gate screen
+  if (password && !unlocked) {
+    return (
+      <div className={styles.pageOuter} style={pageBg}>
+        <div className={styles.lockScreen}>
+          <button className={styles.back} onClick={onBack}>← Back to Projects</button>
+          <div className={styles.lockCard}>
+            <div className={styles.lockIcon}>🔒</div>
+            <h2 className={styles.lockTitle}>{title}</h2>
+            <p className={styles.lockSub}>This project is password protected.</p>
+            <div className={styles.lockInputRow}>
+              <input
+                className={`${styles.lockInput} ${pwError ? styles.lockInputError : ''}`}
+                type="password"
+                inputMode="numeric"
+                placeholder="Enter password"
+                value={pwInput}
+                onChange={e => setPwInput(e.target.value)}
+                onKeyDown={e => e.key === 'Enter' && handleUnlock()}
+                autoFocus
+              />
+              <button className={styles.lockBtn} onClick={handleUnlock}>Unlock</button>
+            </div>
+            {pwError && <p className={styles.lockError}>Incorrect password. Try again.</p>}
+          </div>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className={styles.pageOuter} style={pageBg}>
@@ -89,13 +134,47 @@ export default function ProjectPage({ projectId, onBack, onPrev, onNext, hasPrev
 
           if (block.type === 'pdf')
             return (
-              <div key={i} className={styles.blockPdf}>
-                {block.src
-                  ? <a href={block.src} target="_blank" rel="noopener noreferrer" className={styles.pdfLink}>
-                      📄 {block.label || 'View PDF'}
-                    </a>
-                  : <span className={styles.pdfPlaceholder}>Add PDF src in projects.json</span>
-                }
+              <div key={i} className={styles.pdfBlock}>
+                {block.src ? (
+                  <>
+                    <div className={styles.pdfHeader}>
+                      <span className={styles.pdfIcon}>📄</span>
+                      <span className={styles.pdfLabel}>{block.label || 'Document'}</span>
+                      <a href={block.src} target="_blank" rel="noopener noreferrer" className={styles.pdfDownload}>
+                        Open ↗
+                      </a>
+                    </div>
+                    <iframe
+                      src={block.src}
+                      className={styles.pdfEmbed}
+                      title={block.label || 'PDF'}
+                      loading="lazy"
+                    />
+                  </>
+                ) : (
+                  <span className={styles.pdfPlaceholder}>Add PDF src in projects.json</span>
+                )}
+              </div>
+            )
+
+          if (block.type === 'iframe')
+            return (
+              <div key={i} className={styles.iframeBlock}>
+                <div className={styles.pdfHeader}>
+                  <span className={styles.pdfIcon}>🔗</span>
+                  <span className={styles.pdfLabel}>{block.label || 'Live Preview'}</span>
+                  <a href={block.src} target="_blank" rel="noopener noreferrer" className={styles.pdfDownload}>
+                    Open ↗
+                  </a>
+                </div>
+                <iframe
+                  src={block.src}
+                  className={styles.iframeEmbed}
+                  style={{ height: block.height || 700 }}
+                  title={block.label || 'Preview'}
+                  loading="lazy"
+                  allowFullScreen
+                />
               </div>
             )
 

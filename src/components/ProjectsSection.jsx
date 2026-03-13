@@ -2,10 +2,10 @@ import { useState } from 'react'
 import projects from '../data/projects.json'
 import styles from './ProjectsSection.module.css'
 
-const FILTERS = ['All', 'UX/UI', 'Product', '3D', 'Branding']
+const FILTERS = ['All', 'UX/UI', 'Product', 'Development']
 
 function ProjectCard({ project }) {
-  const { title, type, role, color, thumbnail } = project
+  const { title, type, role, color, thumbnail, password } = project
 
   const handleClick = () => {
     window.dispatchEvent(new CustomEvent('open-project', { detail: { id: project.id } }))
@@ -22,11 +22,10 @@ function ProjectCard({ project }) {
         ) : (
           <div className={styles.cardImgPlaceholder} />
         )}
-      </div>
-      <div className={styles.cardMeta}>
-        <span className={styles.cardType}>{type}</span>
-        <span className={styles.cardDivider}>·</span>
-        <span className={styles.cardRole}>{role}</span>
+        {password && <span className={styles.lockBadge} aria-label="Password protected">🔒</span>}
+        <div className={styles.cardOverlay}>
+          <h3 className={styles.cardTitle}>{title}</h3>
+        </div>
       </div>
     </button>
   )
