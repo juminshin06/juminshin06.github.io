@@ -15,19 +15,19 @@ const education = [
     year: '2024 –',
     degree: 'M.S. Integrated Design, Business & Technology',
     school: 'University of Southern California',
-    logo: '/assets/logo-usc.svg',
+    logo: '/assets/USC_logo.png',
   },
   {
     year: '2022 – 23',
     degree: 'International Exchange Program',
     school: 'TU Berlin',
-    logo: '/assets/logo-tu-berlin.svg',
+    logo: '/assets/Exchange_logo.png',
   },
   {
     year: '– 2024',
     degree: 'BFA Design Convergence  ·  BS Game Software',
     school: 'Hongik University, Dual Degree',
-    logo: '/assets/logo-hongik.svg',
+    logo: '/assets/Hongik_logo.png',
   },
 ]
 
