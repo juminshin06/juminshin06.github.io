@@ -12,7 +12,7 @@ const links = [
 
 const education = [
   {
-    year: '2024 –',
+    year: '2025 – 2027',
     degree: 'M.S. Integrated Design, Business & Technology',
     school: 'University of Southern California',
     logo: '/assets/USC_logo.png',
@@ -24,7 +24,7 @@ const education = [
     logo: '/assets/Exchange_logo.png',
   },
   {
-    year: '– 2024',
+    year: '2019 – 2024',
     degree: 'BFA Design Convergence  ·  BS Game Software',
     school: 'Hongik University, Dual Degree',
     logo: '/assets/Hongik_logo.png',
