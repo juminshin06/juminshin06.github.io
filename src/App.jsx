@@ -62,6 +62,12 @@ export default function App() {
     window.scrollTo({ top: 0 })
   }
 
+  const goHome = () => {
+    setCurrentProject(null)
+    setShowLife(false)
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
   // Prev / next within sorted project list
   const currentIndex = sortedProjects.findIndex(p => p.id === currentProject)
 
@@ -84,7 +90,7 @@ export default function App() {
       <>
         <GlobalCursor />
         <FloatingPDFButton />
-        <NavBar onLifeClick={openLifePage} onProjectsClick={goToProjects} onAboutClick={goToAbout} />
+        <NavBar onLifeClick={openLifePage} onProjectsClick={goToProjects} onAboutClick={goToAbout} onHomeClick={goHome} />
         <ProjectPage
           projectId={currentProject}
           onBack={handleBack}
@@ -105,7 +111,7 @@ export default function App() {
       <>
         <GlobalCursor />
         <FloatingPDFButton />
-        <NavBar onLifeClick={openLifePage} onProjectsClick={goToProjects} onAboutClick={goToAbout} />
+        <NavBar onLifeClick={openLifePage} onProjectsClick={goToProjects} onAboutClick={goToAbout} onHomeClick={goHome} />
         <LifePage onBack={handleLifeBack} />
         <Footer />
       </>
@@ -117,7 +123,7 @@ export default function App() {
       <PixelBackground />
       <GlobalCursor />
       <FloatingPDFButton />
-      <NavBar onLifeClick={openLifePage} />
+      <NavBar onLifeClick={openLifePage} onProjectsClick={goToProjects} onAboutClick={goToAbout} onHomeClick={goHome} />
       <main>
         <LandingSection />
         <ProjectsSection />

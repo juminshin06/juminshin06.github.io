@@ -18,6 +18,9 @@ export default function LifePage({ onBack }) {
   const [isFlipping, setIsFlipping] = useState(false)
   const [flipDir, setFlipDir]   = useState(null)   // 'next' | 'prev'
   const [displayPage, setDisplayPage] = useState(0) // page shown after animation
+  const [imgErrors, setImgErrors] = useState({})   // track broken images
+
+  const handleImgError = (id) => setImgErrors(prev => ({ ...prev, [id]: true }))
 
   const total = events.length
 
@@ -70,18 +73,32 @@ export default function LifePage({ onBack }) {
         {/* Book */}
         <div className={styles.book}>
           {/* Left page — decorative visual */}
+          {(() => {
+            const leftEv = isFlipping && flipDir === 'next' ? curEv : ev
+            const leftAccent = isFlipping && flipDir === 'next' ? curAccent : accent
+            return (
           <div
             className={styles.leftPage}
-            style={{ background: isFlipping ? curAccent.gradient : accent.gradient }}
+            style={leftEv.image && !imgErrors[leftEv.id]
+              ? { background: '#111' }
+              : { background: isFlipping ? curAccent.gradient : accent.gradient }
+            }
           >
-            <div className={styles.leftPageInner}>
-              <span className={styles.bigEmoji}>{isFlipping && flipDir === 'next' ? curEv.emoji : ev.emoji}</span>
+            {leftEv.image && !imgErrors[leftEv.id] && (
+              <img
+                src={leftEv.image}
+                alt=""
+                className={styles.leftPageImg}
+                onError={() => handleImgError(leftEv.id)}
+              />
+            )}
+            <div className={`${styles.leftPageInner} ${leftEv.image ? styles.leftPageInnerOver : ''}`}>
               <div className={styles.leftMeta}>
-                <span className={styles.catBadge} style={{ color: accent.dark, background: 'rgba(255,255,255,0.55)' }}>
-                  {isFlipping && flipDir === 'next' ? curEv.category : ev.category}
+                <span className={styles.catBadge} style={{ color: leftEv.image ? '#fff' : leftAccent.dark, background: 'rgba(0,0,0,0.32)' }}>
+                  {leftEv.category}
                 </span>
-                <span className={styles.yearBig}>
-                  {isFlipping && flipDir === 'next' ? curEv.year : ev.year}
+                <span className={styles.yearBig} style={{ color: leftEv.image ? 'rgba(255,255,255,0.55)' : undefined }}>
+                  {leftEv.year}
                 </span>
               </div>
             </div>
@@ -92,6 +109,8 @@ export default function LifePage({ onBack }) {
               ))}
             </div>
           </div>
+          )
+          })()}
 
           {/* Spine */}
           <div className={styles.spine} />

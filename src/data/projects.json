@@ -1,25 +1,5 @@
 [
   {
-    "id": "proj-001",
-    "title": "Johnson & Johnson MedTech",
-    "type": "UX/UI",
-    "team": "Team",
-    "role": "Lead UX Designer",
-    "year": 2025,
-    "thumbnail": "/assets/projects/jj-medtech.png",
-    "hoverImage": "/assets/projects/jj-medtech.png",
-    "color": "#E8E8E8",
-    "href": "",
-    "description": "A user-centered design project focused on improving accessibility and streamlining user flow across key touchpoints.",
-    "duration": "Jan 2025 – Apr 2025",
-    "tools": ["Figma", "Miro", "UserZoom"],
-    "content": [
-      { "type": "heading", "value": "Overview" },
-      { "type": "text", "value": "Add your project overview here. Describe the problem space, goals, and context." },
-      { "type": "image", "src": "/assets/projects/jj-medtech.png", "caption": "Johnson & Johnson MedTech, UI Screens" }
-    ]
-  },
-  {
     "id": "proj-002",
     "title": "B4Q4 Widget: Cheil Worldwide",
     "type": "UX/UI",
@@ -29,6 +9,7 @@
     "thumbnail": "/assets/projects/Cheilwold.png",
     "hoverImage": "/assets/projects/Cheilwold_2.png",
     "color": "#DCDCDC",
+    "accentColor": "#2B6CB0",
     "href": "",
     "description": "Samsung Galaxy B4 and Q4 widget UX design as an intern at Cheil Worldwide. Analyzed widget features for B4 and Q4 devices, conducted flow analysis, and created wireframes for Samsung's home screen widget system as part of a 3-person team.",
     "duration": "May – Jun 2022",
@@ -51,13 +32,15 @@
     "thumbnail": "/assets/projects/IYA_ViveCoding_Hackathon.png",
     "hoverImage": "/assets/projects/IYA_ViveCoding_Hackathon.png",
     "color": "#D4D4D4",
+    "accentColor": "#10B981",
     "href": "",
     "description": "Rapid UX/UI design sprint during USC IYA's Vibe Coding Hackathon, focusing on fast prototyping and user-centered problem solving.",
     "duration": "2026",
     "tools": ["Figma", "Framer"],
     "content": [
       { "type": "heading", "value": "Overview" },
-      { "type": "text", "value": "Add your project overview here." }
+      { "type": "text", "value": "Rapid UX/UI design sprint during USC IYA's Vibe Coding Hackathon. Built a diabetes management text service helping patients make safer, smarter decisions through conversational AI." },
+      { "type": "iframe", "src": "https://pitchdeck-blond.vercel.app/", "label": "Live Pitch Deck", "height": 720 }
     ]
   },
   {
@@ -70,13 +53,15 @@
     "thumbnail": "/assets/projects/AI_LemonLight.png",
     "hoverImage": "/assets/projects/AI_LemonLight.png",
     "color": "#CCCCCC",
+    "accentColor": "#F59E0B",
     "href": "",
     "description": "Exploring how AI tools can transform video production workflows and marketing content creation at scale.",
     "duration": "2025",
     "tools": ["Figma", "Adobe Premiere", "Runway ML"],
     "content": [
       { "type": "heading", "value": "Overview" },
-      { "type": "text", "value": "Add your project overview here." }
+      { "type": "text", "value": "Exploring how AI tools can transform video production workflows and marketing content creation at scale. A strategic pitch deck developed for Lemonlight x Walmart x Citrus Mind collaboration." },
+      { "type": "pdf", "src": "/assets/projects/ai-blueprint.pdf", "label": "AI-Powered Content Blueprint — Full Deck" }
     ]
   },
   {
@@ -89,6 +74,7 @@
     "thumbnail": "/assets/projects/SignInSign.png",
     "hoverImage": "/assets/projects/SignInSign.png",
     "color": "#C8C8C8",
+    "accentColor": "#8B5CF6",
     "href": "",
     "description": "AI-powered service proposal to assist deaf children in sign language learning by transforming auditory activities into visual art and music. The system recognizes sign language gestures in real-time using AI and visualizes them as interactive art experiences.",
     "duration": "Oct – Dec 2021",
@@ -109,6 +95,7 @@
     "thumbnail": "/assets/projects/Podcast_1.png",
     "hoverImage": "/assets/projects/Podcast_2.png",
     "color": "#C0C0C0",
+    "accentColor": "#3B82F6",
     "href": "",
     "description": "Industry-academia collaboration with Samsung Electronics Wireless Business Division. Designed a podcast platform tailored for job seekers through audio content market research, competitor analysis, and user-centered service design.",
     "duration": "Dec 2020 – Jan 2021",
@@ -132,6 +119,7 @@
     "thumbnail": "/assets/projects/Clozumin.png",
     "hoverImage": "/assets/projects/Clozumin_2.png",
     "color": "#B8B8B8",
+    "accentColor": "#F97316",
     "href": "",
     "description": "Winner of the Social Problem Solving Award at the Human City Design University Student Workshop (Seoul Mayor's Award). A community platform designed to build intimacy among apartment neighbors through shared interests and harmonious problem-solving.",
     "duration": "Jul – Dec 2021",
@@ -157,6 +145,7 @@
     "thumbnail": "/assets/projects/Mobility_1.png",
     "hoverImage": "/assets/projects/Mobility_2.png",
     "color": "#A0A0A0",
+    "accentColor": "#1E40AF",
     "href": "",
     "description": "Hyundai Motor Industry-Academia Collaboration exploring the future of education mobility. Designed an autonomous learning space where offline schools become community creativity hubs, featuring wearable key interaction and AI-powered personalized learning environments.",
     "duration": "Dec 2021 – Jan 2022",
@@ -178,6 +167,7 @@
     "thumbnail": "/assets/projects/Cookid.png",
     "hoverImage": "/assets/projects/Cookid_2.png",
     "color": "#989898",
+    "accentColor": "#EF4444",
     "href": "",
     "description": "A story-based cooking and art app service designed to enhance children's creativity. Addresses the creativity decline in children by offering interactive, five-senses participatory cooking activities that spark curiosity and inspire diverse thinking.",
     "duration": "May – Jul 2021",
@@ -200,6 +190,7 @@
     "thumbnail": "/assets/projects/EV_1.png",
     "hoverImage": "/assets/projects/EV_2.png",
     "color": "#909090",
+    "accentColor": "#06B6D4",
     "href": "",
     "description": "Individual design proposal for Hyundai addressing the psychological discomfort EV users experience when leaving vehicles unattended during long charging sessions. Features a remote security mode with DSM-based live monitoring for real-time charging status checks.",
     "duration": "Feb – Mar 2022",
@@ -221,6 +212,7 @@
     "thumbnail": "/assets/projects/StoryAuthoring_1.png",
     "hoverImage": "/assets/projects/StoryAuthoring_2.png",
     "color": "#888888",
+    "accentColor": "#7C3AED",
     "href": "",
     "description": "Research and prototype design for an AI-powered interactive story authoring tool using generative language models, published with Springer Nature. Users shape narratives through branching choices, with AI generating character traits, plot elements, and narrative arcs.",
     "duration": "Mar 2023 – May 2024",
@@ -242,13 +234,15 @@
     "thumbnail": "/assets/projects/Fairads.png",
     "hoverImage": "/assets/projects/Fairads.png",
     "color": "#808080",
+    "accentColor": "#14B8A6",
     "href": "",
     "description": "Full-stack UX/UI design and development for Fairads, a platform promoting transparent and equitable advertising.",
     "duration": "2024",
     "tools": ["Figma", "React", "Node.js"],
     "content": [
       { "type": "heading", "value": "Overview" },
-      { "type": "text", "value": "Add your project overview here." }
+      { "type": "text", "value": "Full-stack UX/UI design and development for Fairads, a platform promoting transparent and equitable advertising practices." },
+      { "type": "pdf", "src": "/assets/projects/fairads-2026.pdf", "label": "FairAds — Full Case Study" }
     ]
   }
 ]

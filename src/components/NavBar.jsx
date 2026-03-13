@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import styles from './NavBar.module.css'
 
-export default function NavBar({ onLifeClick, onProjectsClick, onAboutClick }) {
+export default function NavBar({ onLifeClick, onProjectsClick, onAboutClick, onHomeClick }) {
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
@@ -20,7 +20,7 @@ export default function NavBar({ onLifeClick, onProjectsClick, onAboutClick }) {
 
   return (
     <nav className={`${styles.nav} ${scrolled ? styles.scrolled : ''}`}>
-      <a href="#" className={styles.logo}>Jumin Shin</a>
+      <a href="#" className={styles.logo} onClick={onHomeClick ? (e) => { e.preventDefault(); onHomeClick() } : undefined}>Jumin Shin</a>
       <ul className={styles.links}>
         <li>
           <a href="#projects" className={styles.link} onClick={handleProjects}>Projects</a>
