@@ -3,11 +3,11 @@ import styles from './AboutSection.module.css'
 import profilePhoto from '../assets/profile.png'
 
 const links = [
-  { label: 'LinkedIn',   href: 'https://www.linkedin.com/in/juminshin' },
-  { label: 'GitHub',     href: 'https://github.com/juminshin06/juminshin06' },
-  { label: 'Scholar',    href: 'https://scholar.google.com/citations?user=RxmsjhAAAAAJ&hl=ko' },
-  { label: 'Instagram',  href: 'https://www.instagram.com/' },
-  { label: 'Resume',     href: '/assets/Jumin_portfolio.pdf' },
+  { label: 'LinkedIn',  href: 'https://www.linkedin.com/in/juminshin' },
+  { label: 'Scholar',   href: 'https://scholar.google.com/citations?user=RxmsjhAAAAAJ&hl=ko' },
+  { label: 'Instagram', href: 'https://www.instagram.com/jumin_shin?igsh=NTc4MTIwNjQ2YQ%3D%3D&utm_source=qr' },
+  { label: 'Portfolio', href: '/assets/Jumin_portfolio.pdf' },
+  { label: 'Resume',    href: 'https://docs.google.com/document/d/1p5NYMpYPaAfXOSV239sW_RCUyiS1GCvlwr5s1ivQey4/edit?usp=sharing' },
 ]
 
 const education = [
@@ -194,9 +194,10 @@ export default function AboutSection() {
             <div className={styles.links}>
               <button className={styles.linkPrimary} onClick={copyEmail}>Email</button>
               <a href={links[0].href} className={styles.linkPrimary} target="_blank" rel="noopener noreferrer">LinkedIn</a>
-              <a href={links[4].href} className={styles.linkSecondary}>Resume</a>
+              <a href={links[3].href} className={styles.linkSecondary} target="_blank" rel="noopener noreferrer">Portfolio</a>
+              <a href={links[4].href} className={styles.linkSecondary} target="_blank" rel="noopener noreferrer">Resume</a>
               <div className={styles.linkDivider} />
-              {links.slice(1, 4).map(({ label, href }) => (
+              {links.slice(1, 3).map(({ label, href }) => (
                 <a key={label} href={href} className={styles.linkGhost} target="_blank" rel="noopener noreferrer">
                   {label}
                 </a>
