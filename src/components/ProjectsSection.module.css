@@ -19,30 +19,65 @@
   font-size: 0.72rem;
   font-weight: 400;
   color: var(--muted);
-  background: transparent;
-  border: 1px solid var(--border);
-  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(14px) saturate(160%);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.30);
+  border-radius: 20px;
   padding: 0.35rem 1rem;
   letter-spacing: 0.06em;
   cursor: pointer;
-  transition: background 200ms, color 200ms, border-color 200ms;
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.03);
+  transition: background 200ms, color 200ms, border-color 200ms, box-shadow 200ms, transform 150ms;
 }
 
 .filterBtn:hover {
-  border-color: rgba(0, 214, 143, 0.38);
   color: var(--text);
+  background: rgba(255, 255, 255, 0.26);
+  border-color: rgba(255, 255, 255, 0.45);
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.68),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.04);
+}
+
+.filterBtn:active {
+  transform: scale(0.96);
+  background: rgba(255, 255, 255, 0.36);
+  box-shadow:
+    0 1px 4px rgba(0, 0, 0, 0.06),
+    inset 0 1.5px 0 rgba(255, 255, 255, 0.92),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.06);
 }
 
 .filterActive {
-  background: var(--lime);
+  background: linear-gradient(135deg, rgba(0, 214, 143, 0.82) 0%, rgba(0, 214, 143, 0.65) 100%);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
   color: var(--dark);
-  border-color: var(--lime);
+  border-color: rgba(255, 255, 255, 0.45);
+  box-shadow:
+    0 4px 16px rgba(0, 214, 143, 0.20),
+    inset 0 1px 0 rgba(255, 255, 255, 0.65),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.06);
 }
 
 .filterActive:hover {
-  background: var(--lime);
-  border-color: var(--lime);
+  background: linear-gradient(135deg, rgba(0, 214, 143, 0.92) 0%, rgba(0, 214, 143, 0.76) 100%);
+  border-color: rgba(255, 255, 255, 0.52);
   color: var(--dark);
+}
+
+.filterActive:active {
+  transform: scale(0.96);
+  background: linear-gradient(135deg, rgba(255,255,255,0.38) 0%, rgba(0, 214, 143, 0.88) 100%);
+  box-shadow:
+    0 1px 6px rgba(0, 214, 143, 0.15),
+    inset 0 1.5px 0 rgba(255, 255, 255, 0.95),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.08);
 }
 
 /* ── Card Grid ───────────────────────────────────── */
