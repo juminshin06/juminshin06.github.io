@@ -13,7 +13,7 @@ const COLORS = [
   '#00D68F',
 ]
 
-const COUNT     = 130   // more ambient particles
+const COUNT     = 169   // 1.3× ambient particles
 const RADIUS    = 200
 const RADIUS_SQ = RADIUS * RADIUS
 const FPS_CAP   = 22   // ~45fps for smoother trail
@@ -30,8 +30,9 @@ export default function PixelBackground() {
     let animId
     let W = 0, H = 0
     let mx = -9999, my = -9999
-    const pixels = []
-    const trails = []
+    const pixels    = []
+    const trails    = []
+    const fireworks = []
     let lastTs = 0
     let lastTrailX = -9999, lastTrailY = -9999
 
@@ -62,6 +63,29 @@ export default function PixelBackground() {
       W = canvas.width  = window.innerWidth
       H = canvas.height = window.innerHeight
       initPixels()
+    }
+
+    const onMouseClick = (e) => {
+      const cx = e.clientX
+      const cy = e.clientY
+      const count = 28 + Math.floor(Math.random() * 10)
+      for (let i = 0; i < count; i++) {
+        const angle  = (Math.PI * 2 * i) / count + (Math.random() - 0.5) * 0.4
+        const speed  = 2.5 + Math.random() * 4.5
+        const color  = COLORS[Math.floor(Math.random() * COLORS.length)]
+        const size   = 1.5 + Math.random() * 3.5
+        fireworks.push({
+          x:     cx + (Math.random() - 0.5) * 6,
+          y:     cy + (Math.random() - 0.5) * 6,
+          vx:    Math.cos(angle) * speed,
+          vy:    Math.sin(angle) * speed,
+          size,
+          alpha: 0.9 + Math.random() * 0.1,
+          color,
+          decay: 0.018 + Math.random() * 0.014,
+          gravity: 0.07 + Math.random() * 0.05,
+        })
+      }
     }
 
     const onMouseMove = (e) => {
@@ -156,19 +180,38 @@ export default function PixelBackground() {
         ctx.fill()
       }
 
+      // ── Firework burst particles ───────────────────────────
+      for (let i = fireworks.length - 1; i >= 0; i--) {
+        const f = fireworks[i]
+        f.x      += f.vx
+        f.y      += f.vy
+        f.vy     += f.gravity   // gravity pulls down
+        f.vx     *= 0.97        // slight air resistance
+        f.alpha  -= f.decay
+        f.size   *= 0.985       // slight shrink
+        if (f.alpha <= 0) { fireworks.splice(i, 1); continue }
+
+        ctx.globalAlpha = Math.min(1, f.alpha)
+        ctx.fillStyle   = f.color
+        const s = Math.max(1, Math.round(f.size))
+        ctx.fillRect(Math.round(f.x) - s, Math.round(f.y) - s, s * 2, s * 2)
+      }
+
       ctx.globalAlpha = 1
       animId = requestAnimationFrame(draw)
     }
 
     resize()
-    window.addEventListener('resize',    resize,      { passive: true })
-    window.addEventListener('mousemove', onMouseMove, { passive: true })
+    window.addEventListener('resize',    resize,        { passive: true })
+    window.addEventListener('mousemove', onMouseMove,   { passive: true })
+    window.addEventListener('click',     onMouseClick)
     animId = requestAnimationFrame(draw)
 
     return () => {
       cancelAnimationFrame(animId)
       window.removeEventListener('resize',    resize)
       window.removeEventListener('mousemove', onMouseMove)
+      window.removeEventListener('click',     onMouseClick)
     }
   }, [])
 

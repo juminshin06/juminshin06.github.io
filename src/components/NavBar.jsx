@@ -26,7 +26,7 @@ export default function NavBar({ onLifeClick, onProjectsClick, onAboutClick, onH
           <a href="#projects" className={styles.link} onClick={handleProjects}>Projects</a>
         </li>
         <li>
-          <a href="#about" className={styles.link} onClick={handleAbout}>Ability</a>
+          <a href="#about" className={styles.link} onClick={handleAbout}>EXPERIENCE</a>
         </li>
         <li>
           <button

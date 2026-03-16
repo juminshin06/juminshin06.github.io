@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import styles from './AboutSection.module.css'
 import profilePhoto from '../assets/profile.png'
 
@@ -143,8 +143,36 @@ const awardGroups = [
   },
 ]
 
+const BIO_TEXT = 'I work at the crossroads of HCI research, AI systems, and UX design, translating behavioral complexity into experiences that are analytically rigorous and deeply human.'
+
 export default function AboutSection() {
   const [emailCopied, setEmailCopied] = useState(false)
+  const [typedBio, setTypedBio]       = useState('')
+  const [bioStarted, setBioStarted]   = useState(false)
+  const bioRef = useRef(null)
+
+  useEffect(() => {
+    const el = bioRef.current
+    if (!el) return
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setBioStarted(true); observer.disconnect() } },
+      { threshold: 0.5 }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
+
+  useEffect(() => {
+    if (!bioStarted) return
+    let i = 0
+    setTypedBio('')
+    const id = setInterval(() => {
+      i++
+      setTypedBio(BIO_TEXT.slice(0, i))
+      if (i >= BIO_TEXT.length) clearInterval(id)
+    }, 28)
+    return () => clearInterval(id)
+  }, [bioStarted])
 
   const copyEmail = () => {
     navigator.clipboard?.writeText('juminshi@usc.edu').then(() => {
@@ -179,10 +207,11 @@ export default function AboutSection() {
             </div>
           </div>
 
-          <p className={styles.bio}>
-            I work at the crossroads of HCI research, AI systems, and UX design,
-            translating behavioral complexity into experiences that are
-            analytically rigorous and deeply human.
+          <p className={styles.bio} ref={bioRef}>
+            {typedBio}
+            {typedBio.length < BIO_TEXT.length && (
+              <span style={{ borderRight: '2px solid currentColor', marginLeft: '1px', animation: 'none', opacity: 1 }} />
+            )}
           </p>
 
           <div className={styles.linksWrapper}>
