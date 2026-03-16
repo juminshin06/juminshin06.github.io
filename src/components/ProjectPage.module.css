@@ -120,7 +120,7 @@
 /* ── Image wrapper ─────────────────────────────── */
 
 .imageWrapper {
-  margin: 2.5rem -200px;
+  margin: 2.5rem -200px 2.5rem 0;
 }
 
 .blockImage { margin: 0; }

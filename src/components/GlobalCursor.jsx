@@ -37,6 +37,7 @@ export default function GlobalCursor() {
     let mx = -200, my = -200
     let lastMx = -200, lastMy = -200
     let isHovering = false
+    let isDark = false
     let lastTs = 0
 
     const resize = () => {
@@ -57,6 +58,7 @@ export default function GlobalCursor() {
         el.closest('button') ||
         el.closest('[role="button"]')
       ))
+      isDark = !!(el && el.closest('footer'))
     }
 
     const spawnRipple = (x, y) => {
@@ -104,7 +106,7 @@ export default function GlobalCursor() {
         t.alpha -= 0.022
         if (t.alpha <= 0) { trails.splice(i, 1); continue }
         ctx.globalAlpha = t.alpha
-        ctx.fillStyle = '#0A1F14'
+        ctx.fillStyle = isDark ? '#FFFFFF' : '#0A1F14'
         ctx.imageSmoothingEnabled = false
         ctx.fillRect(t.x - t.size, t.y - t.size, t.size * 2, t.size * 2)
       }
@@ -124,7 +126,7 @@ export default function GlobalCursor() {
 
       // Main cursor
       if (mx > -100) {
-        const color = isHovering ? '#00D68F' : '#0A1F14'
+        const color = isHovering ? '#00D68F' : (isDark ? '#FFFFFF' : '#0A1F14')
         drawPixelCursor(ctx, mx, my, isHovering, 1, color)
 
         if (isHovering) {
