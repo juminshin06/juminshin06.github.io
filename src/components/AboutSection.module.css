@@ -111,6 +111,10 @@
   gap: 0.5rem;
 }
 
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
 @keyframes aboutBtnShine {
   0%   { left: -90%; opacity: 0; }
   10%  { opacity: 1; }
@@ -166,9 +170,32 @@
   }
 }
 
+/* ── linkPrimary: green spin border wrapper ── */
 .linkPrimary {
   position: relative;
   overflow: hidden;
+  padding: 2px;
+  border-radius: 22px;
+  border: none;
+  display: inline-flex;
+  background: transparent;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 200ms;
+}
+
+.linkPrimarySpin {
+  position: absolute;
+  inset: -150%;
+  width: 400%;
+  height: 400%;
+  animation: spin 3s linear infinite;
+  background: conic-gradient(from 90deg at 50% 50%, rgba(0,214,143,0.9) 0%, rgba(255,255,255,0.9) 50%, rgba(0,214,143,0.9) 100%);
+  border-radius: 50%;
+}
+
+.linkPrimaryInner {
+  position: relative;
   isolation: isolate;
   font-family: var(--font-mono);
   font-size: 0.72rem;
@@ -189,13 +216,13 @@
   border: 1px solid rgba(255, 255, 255, 0.55);
   padding: 0.58rem 1.4rem;
   border-radius: 20px;
-  text-decoration: none;
-  cursor: pointer;
   letter-spacing: 0.04em;
   animation: limeDropPulse 10s ease-in-out infinite;
   transition: transform 200ms, color 200ms;
+  overflow: hidden;
 }
-.linkPrimary::before {
+
+.linkPrimaryInner::before {
   content: '';
   position: absolute;
   inset: 0;
@@ -204,7 +231,8 @@
   pointer-events: none;
   z-index: 1;
 }
-.linkPrimary::after {
+
+.linkPrimaryInner::after {
   content: '';
   position: absolute;
   top: 0; left: -90%; width: 55%; height: 100%;
@@ -213,8 +241,12 @@
   z-index: 2;
   opacity: 0;
 }
+
 .linkPrimary:hover {
   transform: translateY(-2px);
+}
+
+.linkPrimary:hover .linkPrimaryInner {
   animation: none;
   background: linear-gradient(135deg, rgba(0, 214, 143, 0.98) 0%, rgba(0, 195, 128, 0.82) 100%);
   box-shadow:
@@ -223,11 +255,12 @@
     inset 0 1.5px 0 rgba(255, 255, 255, 0.98),
     inset 0 -1px 0 rgba(0, 0, 0, 0.07);
 }
-.linkPrimary:hover::after {
+
+.linkPrimary:hover .linkPrimaryInner::after {
   animation: aboutBtnShine 520ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
-.linkPrimary:active {
-  transform: scale(0.97);
+
+.linkPrimary:active .linkPrimaryInner {
   background: linear-gradient(135deg, rgba(255,255,255,0.50) 0%, rgba(0, 214, 143, 0.92) 100%);
   box-shadow:
     0 2px 8px rgba(0, 214, 143, 0.16),
@@ -235,9 +268,32 @@
     inset 0 -1px 0 rgba(0, 0, 0, 0.08);
 }
 
+/* ── linkSecondary: clear spin border wrapper ── */
 .linkSecondary {
   position: relative;
   overflow: hidden;
+  padding: 2px;
+  border-radius: 22px;
+  border: none;
+  display: inline-flex;
+  background: transparent;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 200ms;
+}
+
+.linkSecondarySpin {
+  position: absolute;
+  inset: -150%;
+  width: 400%;
+  height: 400%;
+  animation: spin 3s linear infinite;
+  background: conic-gradient(from 90deg at 50% 50%, rgba(210,248,232,0.6) 0%, rgba(255,255,255,0.8) 50%, rgba(200,230,255,0.6) 100%);
+  border-radius: 50%;
+}
+
+.linkSecondaryInner {
+  position: relative;
   isolation: isolate;
   font-family: var(--font-mono);
   font-size: 0.72rem;
@@ -258,12 +314,13 @@
   border: 1px solid rgba(200, 240, 218, 0.46);
   padding: 0.58rem 1.4rem;
   border-radius: 20px;
-  text-decoration: none;
   letter-spacing: 0.04em;
   animation: clearDropPulse 12s ease-in-out infinite;
   transition: color 200ms, transform 200ms;
+  overflow: hidden;
 }
-.linkSecondary::before {
+
+.linkSecondaryInner::before {
   content: '';
   position: absolute;
   inset: 0;
@@ -272,7 +329,8 @@
   pointer-events: none;
   z-index: 1;
 }
-.linkSecondary::after {
+
+.linkSecondaryInner::after {
   content: '';
   position: absolute;
   top: 0; left: -90%; width: 55%; height: 100%;
@@ -281,22 +339,27 @@
   z-index: 2;
   opacity: 0;
 }
+
 .linkSecondary:hover {
+  transform: translateY(-2px);
+}
+
+.linkSecondary:hover .linkSecondaryInner {
   animation: none;
   background: rgba(210, 248, 232, 0.40);
   border-color: rgba(200, 240, 218, 0.62);
-  transform: translateY(-2px);
   box-shadow:
     0 8px 28px rgba(0, 0, 0, 0.09),
     inset 0 1.5px 0 rgba(255, 255, 255, 0.95),
     inset 0 -1px 0 rgba(0, 0, 0, 0.05),
     inset 1px 0 0 rgba(255, 255, 255, 0.30);
 }
-.linkSecondary:hover::after {
+
+.linkSecondary:hover .linkSecondaryInner::after {
   animation: aboutBtnShine 520ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
-.linkSecondary:active {
-  transform: scale(0.97);
+
+.linkSecondary:active .linkSecondaryInner {
   background: rgba(210, 248, 232, 0.52);
   box-shadow:
     0 1px 6px rgba(0, 0, 0, 0.06),

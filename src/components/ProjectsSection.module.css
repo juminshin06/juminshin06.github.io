@@ -14,6 +14,10 @@
   margin: 0 auto 3rem;
 }
 
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
 @keyframes filterShine {
   0%   { left: -90%; opacity: 0; }
   10%  { opacity: 1; }
@@ -63,9 +67,31 @@
   }
 }
 
+/* ── filterBtn: wrapper only ── */
 .filterBtn {
   position: relative;
   overflow: hidden;
+  padding: 2px;
+  border: none;
+  border-radius: 22px;
+  cursor: pointer;
+  display: inline-flex;
+  background: transparent;
+  transition: transform 150ms;
+}
+
+.filterBtnSpin {
+  position: absolute;
+  inset: -150%;
+  width: 400%;
+  height: 400%;
+  animation: spin 3s linear infinite;
+  background: conic-gradient(from 90deg at 50% 50%, rgba(210,248,232,0.6) 0%, rgba(255,255,255,0.8) 50%, rgba(200,230,255,0.6) 100%);
+  border-radius: 50%;
+}
+
+.filterBtnInner {
+  position: relative;
   isolation: isolate;
   font-family: var(--font-mono);
   font-size: 0.72rem;
@@ -87,12 +113,12 @@
   border-radius: 20px;
   padding: 0.42rem 1.1rem;
   letter-spacing: 0.06em;
-  cursor: pointer;
   animation: filterDropPulse 12s ease-in-out infinite;
-  transition: color 200ms, border-color 200ms, transform 150ms;
+  transition: color 200ms, border-color 200ms;
+  overflow: hidden;
 }
 
-.filterBtn::before {
+.filterBtnInner::before {
   content: '';
   position: absolute;
   inset: 0;
@@ -107,7 +133,7 @@
   z-index: 1;
 }
 
-.filterBtn::after {
+.filterBtnInner::after {
   content: '';
   position: absolute;
   top: 0; left: -90%; width: 55%; height: 100%;
@@ -122,7 +148,7 @@
   opacity: 0;
 }
 
-.filterBtn:hover {
+.filterBtn:hover .filterBtnInner {
   animation: none;
   color: var(--text);
   background: rgba(210, 248, 232, 0.38);
@@ -135,12 +161,16 @@
     inset -1px 0 0 rgba(255, 255, 255, 0.16);
 }
 
-.filterBtn:hover::after {
+.filterBtn:hover .filterBtnInner::after {
   animation: filterShine 500ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 .filterBtn:active {
   transform: scale(0.96);
+}
+
+.filterBtn:active .filterBtnInner {
+  animation: none;
   background: rgba(210, 248, 232, 0.50);
   box-shadow:
     0 1px 4px rgba(0, 0, 0, 0.05),
@@ -148,10 +178,12 @@
     inset 0 -1px 0 rgba(0, 0, 0, 0.06);
 }
 
-.filterActive {
-  position: relative;
-  overflow: hidden;
-  isolation: isolate;
+/* ── Active state spin: use green conic gradient ── */
+.filterActive .filterBtnSpin {
+  background: conic-gradient(from 90deg at 50% 50%, rgba(0,214,143,0.9) 0%, rgba(255,255,255,0.9) 50%, rgba(0,214,143,0.9) 100%);
+}
+
+.filterActive .filterBtnInner {
   background: linear-gradient(
     135deg,
     rgba(0, 214, 143, 0.92) 0%,
@@ -169,37 +201,16 @@
   animation: filterActivePulse 10s ease-in-out infinite;
 }
 
-.filterActive::before {
-  content: '';
-  position: absolute;
-  inset: 0;
+.filterActive .filterBtnInner::before {
   background: linear-gradient(
     138deg,
     rgba(255, 255, 255, 0.55) 0%,
     rgba(255, 255, 255, 0.14) 36%,
     transparent 54%
   );
-  border-radius: inherit;
-  pointer-events: none;
-  z-index: 1;
 }
 
-.filterActive::after {
-  content: '';
-  position: absolute;
-  top: 0; left: -90%; width: 55%; height: 100%;
-  background: linear-gradient(
-    105deg,
-    transparent 25%,
-    rgba(255, 255, 255, 0.60) 50%,
-    transparent 75%
-  );
-  pointer-events: none;
-  z-index: 2;
-  opacity: 0;
-}
-
-.filterActive:hover {
+.filterActive:hover .filterBtnInner {
   animation: none;
   background: linear-gradient(135deg, rgba(0, 214, 143, 0.96) 0%, rgba(0, 200, 130, 0.80) 100%);
   border-color: rgba(255, 255, 255, 0.62);
@@ -210,12 +221,12 @@
     inset 0 -1px 0 rgba(0, 0, 0, 0.07);
 }
 
-.filterActive:hover::after {
+.filterActive:hover .filterBtnInner::after {
   animation: filterShine 500ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
-.filterActive:active {
-  transform: scale(0.96);
+.filterActive:active .filterBtnInner {
+  animation: none;
   background: linear-gradient(135deg, rgba(255,255,255,0.42) 0%, rgba(0, 214, 143, 0.92) 100%);
   box-shadow:
     0 1px 6px rgba(0, 214, 143, 0.14),

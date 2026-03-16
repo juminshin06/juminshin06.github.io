@@ -33,7 +33,8 @@ export default function NavBar({ onLifeClick, onProjectsClick, onAboutClick, onH
             className={styles.linkBtn}
             onClick={() => onLifeClick?.()}
           >
-            Life
+            <span className={styles.linkBtnSpin} aria-hidden="true" />
+            <span className={styles.linkBtnInner}>Life</span>
           </button>
         </li>
       </ul>
