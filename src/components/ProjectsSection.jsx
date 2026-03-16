@@ -34,10 +34,9 @@ function ProjectCard({ project }) {
 export default function ProjectsSection() {
   const [activeFilter, setActiveFilter] = useState('All')
 
-  const filtered = [...(activeFilter === 'All'
+  const filtered = activeFilter === 'All'
     ? projects
-    : projects.filter(p => p.type === activeFilter))
-  ].sort((a, b) => b.year - a.year)
+    : projects.filter(p => p.type === activeFilter)
 
   return (
     <section className={styles.projects} id="projects" aria-label="Projects">

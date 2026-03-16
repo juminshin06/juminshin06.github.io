@@ -365,7 +365,6 @@
 }
 
 .workRow:first-child {
-  border-top: 1px solid #f0f0f0;
 }
 
 .workRowFeatured .workRowTitle {
@@ -525,7 +524,6 @@
 }
 
 .simpleItem:first-child {
-  border-top: 1px solid #f0f0f0;
 }
 
 .simpleYear {
@@ -594,7 +592,7 @@
   padding: 1.2rem 0 1.4rem;
   border-bottom: 1px solid #f0f0f0;
 }
-.recGroup:first-child { border-top: 1px solid #f0f0f0; }
+.recGroup:first-child { }
 .recGroup:last-child { border-bottom: none; }
 
 .recGroupLabel {

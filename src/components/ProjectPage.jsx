@@ -28,7 +28,7 @@ export default function ProjectPage({ projectId, onBack, onPrev, onNext, hasPrev
       `radial-gradient(ellipse 50% 65% at 88% 60%,  ${hexToRgba(accentColor, 0.08)} 0%, transparent 55%)`,
       `radial-gradient(ellipse 65% 45% at 12% 72%,  ${hexToRgba(accentColor, 0.07)} 0%, transparent 55%)`,
       `radial-gradient(ellipse 40% 60% at 65% 38%,  ${hexToRgba(accentColor, 0.06)} 0%, transparent 52%)`,
-      `#F2FFF7`,
+      `#FFFFFF`,
     ].join(', '),
   } : {}
 
@@ -167,14 +167,26 @@ export default function ProjectPage({ projectId, onBack, onPrev, onNext, hasPrev
                     Open ↗
                   </a>
                 </div>
-                <iframe
-                  src={block.src}
-                  className={styles.iframeEmbed}
-                  style={{ height: block.height || 700 }}
-                  title={block.label || 'Preview'}
-                  loading="lazy"
-                  allowFullScreen
-                />
+                {block.video ? (
+                  <div className={styles.videoAspect}>
+                    <iframe
+                      src={block.src}
+                      className={styles.iframeEmbed}
+                      title={block.label || 'Video'}
+                      loading="lazy"
+                      allowFullScreen
+                    />
+                  </div>
+                ) : (
+                  <iframe
+                    src={block.src}
+                    className={styles.iframeEmbed}
+                    style={{ height: block.height || 700 }}
+                    title={block.label || 'Preview'}
+                    loading="lazy"
+                    allowFullScreen
+                  />
+                )}
               </div>
             )
 
