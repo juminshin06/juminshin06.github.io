@@ -62,6 +62,27 @@
   100% { left: 140%; opacity: 0; }
 }
 
+@keyframes navDropPulse {
+  0%, 100% {
+    background-position: 0% 50%;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.07), 0 1px 4px rgba(0,0,0,0.04),
+      inset 0 1.5px 0 rgba(255,255,255,0.88), inset 0 -1px 0 rgba(0,0,0,0.04),
+      inset 1px 0 0 rgba(255,255,255,0.22), inset -1px 0 0 rgba(255,255,255,0.12);
+  }
+  33% {
+    background-position: 60% 80%;
+    box-shadow: 0 6px 22px rgba(100,200,255,0.14), 0 1px 4px rgba(0,0,0,0.04),
+      inset 0 1.5px 0 rgba(255,255,255,0.94), inset 0 -1px 0 rgba(0,0,0,0.04),
+      inset 1px 0 0 rgba(255,255,255,0.28), inset -1px 0 0 rgba(255,255,255,0.16);
+  }
+  66% {
+    background-position: 100% 30%;
+    box-shadow: 0 5px 20px rgba(180,140,255,0.12), 0 1px 4px rgba(0,0,0,0.04),
+      inset 0 1.5px 0 rgba(255,255,255,0.96), inset 0 -1px 0 rgba(0,0,0,0.04),
+      inset 1px 0 0 rgba(255,255,255,0.30), inset -1px 0 0 rgba(255,255,255,0.16);
+  }
+}
+
 .linkBtn {
   position: relative;
   overflow: hidden;
@@ -70,23 +91,26 @@
   font-size: 0.72rem;
   font-weight: 500;
   color: var(--muted);
-  background: rgba(210, 248, 232, 0.26);
+  background: linear-gradient(
+    135deg,
+    rgba(210, 248, 232, 0.30) 0%,
+    rgba(200, 230, 255, 0.26) 20%,
+    rgba(230, 218, 255, 0.24) 40%,
+    rgba(210, 248, 232, 0.28) 60%,
+    rgba(200, 230, 255, 0.26) 80%,
+    rgba(220, 250, 230, 0.30) 100%
+  );
+  background-size: 300% 300%;
   backdrop-filter: blur(28px) saturate(220%) brightness(1.06);
   -webkit-backdrop-filter: blur(28px) saturate(220%) brightness(1.06);
   border: 1px solid rgba(200, 240, 218, 0.48);
-  padding: 0.28rem 0.85rem;
+  padding: 0.35rem 1rem;
   border-radius: 20px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   cursor: pointer;
-  box-shadow:
-    0 4px 18px rgba(0, 0, 0, 0.07),
-    0 1px 4px rgba(0, 0, 0, 0.04),
-    inset 0 1.5px 0 rgba(255, 255, 255, 0.88),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.04),
-    inset 1px 0 0 rgba(255, 255, 255, 0.22),
-    inset -1px 0 0 rgba(255, 255, 255, 0.12);
-  transition: color 200ms, background 200ms, box-shadow 200ms, transform 150ms;
+  animation: navDropPulse 12s ease-in-out infinite;
+  transition: color 200ms, transform 150ms;
 }
 
 /* permanent diagonal gloss */

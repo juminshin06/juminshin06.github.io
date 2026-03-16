@@ -49,6 +49,13 @@
   100% { left: 140%; opacity: 0; }
 }
 
+@keyframes footerDropPulse {
+  0%, 100% { background-position: 0% 50%; }
+  25%       { background-position: 50% 100%; }
+  50%       { background-position: 100% 50%; }
+  75%       { background-position: 50% 0%; }
+}
+
 .emailBtn {
   position: relative;
   overflow: hidden;
@@ -57,21 +64,25 @@
   font-size: 0.72rem;
   font-weight: 600;
   color: var(--dark);
-  background: linear-gradient(135deg, rgba(0, 214, 143, 0.90) 0%, rgba(0, 195, 125, 0.70) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(0, 214, 143, 0.92) 0%,
+    rgba(80, 220, 200, 0.80) 20%,
+    rgba(0, 195, 128, 0.76) 40%,
+    rgba(60, 200, 255, 0.72) 60%,
+    rgba(0, 214, 143, 0.86) 80%,
+    rgba(120, 230, 160, 0.82) 100%
+  );
+  background-size: 300% 300%;
   backdrop-filter: blur(28px) saturate(240%) brightness(1.10);
   -webkit-backdrop-filter: blur(28px) saturate(240%) brightness(1.10);
   border: 1px solid rgba(255, 255, 255, 0.52);
-  padding: 0.42rem 1.1rem;
+  padding: 0.5rem 1.3rem;
   border-radius: 20px;
   cursor: pointer;
   white-space: nowrap;
-  box-shadow:
-    0 6px 22px rgba(0, 214, 143, 0.28),
-    0 2px 6px rgba(0, 0, 0, 0.10),
-    inset 0 1.5px 0 rgba(255, 255, 255, 0.92),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.06),
-    inset 1px 0 0 rgba(255, 255, 255, 0.28);
-  transition: transform 200ms, box-shadow 200ms, background 200ms;
+  animation: footerDropPulse 10s ease-in-out infinite;
+  transition: transform 200ms, color 200ms;
 }
 .emailBtn::before {
   content: '';
@@ -97,6 +108,7 @@
   opacity: 0;
 }
 .emailBtn:hover {
+  animation: none;
   transform: translateY(-1px);
   background: linear-gradient(135deg, rgba(0, 214, 143, 0.98) 0%, rgba(0, 195, 125, 0.82) 100%);
   box-shadow:
