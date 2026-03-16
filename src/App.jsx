@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import GlobalCursor from './components/GlobalCursor'
 import PixelBackground from './components/PixelBackground'
+import MeshBackground from './components/MeshBackground'
 import NavBar from './components/NavBar'
 import LandingSection from './components/LandingSection'
 import AboutSection from './components/AboutSection'
@@ -120,6 +121,7 @@ export default function App() {
 
   return (
     <>
+      <MeshBackground />
       <PixelBackground />
       <GlobalCursor />
       <FloatingPDFButton />

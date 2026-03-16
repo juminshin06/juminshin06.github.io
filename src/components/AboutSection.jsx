@@ -221,10 +221,22 @@ export default function AboutSection() {
               </span>
             </div>
             <div className={styles.links}>
-              <button className={styles.linkPrimary} onClick={copyEmail}>Email</button>
-              <a href={links[0].href} className={styles.linkPrimary} target="_blank" rel="noopener noreferrer">LinkedIn</a>
-              <a href={links[3].href} className={styles.linkSecondary} target="_blank" rel="noopener noreferrer">Portfolio</a>
-              <a href={links[4].href} className={styles.linkSecondary} target="_blank" rel="noopener noreferrer">Resume</a>
+              <button className={styles.linkPrimary} onClick={copyEmail}>
+                <span className={styles.linkPrimarySpin} aria-hidden="true" />
+                <span className={styles.linkPrimaryInner}>Email</span>
+              </button>
+              <a href={links[0].href} className={styles.linkPrimary} target="_blank" rel="noopener noreferrer">
+                <span className={styles.linkPrimarySpin} aria-hidden="true" />
+                <span className={styles.linkPrimaryInner}>LinkedIn</span>
+              </a>
+              <a href={links[3].href} className={styles.linkSecondary} target="_blank" rel="noopener noreferrer">
+                <span className={styles.linkSecondarySpin} aria-hidden="true" />
+                <span className={styles.linkSecondaryInner}>Portfolio</span>
+              </a>
+              <a href={links[4].href} className={styles.linkSecondary} target="_blank" rel="noopener noreferrer">
+                <span className={styles.linkSecondarySpin} aria-hidden="true" />
+                <span className={styles.linkSecondaryInner}>Resume</span>
+              </a>
               <div className={styles.linkDivider} />
               {links.slice(1, 3).map(({ label, href }) => (
                 <a key={label} href={href} className={styles.linkGhost} target="_blank" rel="noopener noreferrer">

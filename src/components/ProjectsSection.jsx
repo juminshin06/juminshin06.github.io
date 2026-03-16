@@ -44,11 +44,12 @@ export default function ProjectsSection() {
         {FILTERS.map(f => (
           <button
             key={f}
-            className={`${styles.filterBtn} ${activeFilter === f ? styles.filterActive : ''}`}
+            className={activeFilter === f ? `${styles.filterBtn} ${styles.filterActive}` : styles.filterBtn}
             onClick={() => setActiveFilter(f)}
             aria-pressed={activeFilter === f}
           >
-            {f}
+            <span className={styles.filterBtnSpin} aria-hidden="true" />
+            <span className={styles.filterBtnInner}>{f}</span>
           </button>
         ))}
       </div>
