@@ -73,9 +73,7 @@ export default function LandingSection() {
             <img src="https://cdn.simpleicons.org/figma"      alt="Figma"       className={styles.schoolLogo} />
             <img src="https://cdn.simpleicons.org/python"     alt="Python"      className={styles.schoolLogo} />
             <img src="https://cdn.simpleicons.org/react"      alt="React"       className={styles.schoolLogo} />
-            <img src="https://cdn.simpleicons.org/unity"      alt="Unity"       className={styles.schoolLogo} />
             <img src="https://cdn.simpleicons.org/javascript" alt="JavaScript"  className={styles.schoolLogo} />
-            <img src="https://cdn.simpleicons.org/anthropic"  alt="Claude"      className={styles.schoolLogo} />
             <img src="https://cdn.simpleicons.org/blender"    alt="Blender"     className={styles.schoolLogo} />
           </div>
 
