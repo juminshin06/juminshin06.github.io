@@ -3,10 +3,10 @@ import styles from './Footer.module.css'
 
 const footerLinks = [
   { label: 'LinkedIn',  href: 'https://www.linkedin.com/in/juminshin' },
-  { label: 'GitHub',    href: 'https://github.com/juminshin06/juminshin06' },
+  { label: 'GitHub',    href: 'https://github.com/juminshin06' },
   { label: 'Scholar',   href: 'https://scholar.google.com/citations?user=RxmsjhAAAAAJ&hl=ko' },
-  { label: 'Instagram', href: 'https://www.instagram.com/' },
-  { label: 'Resume',    href: '/assets/Jumin_portfolio.pdf' },
+  { label: 'Instagram', href: 'https://www.instagram.com/jumin_shin/' },
+  { label: 'Resume',    href: 'https://docs.google.com/document/d/1p5NYMpYPaAfXOSV239sW_RCUyiS1GCvlwr5s1ivQey4/edit?tab=t.0' },
 ]
 
 export default function Footer() {

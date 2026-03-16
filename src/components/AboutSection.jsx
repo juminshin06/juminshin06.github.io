@@ -18,7 +18,7 @@ const education = [
     logo: '/assets/USC_logo.png',
   },
   {
-    year: '2022 – 23',
+    year: '2022 – 2023',
     degree: 'International Exchange Program',
     school: 'TU Berlin',
     logo: '/assets/Exchange_logo.png',
