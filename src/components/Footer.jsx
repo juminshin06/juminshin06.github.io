@@ -6,7 +6,7 @@ const footerLinks = [
   { label: 'GitHub',    href: 'https://github.com/juminshin06' },
   { label: 'Scholar',   href: 'https://scholar.google.com/citations?user=RxmsjhAAAAAJ&hl=ko' },
   { label: 'Instagram', href: 'https://www.instagram.com/jumin_shin/' },
-  { label: 'Resume',    href: 'https://docs.google.com/document/d/1p5NYMpYPaAfXOSV239sW_RCUyiS1GCvlwr5s1ivQey4/edit?tab=t.0' },
+  { label: 'Resume',    href: 'https://docs.google.com/document/d/1S925pLZ2bRjcGABGZNrovpaGZyxQBGNV11ETtSXMSLw/edit?usp=sharing' },
 ]
 
 export default function Footer() {
