@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import styles from './AboutSection.module.css'
 import profilePhoto from '../assets/profile.png'
-import profileHoverPhoto from '../assets/profile_hover.png'
+import profileHoverPhoto from '../assets/profile_hover2.png'
 
 const links = [
   { label: 'LinkedIn',  href: 'https://www.linkedin.com/in/juminshin' },
