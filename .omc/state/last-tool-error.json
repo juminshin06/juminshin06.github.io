@@ -1,7 +1,7 @@
 {
   "tool_name": "Bash",
-  "tool_input_preview": "{\"command\":\"cd /Users/sinjumin/Documents/CodingWork/test-clone && git merge claude/agitated-meninsky --no-edit --no-autostash && git push origin main\",\"description\":\"Merge with no-autostash and push t...",
-  "error": "Exit code 2\nerror: The following untracked working tree files would be overwritten by merge:\n\t.claude/launch.json\n\t.omc/project-memory.json\nPlease move or remove them before you merge.\nAborting\nMerge with strategy ort failed.",
-  "timestamp": "2026-03-18T08:38:43.902Z",
-  "retry_count": 1
+  "tool_input_preview": "{\"command\":\"cd /Users/sinjumin/Documents/CodingWork/test-clone && git checkout src/assets/profile_hover2.png 2>/dev/null || true && git merge claude/agitated-meninsky --no-edit && git push origin main...",
+  "error": "Exit code 2\nerror: The following untracked working tree files would be overwritten by merge:\n\tsrc/assets/profile_hover2.png\nPlease move or remove them before you merge.\nAborting\nMerge with strategy ort failed.",
+  "timestamp": "2026-03-18T09:40:59.192Z",
+  "retry_count": 2
 }

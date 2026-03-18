@@ -12,7 +12,7 @@
 
 .hero {
   display: grid;
-  grid-template-columns: 1fr 280px;
+  grid-template-columns: 1fr 220px;
   gap: 6rem;
   max-width: 1100px;
   margin: 0 auto;
