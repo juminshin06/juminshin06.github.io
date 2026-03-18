@@ -48,7 +48,6 @@ export default function ProjectsSection() {
             onClick={() => setActiveFilter(f)}
             aria-pressed={activeFilter === f}
           >
-            <span className={styles.filterBtnSpin} aria-hidden="true" />
             <span className={styles.filterBtnInner}>{f}</span>
           </button>
         ))}

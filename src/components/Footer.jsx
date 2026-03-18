@@ -30,7 +30,6 @@ export default function Footer() {
 
         <div className={styles.linksRow}>
           <button className={styles.emailBtn} onClick={copyEmail}>
-            <span className={styles.emailBtnSpin} aria-hidden="true" />
             <span className={styles.emailBtnInner}>
               {emailCopied ? '✓ Copied!' : 'juminshi@usc.edu'}
             </span>

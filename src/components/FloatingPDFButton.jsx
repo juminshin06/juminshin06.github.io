@@ -4,8 +4,8 @@ import styles from './FloatingPDFButton.module.css'
 export default function FloatingPDFButton() {
   const handleClick = () => {
     confetti({
-      particleCount: 80,
-      spread: 60,
+      particleCount: 35,
+      spread: 45,
       origin: { x: 0.92, y: 0.85 },
       colors: ['#00D68F', '#44E87A', '#AAFF44', '#6BFFB8', '#C8FF90'],
       shapes: ['star', 'circle'],

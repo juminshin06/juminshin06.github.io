@@ -42,10 +42,6 @@
   gap: 0.5rem;
 }
 
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-
 @keyframes footerBtnShine {
   0%   { left: -90%; opacity: 0; }
   10%  { opacity: 1; }
@@ -63,23 +59,13 @@
 .emailBtn {
   position: relative;
   overflow: hidden;
-  padding: 2px;
+  padding: 0;
   border-radius: 22px;
   border: none;
   display: inline-flex;
   background: transparent;
   cursor: pointer;
   transition: transform 200ms;
-}
-
-.emailBtnSpin {
-  position: absolute;
-  inset: -150%;
-  width: 400%;
-  height: 400%;
-  animation: spin 3s linear infinite;
-  background: conic-gradient(from 90deg at 50% 50%, rgba(0,214,143,0.9) 0%, rgba(255,255,255,0.9) 50%, rgba(0,214,143,0.9) 100%);
-  border-radius: 50%;
 }
 
 .emailBtnInner {

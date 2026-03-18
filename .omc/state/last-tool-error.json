@@ -1,0 +1,7 @@
+{
+  "tool_name": "Bash",
+  "tool_input_preview": "{\"command\":\"git push origin claude/agitated-meninsky && git checkout main && git merge claude/agitated-meninsky --no-edit && git push origin main\",\"description\":\"Push branch and merge to main\"}",
+  "error": "Exit code 128\nTo github.com:juminshin06/juminshin06.github.io.git\n   a8b8db4..1684675  claude/agitated-meninsky -> claude/agitated-meninsky\nfatal: 'main' is already checked out at '/Users/sinjumin/Documents/CodingWork/test-clone'",
+  "timestamp": "2026-03-16T21:32:14.469Z",
+  "retry_count": 1
+}

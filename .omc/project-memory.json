@@ -1,0 +1,224 @@
+{
+  "version": "1.0.0",
+  "lastScanned": 1773817518446,
+  "projectRoot": "/Users/sinjumin/Documents/CodingWork/test-clone/.claude/worktrees/agitated-meninsky",
+  "techStack": {
+    "languages": [
+      {
+        "name": "JavaScript/TypeScript",
+        "version": null,
+        "confidence": "high",
+        "markers": [
+          "package.json"
+        ]
+      }
+    ],
+    "frameworks": [
+      {
+        "name": "react",
+        "version": "18.3.1",
+        "category": "frontend"
+      },
+      {
+        "name": "react-dom",
+        "version": "18.3.1",
+        "category": "frontend"
+      },
+      {
+        "name": "vite",
+        "version": "5.4.2",
+        "category": "build"
+      }
+    ],
+    "packageManager": "npm",
+    "runtime": null
+  },
+  "build": {
+    "buildCommand": "npm run build",
+    "testCommand": null,
+    "lintCommand": null,
+    "devCommand": "npm run dev",
+    "scripts": {
+      "dev": "vite",
+      "build": "vite build",
+      "preview": "vite preview",
+      "predeploy": "npm run build",
+      "deploy": "gh-pages -d dist"
+    }
+  },
+  "conventions": {
+    "namingStyle": null,
+    "importStyle": null,
+    "testPattern": null,
+    "fileOrganization": "type-based"
+  },
+  "structure": {
+    "isMonorepo": false,
+    "workspaces": [],
+    "mainDirectories": [
+      "public",
+      "src"
+    ],
+    "gitBranches": {
+      "defaultBranch": "main",
+      "branchingStrategy": null
+    }
+  },
+  "customNotes": [],
+  "directoryMap": {
+    "dist": {
+      "path": "dist",
+      "purpose": "Distribution/build output",
+      "fileCount": 3,
+      "lastAccessed": 1773817518422,
+      "keyFiles": [
+        "favicon.svg",
+        "index.html"
+      ]
+    },
+    "experiments": {
+      "path": "experiments",
+      "purpose": null,
+      "fileCount": 1,
+      "lastAccessed": 1773817518432,
+      "keyFiles": [
+        "bloom-glass.html"
+      ]
+    },
+    "public": {
+      "path": "public",
+      "purpose": "Public files",
+      "fileCount": 2,
+      "lastAccessed": 1773817518436,
+      "keyFiles": [
+        "favicon.svg"
+      ]
+    },
+    "src": {
+      "path": "src",
+      "purpose": "Source code",
+      "fileCount": 3,
+      "lastAccessed": 1773817518436,
+      "keyFiles": [
+        "App.jsx",
+        "index.css",
+        "main.jsx"
+      ]
+    },
+    "dist/assets": {
+      "path": "dist/assets",
+      "purpose": "Static assets",
+      "fileCount": 17,
+      "lastAccessed": 1773817518440,
+      "keyFiles": [
+        "Exchange_logo.png",
+        "Exchange_logo.svg",
+        "Hongik_logo.png"
+      ]
+    },
+    "public/assets": {
+      "path": "public/assets",
+      "purpose": "Static assets",
+      "fileCount": 13,
+      "lastAccessed": 1773817518442,
+      "keyFiles": [
+        "Exchange_logo.png",
+        "Exchange_logo.svg",
+        "Hongik_logo.png"
+      ]
+    },
+    "src/assets": {
+      "path": "src/assets",
+      "purpose": "Static assets",
+      "fileCount": 1,
+      "lastAccessed": 1773817518442,
+      "keyFiles": [
+        "profile.png"
+      ]
+    },
+    "src/components": {
+      "path": "src/components",
+      "purpose": "UI components",
+      "fileCount": 37,
+      "lastAccessed": 1773817518443,
+      "keyFiles": [
+        "AboutSection.jsx",
+        "AboutSection.module.css",
+        "CardDeck.jsx"
+      ]
+    },
+    "src/data": {
+      "path": "src/data",
+      "purpose": "Data files",
+      "fileCount": 2,
+      "lastAccessed": 1773817518446,
+      "keyFiles": [
+        "events.json",
+        "projects.json"
+      ]
+    }
+  },
+  "hotPaths": [
+    {
+      "path": "src/components/ProjectsSection.module.css",
+      "accessCount": 5,
+      "lastAccessed": 1773819140581,
+      "type": "file"
+    },
+    {
+      "path": "src/components/AboutSection.module.css",
+      "accessCount": 5,
+      "lastAccessed": 1773819177766,
+      "type": "file"
+    },
+    {
+      "path": "src/components/AboutSection.jsx",
+      "accessCount": 4,
+      "lastAccessed": 1773819166319,
+      "type": "file"
+    },
+    {
+      "path": "src/components/NavBar.module.css",
+      "accessCount": 3,
+      "lastAccessed": 1773819106793,
+      "type": "file"
+    },
+    {
+      "path": "src/components/Footer.module.css",
+      "accessCount": 3,
+      "lastAccessed": 1773819115018,
+      "type": "file"
+    },
+    {
+      "path": "src/components/NavBar.jsx",
+      "accessCount": 2,
+      "lastAccessed": 1773819045717,
+      "type": "file"
+    },
+    {
+      "path": "src/components/FloatingPDFButton.jsx",
+      "accessCount": 2,
+      "lastAccessed": 1773819091086,
+      "type": "file"
+    },
+    {
+      "path": "src/components/PixelBackground.jsx",
+      "accessCount": 2,
+      "lastAccessed": 1773819091895,
+      "type": "file"
+    },
+    {
+      "path": "src/components/Footer.jsx",
+      "accessCount": 2,
+      "lastAccessed": 1773819094030,
+      "type": "file"
+    },
+    {
+      "path": "src/components/ProjectsSection.jsx",
+      "accessCount": 2,
+      "lastAccessed": 1773819100390,
+      "type": "file"
+    }
+  ],
+  "userDirectives": []
+}

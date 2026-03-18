@@ -14,10 +14,6 @@
   margin: 0 auto 3rem;
 }
 
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-
 @keyframes filterShine {
   0%   { left: -90%; opacity: 0; }
   10%  { opacity: 1; }
@@ -71,23 +67,13 @@
 .filterBtn {
   position: relative;
   overflow: hidden;
-  padding: 2px;
+  padding: 0;
   border: none;
   border-radius: 22px;
   cursor: pointer;
   display: inline-flex;
   background: transparent;
   transition: transform 150ms;
-}
-
-.filterBtnSpin {
-  position: absolute;
-  inset: -150%;
-  width: 400%;
-  height: 400%;
-  animation: spin 3s linear infinite;
-  background: conic-gradient(from 90deg at 50% 50%, rgba(210,248,232,0.6) 0%, rgba(255,255,255,0.8) 50%, rgba(200,230,255,0.6) 100%);
-  border-radius: 50%;
 }
 
 .filterBtnInner {
@@ -176,11 +162,6 @@
     0 1px 4px rgba(0, 0, 0, 0.05),
     inset 0 2px 0 rgba(255, 255, 255, 0.98),
     inset 0 -1px 0 rgba(0, 0, 0, 0.06);
-}
-
-/* ── Active state spin: use green conic gradient ── */
-.filterActive .filterBtnSpin {
-  background: conic-gradient(from 90deg at 50% 50%, rgba(0,214,143,0.9) 0%, rgba(255,255,255,0.9) 50%, rgba(0,214,143,0.9) 100%);
 }
 
 .filterActive .filterBtnInner {
