@@ -161,8 +161,8 @@
   "hotPaths": [
     {
       "path": "src/components/AboutSection.module.css",
-      "accessCount": 7,
-      "lastAccessed": 1773825035949,
+      "accessCount": 9,
+      "lastAccessed": 1773826568260,
       "type": "file"
     },
     {
@@ -172,15 +172,15 @@
       "type": "file"
     },
     {
-      "path": "src/components/ProjectsSection.module.css",
-      "accessCount": 5,
-      "lastAccessed": 1773819140581,
+      "path": "src/components/AboutSection.jsx",
+      "accessCount": 6,
+      "lastAccessed": 1773826526621,
       "type": "file"
     },
     {
-      "path": "src/components/AboutSection.jsx",
-      "accessCount": 4,
-      "lastAccessed": 1773819166319,
+      "path": "src/components/ProjectsSection.module.css",
+      "accessCount": 5,
+      "lastAccessed": 1773819140581,
       "type": "file"
     },
     {
