@@ -68,22 +68,22 @@ export default function PixelBackground() {
     const onMouseClick = (e) => {
       const cx = e.clientX
       const cy = e.clientY
-      const count = 6 + Math.floor(Math.random() * 4)
+      const count = 8 + Math.floor(Math.random() * 5)
       for (let i = 0; i < count; i++) {
         const angle  = (Math.PI * 2 * i) / count + (Math.random() - 0.5) * 0.4
-        const speed  = 1.2 + Math.random() * 2.2
+        const speed  = 1.8 + Math.random() * 3.2
         const color  = COLORS[Math.floor(Math.random() * COLORS.length)]
-        const size   = 1.0 + Math.random() * 2.0
+        const size   = 1.2 + Math.random() * 2.8
         fireworks.push({
-          x:     cx + (Math.random() - 0.5) * 4,
-          y:     cy + (Math.random() - 0.5) * 4,
+          x:     cx + (Math.random() - 0.5) * 5,
+          y:     cy + (Math.random() - 0.5) * 5,
           vx:    Math.cos(angle) * speed,
           vy:    Math.sin(angle) * speed,
           size,
-          alpha: 0.7 + Math.random() * 0.2,
+          alpha: 0.8 + Math.random() * 0.2,
           color,
-          decay: 0.025 + Math.random() * 0.015,
-          gravity: 0.05 + Math.random() * 0.03,
+          decay: 0.020 + Math.random() * 0.012,
+          gravity: 0.06 + Math.random() * 0.04,
         })
       }
     }
