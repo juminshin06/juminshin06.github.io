@@ -55,10 +55,6 @@
   color: var(--dark);
 }
 
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-
 @keyframes navBtnShine {
   0%   { left: -90%; opacity: 0; }
   10%  { opacity: 1; }
@@ -90,23 +86,13 @@
 .linkBtn {
   position: relative;
   overflow: hidden;
-  padding: 2px;
+  padding: 0;
   border: none;
   border-radius: 20px;
   cursor: pointer;
   display: inline-flex;
   background: transparent;
   transition: transform 150ms;
-}
-
-.linkBtnSpin {
-  position: absolute;
-  inset: -150%;
-  width: 400%;
-  height: 400%;
-  animation: spin 3s linear infinite;
-  background: conic-gradient(from 90deg at 50% 50%, rgba(210,248,232,0.6) 0%, rgba(255,255,255,0.8) 50%, rgba(200,230,255,0.6) 100%);
-  border-radius: 50%;
 }
 
 .linkBtnInner {

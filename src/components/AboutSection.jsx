@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import styles from './AboutSection.module.css'
 import profilePhoto from '../assets/profile.png'
+import profileHoverPhoto from '../assets/profile_hover.png'
 
 const links = [
   { label: 'LinkedIn',  href: 'https://www.linkedin.com/in/juminshin' },
@@ -222,19 +223,15 @@ export default function AboutSection() {
             </div>
             <div className={styles.links}>
               <button className={styles.linkPrimary} onClick={copyEmail}>
-                <span className={styles.linkPrimarySpin} aria-hidden="true" />
                 <span className={styles.linkPrimaryInner}>Email</span>
               </button>
               <a href={links[0].href} className={styles.linkPrimary} target="_blank" rel="noopener noreferrer">
-                <span className={styles.linkPrimarySpin} aria-hidden="true" />
                 <span className={styles.linkPrimaryInner}>LinkedIn</span>
               </a>
               <a href={links[3].href} className={styles.linkSecondary} target="_blank" rel="noopener noreferrer">
-                <span className={styles.linkSecondarySpin} aria-hidden="true" />
                 <span className={styles.linkSecondaryInner}>Portfolio</span>
               </a>
               <a href={links[4].href} className={styles.linkSecondary} target="_blank" rel="noopener noreferrer">
-                <span className={styles.linkSecondarySpin} aria-hidden="true" />
                 <span className={styles.linkSecondaryInner}>Resume</span>
               </a>
               <div className={styles.linkDivider} />
@@ -249,13 +246,8 @@ export default function AboutSection() {
 
         <div className={styles.heroPhoto}>
           <div className={styles.photoFrame}>
-            {profilePhoto ? (
-              <img src={profilePhoto} alt="Jumin Shin" className={styles.photo} />
-            ) : (
-              <div className={styles.photoPlaceholder} aria-hidden="true">
-                <span>JS</span>
-              </div>
-            )}
+            <img src={profilePhoto} alt="Jumin Shin" className={styles.photo} />
+            <img src={profileHoverPhoto} alt="Jumin Shin" className={styles.photoHover} aria-hidden="true" />
           </div>
         </div>
       </div>

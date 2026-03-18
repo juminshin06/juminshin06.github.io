@@ -68,7 +68,7 @@ export default function PixelBackground() {
     const onMouseClick = (e) => {
       const cx = e.clientX
       const cy = e.clientY
-      const count = 28 + Math.floor(Math.random() * 10)
+      const count = 12 + Math.floor(Math.random() * 6)
       for (let i = 0; i < count; i++) {
         const angle  = (Math.PI * 2 * i) / count + (Math.random() - 0.5) * 0.4
         const speed  = 2.5 + Math.random() * 4.5
