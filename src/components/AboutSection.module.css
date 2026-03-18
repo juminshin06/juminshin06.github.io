@@ -461,7 +461,6 @@
   border-radius: 24px;
   display: block;
   opacity: 0.93;
-  transform: scale(0.82);
   transition: opacity 420ms ease, filter 420ms ease;
 }
 
@@ -476,7 +475,6 @@
   display: block;
   opacity: 0;
   z-index: 1;
-  transform: scale(0.82);
   transition: opacity 420ms ease;
 }
 
