@@ -476,14 +476,16 @@
   border: none;
 }
 
-/* 16:9 responsive video wrapper */
-.videoAspect {
+/* 16:10 responsive wrapper (MacBook ratio) */
+.videoAspect,
+.iframeAspect {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 16 / 10;
 }
 
-.videoAspect .iframeEmbed {
+.videoAspect .iframeEmbed,
+.iframeAspect .iframeEmbed {
   position: absolute;
   inset: 0;
   width: 100%;
