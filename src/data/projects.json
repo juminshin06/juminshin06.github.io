@@ -11,14 +11,14 @@
     "color": "#2D1B69",
     "accentColor": "#8B5CF6",
     "href": "",
-    "description": "Real-time air drawing application powered by MediaPipe hand gesture detection. Pinch your thumb and index finger to draw in the air — create signatures, doodles, or artwork entirely through hand motion. Export as PNG, SVG, PDF, or video.",
+    "description": "Real-time air drawing application powered by MediaPipe hand gesture detection. Pinch your thumb and index finger to draw in the air, create signatures, doodles, or artwork entirely through hand motion. Export as PNG, SVG, PDF, or video.",
     "duration": "2026",
     "tools": ["MediaPipe Hands", "Canvas API", "Vanilla JavaScript", "Web Share API", "MediaRecorder"],
     "content": [
       { "type": "heading", "value": "Overview" },
-      { "type": "text", "value": "What if you could save a signature or a quick handwritten message without an iPad or stylus — just your hand in the air? That question led to HandSign, a real-time AR air-drawing app that uses MediaPipe Hands to detect pinch gestures through a webcam. Pinch to start a stroke, move to draw, release to stop. The app captures 21 hand landmarks at 60fps, applies Catmull-Rom spline smoothing for fluid lines, and offers 4 drawing styles (Solid, Pencil, Glow, Marker). Finished drawings can be exported as PNG, SVG, PDF, or WebM video and shared directly via the Web Share API." },
+      { "type": "text", "value": "What if you could save a signature or a quick handwritten message without an iPad or stylus, just your hand in the air? That question led to HandSign, a real-time AR air-drawing app that uses MediaPipe Hands to detect pinch gestures through a webcam. Pinch to start a stroke, move to draw, release to stop. The app captures 21 hand landmarks at 60fps, applies Catmull-Rom spline smoothing for fluid lines, and offers 4 drawing styles (Solid, Pencil, Glow, Marker). Finished drawings can be exported as PNG, SVG, PDF, or WebM video and shared directly via the Web Share API." },
       { "type": "heading", "value": "Demo" },
-      { "type": "text", "value": "Try it live — allow camera access, then pinch your thumb and index finger together to start drawing in the air. Release to finish a stroke. Use the toolbar to change colors, size, and style." },
+      { "type": "text", "value": "Try it live, allow camera access, then pinch your thumb and index finger together to start drawing in the air. Release to finish a stroke. Use the toolbar to change colors, size, and style." },
       { "type": "iframe", "src": "/handsign/index.html", "label": "HandSign — Live Demo", "height": 750, "allow": "camera; microphone" }
     ]
   },
