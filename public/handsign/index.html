@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Air Signature</title>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Fredoka+One&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <video id="webcam" autoplay muted playsinline></video>
+  <canvas id="canvas"></canvas>
+
+  <!-- ════ STATUS TOAST + REC inline (flex row) ════ -->
+  <div id="status-overlay">
+    <div id="status-message">Loading camera</div>
+    <div id="rec-indicator" class="hidden">
+      <span class="rec-dot"></span>
+      <span class="rec-label">REC</span>
+      <span id="rec-timer">00:00</span>
+    </div>
+  </div>
+
+  <!-- ════ CUSTOM COLOR PICKER POPUP ════ -->
+  <div id="cpop" class="cpop hidden">
+    <div class="cpop-title">Pick a color</div>
+    <canvas id="cpop-sv"  width="190" height="150" class="cpop-sv"></canvas>
+    <canvas id="cpop-hue" width="190" height="18"  class="cpop-hue"></canvas>
+    <div class="cpop-foot">
+      <div id="cpop-swatch" class="cpop-swatch"></div>
+      <input  id="cpop-hex" class="cpop-hex" type="text" maxlength="7" spellcheck="false">
+      <button id="cpop-ok"  class="cpop-ok">Done</button>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       TUTORIAL  (hand-drawn pink style)
+  ══════════════════════════════════════════ -->
+  <div id="instructions-overlay">
+
+    <!-- Mouse trail canvas (pencil trail on tutorial screen) -->
+    <canvas id="tut-trail"></canvas>
+
+    <!-- Hand-drawn SVG background decorations -->
+    <svg class="tut-bg-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 800" preserveAspectRatio="xMidYMid slice">
+      <!-- Wobbly circles -->
+      <path d="M48,72 C53,57 70,52 82,58 C94,64 97,80 89,92 C81,104 64,106 52,98 C40,90 43,87 48,72 Z"
+            fill="none" stroke="#FFB3D1" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M440,130 C447,118 462,115 472,122 C482,129 483,143 475,152 C467,161 452,162 443,154 C434,146 433,142 440,130 Z"
+            fill="none" stroke="#FF99C0" stroke-width="2" stroke-linecap="round"/>
+      <path d="M30,450 C36,438 52,435 62,442 C72,449 73,464 65,473 C57,482 42,483 33,475 C24,467 24,462 30,450 Z"
+            fill="#FFE4F0" stroke="none"/>
+      <!-- Stars -->
+      <path d="M390,55 L393,46 L396,55 L405,55 L398,61 L401,70 L393,65 L385,70 L388,61 L381,55 Z"
+            fill="#FFD6E8" stroke="#FFB3D1" stroke-width="1"/>
+      <path d="M75,350 L77,344 L79,350 L85,350 L80,354 L82,360 L77,357 L72,360 L74,354 L69,350 Z"
+            fill="#FFDDF0"/>
+      <path d="M460,400 L462,393 L465,400 L472,400 L466,405 L468,412 L462,408 L456,412 L458,405 L452,400 Z"
+            fill="#FFD6E8"/>
+      <!-- Squiggly lines -->
+      <path d="M380,220 C390,215 400,225 410,220 C420,215 430,225 445,218"
+            fill="none" stroke="#FFB3D1" stroke-width="2" stroke-linecap="round"/>
+      <path d="M15,160 C25,155 35,165 50,158"
+            fill="none" stroke="#FFC8E0" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M55,620 C65,615 75,625 85,618 C95,611 105,621 118,615"
+            fill="none" stroke="#FFB3D1" stroke-width="2" stroke-linecap="round"/>
+      <!-- Dots -->
+      <circle cx="420" cy="300" r="5"  fill="#FFD6E8"/>
+      <circle cx="430" cy="312" r="3"  fill="#FFB3D1"/>
+      <circle cx="412" cy="318" r="4"  fill="#FFE4F0"/>
+      <circle cx="38"  cy="260" r="6"  fill="#FFE4F0"/>
+      <circle cx="50"  cy="275" r="3.5" fill="#FFD6E8"/>
+      <circle cx="460" cy="550" r="5"  fill="#FFD6E8"/>
+      <circle cx="30"  cy="520" r="4"  fill="#FFB3D1"/>
+      <!-- Spiral at bottom right -->
+      <path d="M460,700 C465,692 472,690 478,695 C484,700 484,708 479,714 C474,720 466,721 461,717 C456,713 456,707 460,700"
+            fill="none" stroke="#FFB3D1" stroke-width="2.5" stroke-linecap="round"/>
+    </svg>
+
+    <!-- Main content wrapper -->
+    <div class="tut-wrapper">
+
+      <!-- Title area -->
+      <div class="tut-title-area">
+        <h1 class="tut-title">Air Signature</h1>
+        <svg class="tut-underline-svg" viewBox="0 0 240 12" preserveAspectRatio="none">
+          <path d="M4,8 C30,3 60,10 90,6 C120,2 150,9 180,5 C200,3 220,8 236,5"
+                stroke="#FF6B9D" stroke-width="3" fill="none" stroke-linecap="round"/>
+        </svg>
+        <p class="tut-subtitle">draw with just your fingers!</p>
+      </div>
+
+      <!-- Step cards -->
+      <div class="tut-cards">
+
+        <div class="tut-hcard c1">
+          <div class="hcard-num-circle">1</div>
+          <div class="hcard-body">
+            <div class="hcard-title">Pinch to Start</div>
+            <div class="hcard-desc">Lift your hand toward the camera. Press your thumb tip and index fingertip together. Drawing begins the instant they touch!</div>
+          </div>
+        </div>
+
+        <div class="tut-hcard c2">
+          <div class="hcard-num-circle">2</div>
+          <div class="hcard-body">
+            <div class="hcard-title">Move to Draw</div>
+            <div class="hcard-desc">Keep fingers pinched and glide your hand through the air. A glowing sparkle trail follows your every move!</div>
+          </div>
+        </div>
+
+        <div class="tut-hcard c3">
+          <div class="hcard-num-circle">3</div>
+          <div class="hcard-body">
+            <div class="hcard-title">Release to Stop</div>
+            <div class="hcard-desc">Open your fingers to finish a stroke. Pinch again to add more lines, then press Finish to save!</div>
+          </div>
+        </div>
+
+      </div>
+
+      <button id="start-btn">Let's draw!</button>
+    </div>
+  </div>
+
+  <!-- ════ TOOLBAR ════ -->
+  <div id="toolbar">
+
+    <div class="tsec">
+      <div class="tlabel">Color</div>
+      <div class="color-row">
+        <button class="cdot active" data-color="#FF6B9D" style="--c:#FF6B9D" title="Pink"></button>
+        <button class="cdot" data-color="#C77DFF" style="--c:#C77DFF" title="Purple"></button>
+        <button class="cdot" data-color="#6BCB77" style="--c:#6BCB77" title="Mint"></button>
+        <button class="cdot" data-color="#111111" style="--c:#111111" title="Black"></button>
+        <button class="cdot" data-color="#FFFFFF" style="--c:#FFFFFF" title="White"></button>
+        <canvas id="color-wheel" width="30" height="30" class="wheel-btn" title="Custom color"></canvas>
+      </div>
+    </div>
+
+    <div class="tsep"></div>
+
+    <div class="tsec">
+      <div class="tlabel">Size</div>
+      <div class="size-row">
+        <button class="szdot" data-idx="0"><span class="szdot-inner" style="--s:4px"></span></button>
+        <button class="szdot" data-idx="1"><span class="szdot-inner" style="--s:7px"></span></button>
+        <button class="szdot active" data-idx="2"><span class="szdot-inner" style="--s:11px"></span></button>
+        <button class="szdot" data-idx="3"><span class="szdot-inner" style="--s:16px"></span></button>
+        <button class="szdot" data-idx="4"><span class="szdot-inner" style="--s:22px"></span></button>
+      </div>
+    </div>
+
+    <div class="tsep"></div>
+
+    <div class="tsec">
+      <div class="tlabel">Style</div>
+      <div class="style-row">
+        <button class="sbtn" data-type="solid">
+          <canvas class="style-prev" width="58" height="20"></canvas>
+          <span>Solid</span>
+        </button>
+        <button class="sbtn" data-type="pencil">
+          <canvas class="style-prev" width="58" height="20"></canvas>
+          <span>Pencil</span>
+        </button>
+        <button class="sbtn active" data-type="glow">
+          <canvas class="style-prev" width="58" height="20"></canvas>
+          <span>Glow</span>
+        </button>
+        <button class="sbtn" data-type="marker">
+          <canvas class="style-prev" width="58" height="20"></canvas>
+          <span>Marker</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="tsep"></div>
+
+    <div class="tsec">
+      <div class="tlabel-row">
+        <span class="tlabel">Smooth</span>
+        <span class="ttip-wrap">
+          <span class="ttip-q">?</span>
+          <span class="ttip-box">Automatically smooths shaky lines for a cleaner, fluid signature</span>
+        </span>
+      </div>
+      <label class="tog">
+        <input type="checkbox" id="smooth-toggle" checked>
+        <span class="tog-track"><span class="tog-thumb"></span></span>
+      </label>
+    </div>
+
+    <div class="tsep"></div>
+
+    <!-- Actions -->
+    <div class="tsec tsec-acts">
+      <button id="done-btn"  class="act-btn act-primary">Finish</button>
+      <button id="clear-btn" class="act-btn act-ghost">Try Again</button>
+    </div>
+
+  </div>
+
+  <!-- ════ EXPORT / SAVE PANEL ════ -->
+  <div id="export-panel" class="epanel hidden">
+
+    <div class="ep-head">
+      <span class="ep-title">Signature</span>
+      <button id="close-panel-btn" class="ep-close">x</button>
+    </div>
+
+    <!-- Replay (full-width, top) -->
+    <button id="replay-btn" class="ep-replay">Replay Animation</button>
+
+    <!-- ── BACKGROUND section ── -->
+    <div class="ep-section">
+      <div class="ep-glabel">Background</div>
+      <div class="chip-row">
+        <button class="bgchip active" data-bg="transparent">Transparent</button>
+        <button class="bgchip" data-bg="white">White</button>
+        <button class="bgchip" data-bg="black">Black</button>
+        <canvas id="bg-palette-btn" class="bg-palette-wheel" width="28" height="28" title="Custom background color"></canvas>
+      </div>
+    </div>
+
+    <!-- ── EXPORT section ── -->
+    <div class="ep-section">
+      <div class="ep-section-hd">Export</div>
+      <div class="chip-row">
+        <button class="savechip" data-format="png">PNG</button>
+        <button class="savechip" data-format="svg">SVG</button>
+        <button class="savechip" data-format="pdf">PDF</button>
+      </div>
+      <button class="savechip wide" data-format="video">Video</button>
+      <!-- Share sub-links moved here, below Video -->
+      <div class="ep-sublinks">
+        <button class="ep-sublink" data-target="image">Share Image</button>
+        <span class="ep-sublink-sep">/</span>
+        <button class="ep-sublink" data-target="video">Share Video</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" crossorigin="anonymous"></script>
+  <script src="app.js"></script>
+
+</body>
+</html>

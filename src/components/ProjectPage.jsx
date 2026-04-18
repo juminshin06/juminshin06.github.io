@@ -185,6 +185,7 @@ export default function ProjectPage({ projectId, onBack, onPrev, onNext, hasPrev
                     title={block.label || 'Preview'}
                     loading="lazy"
                     allowFullScreen
+                    allow={block.allow || ''}
                   />
                 )}
               </div>
