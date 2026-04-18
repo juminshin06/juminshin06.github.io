@@ -178,15 +178,16 @@ export default function ProjectPage({ projectId, onBack, onPrev, onNext, hasPrev
                     />
                   </div>
                 ) : (
-                  <iframe
-                    src={block.src}
-                    className={styles.iframeEmbed}
-                    style={{ height: block.height || 700 }}
-                    title={block.label || 'Preview'}
-                    loading="lazy"
-                    allowFullScreen
-                    allow={block.allow || ''}
-                  />
+                  <div className={styles.iframeAspect}>
+                    <iframe
+                      src={block.src}
+                      className={styles.iframeEmbed}
+                      title={block.label || 'Preview'}
+                      loading="lazy"
+                      allowFullScreen
+                      allow={block.allow || ''}
+                    />
+                  </div>
                 )}
               </div>
             )
