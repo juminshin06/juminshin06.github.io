@@ -1,5 +1,28 @@
 [
   {
+    "id": "proj-015",
+    "title": "HandSign — Air Signature",
+    "type": "Development",
+    "team": "Solo",
+    "role": "Designer · Developer",
+    "year": 2025,
+    "thumbnail": "/assets/projects/Portfolio_HandSign.svg",
+    "hoverImage": "/assets/projects/Portfolio_HandSign.svg",
+    "color": "#2D1B69",
+    "accentColor": "#8B5CF6",
+    "href": "",
+    "description": "Real-time air drawing application powered by MediaPipe hand gesture detection. Pinch your thumb and index finger to draw in the air — create signatures, doodles, or artwork entirely through hand motion. Export as PNG, SVG, PDF, or video.",
+    "duration": "2025",
+    "tools": ["MediaPipe Hands", "Canvas API", "Vanilla JavaScript", "Web Share API", "MediaRecorder"],
+    "content": [
+      { "type": "heading", "value": "Overview" },
+      { "type": "text", "value": "HandSign is an air drawing application that uses real-time hand pose detection to let users create signatures and artwork through mid-air pinch gestures. Built with MediaPipe Hands for 21-landmark detection, Catmull-Rom spline smoothing for fluid strokes, and 4 customizable drawing styles (Solid, Pencil, Glow, Marker). The app supports PNG, SVG, PDF, and WebM video export, plus native social sharing via the Web Share API." },
+      { "type": "heading", "value": "Demo" },
+      { "type": "text", "value": "Try it live — allow camera access, then pinch your thumb and index finger together to start drawing in the air. Release to finish a stroke. Use the toolbar to change colors, size, and style." },
+      { "type": "iframe", "src": "/handsign/index.html", "label": "HandSign — Live Demo", "height": 750, "allow": "camera; microphone" }
+    ]
+  },
+  {
     "id": "proj-007",
     "title": "CLOZUMIN",
     "type": "UX/UI",
