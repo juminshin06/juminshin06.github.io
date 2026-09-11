@@ -267,10 +267,16 @@ import { ProjectImage } from './Shell'
 import ProjectArt from './ProjectArt'
 import s from './Portfolio.module.css'
 
-function CoverFrame({ src, frame = 'plain', eager = false, className = '' }) {
+const imageSizes = {
+  lead: '(max-width: 600px) 84vw, (max-width: 1200px) 32vw, 620px',
+  compact: '(max-width: 600px) 82px, 220px',
+  micro: '(max-width: 900px) 104px, 160px',
+}
+
+function CoverFrame({ src, frame = 'plain', eager = false, sizes, className = '' }) {
   return <figure className={`${s.coverFrame} ${className}`} data-cover-frame={frame} aria-hidden="true">
     {frame === 'browser' && <span className={s.coverBrowserBar}><i /><i /><i /></span>}
-    <ProjectImage src={src} alt="" eager={eager} sizes="(max-width: 700px) 92vw, (max-width: 1200px) 58vw, 820px" />
+    <ProjectImage src={src} alt="" eager={eager} sizes={sizes} />
   </figure>
 }
 
@@ -290,9 +296,9 @@ export default function ProjectCover({ project, variant = 'lead', eager = false 
   >
     <div className={s.coverCanvas}>
       {showPrimary
-        ? <CoverFrame src={primary} frame={cover.primaryFrame} eager={eager} className={s.coverPrimary} />
+        ? <CoverFrame src={primary} frame={cover.primaryFrame} eager={eager} sizes={imageSizes[variant]} className={s.coverPrimary} />
         : <div className={s.coverFallback} aria-hidden="true"><ProjectArt project={project} /></div>}
-      {showSecondary && <CoverFrame src={cover.secondary} frame={cover.secondaryFrame} className={s.coverSecondary} />}
+      {showSecondary && <CoverFrame src={cover.secondary} frame={cover.secondaryFrame} sizes="(max-width: 1200px) 14vw, 240px" className={s.coverSecondary} />}
     </div>
     {variant === 'lead' && <span className={s.coverAnnotation}>{cover.annotation}</span>}
   </div>

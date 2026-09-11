@@ -101,6 +101,34 @@ test('homepage project covers use lead, compact and micro presentations', async 
   } finally { await server.close() }
 })
 
+test('micro project covers keep optimized sources and thumbnail-sized image hints', async () => {
+  const server = await createServer({ server: { middlewareMode: true, ws: false }, appType: 'custom', logLevel: 'error' })
+  try {
+    const { render } = await server.ssrLoadModule('/src/entry-server.jsx')
+    const html = render('/')
+    const hero = html.slice(html.indexOf('<section'), html.indexOf('</section>'))
+
+    for (const asset of ['jj-medtech', 'ars-package']) {
+      const image = hero.match(new RegExp(`<img[^>]+src="/assets/optimized/${asset}\\.webp"[^>]+>`))?.[0]
+      assert.ok(image, `missing optimized micro cover: ${asset}`)
+      assert.match(image, new RegExp(`${asset}-800\\.webp 800w`))
+      assert.match(image, /sizes="\(max-width: 900px\) 104px, 160px"/)
+    }
+  } finally { await server.close() }
+})
+
+test('compact project covers use a block wrapper for their block content', async () => {
+  const server = await createServer({ server: { middlewareMode: true, ws: false }, appType: 'custom', logLevel: 'error' })
+  try {
+    const { render } = await server.ssrLoadModule('/src/entry-server.jsx')
+    const html = render('/')
+    const supporting = html.slice(html.indexOf('aria-labelledby="more-work-heading"'), html.indexOf('aria-labelledby="home-about-heading"'))
+
+    assert.equal((supporting.match(/<div class="[^"]*compactThumb/g) || []).length, 5)
+    assert.doesNotMatch(supporting, /<span class="[^"]*compactThumb/)
+  } finally { await server.close() }
+})
+
 test('homepage projects preserve their original media sizing with editorial text', async () => {
   const server = await createServer({ server: { middlewareMode: true, ws: false }, appType: 'custom', logLevel: 'error' })
   try {

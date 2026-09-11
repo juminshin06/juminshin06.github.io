@@ -176,6 +176,7 @@ This gives the projects individual art direction while preventing one-off JSX br
 - Reuse existing optimized derivatives through `ProjectImage` and the image manifest.
 - Do not create duplicate flattened cover files.
 - Load the first visible lead cover eagerly; retain lazy loading for later covers.
+- Give lead, compact, and micro variants image-size hints that match their rendered footprint so thumbnail tiles select the 800px derivatives.
 - CSS transforms and shadows are the only animated properties.
 
 ## Verification

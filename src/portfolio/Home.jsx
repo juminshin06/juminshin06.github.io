@@ -52,7 +52,7 @@ function CaseStudyRow({ project, index }) {
 function CompactProject({ project, index }) {
   return <a data-reveal className={s.compactProject} href={`/work/${project.slug}/`}>
     <span className={s.projectNumber}>{String(index + 5).padStart(2, '0')}</span>
-    <span className={s.compactThumb} aria-hidden="true"><ProjectCover project={project} variant="compact" /></span>
+    <div className={s.compactThumb} aria-hidden="true"><ProjectCover project={project} variant="compact" /></div>
     <span className={s.compactCopy}>
       <span className={s.caseStudyOrg}>{project.organization}</span>
       <strong>{caseStudyTitles[project.slug] || project.title}</strong>
