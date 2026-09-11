@@ -1,0 +1,284 @@
+[
+  {
+    "id": "swim-up-hill",
+    "slug": "swim-up-hill",
+    "title": "From a nonprofit mission to a live website",
+    "organization": "Swim Up Hill Foundation",
+    "category": "Product",
+    "year": 2026,
+    "duration": "Jun - Aug 2026",
+    "role": "Website team lead, UX/UI design, frontend & publishing",
+    "team": "Nonprofit team; backend developer collaboration",
+    "status": "Published at swimuphill.org",
+    "summary": "An end-to-end website project for a swim-education nonprofit, connecting a shared mission with clear paths for families, schools, volunteers, donors and partners.",
+    "contribution": "I led the website team, owned the UX/UI design and HTML frontend implementation, and published the website. I collaborated with a backend developer on the surrounding program, outreach and reporting workflows.",
+    "outcome": "A publicly accessible, responsive website at swimuphill.org, taken from UX/UI design through frontend implementation and publishing. Launch is the documented outcome; enrollment, donation and conversion improvements are not claimed without post-launch data.",
+    "accent": "#316b70",
+    "art": "image",
+    "image": "/assets/projects/swim-up-hill-home.png",
+    "imageAlt": "Swim Up Hill published homepage with interactive location globe and program navigation",
+    "visualCaption": "01 / Published website, captured September 2026. Impact figures describe the foundation, not measured website results.",
+    "cover": {
+      "tone": "pale-green",
+      "layout": "desktop-mobile",
+      "primary": "/assets/projects/swim-up-hill-home.png",
+      "primaryFrame": "browser",
+      "secondary": "/assets/projects/swim-up-hill-mobile.png",
+      "secondaryFrame": "phone",
+      "annotation": "Designed and published"
+    },
+    "sections": [
+      {
+        "id": "different-audiences",
+        "title": "One mission, different reasons to visit",
+        "body": "Families, schools, volunteers and donors arrive with different questions. The UX challenge was to connect the foundation's story with a relevant next step for each audience, without making everyone navigate the same long explanation."
+      },
+      {
+        "id": "audience-paths",
+        "title": "Let visitors recognize their own path",
+        "body": "The homepage groups entry points by visitor type. A parent can move toward program options, a school toward a visit, and a supporter toward volunteering, giving or partnership. This organizes the experience around visitor intent rather than the nonprofit's internal departments.",
+        "comparison": {
+          "observation": "Different audiences need different information before they can act.",
+          "response": "Explicit audience entry points, each paired with a relevant next action."
+        }
+      },
+      {
+        "id": "responsive-delivery",
+        "title": "Carry the design into a working site",
+        "body": "I carried the interface into HTML frontend implementation and publishing. The public experience includes program discovery, location exploration and mobile navigation, while collaboration with a backend developer connected the website work to broader operational needs."
+      },
+      {
+        "id": "launch-scope",
+        "title": "Own the handoff through publishing",
+        "body": "My responsibility did not end with a design file. I led the website work through implementation and public release. The live site is the primary artifact; the screenshots below capture the published experience rather than a speculative redesign."
+      }
+    ],
+    "facts": [
+      {"value": "Live", "label": "Public website delivered"},
+      {"value": "UX/UI + HTML", "label": "My design and build scope"},
+      {"value": "Publishing", "label": "End-to-end responsibility"}
+    ],
+    "resources": [{"label": "Visit the live website", "href": "https://swimuphill.org/", "primary": true}],
+    "content": [
+      {"type": "image", "src": "/assets/projects/swim-up-hill-journeys.png", "sectionId": "audience-paths", "caption": "Published homepage: audience-specific paths connect visitors to relevant services and ways to participate."},
+      {"type": "image", "src": "/assets/projects/swim-up-hill-programs.png", "sectionId": "responsive-delivery", "caption": "Published program view reached from the Parent entry point. Capture of the public interface, not a completed enrollment transaction."},
+      {"type": "image", "src": "/assets/projects/swim-up-hill-mobile.png", "sectionId": "launch-scope", "caption": "Published mobile experience with persistent bottom navigation."}
+    ],
+    "source": "User-confirmed website creation and publishing; supplied resume, Swim Up Hill experience; public site inspected September 2026."
+  },
+  {
+    "id": "studio-os-audit",
+    "slug": "studio-os-audit",
+    "title": "Making an AI studio workspace easier to trust",
+    "organization": "Bubba's LA / Studio.OS",
+    "category": "Research",
+    "year": 2026,
+    "duration": "Jun 2026",
+    "role": "UX audit & improvement recommendations",
+    "team": "Internal studio operations platform",
+    "status": "UX audit and improvement proposal",
+    "summary": "A screen-by-screen UX review of Studio.OS, translating 29 interface issues across 10 screens into concrete recommendations for navigation, AI transparency and production decisions.",
+    "contribution": "I reviewed the existing interface, paired each observed issue with a proposed response, and organized the recommendations into a 21-slide handoff. My scope was UX evaluation and improvement proposals, not authorship of the existing platform.",
+    "outcome": "A documented UX audit covering 10 screens and 29 issue/solution pairs, delivered as a 21-slide presentation. The work provides actionable design directions; implementation, usability-test results and post-release impact are not established by the supplied materials.",
+    "accent": "#b93624",
+    "art": "audit",
+    "image": "/assets/projects/studio-os-briefing.png",
+    "imageAlt": "Original Studio.OS Briefing screen reviewed during the UX audit",
+    "imagePresentation": "browser",
+    "visualCaption": "01 / Original Studio.OS Briefing screen reviewed during the audit. Existing internal platform; not designed by me.",
+    "cover": {
+      "tone": "paper",
+      "layout": "primary-left",
+      "primary": "/assets/projects/studio-os-briefing.png",
+      "primaryFrame": "browser",
+      "secondary": "/assets/projects/studio-os-bench.png",
+      "secondaryFrame": "document",
+      "annotation": "10 screens / 29 recommendations"
+    },
+    "sections": [
+      {
+        "id": "audit-scope",
+        "title": "Review the work across screens",
+        "body": "I examined Briefing, Archive, Pitch Prep, News, Projects, Schedules, Budgets, Bids, Bench and Portfolio. Recurring issues were not only visual: they concerned what people could find, what they could trust, and whether the interface made the next action clear."
+      },
+      {
+        "id": "ai-transparency",
+        "title": "Make AI output inspectable",
+        "body": "In Briefing and Pitch Prep, the interface did not clearly distinguish source-backed facts from AI interpretation. I recommended visible sources, generation context and information-type labels, treating generated content as something a person reviews rather than an unquestionable answer.",
+        "comparison": {
+          "observation": "Facts and AI inference are difficult to distinguish in a generated brief.",
+          "response": "Label evidence and inference separately, expose source context and support human review."
+        }
+      },
+      {
+        "id": "decision-context",
+        "title": "Replace internal shorthand with decision context",
+        "body": "Budget confidence labels such as LOW N=4 require insider knowledge. I proposed plain-language explanations, comparable cases, assumptions and ranges so the interface communicates the basis of an estimate, not only its amount.",
+        "comparison": {
+          "observation": "LOW N=4 is compact, but leaves the meaning and next step unexplained.",
+          "response": "Low confidence - 4 similar cases, with supporting assumptions and an explanation of the limited evidence."
+        }
+      },
+      {
+        "id": "connected-workflow",
+        "title": "Connect information to the next action",
+        "body": "Project information was spread across schedules, budgets, bids and crew views. I proposed a Project 360 detail structure, clearer ownership and status labels, and links between related records. For search-heavy screens, I recommended less introductory space and more useful filtering and comparison.",
+        "comparison": {
+          "observation": "Related production records sit in separate views, making status and next steps harder to judge.",
+          "response": "A project-centered overview connecting timeline, budget, bid, crew, files and activity."
+        }
+      }
+    ],
+    "facts": [
+      {"value": "10", "label": "Screens reviewed"},
+      {"value": "29", "label": "Issue/solution pairs"},
+      {"value": "21", "label": "Slides in the handoff"}
+    ],
+    "resources": [],
+    "content": [
+      {
+        "type": "image",
+        "src": "/assets/projects/studio-os-archive.png",
+        "presentation": "browser",
+        "sectionId": "audit-scope",
+        "caption": "Original Archive screen reviewed during the audit. Existing Studio.OS interface; not designed by me.",
+        "fullSize": false
+      },
+      {
+        "type": "image",
+        "src": "/assets/projects/studio-os-news.png",
+        "presentation": "browser",
+        "sectionId": "audit-scope",
+        "caption": "Original News screen reviewed for information hierarchy, scanning and filtering. Existing interface; not designed by me.",
+        "fullSize": false
+      },
+      {
+        "type": "image",
+        "src": "/assets/projects/studio-os-pitch-prep.png",
+        "presentation": "browser",
+        "sectionId": "ai-transparency",
+        "caption": "Original Pitch Prep screen used to evaluate how generated guidance, evidence and source context were communicated. Not designed by me.",
+        "fullSize": false
+      },
+      {
+        "type": "image",
+        "src": "/assets/projects/studio-os-budgets.png",
+        "presentation": "browser",
+        "sectionId": "decision-context",
+        "caption": "Original Budgets screen reviewed for confidence language, assumptions and comparable-case context. Not designed by me.",
+        "fullSize": false
+      },
+      {
+        "type": "image",
+        "src": "/assets/projects/studio-os-bids.png",
+        "presentation": "browser",
+        "sectionId": "decision-context",
+        "caption": "Original Bids screen reviewed for estimate comparison and decision support. Existing interface; not designed by me.",
+        "fullSize": false
+      },
+      {
+        "type": "image",
+        "src": "/assets/projects/studio-os-projects.png",
+        "presentation": "browser",
+        "sectionId": "connected-workflow",
+        "caption": "Original Projects screen reviewed as the proposed anchor for a connected Project 360 workflow. Not designed by me.",
+        "fullSize": false
+      },
+      {
+        "type": "image",
+        "src": "/assets/projects/studio-os-schedules.png",
+        "presentation": "browser",
+        "sectionId": "connected-workflow",
+        "caption": "Original Schedules screen reviewed for ownership, status and links to related project records. Not designed by me.",
+        "fullSize": false
+      },
+      {
+        "type": "image",
+        "src": "/assets/projects/studio-os-bench.png",
+        "presentation": "browser",
+        "sectionId": "connected-workflow",
+        "caption": "Original Bench screen reviewed for search density, filtering and comparison across available talent. Not designed by me.",
+        "fullSize": false
+      },
+      {
+        "type": "image",
+        "src": "/assets/projects/studio-os-portfolio.png",
+        "presentation": "browser",
+        "sectionId": "connected-workflow",
+        "caption": "Original Portfolio screen reviewed for discovery, filtering and movement into the next production action. Not designed by me.",
+        "fullSize": false
+      }
+    ],
+    "source": "User-supplied Bubba's LA / 6. Studio os screenshots, StudioOS_UX_PNG_Issues_Solutions_KR.docx and Final/StudioOS_UX_Issues_Solutions.pptx, June 2026. Screens are shown as audit evidence; authorship is explicitly attributed to the existing platform."
+  },
+  {
+    "id": "bubbas-daily-target",
+    "slug": "bubbas-daily-target",
+    "title": "Turning a contact network into a daily next step",
+    "organization": "Bubba's LA / Daily Target",
+    "category": "Product",
+    "year": 2026,
+    "duration": "Jul 2026",
+    "role": "Workflow design & mobile dashboard implementation",
+    "team": "Business-development stakeholders",
+    "status": "Working dashboard; documented internship handoff",
+    "summary": "A mobile-oriented decision-support dashboard for business development, connecting ranked signals, relevant capabilities and warm introduction routes to a clear daily priority.",
+    "contribution": "I built the spreadsheet-to-dashboard workflow and its mobile HTML interface. I integrated an 11,571-contact professional network into the supporting workbook and refined the experience through stakeholder feedback, including clearer priorities and progress that survives a refresh.",
+    "outcome": "A working mobile dashboard and documented July 2026 handoff. The interface is a read-only view of the workbook; daily contact and skip states are stored locally in the browser. It does not send messages or write changes back to the workbook. Screenshots use fictional data; no revenue or conversion lift is claimed.",
+    "accent": "#b93624",
+    "art": "image",
+    "image": "/assets/projects/bubbas-daily-target.png",
+    "imageAlt": "Original Daily Target dashboard rendered with fictional example companies, scores and next actions",
+    "visualCaption": "01 / Original internship interface with fictional data. Real contacts, client relationships and outreach details have been excluded.",
+    "cover": {
+      "tone": "neutral",
+      "layout": "desktop-mobile",
+      "primary": "/assets/projects/bubbas-daily-target.png",
+      "primaryFrame": "browser",
+      "secondary": "/assets/projects/bubbas-daily-target-mobile.png",
+      "secondaryFrame": "phone",
+      "annotation": "Desktop + mobile workflow"
+    },
+    "sections": [
+      {
+        "id": "daily-decision",
+        "title": "Design around the decision, not the database",
+        "body": "The useful question was not how to display every contact. It was which opportunity to review next, why it mattered, and whether an introduction route existed. I brought the score, signal, capability fit, supporting context and next action into one focused view."
+      },
+      {
+        "id": "workflow-boundary",
+        "title": "Keep the workbook as the source of truth",
+        "body": "The workbook owns the scoring rubric and network matching. The dashboard reads those results and presents a ranked queue with geography, signal-type and warm-route filters. It can load an updated workbook without creating a second, competing database.",
+        "comparison": {
+          "observation": "A rich spreadsheet is difficult to turn into a quick mobile decision.",
+          "response": "A focused read-only view: today's priority, why it fits, the next action and a ranked queue."
+        }
+      },
+      {
+        "id": "feedback-iteration",
+        "title": "Protect progress from everyday interruptions",
+        "body": "Stakeholder feedback exposed two practical risks: a refresh could erase daily progress, and moving a spreadsheet column could break the data mapping. I added date-scoped local persistence for contact/skip states and header-based column resolution with explicit missing-field errors.",
+        "comparison": {
+          "observation": "Refreshing a mobile tab loses check-offs; fixed column positions make imports fragile.",
+          "response": "Restore daily progress after reload and resolve fields by header name rather than position."
+        }
+      },
+      {
+        "id": "handoff-tradeoffs",
+        "title": "Make ownership and limitations explicit",
+        "body": "The handoff documented the master workbook, scoring and matching logic, setup responsibilities and known limitations. Keeping the dashboard read-only simplified the interface and protected the workbook, but meant local check-offs were not a shared, cross-device record. Broader network coverage and company-owned automation remained follow-up work."
+      }
+    ],
+    "facts": [
+      {"value": "11,571", "label": "Contacts in the supporting workbook"},
+      {"value": "4", "label": "Documented stakeholder feedback areas"},
+      {"value": "Mobile HTML", "label": "Implemented interface"}
+    ],
+    "resources": [],
+    "content": [
+      {"type": "image", "src": "/assets/projects/bubbas-daily-target-queue.png", "sectionId": "workflow-boundary", "caption": "Original ranked-queue interface with fictional data: compare priority, signal type and introduction route."},
+      {"type": "image", "src": "/assets/projects/bubbas-daily-target-mobile.png", "sectionId": "feedback-iteration", "caption": "Original mobile interface after skipping a sample lead. Fictional companies and illustrative scores; no real outreach occurred."}
+    ],
+    "source": "User-supplied Bubba's LA / 11. Linked-in / 0716 / Bubbas_v3_Feedback_Applied: original HTML, 00_START_HERE.md and FEEDBACK_FIXES_v2.1.md, dated July 16 2026. No contact workbook or raw HTML snapshot is published."
+  }
+]

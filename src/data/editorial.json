@@ -1,0 +1,719 @@
+{
+  "featured": [
+    {
+      "id": "bubbas-production",
+      "slug": "bubbas-production",
+      "title": "UX for AI-assisted production",
+      "organization": "Bubba's LA",
+      "category": "Human-AI",
+      "year": 2026,
+      "duration": "May - Jul 2026",
+      "role": "AI Research Intern",
+      "team": "Bubba's LA production team",
+      "status": "Adopted for production use",
+      "summary": "UX for an AI-assisted video preparation workflow, bringing production tools into one interface and scaling from a 10-video prototype to 300+ videos per automated batch.",
+      "contribution": "I designed and scaled the platform and centralized real-time monitoring and control in a single production interface.",
+      "outcome": "The platform was adopted for production use, replacing manual clip-by-clip organization with automated batch preparation.",
+      "accent": "#b93624",
+      "art": "production",
+      "image": "/assets/projects/bubbas-assist-media.png",
+      "imageAlt": "Bubba's Rough Cut Prep media workspace showing a sample source clip and generated frame grid",
+      "visualCaption": "01 / Original internship interface running locally in mock mode with bundled sample media. No client footage is shown.",
+      "cover": {
+        "tone": "warm-gray",
+        "layout": "primary-left",
+        "primary": "/assets/projects/bubbas-assist-media.png",
+        "primaryFrame": "browser",
+        "secondary": "/assets/projects/bubbas-assist-result.png",
+        "secondaryFrame": "document",
+        "annotation": "300+ videos per batch"
+      },
+      "sections": [
+        {
+          "id": "production-context",
+          "title": "Understanding the production workflow",
+          "body": "Rough-cut preparation involved footage, scripts, storyboards, voice-over files, and production notes. I designed and scaled an AI platform to bring those materials into an automated preparation workflow, moving beyond manual clip-by-clip organization."
+        },
+        {
+          "id": "interface-scope",
+          "title": "Bringing key tasks into one interface",
+          "body": "My work centralized real-time monitoring and control of automated timeline assembly, media handling, 3D scene creation, lighting, cameras, and animation. The interface brought these production functions into a single place."
+        },
+        {
+          "id": "production-adoption",
+          "title": "From prototype to production use",
+          "body": "The platform grew from a 10-video prototype to handling more than 300 videos per automated batch and was adopted for production use. The change was in operational scope: from a small prototype to batch preparation inside a production workflow."
+        }
+      ],
+      "facts": [
+        { "value": "10", "label": "Videos in the initial prototype" },
+        { "value": "300+", "label": "Videos per automated batch" },
+        { "value": "Production", "label": "Adoption status" }
+      ],
+      "resources": [],
+      "content": [
+        {
+          "type": "image",
+          "src": "/assets/projects/bubbas-assist-library.png",
+          "sectionId": "production-context",
+          "caption": "Project library view for scanning workspace status, input readiness and the most recent analysis run."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/bubbas-assist-input.png",
+          "sectionId": "production-context",
+          "caption": "Source setup brings footage, script maps, boards and production notes into one preparation flow."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/bubbas-assist-progress.png",
+          "sectionId": "interface-scope",
+          "caption": "Live analysis progress exposes the current stage, sampled frames and run log instead of hiding automation behind a spinner."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/bubbas-assist-catalog.png",
+          "sectionId": "interface-scope",
+          "caption": "The generated shot catalog lets an editor compare frame-level notes, confidence and source timing before using the output."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/bubbas-assist-result.png",
+          "sectionId": "production-adoption",
+          "caption": "Completed-run summary after a local mock analysis of one bundled sample clip, including output counts and export readiness."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/bubbas-assist-selects.png",
+          "sectionId": "production-adoption",
+          "caption": "Suggested selects and trim ranges keep automated recommendations reviewable before they enter an edit."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/bubbas-assist-export.png",
+          "sectionId": "production-adoption",
+          "caption": "Export view packages editor-facing files while keeping output locations and delivery status visible."
+        }
+      ],
+      "source": "Resume: JuminShin_Resume (4).pdf; user-supplied Bubba's LA AssistEditor bundle, executed locally in mock mode with bundled sample media in September 2026.",
+      "diagram": {
+        "title": "Production scope",
+        "steps": [
+          { "label": "Production materials", "detail": "Footage, scripts, storyboards, voice-over files, and notes." },
+          { "label": "Automated preparation", "detail": "Rough-cut preparation and timeline assembly at batch scale." },
+          { "label": "Monitoring and control", "detail": "Media, 3D scenes, lighting, cameras, and animation in one interface." }
+        ],
+        "caption": "Retrospective scope summary, not an original product interface or technical architecture."
+      }
+    },
+    {
+      "id": "honda-spatial",
+      "slug": "honda-spatial",
+      "title": "Spatial UX for collaborative design reviews",
+      "organization": "American Honda x USC Iovine and Young Academy",
+      "category": "Spatial",
+      "year": 2026,
+      "duration": "Feb - May 2026",
+      "role": "UI lead, industry collaboration",
+      "team": "8-person sprint; 2-person design team",
+      "status": "Prototype demonstrated to Honda R&D",
+      "summary": "A spatial design-review experience that translated NVIDIA Omniverse constraints into annotation, measurement and collaboration tools for Apple Vision Pro.",
+      "contribution": "I led interface design for an eight-person sprint and a two-person design team, shaping in-session annotation and review controls and carrying the work through live demos for Honda R&D.",
+      "outcome": "The team documented key Omniverse interaction limitations, prototyped a spatial review experience and delivered live demonstrations to Honda R&D.",
+      "accent": "#476675",
+      "art": "image",
+      "image": "/assets/projects/honda-spatial-ui.png",
+      "imageAlt": "Spatial annotation and review interface overlaid inside a Honda vehicle",
+      "visualCaption": "Spatial review interface concept for annotation, measurement and feedback inside an automotive context.",
+      "cover": {
+        "tone": "spatial",
+        "layout": "primary-right",
+        "primary": "/assets/projects/honda-spatial-ui.png",
+        "primaryFrame": "plain",
+        "secondary": "/assets/projects/honda-toolbar.png",
+        "secondaryFrame": "document",
+        "annotation": "Vision Pro design review"
+      },
+      "sections": [
+        {
+          "id": "review-context",
+          "title": "Reframing automotive review as a shared spatial workflow",
+          "body": "The Honda Product Visualization Sprint explored how automotive teams could review a shared vehicle model in Apple Vision Pro. The experience needed to support discussion, mark-up and dimensional feedback without pulling reviewers out of the spatial context."
+        },
+        {
+          "id": "omniverse-constraints",
+          "title": "Turning Omniverse constraints into design requirements",
+          "body": "The team identified four interaction gaps in the streamed Omniverse experience: text remained screen-bound, actions required custom scripting, spatial text input was limited and interface controls lived outside the scene. We also documented a conflict between CloudXR's full immersive space and the shared-space architecture used by SharePlay and Spatial Personas."
+        },
+        {
+          "id": "spatial-interface",
+          "title": "Designing tools that stay close to the review",
+          "body": "I led the interface direction for a compact spatial toolbar and review panels. The concept brought post-it notes, measurements, part inspection, text input, voice annotations and annotation history into the session, with controls positioned around the vehicle rather than inside a separate desktop-style application."
+        },
+        {
+          "id": "prototype-learning",
+          "title": "Prototyping the interaction, including its limits",
+          "body": "The sprint tested Muse Pen annotation and haptic feedback on USD geometry, participant occlusion and in-session annotation UI. When multi-user CloudXR and GroupActivities could not coexist as intended, the team documented the architectural conflict and proposed native visionOS, enterprise streaming and alternative 3D approaches for future exploration."
+        }
+      ],
+      "facts": [
+        { "value": "8", "label": "People in the sprint" },
+        { "value": "2", "label": "People on the design team" },
+        { "value": "Vision Pro", "label": "Prototype platform" }
+      ],
+      "resources": [],
+      "content": [
+        {
+          "type": "image",
+          "src": "/assets/projects/honda-interaction-gaps.png",
+          "sectionId": "omniverse-constraints",
+          "caption": "Four documented interaction gaps in NVIDIA Omniverse."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/honda-muse-pen.png",
+          "sectionId": "prototype-learning",
+          "caption": "Muse Pen annotation and haptic-feedback explorations on the vehicle model."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/honda-toolbar.png",
+          "sectionId": "spatial-interface",
+          "caption": "Spatial toolbar concept for notes, measurement, inspection and text input."
+        }
+      ],
+      "source": "resume: JuminShin_Resume (4).pdf, Honda Product Visualization Sprint; HondaSprint OmniverseXR Slides",
+      "diagram": {
+        "title": "Spatial review workflow",
+        "steps": [
+          { "label": "Identify constraints", "detail": "Map where Omniverse and visionOS limit shared spatial interaction." },
+          { "label": "Design review tools", "detail": "Bring notes, measurement and annotation controls into the session." },
+          { "label": "Prototype and demonstrate", "detail": "Test the interaction and share live demonstrations with Honda R&D." }
+        ],
+        "caption": "Retrospective sprint summary based on the final team presentation, not an original system architecture."
+      }
+    },
+    {
+      "id": "ethicon-care",
+      "slug": "ethicon-care",
+      "title": "Designing a clearer wound assessment workflow",
+      "organization": "Ethicon R&D, Johnson & Johnson MedTech x USC Iovine and Young Academy",
+      "category": "Clinical UX",
+      "year": 2026,
+      "duration": "Jan - May 2026",
+      "role": "UI/UX designer, industry collaboration",
+      "team": "9-person cross-functional team",
+      "status": "Industry collaboration prototype",
+      "summary": "A clinician-facing prototype that structures how teams review wound imagery, work with DISH categories and explain terminology decisions during assessment training.",
+      "contribution": "I designed key interaction and interface states across guided training, keyword selection, rationale capture and assessment review within a nine-person cross-functional team, incorporating input from clinicians and industry researchers.",
+      "outcome": "The collaboration produced a clinician-facing prototype that keeps assessment decisions and supporting context reviewable. This work is presented as design exploration, not as a clinically validated or deployed system.",
+      "accent": "#316b70",
+      "art": "image",
+      "image": "/assets/projects/jj-medtech.png",
+      "imageAlt": "Johnson & Johnson MedTech post-operative care and wound assessment interface concepts",
+      "visualCaption": "Patient and clinician interface explorations created for the Johnson & Johnson MedTech industry collaboration.",
+      "cover": {
+        "tone": "clinical",
+        "layout": "primary-right",
+        "primary": "/assets/projects/jj-training-decision.png",
+        "primaryFrame": "browser",
+        "secondary": "/assets/projects/jj-feedback-loop.png",
+        "secondaryFrame": "document",
+        "annotation": "12-assessment review flow"
+      },
+      "sections": [
+        {
+          "id": "clinical-context",
+          "title": "Translate a clinical taxonomy into a usable task",
+          "body": "The training experience needed to make a structured wound-assessment task understandable without separating the decision from its clinical context. Each step keeps the DISH category, proposed terminology, question and progress visible so the reviewer knows exactly what is being evaluated.",
+          "comparison": {
+            "observation": "A category label or keyword alone does not explain what the reviewer is being asked to judge.",
+            "response": "Frame one explicit decision at a time and keep its category and terminology in view."
+          }
+        },
+        {
+          "id": "guided-classification",
+          "title": "Move from validation to active classification",
+          "body": "The interface evolved from confirming whether a proposed keyword matched a category to asking clinicians to choose a primary keyword and optional secondary terms alongside the wound image. The later flow makes the classification action more direct while retaining a visible assessment sequence.",
+          "comparison": {
+            "observation": "A binary confirmation can validate a suggestion, but it does not capture the clinician's own terminology choice.",
+            "response": "Pair the wound evidence with primary and secondary keyword controls so classification happens in context."
+          }
+        },
+        {
+          "id": "feedback-rationale",
+          "title": "Capture disagreement, not just a yes or no",
+          "body": "When a reviewer marks a proposed keyword as irrelevant, the flow asks why. A focused feedback state preserves the category and keyword, provides space for observations and still allows the reviewer to skip when no additional context is available.",
+          "comparison": {
+            "observation": "A negative response identifies disagreement but leaves the reason invisible to the team reviewing the assessment.",
+            "response": "Follow the decision with an optional rationale prompt tied to the exact category and keyword."
+          }
+        },
+        {
+          "id": "review-handoff",
+          "title": "Make the completed assessment traceable",
+          "body": "The review state brings the wound image, DISH category, selected keyword, clinical elements, EHR elements, additional context and image description into one record. Reviewers can move across the twelve assessments, edit a response or continue with the full decision context intact.",
+          "comparison": {
+            "observation": "Assessment inputs become difficult to verify when the image, terminology and supporting details are scattered across separate steps.",
+            "response": "Reassemble the evidence and decisions in a single review view before the workflow continues."
+          }
+        }
+      ],
+      "facts": [
+        { "value": "9", "label": "People on the cross-functional team" },
+        { "value": "12", "label": "Assessments shown in the review flow" },
+        { "value": "UI/UX", "label": "My contribution" }
+      ],
+      "resources": [
+        {
+          "label": "View Figma source",
+          "href": "https://www.figma.com/design/8d3knnB1fjp0VTysWr4ATz/J-J-Interface",
+          "primary": true
+        }
+      ],
+      "content": [
+        {
+          "type": "image",
+          "src": "/assets/projects/jj-training-decision.png",
+          "sectionId": "clinical-context",
+          "caption": "Wound Assessment Training frames a single terminology decision with its DISH category and progress visible."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/jj-keyword-assessment.png",
+          "sectionId": "guided-classification",
+          "caption": "The later assessment flow places wound evidence beside primary and optional secondary keyword selection."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/jj-feedback-loop.png",
+          "sectionId": "feedback-rationale",
+          "caption": "A negative terminology decision opens a focused prompt for the reviewer's observations or concerns."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/jj-review-assessments.png",
+          "sectionId": "review-handoff",
+          "caption": "Review All Assessments reunites the image, classification, supporting elements and description before handoff."
+        }
+      ],
+      "source": "resume: JuminShin_Resume (4).pdf, Ethicon R&D; J&J Interface Figma file supplied by the user; existing asset: jj-medtech.png",
+      "diagram": {
+        "title": "Assessment decision path",
+        "steps": [
+          { "label": "Read the context", "detail": "Keep the DISH category, terminology and assessment progress visible." },
+          { "label": "Classify the evidence", "detail": "Review the wound image and select the most relevant keyword or terms." },
+          { "label": "Explain disagreement", "detail": "Capture optional rationale when a proposed term is not relevant." },
+          { "label": "Review the record", "detail": "Bring image, terminology and supporting context together before continuing." }
+        ],
+        "caption": "Retrospective workflow summary based on the supplied Figma file, not an original clinical protocol or technical architecture."
+      }
+    },
+    {
+      "id": "proj-013",
+      "slug": "story-authoring",
+      "title": "Designing for human-AI storytelling",
+      "organization": "Hongik University, Prof. Byung-Chull Bae",
+      "category": "Human-AI",
+      "year": 2023,
+      "duration": "Mar - Dec 2023 research appointment",
+      "role": "Research Assistant; UX researcher and designer",
+      "team": "3-person prototype team",
+      "status": "Research prototype; ICIDS and KIISE 2023",
+      "summary": "A research-led authoring prototype for creating branching stories with AI, connecting interaction design with publications at ICIDS and KIISE.",
+      "contribution": "I designed and prototyped the authoring tool and co-authored the team's research publications.",
+      "outcome": "The collaborative work led to publications at ICIDS 2023 and the KIISE Conference, alongside a creator-facing research prototype.",
+      "accent": "#79622a",
+      "art": "image",
+      "image": "/assets/projects/Portfolio_interactive_storytelling.png",
+      "imageAlt": "Interactive story authoring tool research and interface overview",
+      "cover": {
+        "tone": "ink",
+        "layout": "single",
+        "primary": "/assets/projects/Portfolio_interactive_storytelling.png",
+        "primaryFrame": "document",
+        "annotation": "Human-AI co-creation"
+      },
+      "sections": [
+        {
+          "id": "authoring-question",
+          "title": "Making branching stories approachable",
+          "body": "The project explored an authoring environment where people without programming knowledge could create branching interactive stories with generative language models. Related work included Inkweaver and Twine."
+        },
+        {
+          "id": "narrative-elements",
+          "title": "Giving narrative elements a structure",
+          "body": "The prototype concept combined branching choices with AI-generated character traits, plot elements, and narrative arcs. Its design considered flat and round character types, 20 master plot archetypes, and attribute-driven story progression."
+        },
+        {
+          "id": "research-contribution",
+          "title": "From interface prototype to publication",
+          "body": "As a research assistant at Hongik University under Prof. Byung-Chull Bae, I designed and prototyped the creator-facing tool. The collaborative research appeared at ICIDS 2023 and the KIISE Conference in June 2023. The existing project materials include research boards and authoring-interface designs."
+        }
+      ],
+      "facts": [
+        { "value": "2", "label": "Conference publications in 2023" },
+        { "value": "Co-creation", "label": "Research focus" }
+      ],
+      "resources": [
+        { "label": "Research background", "href": "/assets/projects/StoryAuthoring_1.png" },
+        { "label": "Authoring interface", "href": "/assets/projects/StoryAuthoring_2.png" },
+        { "label": "Google Scholar profile", "href": "https://scholar.google.com/citations?user=RxmsjhAAAAAJ&hl=ko" }
+      ],
+      "source": "proj-013; resume: JuminShin_Resume (4).pdf, Hongik University research appointment and publications",
+      "diagram": {
+        "title": "Two roles in one authoring environment",
+        "steps": [
+          { "label": "The author", "detail": "Shapes the narrative through branching choices." },
+          { "label": "The language model", "detail": "Generates character traits, plot elements and narrative arcs." },
+          { "label": "The interface", "detail": "Brings narrative elements into a branching authoring environment without requiring programming knowledge." }
+        ],
+        "caption": "Retrospective interaction summary of the original prototype concept; not an evaluation result."
+      }
+    },
+    {
+      "id": "embrain-research",
+      "slug": "embrain-research",
+      "title": "From user research to product direction",
+      "organization": "Macromill Embrain",
+      "category": "Research",
+      "year": 2024,
+      "duration": "Nov 2023 - Jun 2024",
+      "role": "Researcher & Designer Intern",
+      "team": "Research teams across client engagements",
+      "status": "Research and design contributions completed",
+      "summary": "Mixed-method UX research across Samsung Electronics, Hyundai Motor Company, and SK, involving approximately 100 participants in total.",
+      "contribution": "I contributed to interviews, surveys, and usability tests, then translated findings into strategies, concepts, and UI prototypes.",
+      "outcome": "The work informed Galaxy personalization strategies and UI prototypes, Hyundai SUV camping-feature concepts, and an SK employee service platform. I presented outcomes at a generative AI workshop.",
+      "accent": "#616d43",
+      "art": "research",
+      "image": null,
+      "imageAlt": "",
+      "cover": {
+        "tone": "research",
+        "layout": "single",
+        "primaryFrame": "plain",
+        "annotation": "~100 research participants"
+      },
+      "sections": [
+        {
+          "id": "research-scope",
+          "title": "Research across different contexts",
+          "body": "I contributed to mixed-method UX research for Samsung Electronics, Hyundai Motor Company, and SK. Interviews, surveys, and usability tests involved approximately 100 participants across the engagements, not 100 participants in each study."
+        },
+        {
+          "id": "design-directions",
+          "title": "Moving from findings to design",
+          "body": "I translated findings into personalization strategies and UI prototypes for Samsung Galaxy, camping-feature concepts for Hyundai SUVs, and an employee service platform for SK. These were distinct client contexts within my internship."
+        },
+        {
+          "id": "sharing-outcomes",
+          "title": "Communicating the work",
+          "body": "I presented the research and design outcomes at a generative AI workshop, connecting findings with the resulting strategies, service concepts and interface prototypes."
+        }
+      ],
+      "facts": [
+        { "value": "~100", "label": "Participants across engagements" },
+        { "value": "3", "label": "Client organizations" },
+        { "value": "Mixed methods", "label": "Interviews, surveys, usability tests" }
+      ],
+      "resources": [],
+      "source": "resume: JuminShin_Resume (4).pdf, Macromill Embrain",
+      "diagram": {
+        "title": "Research and design contribution",
+        "steps": [
+          { "label": "Research", "detail": "Contributed to interviews, surveys, and usability tests." },
+          { "label": "Design directions", "detail": "Translated findings into strategies, concepts, and UI prototypes." },
+          { "label": "Communication", "detail": "Presented outcomes at a generative AI workshop." }
+        ],
+        "caption": "Retrospective summary across engagements; individual client study findings are not reproduced here."
+      }
+    }
+  ],
+  "archiveOverrides": {
+    "proj-015": {
+      "slug": "handsign",
+      "title": "HandSign Air Signature",
+      "category": "Experiment",
+      "summary": "An independent browser experiment for drawing and signing in the air with hand gestures, with image, document, and video export.",
+      "status": "Working independent demo",
+      "organization": "Independent project"
+    },
+    "proj-007": {
+      "slug": "clozumin",
+      "title": "CLOZUMIN",
+      "category": "Product",
+      "summary": "A six-person team's community service concept connecting apartment neighbors through shared interests, informed by research and field studies.",
+      "status": "Service concept; Social Problem Solving Award",
+      "organization": "Human City Design University Student Workshop"
+    },
+    "proj-006": {
+      "slug": "samsung-podcast",
+      "title": "Podcasts for job seekers",
+      "category": "Research",
+      "summary": "Podcast-format research and GUI design for job seekers through an industry-academia collaboration with Samsung Electronics.",
+      "status": "Industry-academia research concept",
+      "organization": "Samsung Electronics MX Business Division x Hongik University"
+    },
+    "proj-004": {
+      "slug": "lemonlight",
+      "title": "AI-localized video campaigns",
+      "category": "Human-AI",
+      "summary": "Mixed-method research during a five-day Lemonlight intensive, followed by the design and pitch of AI-localized Reels campaigns.",
+      "status": "Research intensive and campaign pitch, Sep 2025",
+      "organization": "Lemonlight x USC Iovine and Young Academy"
+    },
+    "proj-002": {
+      "slug": "b4q4-widgets",
+      "title": "B4Q4 widget UX",
+      "category": "Product",
+      "summary": "An internship contribution to Samsung Galaxy widget analysis, interaction flows, and wireframes within a three-person team at Cheil Worldwide.",
+      "status": "Internship design contribution",
+      "organization": "Cheil Worldwide"
+    },
+    "proj-005": {
+      "slug": "sing-in-sign",
+      "title": "Sing In Sign",
+      "category": "Research",
+      "summary": "A co-designed interactive music-expression interface proposal for children with hearing impairments, co-authored and published at HCI Korea in 2022.",
+      "status": "Interface proposal; HCI Korea 2022 publication",
+      "organization": "Collaborative research project"
+    },
+    "proj-010": {
+      "slug": "learning-mobility",
+      "title": "Autonomous Learning Mobility",
+      "category": "Spatial",
+      "summary": "A collaborative mobility concept exploring flexible learning spaces, community facilities, and wearable-key interactions.",
+      "status": "Industry-academia design concept",
+      "organization": "Hyundai Motor Company x Hongik University"
+    },
+    "proj-011": {
+      "slug": "cookids",
+      "title": "Cookid's",
+      "category": "Product",
+      "summary": "A three-person team's story-based cooking and art service concept for children aged five to seven, built around sensory exploration at home.",
+      "status": "Educational service concept",
+      "organization": "Collaborative design project"
+    },
+    "proj-012": {
+      "slug": "ev-charging-security",
+      "title": "EV charging remote security",
+      "category": "Product",
+      "summary": "An individual proposal for remotely checking an unattended vehicle during charging, using driver-status-monitor technology in the interface concept.",
+      "status": "Individual design proposal",
+      "organization": "Individual proposal for Hyundai"
+    },
+    "proj-013": {
+      "slug": "story-authoring",
+      "title": "Authoring stories with language models",
+      "category": "Human-AI",
+      "summary": "A creator-facing prototype for human-AI co-creation of branching interactive stories, published at ICIDS and KIISE.",
+      "status": "Research prototype; ICIDS and KIISE 2023",
+      "organization": "Hongik University, Prof. Byung-Chull Bae"
+    },
+    "proj-014": {
+      "slug": "fairads",
+      "title": "Fairads",
+      "category": "Product",
+      "summary": "UX/UI design and development for a platform focused on transparent and equitable advertising, with an original case-study deck.",
+      "status": "Design and development project",
+      "organization": "Fairads"
+    },
+    "proj-003": {
+      "slug": "ai-native-mvp",
+      "title": "Medication messaging MVP",
+      "category": "Experiment",
+      "summary": "A functional automated messaging MVP supporting medication adherence and communication for elderly patients, designed, built, and pitched in four hours.",
+      "status": "Hackathon prototype; team award, Feb 2026",
+      "organization": "USC IYA Vibe Coding Hackathon"
+    }
+  },
+  "additional": [
+    {
+      "id": "haily",
+      "slug": "haily",
+      "title": "HAiLY",
+      "organization": "USC & Techstars Startup Weekend",
+      "category": "Human-AI",
+      "year": 2026,
+      "duration": "Mar 2026",
+      "role": "Product UX, brand, and pitch",
+      "team": "USC & Techstars hackathon team",
+      "status": "Hackathon concept; 2nd place",
+      "summary": "An agentic AI concept for identifying missed hospital charges, grounded in original clinical billing-workflow research.",
+      "contribution": "I defined the product UX, brand, and pitch, grounding the business model in clinical billing-workflow research.",
+      "outcome": "HAiLY earned second place at USC & Techstars Startup Weekend as a research-informed product and business concept.",
+      "accent": "#316b70",
+      "art": "research",
+      "image": null,
+      "imageAlt": "",
+      "sections": [
+        {
+          "id": "billing-workflow",
+          "title": "A product direction for missed charges",
+          "body": "HAiLY proposed an AI agent to address missed hospital charges. I defined its product UX, brand, and pitch, with a business model grounded in original clinical billing-workflow research. The documented result is a second-place hackathon award."
+        }
+      ],
+      "facts": [
+        { "value": "2nd", "label": "USC & Techstars Startup Weekend" }
+      ],
+      "resources": [],
+      "source": "resume: JuminShin_Resume (4).pdf, HAiLY"
+    },
+    {
+      "id": "ars-pharma",
+      "slug": "ars-pharma",
+      "title": "Anaphylaxis care on campus",
+      "organization": "ARS Pharma x USC Iovine and Young Academy",
+      "category": "Product",
+      "year": 2026,
+      "duration": "Jan - May 2026",
+      "role": "Package, service, and UI designer",
+      "team": "2-person team",
+      "status": "Industry Challenge Sprint proposal",
+      "summary": "A campus-wide anaphylaxis response system connecting awareness, medication access and bystander action through service, package and interface design.",
+      "contribution": "On a two-person team, I designed the package, service and interface concepts for ARS Pharma's Industry Challenge Sprint, connecting physical access to neffy with campus education and digital wayfinding.",
+      "outcome": "The sprint produced an end-to-end service proposal rather than a deployed program: a campus response model spanning training, kit placement, wayfinding, packaging and awareness touchpoints.",
+      "accent": "#b93624",
+      "art": "image",
+      "image": "/assets/projects/ars-package.png",
+      "imageAlt": "Slide-to-open neffy emergency kit concept with two doses and an instruction card",
+      "visualCaption": "Proposed two-dose, slide-to-open neffy case with instructions and low-light identification.",
+      "cover": {
+        "tone": "coral",
+        "layout": "primary-left",
+        "primary": "/assets/projects/ars-location-ui.png",
+        "primaryFrame": "document",
+        "secondary": "/assets/projects/ars-package.png",
+        "secondaryFrame": "plain",
+        "annotation": "Service / package / UI"
+      },
+      "sections": [
+        {
+          "id": "preparedness-research",
+          "title": "Starting with the preparedness gap",
+          "body": "The team used a short USC student survey and secondary research to understand awareness of anaphylaxis and emergency medication. The work pointed to a connected problem: students needed to know what to do, where treatment was available and how to reach it quickly."
+        },
+        {
+          "id": "campus-service",
+          "title": "Building a campus response, not a single touchpoint",
+          "body": "The service proposal paired resident-assistant and public-safety training with high-risk campus locations, health partners and awareness events. Placing neffy near existing emergency infrastructure created a recognizable access model while distributing responsibility across campus teams."
+        },
+        {
+          "id": "location-interface",
+          "title": "Making the nearest kit visible and actionable",
+          "body": "The interface concept helped a bystander locate the nearest neffy kit, check whether it was available and receive walking directions. It was framed as an integration with existing USC maps and safety or health services, not as a disconnected standalone app."
+        },
+        {
+          "id": "one-handed-package",
+          "title": "Redesigning the case for one-handed access",
+          "body": "The existing zip case requires two hands, which conflicts with the urgency and simplicity of nasal administration. The selected concept replaced the zipper with a single-thumb slide mechanism, kept two doses immediately available and added concise instructions, a video QR code and low-light identification."
+        },
+        {
+          "id": "awareness-system",
+          "title": "Extending preparedness beyond the emergency",
+          "body": "A friendly guardian character and campus activation concepts made education less clinical and more memorable. Scenario cards, demonstrations and portable brand touchpoints were designed to help students encounter and rehearse the response before an emergency occurs."
+        }
+      ],
+      "facts": [
+        { "value": "2", "label": "People on the team" },
+        { "value": "3", "label": "Connected layers: service, package and UI" },
+        { "value": "1 hand", "label": "Target package interaction" }
+      ],
+      "resources": [],
+      "content": [
+        {
+          "type": "image",
+          "src": "/assets/projects/ars-research.png",
+          "sectionId": "preparedness-research",
+          "caption": "Student preparedness survey used to inform the campus response direction."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/ars-location-ui.png",
+          "sectionId": "location-interface",
+          "caption": "Nearest-kit location, availability and navigation interface concept."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/ars-brand-system.png",
+          "sectionId": "awareness-system",
+          "caption": "Guardian character system designed to make emergency preparedness approachable."
+        }
+      ],
+      "source": "resume: JuminShin_Resume (4).pdf, Anaphylaxis Care; ARS Pharma Report Final",
+      "diagram": {
+        "title": "Campus response model",
+        "steps": [
+          { "label": "Learn", "detail": "Build awareness through training, scenarios and campus outreach." },
+          { "label": "Locate", "detail": "Make nearby medication and live kit status visible through familiar services." },
+          { "label": "Act", "detail": "Support fast, one-handed access with clear physical and digital instructions." }
+        ],
+        "caption": "Retrospective service summary based on the sprint proposal, not a deployed USC program."
+      }
+    },
+    {
+      "id": "newegg",
+      "slug": "newegg",
+      "title": "A future gaming service",
+      "organization": "Newegg Gamer Zone, WD & UGREEN",
+      "category": "Spatial",
+      "year": 2026,
+      "duration": "Feb 2026",
+      "role": "Service designer",
+      "team": "Team size not specified",
+      "status": "Workshop service concept; 1st place",
+      "summary": "A next-generation PC cafe service model combining character collaborations, immersive gaming, and dining.",
+      "contribution": "I designed the gaming service model around character collaborations and an immersive, dining-integrated space.",
+      "outcome": "The concept earned first place in the Newegg Gamer Zone educational technology workshop.",
+      "accent": "#476675",
+      "art": "spatial",
+      "image": null,
+      "imageAlt": "",
+      "sections": [
+        {
+          "id": "gaming-service",
+          "title": "Gaming as a shared destination",
+          "body": "The service concept brought character collaborations and dining into an immersive PC cafe experience. I designed the next-generation service model, which earned first place in the educational technology workshop."
+        }
+      ],
+      "facts": [
+        { "value": "1st", "label": "Newegg Gamer Zone workshop" }
+      ],
+      "resources": [],
+      "source": "resume: JuminShin_Resume (4).pdf, Future Gaming Service Design"
+    },
+    {
+      "id": "wood-chip",
+      "slug": "wood-chip",
+      "title": "Wood Chip desk trays",
+      "organization": "Crowdfunded product launch on Tumblbug",
+      "category": "Product",
+      "year": 2022,
+      "duration": "Jan - Jun 2022",
+      "role": "Product concept through production, launch, and sales",
+      "team": "Team size not specified",
+      "status": "Crowdfunded, produced, and sold",
+      "summary": "A solid-wood desk tray product taken from concept to market, exceeding its crowdfunding goal and raising 840,000 KRW.",
+      "contribution": "I took the product from concept to market, completing production, launch, and sales following its Tumblbug campaign.",
+      "outcome": "The campaign exceeded its crowdfunding goal, raised 840,000 KRW, and progressed to production, launch, and sales.",
+      "accent": "#79622a",
+      "art": "production",
+      "image": null,
+      "imageAlt": "",
+      "sections": [
+        {
+          "id": "product-launch",
+          "title": "Following a physical product through",
+          "body": "The Four Types of Wood Chip Solid Wood Desk Tray project moved from concept to a Tumblbug crowdfunding campaign. After exceeding the campaign goal with 840,000 KRW raised, I completed production, launch, and sales."
+        }
+      ],
+      "facts": [
+        { "value": "840,000 KRW", "label": "Crowdfunding raised" },
+        { "value": "Launched", "label": "Production and sales completed" }
+      ],
+      "resources": [],
+      "source": "resume: JuminShin_Resume (4).pdf, Wood Chip Solid Wood Desk Tray"
+    }
+  ]
+}
