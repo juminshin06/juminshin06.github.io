@@ -9,12 +9,12 @@ function CoverFrame({ src, frame = 'plain', eager = false, className = '' }) {
   </figure>
 }
 
-export default function ProjectCover({ project, variant = 'lead', index = 0, eager = false }) {
+export default function ProjectCover({ project, variant = 'lead', eager = false }) {
   const cover = project.cover
   if (!cover) return <ProjectArt project={project} eager={eager} />
 
-  const number = String(index + 1).padStart(2, '0')
-  const showPrimary = Boolean(cover.primary)
+  const primary = variant === 'micro' && project.image ? project.image : cover.primary
+  const showPrimary = Boolean(primary)
   const showSecondary = variant === 'lead' && Boolean(cover.secondary)
 
   return <div
@@ -23,13 +23,9 @@ export default function ProjectCover({ project, variant = 'lead', index = 0, eag
     data-cover-tone={cover.tone}
     data-cover-layout={cover.layout}
   >
-    {variant === 'lead' && <>
-      <span className={s.coverNumber}>{number}</span>
-      <span className={s.coverOrganization}>{project.organization}</span>
-    </>}
     <div className={s.coverCanvas}>
       {showPrimary
-        ? <CoverFrame src={cover.primary} frame={cover.primaryFrame} eager={eager} className={s.coverPrimary} />
+        ? <CoverFrame src={primary} frame={cover.primaryFrame} eager={eager} className={s.coverPrimary} />
         : <div className={s.coverFallback} aria-hidden="true"><ProjectArt project={project} /></div>}
       {showSecondary && <CoverFrame src={cover.secondary} frame={cover.secondaryFrame} className={s.coverSecondary} />}
     </div>

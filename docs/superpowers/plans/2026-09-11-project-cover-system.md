@@ -222,7 +222,7 @@ git commit -m "feat: define editorial project covers"
 - Modify: `tests/presentation.test.mjs`
 
 **Interfaces:**
-- Consumes: `ProjectCover({ project, variant = 'lead', index = 0, eager = false })` and `project.cover` from Task 1
+- Consumes: `ProjectCover({ project, variant = 'lead', eager = false })` and `project.cover` from Task 1
 - Produces: SSR markup with `data-project-cover`, `data-cover-tone`, `data-cover-layout`, and `data-cover-frame` contracts for CSS and tests
 
 - [ ] **Step 1: Write the failing homepage-rendering test**
@@ -274,27 +274,23 @@ function CoverFrame({ src, frame = 'plain', eager = false, className = '' }) {
   </figure>
 }
 
-export default function ProjectCover({ project, variant = 'lead', index = 0, eager = false }) {
+export default function ProjectCover({ project, variant = 'lead', eager = false }) {
   const cover = project.cover
   if (!cover) return <ProjectArt project={project} eager={eager} />
 
-  const number = String(index + 1).padStart(2, '0')
-  const showPrimary = Boolean(cover.primary)
+  const primary = variant === 'micro' && project.image ? project.image : cover.primary
+  const showPrimary = Boolean(primary)
   const showSecondary = variant === 'lead' && Boolean(cover.secondary)
 
   return <div
-    className={`${s.projectCover} ${s[`cover${variant[0].toUpperCase()}${variant.slice(1)}`]}`}
+    className={s.projectCover}
     data-project-cover={variant}
     data-cover-tone={cover.tone}
     data-cover-layout={cover.layout}
   >
-    {variant === 'lead' && <>
-      <span className={s.coverNumber}>{number}</span>
-      <span className={s.coverOrganization}>{project.organization}</span>
-    </>}
     <div className={s.coverCanvas}>
       {showPrimary
-        ? <CoverFrame src={cover.primary} frame={cover.primaryFrame} eager={eager} className={s.coverPrimary} />
+        ? <CoverFrame src={primary} frame={cover.primaryFrame} eager={eager} className={s.coverPrimary} />
         : <div className={s.coverFallback} aria-hidden="true"><ProjectArt project={project} /></div>}
       {showSecondary && <CoverFrame src={cover.secondary} frame={cover.secondaryFrame} className={s.coverSecondary} />}
     </div>
@@ -316,15 +312,15 @@ import ProjectCover from './ProjectCover'
 Use the variants at the three call sites:
 
 ```jsx
-<ProjectCover project={project} variant="lead" index={index} eager={index === 0} />
+<ProjectCover project={project} variant="lead" eager={index === 0} />
 ```
 
 ```jsx
-<ProjectCover project={project} variant="compact" index={index + 4} />
+<ProjectCover project={project} variant="compact" />
 ```
 
 ```jsx
-<ProjectCover project={project} variant="micro" index={index} eager={index < 3} />
+<ProjectCover project={project} variant="micro" eager={index < 3} />
 ```
 
 Remove the direct `ProjectImage` and `ProjectArt` branch from `HeroProjectTile`, remove their unused imports, and leave link labels, ordering, captions, and actions unchanged.
@@ -435,7 +431,7 @@ Implement the four layout recipes with the primary screen occupying 68–78 perc
 .coverLead[data-cover-layout='single'] .coverPrimary { left: 9%; top: 14%; width: 82%; }
 ```
 
-For compact covers, center the primary screen at approximately 86 percent width and hide editorial labels. For micro covers, fill the tile with the primary image using `object-fit: cover`; keep the no-image `ProjectArt` fallback centered.
+For compact covers, center the primary screen at approximately 86 percent width and hide editorial labels. For micro covers, fill the tile with `project.image` when available, otherwise use the cover's primary image with `object-fit: cover`; keep the no-image `ProjectArt` fallback centered.
 
 - [ ] **Step 5: Add interaction and responsive rules**
 
@@ -451,8 +447,7 @@ Preserve the existing action overlay and add restrained frame movement:
   .caseStudyMedia .projectCover { aspect-ratio: 1.42; }
   .coverLead .coverPrimary { left: 5% !important; right: auto !important; top: 18%; width: 90% !important; }
   .coverSecondary { display: none; }
-  .coverOrganization, .coverAnnotation { display: none; }
-  .coverNumber { top: 12px; left: 14px; }
+  .coverAnnotation { top: 12px; left: 14px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

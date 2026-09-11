@@ -87,12 +87,17 @@ test('homepage project covers use lead, compact and micro presentations', async 
     assert.equal((hero.match(/data-project-cover="micro"/g) || []).length, 9)
     assert.equal((featured.match(/data-project-cover="lead"/g) || []).length, 4)
     assert.equal((supporting.match(/data-project-cover="compact"/g) || []).length, 5)
+    assert.match(hero, /jj-medtech/)
+    assert.match(hero, /ars-package/)
     assert.match(featured, /data-cover-tone="warm-gray"/)
     assert.match(featured, /data-cover-layout="desktop-mobile"/)
     assert.match(featured, /bubbas-assist-result/)
     assert.match(featured, /300\+ videos per batch/)
     assert.doesNotMatch(featured, /alt="Bubba(?:'|&#x27;)s Rough Cut Prep/)
     assert.doesNotMatch(html, /class="[^"]*\bundefined\b/)
+
+    const bubbasRow = featured.split('data-case-study-entry="true"')[1].split('</article>')[0]
+    assert.equal((bubbasRow.match(/Bubba(?:'|&#x27;)s LA/g) || []).length, 1)
   } finally { await server.close() }
 })
 

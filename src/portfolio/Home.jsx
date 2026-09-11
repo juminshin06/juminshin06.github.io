@@ -26,7 +26,7 @@ function CaseStudyRow({ project, index }) {
   const primaryFact = project.facts?.[0]
   return <article data-reveal data-case-study-entry="true" className={s.caseStudyRow}>
     <a href={`/work/${project.slug}/`} className={s.caseStudyMedia} aria-label={`View case study: ${project.title}`}>
-      <ProjectCover project={project} variant="lead" index={index} eager={index === 0} />
+      <ProjectCover project={project} variant="lead" eager={index === 0} />
       <span className={s.projectAction} aria-hidden="true">View case study<ArrowUpRight size={18} /></span>
     </a>
     <div className={s.caseStudyCaption} data-project-caption="true">
@@ -52,7 +52,7 @@ function CaseStudyRow({ project, index }) {
 function CompactProject({ project, index }) {
   return <a data-reveal className={s.compactProject} href={`/work/${project.slug}/`}>
     <span className={s.projectNumber}>{String(index + 5).padStart(2, '0')}</span>
-    <span className={s.compactThumb} aria-hidden="true"><ProjectCover project={project} variant="compact" index={index + 4} /></span>
+    <span className={s.compactThumb} aria-hidden="true"><ProjectCover project={project} variant="compact" /></span>
     <span className={s.compactCopy}>
       <span className={s.caseStudyOrg}>{project.organization}</span>
       <strong>{caseStudyTitles[project.slug] || project.title}</strong>
@@ -65,7 +65,7 @@ function CompactProject({ project, index }) {
 function HeroProjectTile({ project, index }) {
   const title = caseStudyTitles[project.slug] || project.title
   return <a className={s.heroProjectTile} href={`/work/${project.slug}/`} aria-label={`${title}, ${project.organization}`}>
-    <ProjectCover project={project} variant="micro" index={index} eager={index < 3} />
+    <ProjectCover project={project} variant="micro" eager={index < 3} />
     <span className={s.heroProjectNumber} aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
     <span className={s.heroProjectLabel} aria-hidden="true">{title}</span>
   </a>

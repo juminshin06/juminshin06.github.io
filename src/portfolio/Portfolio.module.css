@@ -683,10 +683,7 @@
 .coverFrame[data-cover-frame='plain'] { border-color: rgba(20, 20, 18, .15); }
 .coverBrowserBar { display: flex; align-items: center; gap: 4px; height: 16px; padding: 0 7px; background: #191a1f; border-bottom: 1px solid #303139; }
 .coverBrowserBar i { display: block; width: 4px; height: 4px; border-radius: 50%; background: #6d6f78; }
-.coverNumber, .coverOrganization, .coverAnnotation { position: absolute; z-index: 4; font-size: 10px; line-height: 1.4; }
-.coverNumber { top: 16px; left: 18px; color: var(--accent); font-weight: 650; }
-.coverOrganization { top: 16px; right: 18px; max-width: 44%; color: rgba(20, 20, 18, .72); text-align: right; }
-.coverAnnotation { left: 18px; bottom: 15px; color: rgba(20, 20, 18, .62); }
+.coverAnnotation { position: absolute; top: 16px; left: 18px; z-index: 4; color: rgba(20, 20, 18, .62); font-size: 10px; line-height: 1.4; }
 .coverPrimary { z-index: 1; }
 .coverSecondary { z-index: 2; }
 .coverFallback { position: absolute; inset: 0; }
@@ -701,7 +698,6 @@
 .projectCover[data-cover-tone='ink'] { color: #fff; background: #191a17; }
 .projectCover[data-cover-tone='paper'] { background: #ecece7; }
 .projectCover[data-cover-tone='research'] { background: #e8e4ef; }
-.projectCover:is([data-cover-tone='spatial'], [data-cover-tone='ink']) .coverOrganization,
 .projectCover:is([data-cover-tone='spatial'], [data-cover-tone='ink']) .coverAnnotation { color: rgba(255, 255, 255, .7); }
 
 .projectCover[data-project-cover='lead'][data-cover-layout='primary-left'] .coverPrimary { left: 6%; top: 17%; width: 70%; }
@@ -929,8 +925,7 @@
   .capabilityIntro h2 { max-width: 700px; font-size: 38px; }
   .capabilityAside { max-width: 48ch; margin-top: 6px; }
   .caseStudyRow { grid-template-columns: 1fr 1fr; gap: 30px; min-height: 350px; }
-  .coverNumber, .coverOrganization, .coverAnnotation { font-size: 9px; }
-  .coverOrganization { max-width: 50%; }
+  .coverAnnotation { font-size: 9px; }
   .caseStudyIdentity { margin-bottom: 20px; }
   .caseStudyDetails dl { gap: 16px; }
   .caseStudyCopy h3 { font-size: 31px; }
@@ -970,8 +965,7 @@
   .caseStudyMedia .projectArt, .caseStudyMedia .projectCover { aspect-ratio: 1.42; }
   .projectCover[data-project-cover='lead'][data-cover-layout] .coverPrimary { left: 8%; right: auto; top: 17%; width: 84%; }
   .projectCover[data-project-cover='lead'] .coverSecondary { display: none; }
-  .projectCover[data-project-cover='lead'] :is(.coverOrganization, .coverAnnotation) { display: none; }
-  .projectCover[data-project-cover='lead'] .coverNumber { top: 12px; left: 14px; }
+  .projectCover[data-project-cover='lead'] .coverAnnotation { top: 12px; left: 14px; }
   .projectCover[data-project-cover='lead'] .coverBrowserBar { height: 12px; }
   .projectCover[data-project-cover='lead'] .coverFrame[data-cover-frame='document'] { padding: 4px; }
   .caseStudyCaption { max-width: none; }

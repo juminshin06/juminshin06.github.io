@@ -11,7 +11,7 @@ Use the selected **Editorial product stage** direction:
 - One real product screen is the dominant visual.
 - A second related screen or artifact may overlap at a smaller scale.
 - A thin browser or document frame supplies context without becoming the subject.
-- Project number, organization, and one factual detail appear as restrained editorial annotations.
+- One factual detail appears as a restrained editorial annotation; project number and organization stay in the adjacent caption so they are not repeated.
 - Project-specific color, crop, and screen placement create variation within one coherent system.
 
 The covers will be composed in React and CSS from existing project assets. They will not be exported as flattened mockup images. This keeps interface details crisp, responsive, and easier to update.
@@ -43,7 +43,7 @@ Supporting covers prioritize one screen at a smaller scale. A secondary screen i
 
 ### Small project index
 
-The hero's small project tiles use the same primary image and color identity but omit secondary screens and editorial annotations. Their job is navigation, so the visual must remain recognizable at thumbnail size.
+The hero's small project tiles use the project's existing thumbnail when available, then fall back to the cover's primary image. They keep the same color identity but omit secondary screens and editorial annotations. Their job is navigation, so the visual must remain recognizable at thumbnail size.
 
 ### Not in scope
 
@@ -98,7 +98,6 @@ Add a dedicated `ProjectCover` component for homepage presentation. `ProjectArt`
 
 - `project`: the project record
 - `variant`: `lead`, `compact`, or `micro`
-- `index`: the zero-based homepage position used for the visible project number
 - `eager`: whether primary imagery should load eagerly
 
 The component reads a `cover` object from project data. It renders:
@@ -113,7 +112,7 @@ Variants control density rather than duplicating markup:
 
 - `lead`: full primary and secondary composition plus annotations
 - `compact`: primary-first composition with a secondary image only when configured
-- `micro`: primary image or code-art fallback only
+- `micro`: project thumbnail, primary image, or code-art fallback only
 
 If a project does not define cover metadata, `ProjectCover` falls back to the existing `ProjectArt` rendering. This protects archived and future projects from blank states.
 
@@ -160,7 +159,7 @@ This gives the projects individual art direction while preventing one-off JSX br
 
 - The primary screen expands to approximately 88–94 percent of the stage.
 - Secondary screens shrink substantially or are hidden when they obscure the main interface.
-- Small annotations collapse to project number only.
+- Secondary screens are hidden and the single factual annotation stays clear of the primary frame.
 - No horizontal overflow is allowed.
 
 ## Accessibility And Content Integrity
