@@ -2,8 +2,8 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { ArrowLeft, ArrowRight, ArrowUpRight, Play, X } from 'lucide-react'
 import { allProjects } from '../data/portfolio'
 import { ProjectImage, TextLink } from './Shell'
-import { NarrativeCopy, SectionDetails, SectionFlow } from './CaseStudyBlocks'
-import { getCaseStudyMode, getProjectFacts } from './caseStudyNarrative'
+import { NarrativeCopy, NarrativeHeading, SectionDetails, SectionFlow } from './CaseStudyBlocks'
+import { buildPhaseNavigation, getCaseStudyMode, getProjectFacts, getSectionPhase } from './caseStudyNarrative'
 import ProjectArt from './ProjectArt'
 import s from './Portfolio.module.css'
 
@@ -15,11 +15,6 @@ const displayTitles = {
   'ai-3d-product-visualization': 'AI-assisted 3D production',
   'embrain-research': 'Research to product direction',
 }
-
-const formatSectionLabel = id => id
-  .split('-')
-  .map((word, index) => index === 0 ? word[0].toUpperCase() + word.slice(1) : word)
-  .join(' ')
 
 function Resource({ block }) {
   const [loaded, setLoaded] = useState(false)
@@ -70,6 +65,8 @@ export default function CaseStudy({ project }) {
   const primaryResources = project.resources.filter(resource => resource.primary)
   const secondaryResources = project.resources.filter(resource => !resource.primary)
   const assignments = useMemo(() => assignArtifacts(project), [project])
+  const phaseNavigation = useMemo(() => buildPhaseNavigation(project.sections, mode), [project.sections, mode])
+  const activePhase = phaseNavigation.find(item => item.sectionIds.includes(activeSection))
   let artifactNumber = 1
 
   useEffect(() => {
@@ -118,12 +115,12 @@ export default function CaseStudy({ project }) {
       </dl>
     </header>
 
-    <nav className={s.caseToc} aria-label="Case study sections">
-      <span className={s.caseTocLabel}>Jump to</span>
+    {phaseNavigation.length > 0 && <nav className={s.caseToc} aria-label="Case study sections" data-phase-navigation="true">
+      <span className={s.caseTocLabel}>In this project</span>
       <a href="#overview" aria-current={activeSection === 'overview' ? 'location' : undefined}>Overview</a>
-      {project.sections.map(section => <a key={section.id} href={`#${section.id}`} aria-current={activeSection === section.id ? 'location' : undefined}>{formatSectionLabel(section.id)}</a>)}
+      {phaseNavigation.map(item => <a key={item.id} href={`#${item.id}`} aria-current={activePhase?.id === item.id ? 'location' : undefined}>{item.label}</a>)}
       <a href="#outcome" aria-current={activeSection === 'outcome' ? 'location' : undefined}>Outcome</a>
-    </nav>
+    </nav>}
 
     <figure className={`${s.caseVisual} ${project.image ? s.caseImage : ''}`}>
       <ProjectArt project={project} eager presentation />
@@ -136,15 +133,14 @@ export default function CaseStudy({ project }) {
     </section>
 
     <div className={s.caseBody}>
-      {project.sections.map((section, index) => {
+      {project.sections.map(section => {
         const evidence = assignments.bySection.get(section.id) || []
-        return <section data-reveal className={s.storySection} id={section.id} key={section.id}>
-          <div className={s.storyHeading}>
-            <span>0{index + 1}</span>
-            <h2>{section.title}</h2>
-          </div>
-          <div className={s.storyContent}>
-            <p>{section.body}</p>
+        const phase = getSectionPhase(section, mode)
+        return <section data-reveal data-story-phase={phase} className={s.storySection} id={section.id} key={section.id}>
+          <div className={s.storyLabel}>{phase}</div>
+          <div className={s.storyNarrative}>
+            <NarrativeHeading accent={section.titleAccent}>{section.title}</NarrativeHeading>
+            <NarrativeCopy lead={section.lead} body={section.body} className={s.storyCopy} />
             <SectionDetails items={section.details} />
             <SectionFlow flow={section.flow} />
             {section.comparison && <dl className={s.designDecision}>

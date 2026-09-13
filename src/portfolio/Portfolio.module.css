@@ -811,19 +811,24 @@
 .caseMetadata dt { color: var(--accent); font-family: inherit; font-size: 12px; line-height: 1.4; font-weight: 600; text-transform: uppercase; }
 .caseMetadata dd { max-width: 42ch; font-size: 16px; line-height: 1.55; margin-top: 8px; }
 .caseToc {
-  position: static;
+  position: sticky;
+  top: 76px;
+  z-index: 8;
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: baseline;
   gap: 6px 22px;
   width: auto;
   margin: 26px 0 8px;
-  padding: 0;
-  overflow: visible;
-  background: transparent;
-  border: 0;
+  padding: 10px 0;
+  overflow-x: auto;
+  background: rgba(255, 255, 255, .96);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  scrollbar-width: none;
 }
+.caseToc::-webkit-scrollbar { display: none; }
 .caseTocLabel { color: var(--accent); font-size: 12px; line-height: 1.5; font-weight: 600; }
 .caseToc a {
   flex: 0 0 auto;
@@ -850,14 +855,22 @@
 .caseBody { width: 100%; }
 .storySection {
   display: grid;
-  grid-template-columns: minmax(240px, 4fr) minmax(0, 8fr);
-  gap: 6vw;
-  padding: 84px 0;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: 24px;
+  row-gap: 34px;
+  padding: 96px 0;
   margin: 0;
   border-top: 1px solid var(--line);
   scroll-margin-top: 140px;
 }
 .storySection:first-child { border-top-color: var(--ink); margin-top: 70px; }
+.storyLabel { grid-column: 1 / span 2; color: var(--muted); font-size: 12px; line-height: 1.5; font-weight: 560; }
+.storyNarrative { grid-column: 3 / span 8; max-width: 820px; }
+.storyNarrative h2 { max-width: 760px; font-size: 46px; line-height: 1.08; font-weight: 640; margin: 0; }
+.narrativeAccent { color: var(--accent); }
+.storyCopy { max-width: 760px; margin-top: 28px; font-size: 18px; line-height: 1.68; color: var(--muted); }
+.storyCopy strong { color: var(--ink); font-weight: 620; }
+.storyCopy span { color: var(--muted); }
 .storyHeading > span { display: block; color: var(--accent); font-size: 13px; font-weight: 600; margin-bottom: 18px; }
 .storyHeading h2, .workflow .storyHeading h2 { max-width: 620px; font-size: 43px; line-height: 1.08; font-weight: 550; margin: 0; }
 .storyContent > p { max-width: 67ch; font-size: 18px; line-height: 1.72; color: var(--muted); }
@@ -959,6 +972,7 @@
   .caseContributionPanel > p { grid-column: auto; }
   .caseVisual .projectArt, .caseVisual.caseImage .projectArt { aspect-ratio: 1.55; }
   .storySection, .workflow { grid-template-columns: 1fr; gap: 28px; padding: 64px 0; }
+  .storyLabel, .storyNarrative, .storyEvidenceGrid { grid-column: 1; }
   .processNarrative, .workflow figcaption { grid-column: auto; }
 }
 
@@ -1036,8 +1050,8 @@
   .caseMetadata { grid-template-columns: 1fr; gap: 24px; margin-top: 34px; }
   .caseMetadata dd { font-size: 15px; }
   .caseContributionPanel { padding: 26px 0; }
-  .caseToc { gap: 4px 16px; margin-top: 22px; }
-  .caseTocLabel { width: 100%; margin-bottom: 2px; }
+  .caseToc { top: 64px; gap: 4px 16px; margin-top: 22px; }
+  .caseTocLabel { flex: 0 0 auto; margin-bottom: 2px; }
   .caseToc a { min-height: 36px; padding: 0; font-size: 12px; }
   .caseToc a + a { padding-left: 0; }
   .caseVisual { padding-top: 18px; }
@@ -1048,8 +1062,10 @@
   .caseContributionPanel { display: block; padding: 26px 0 8px; }
   .caseContributionPanel .label { color: var(--accent); font-weight: 600; }
   .caseContributionPanel p { font-size: 16px; line-height: 1.65; color: var(--muted); margin-top: 12px; }
-  .storySection { grid-template-columns: 1fr; padding: 48px 0; }
+  .storySection { grid-template-columns: 1fr; padding: 52px 0; }
   .storySection:first-child { margin-top: 46px; }
+  .storyNarrative h2 { font-size: 31px; }
+  .storyCopy { font-size: 16px; line-height: 1.68; }
   .storyHeading h2, .workflow .storyHeading h2 { font-size: 31px; }
   .storyContent > p { font-size: 16px; line-height: 1.68; }
   .sectionDetails > div, .sectionFlow li { grid-template-columns: 1fr; gap: 7px; }

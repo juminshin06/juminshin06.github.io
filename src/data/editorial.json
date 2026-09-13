@@ -141,11 +141,13 @@
       "sections": [
         {
           "id": "review-context",
+          "phase": "Context",
           "title": "A shared review needed more than a shared model",
           "body": "The Honda Product Visualization Sprint asked how automotive teams could review one vehicle model together in Apple Vision Pro. Reviewers needed to discuss details, point, measure and annotate without dropping into a detached desktop workflow or losing the physical context of the vehicle."
         },
         {
           "id": "interaction-gaps",
+          "phase": "Problem",
           "title": "Four gaps made ordinary review actions difficult",
           "body": "Before designing controls, the team mapped the behaviors the streamed Omniverse experience did not support natively. Text remained screen-bound, interaction depended on custom scripts, no spatial keyboard was available and interface controls lived in extensions outside the scene.",
           "details": [
@@ -157,6 +159,7 @@
         },
         {
           "id": "space-architecture",
+          "phase": "System constraint",
           "title": "The collaboration model conflicted at the space level",
           "body": "CloudXR required a Full Immersive Space to stream the Omniverse scene, while GroupActivities and Spatial Personas operated in a Shared Space. Because only one application can own the full visual field at a time, the desired combination of a streamed vehicle and native multi-user presence could not coexist as planned.",
           "comparison": {
@@ -166,6 +169,7 @@
         },
         {
           "id": "spatial-notes",
+          "phase": "Prototype",
           "title": "Native windows restored a basic review behavior",
           "body": "A SwiftUI companion layer used multiple WindowGroup scenes to create independent sticky notes in visionOS Shared Space. Reviewers could use the native keyboard and place persistent windows near vehicle parts, allowing the notes to coexist visually with CloudXR even though they were not part of the Omniverse scene graph.",
           "comparison": {
@@ -175,6 +179,7 @@
         },
         {
           "id": "part-interaction",
+          "phase": "Prototype",
           "title": "A local bridge made vehicle parts respond",
           "body": "To test direct part control without NVIDIA cloud infrastructure, the prototype connected a visionOS control to a local HTTP server and an Omniverse file watcher. A tap on the headset wrote an event that toggled a vehicle part in the live scene. The bridge was intentionally small, but the same pattern could extend to material swaps, exploded views and annotations.",
           "flow": {
@@ -190,6 +195,7 @@
         },
         {
           "id": "presence-occlusion",
+          "phase": "Insight",
           "title": "Three presence models exposed different tradeoffs",
           "body": "Sitting inside a virtual vehicle can hide the reviewer's real lower body, weakening orientation and comfort. The sprint compared three ways to reintroduce presence, from a static passthrough snapshot to a tracked avatar and a lighter information panel.",
           "details": [
@@ -200,11 +206,13 @@
         },
         {
           "id": "review-toolkit",
+          "phase": "Design response",
           "title": "The interface brought review tools back to the vehicle",
           "body": "I led the compact toolbar and review-panel direction, bringing sticky notes, Muse Pen markups, measurements, part inspection, haptic feedback, participant controls, voice annotations and annotation history into one in-session toolkit. The hierarchy kept the vehicle primary while making each review action reachable near the work."
         },
         {
           "id": "future-directions",
+          "phase": "Reflection",
           "title": "The prototype clarified what the platform needs next",
           "body": "The demonstration gave Honda R&D both working interaction examples and a clearer system boundary. The final recommendations separated near-term infrastructure, a native Apple-platform path and a lighter-weight alternative for rendering shared 3D content.",
           "details": [

@@ -9,6 +9,10 @@ export function NarrativeCopy({ lead, body, className = '' }) {
   </p>
 }
 
+export function NarrativeHeading({ children, accent }) {
+  return <h2>{children}{accent ? <> <span className={s.narrativeAccent}>{accent}</span></> : null}</h2>
+}
+
 export function SectionDetails({ items = [] }) {
   if (!items.length) return null
   return <dl className={s.sectionDetails} data-detail-list="true">

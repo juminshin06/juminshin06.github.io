@@ -274,11 +274,12 @@ test('case studies use quiet editorial navigation and process prose', async () =
   try {
     const { render } = await server.ssrLoadModule('/src/entry-server.jsx')
     const html = render('/work/bubbas-production/')
-    const navigation = html.slice(html.indexOf('aria-label="Case study sections"'), html.indexOf('</nav>', html.indexOf('aria-label="Case study sections"')))
+    const honda = render('/work/honda-spatial/')
+    const navigation = honda.slice(honda.indexOf('aria-label="Case study sections"'), honda.indexOf('</nav>', honda.indexOf('aria-label="Case study sections"')))
     const process = html.slice(html.indexOf('>Process</span>'), html.indexOf('</figure>', html.indexOf('>Process</span>')))
 
-    assert.match(navigation, /Jump to/)
-    assert.match(navigation, /Production context/)
+    assert.match(navigation, /In this project/)
+    assert.match(navigation, /System constraint/)
     assert.doesNotMatch(navigation, /<span>0\d<\/span>/)
     assert.match(process, /Production materials/)
     assert.match(process, /Automated preparation/)
@@ -287,7 +288,8 @@ test('case studies use quiet editorial navigation and process prose', async () =
 
     const moduleCss = readFileSync(new URL('../src/portfolio/Portfolio.module.css', import.meta.url), 'utf8')
     const currentCss = moduleCss.slice(moduleCss.indexOf('/* UX Design Engineer portfolio */'))
-    assert.match(currentCss, /\.caseToc\s*{[^}]*position:\s*static[^}]*flex-wrap:\s*wrap[^}]*border:\s*0/s)
+    assert.match(currentCss, /\.caseToc\s*{[^}]*position:\s*sticky[^}]*overflow-x:\s*auto/s)
+    assert.doesNotMatch(currentCss, /\.caseToc\s*{[^}]*flex-wrap:\s*wrap/s)
     assert.match(currentCss, /\.processNarrative\s*{[^}]*grid-column:\s*2/s)
     assert.doesNotMatch(currentCss, /\.workflow\s+(?:ol|li)\b/)
   } finally { await server.close() }
@@ -303,7 +305,7 @@ test('the portfolio stylesheet enforces the approved readable visual system', ()
   assert.match(moduleCss, /\.caseStudiesHeader\s*{[^}]*display:\s*flex/s)
   assert.match(moduleCss, /\.caseStudiesHeader h2\s*{[^}]*font-size:\s*13px/s)
   assert.doesNotMatch(moduleCss, /\.caseStudyScopes/)
-  assert.match(moduleCss, /\/\* UX Design Engineer portfolio \*\/[\s\S]*?\.caseToc\s*{[^}]*position:\s*static[^}]*flex-wrap:\s*wrap/s)
+  assert.match(moduleCss, /\/\* UX Design Engineer portfolio \*\/[\s\S]*?\.caseToc\s*{[^}]*position:\s*sticky[^}]*overflow-x:\s*auto/s)
   assert.match(moduleCss, /\.caseStudyMedia:is\(:hover,\s*:focus-visible\) \.projectAction\s*{[^}]*opacity:\s*1/s)
   assert.match(moduleCss, /\.storyArtifact:not\(\.storyArtifactBrowser\) \.storyArtifactMedia\s*{[^}]*display:\s*flex[^}]*justify-content:\s*center/s)
   assert.match(moduleCss, /\.storyArtifact:not\(\.storyArtifactBrowser\) img\s*{[^}]*width:\s*auto[^}]*max-width:\s*100%[^}]*max-height:\s*min\(74svh,\s*700px\)/s)
@@ -324,5 +326,21 @@ test('detailed case studies use an editorial introduction and ordered facts', as
     assert.ok(facts.indexOf('Role') < facts.indexOf('Timeline'))
     assert.ok(facts.indexOf('Timeline') < facts.indexOf('Outcome'))
     assert.ok(facts.indexOf('Outcome') < facts.indexOf('Team'))
+  } finally { await server.close() }
+})
+
+test('case study navigation exposes authored phases without numeric section headings', async () => {
+  const server = await createServer({ server: { middlewareMode: true, ws: false }, appType: 'custom', logLevel: 'error' })
+  try {
+    const { render } = await server.ssrLoadModule('/src/entry-server.jsx')
+    const detailed = render('/work/honda-spatial/')
+    assert.match(detailed, /data-phase-navigation="true"/)
+    assert.match(detailed, /data-story-phase="Problem"/)
+    assert.match(detailed, /data-story-phase="Design response"/)
+    assert.doesNotMatch(detailed, /class="[^"]*storyHeading[^"]*">\s*<span>0[1-9]<\/span>/)
+    const concise = render('/work/newegg/')
+    assert.match(concise, /data-case-study-mode="concise"/)
+    assert.doesNotMatch(concise, /data-phase-navigation="true"/)
+    assert.match(concise, /data-story-phase="Project overview"/)
   } finally { await server.close() }
 })
