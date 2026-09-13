@@ -35,10 +35,10 @@
       "sections": [
         {
           "id": "production-context",
-          "phase": "Context",
-          "title": "Understanding the production workflow",
-          "lead": "Rough-cut preparation involved footage, scripts, storyboards, voice-over files, and production notes.",
-          "body": "I designed and scaled an AI platform to bring those materials into an automated preparation workflow, moving beyond manual clip-by-clip organization."
+          "phase": "Problem",
+          "title": "Production context was scattered across too many inputs",
+          "lead": "Rough-cut preparation depended on footage, scripts, storyboards, voice-over files, and production notes.",
+          "body": "Organizing those materials clip by clip made the workflow difficult to scale. The interface needed to preserve their relationships while moving preparation into an automated batch process."
         },
         {
           "id": "interface-scope",
@@ -150,8 +150,8 @@
       "sections": [
         {
           "id": "review-context",
-          "phase": "Context",
-          "title": "A shared review needed more than a shared model",
+          "phase": "Problem",
+          "title": "A shared model did not create a shared review",
           "lead": "The Honda Product Visualization Sprint asked how automotive teams could review one vehicle model together in Apple Vision Pro.",
           "body": "Reviewers needed to discuss details, point, measure and annotate without dropping into a detached desktop workflow or losing the physical context of the vehicle."
         },
@@ -518,9 +518,9 @@
       "sections": [
         {
           "id": "clinical-context",
-          "phase": "Context",
-          "title": "Translate a clinical taxonomy into a usable task",
-          "body": "The training experience needed to make a structured wound-assessment task understandable without separating the decision from its clinical context. Each step keeps the DISH category, proposed terminology, question and progress visible so the reviewer knows exactly what is being evaluated.",
+          "phase": "Problem",
+          "title": "Clinical terminology was separated from the decision",
+          "body": "A structured wound-assessment task can become difficult to interpret when its category, terminology and evidence are shown out of context. The training experience needed to make each decision understandable while keeping the DISH category, proposed terminology, question and progress visible.",
           "comparison": {
             "observation": "A category label or keyword alone does not explain what the reviewer is being asked to judge.",
             "response": "Frame one explicit decision at a time and keep its category and terminology in view."
@@ -711,9 +711,9 @@
       "sections": [
         {
           "id": "research-scope",
-          "phase": "Context",
-          "title": "Research across different contexts",
-          "body": "I contributed to mixed-method UX research for Samsung Electronics, Hyundai Motor Company, and SK. Interviews, surveys, and usability tests involved approximately 100 participants across the engagements, not 100 participants in each study."
+          "phase": "Problem",
+          "title": "Research findings needed to become usable direction",
+          "body": "Samsung Electronics, Hyundai Motor Company and SK brought different product questions, but each engagement shared the same challenge: interviews, surveys and usability tests had to lead to decisions a product team could act on. Approximately 100 participants took part across the engagements, not in each study."
         },
         {
           "id": "design-directions",

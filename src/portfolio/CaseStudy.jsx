@@ -143,7 +143,6 @@ export default function CaseStudy({ project }) {
 
     {phaseNavigation.length > 0 && <nav className={s.caseToc} aria-label="Case study sections" data-phase-navigation="true">
       <span className={s.caseTocLabel}>In this project</span>
-      <a href="#overview" aria-current={activeSection === 'overview' ? 'location' : undefined}>Overview</a>
       {phaseNavigation.map(item => <a key={item.id} href={`#${item.id}`} aria-current={activePhase?.id === item.id ? 'location' : undefined}>{item.label}</a>)}
       <a href="#outcome" aria-current={activeSection === 'outcome' ? 'location' : undefined}>Outcome</a>
     </nav>}

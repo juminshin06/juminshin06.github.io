@@ -34,8 +34,8 @@
     "sections": [
       {
         "id": "different-audiences",
-        "phase": "Context",
-        "title": "One mission, different reasons to visit",
+        "phase": "Problem",
+        "title": "One mission had to serve very different visitors",
         "body": "Families, schools, volunteers and donors arrive with different questions. The UX challenge was to connect the foundation's story with a relevant next step for each audience, without making everyone navigate the same long explanation."
       },
       {
@@ -115,9 +115,9 @@
     "sections": [
       {
         "id": "creative-direction",
-        "phase": "Context",
-        "title": "Give two simple subjects one visual language",
-        "body": "I treated a cosmetic bottle and a small mascot as parts of the same visual study. Rounded geometry, mint and peach color, restrained metallic highlights and quiet studio staging create continuity between a polished product image and a more expressive character direction."
+        "phase": "Problem",
+        "title": "Fast scene changes still needed a design point of view",
+        "body": "Conversational tooling could produce modeling, material and lighting changes quickly, but speed alone did not create a coherent visual system. The cosmetic bottle and mascot needed consistent proportions, color, surface contrast and staging across product and character directions."
       },
       {
         "id": "ai-assisted-workflow",

@@ -126,7 +126,7 @@ test('the ten detailed projects have authored editorial narrative fields', () =>
     assert.ok(project.introSupport?.length > 20, `${slug}: introSupport`)
     assert.ok(project.descriptors?.length >= 2 && project.descriptors.length <= 3, `${slug}: descriptors`)
     assert.ok(project.sections.every(section => section.phase), `${slug}: section phase`)
-    assert.ok(project.sections.some(section => ['Problem', 'Context'].includes(section.phase)), `${slug}: framing`)
+    assert.equal(project.sections[0]?.phase, 'Problem', `${slug}: first phase`)
     assert.ok(project.sections.some(section => ['Design response', 'Prototype'].includes(section.phase)), `${slug}: response`)
     assert.ok(project.sections.some(section => section.lead), `${slug}: mixed-weight lead`)
   }
