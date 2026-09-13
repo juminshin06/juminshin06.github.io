@@ -2,7 +2,9 @@ import test from 'node:test'
 import assert from 'node:assert/strict'
 import {
   buildPhaseNavigation,
+  findActiveSectionId,
   getCaseStudyMode,
+  getHashSectionId,
   getProjectFacts,
   getSectionPhase,
 } from '../src/portfolio/caseStudyNarrative.js'
@@ -29,7 +31,7 @@ test('section phases are explicit for detailed work and safe for concise work', 
   assert.equal(getSectionPhase({ title: 'Context' }, 'concise'), 'Project overview')
 })
 
-test('phase navigation groups contiguous sections with the same phase', () => {
+test('phase navigation groups sections with the same phase', () => {
   assert.deepEqual(buildPhaseNavigation([
     { id: 'context', phase: 'Context' },
     { id: 'gap-one', phase: 'Problem' },
@@ -41,4 +43,35 @@ test('phase navigation groups contiguous sections with the same phase', () => {
     { id: 'response', label: 'Design response', sectionIds: ['response'] },
   ])
   assert.deepEqual(buildPhaseNavigation([{ id: 'context', title: 'Context' }], 'concise'), [])
+})
+
+test('phase navigation lists repeated phases once and reserves Outcome for the final summary', () => {
+  assert.deepEqual(buildPhaseNavigation([
+    { id: 'problem', phase: 'Problem' },
+    { id: 'response-one', phase: 'Design response' },
+    { id: 'constraint', phase: 'System constraint' },
+    { id: 'response-two', phase: 'Design response' },
+    { id: 'project-result', phase: 'Outcome' },
+  ], 'detailed'), [
+    { id: 'problem', label: 'Problem', sectionIds: ['problem'] },
+    { id: 'response-one', label: 'Design response', sectionIds: ['response-one', 'response-two'] },
+    { id: 'constraint', label: 'System constraint', sectionIds: ['constraint'] },
+  ])
+})
+
+test('active navigation follows the section at the reader focus line after media settles', () => {
+  const positions = [
+    { id: 'context', top: -648 },
+    { id: 'problem', top: 236 },
+    { id: 'response', top: 1396 },
+  ]
+
+  assert.equal(findActiveSectionId(positions, 755), 'problem')
+})
+
+test('direct section links resolve to a safe decoded section id', () => {
+  assert.equal(getHashSectionId('#design-response'), 'design-response')
+  assert.equal(getHashSectionId('#product%2Dmodel'), 'product-model')
+  assert.equal(getHashSectionId(''), '')
+  assert.equal(getHashSectionId('#%E0%A4%A'), '')
 })

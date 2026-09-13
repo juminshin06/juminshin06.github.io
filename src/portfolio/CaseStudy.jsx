@@ -3,7 +3,7 @@ import { ArrowLeft, ArrowRight, ArrowUpRight, Play, X } from 'lucide-react'
 import { allProjects } from '../data/portfolio'
 import { ProjectImage, TextLink } from './Shell'
 import { DesignDecision, NarrativeCopy, NarrativeHeading, SectionDetails, SectionFlow } from './CaseStudyBlocks'
-import { buildPhaseNavigation, getCaseStudyMode, getProjectFacts, getSectionPhase } from './caseStudyNarrative'
+import { buildPhaseNavigation, findActiveSectionId, getCaseStudyMode, getHashSectionId, getProjectFacts, getSectionPhase } from './caseStudyNarrative'
 import ProjectArt from './ProjectArt'
 import s from './Portfolio.module.css'
 
@@ -75,12 +75,8 @@ export default function CaseStudy({ project }) {
     let frame
     const update = () => {
       frame = undefined
-      const readingLine = Math.max(150, window.innerHeight * 0.28)
-      let current = sections[0]?.id
-      for (const section of sections) {
-        if (section.getBoundingClientRect().top <= readingLine) current = section.id
-      }
-      setActiveSection(current)
+      const positions = sections.map(section => ({ id: section.id, top: section.getBoundingClientRect().top }))
+      setActiveSection(findActiveSectionId(positions, window.innerHeight))
     }
     const schedule = () => { if (frame === undefined) frame = requestAnimationFrame(update) }
     const resize = new ResizeObserver(schedule)
@@ -93,6 +89,36 @@ export default function CaseStudy({ project }) {
       window.removeEventListener('resize', schedule)
       resize.disconnect()
       if (frame !== undefined) cancelAnimationFrame(frame)
+    }
+  }, [project])
+
+  useEffect(() => {
+    const sectionId = getHashSectionId(window.location.hash)
+    const target = sectionId ? document.getElementById(sectionId) : null
+    if (!target) return undefined
+    let frame
+    let cancelled = false
+    setActiveSection(sectionId)
+    const alignTarget = () => {
+      if (cancelled) return
+      if (frame) cancelAnimationFrame(frame)
+      frame = requestAnimationFrame(() => target.scrollIntoView({ block: 'start' }))
+    }
+    const precedingImages = [...article.current.querySelectorAll('img')].filter(image => (
+      target.compareDocumentPosition(image) & Node.DOCUMENT_POSITION_PRECEDING
+    ))
+    const pendingImages = precedingImages.filter(image => !image.complete)
+    pendingImages.forEach(image => image.addEventListener('load', alignTarget, { once: true }))
+    window.addEventListener('load', alignTarget, { once: true })
+    alignTarget()
+    const settleTimer = window.setTimeout(alignTarget, 450)
+    document.fonts?.ready.then(alignTarget)
+    return () => {
+      cancelled = true
+      if (frame) cancelAnimationFrame(frame)
+      window.clearTimeout(settleTimer)
+      pendingImages.forEach(image => image.removeEventListener('load', alignTarget))
+      window.removeEventListener('load', alignTarget)
     }
   }, [project])
 
