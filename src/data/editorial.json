@@ -117,43 +117,101 @@
       "role": "UI lead, industry collaboration",
       "team": "8-person sprint; 2-person design team",
       "status": "Prototype demonstrated to Honda R&D",
-      "summary": "A spatial design-review experience that translated NVIDIA Omniverse constraints into annotation, measurement and collaboration tools for Apple Vision Pro.",
-      "contribution": "I led interface design for an eight-person sprint and a two-person design team, shaping in-session annotation and review controls and carrying the work through live demos for Honda R&D.",
-      "outcome": "The team documented key Omniverse interaction limitations, prototyped a spatial review experience and delivered live demonstrations to Honda R&D.",
+      "caseStudyMode": "detailed",
+      "introLead": "A shared vehicle review needed interaction tools that could live inside the spatial scene.",
+      "introSupport": "The sprint translated NVIDIA Omniverse and visionOS constraints into testable annotation, part-control, presence and collaboration patterns for Apple Vision Pro.",
+      "descriptors": ["Spatial UX", "visionOS prototype", "Industry collaboration"],
+      "summary": "A spatial design-review sprint that turned NVIDIA Omniverse and visionOS constraints into testable annotation, part-control, presence and collaboration patterns for Apple Vision Pro.",
+      "contribution": "On an eight-person sprint and two-person design team, I led the review-interface direction: organizing notes, measurement, part inspection and annotation history into a spatial toolbar, while collaborating with teammates who built and tested the underlying visionOS and Omniverse prototypes.",
+      "outcome": "The team documented where the Omniverse and visionOS collaboration models broke down, demonstrated working review interactions and shared a clear set of platform directions with Honda R&D.",
       "accent": "#476675",
       "art": "image",
-      "image": "/assets/projects/honda-spatial-ui.png",
-      "imageAlt": "Spatial annotation and review interface overlaid inside a Honda vehicle",
-      "visualCaption": "Spatial review interface concept for annotation, measurement and feedback inside an automotive context.",
+      "image": "/assets/projects/honda-deck-28.jpg",
+      "imageAlt": "Complete Honda sprint slide showing a spatial annotation and review interface inside a vehicle",
+      "visualCaption": "Full 16:9 sprint slide showing the spatial review interface in its automotive context.",
       "cover": {
         "tone": "spatial",
         "layout": "primary-right",
-        "primary": "/assets/projects/honda-spatial-ui.png",
+        "primary": "/assets/projects/honda-deck-28.jpg",
         "primaryFrame": "plain",
-        "secondary": "/assets/projects/honda-toolbar.png",
+        "secondary": "/assets/projects/honda-deck-25.jpg",
         "secondaryFrame": "document",
         "annotation": "Vision Pro design review"
       },
       "sections": [
         {
           "id": "review-context",
-          "title": "Reframing automotive review as a shared spatial workflow",
-          "body": "The Honda Product Visualization Sprint explored how automotive teams could review a shared vehicle model in Apple Vision Pro. The experience needed to support discussion, mark-up and dimensional feedback without pulling reviewers out of the spatial context."
+          "title": "A shared review needed more than a shared model",
+          "body": "The Honda Product Visualization Sprint asked how automotive teams could review one vehicle model together in Apple Vision Pro. Reviewers needed to discuss details, point, measure and annotate without dropping into a detached desktop workflow or losing the physical context of the vehicle."
         },
         {
-          "id": "omniverse-constraints",
-          "title": "Turning Omniverse constraints into design requirements",
-          "body": "The team identified four interaction gaps in the streamed Omniverse experience: text remained screen-bound, actions required custom scripting, spatial text input was limited and interface controls lived outside the scene. We also documented a conflict between CloudXR's full immersive space and the shared-space architecture used by SharePlay and Spatial Personas."
+          "id": "interaction-gaps",
+          "title": "Four gaps made ordinary review actions difficult",
+          "body": "Before designing controls, the team mapped the behaviors the streamed Omniverse experience did not support natively. Text remained screen-bound, interaction depended on custom scripts, no spatial keyboard was available and interface controls lived in extensions outside the scene.",
+          "details": [
+            { "label": "Screen-bound text", "body": "Notes could not stay attached to the part under discussion." },
+            { "label": "Scripted actions", "body": "Basic object behaviors had to be added one at a time." },
+            { "label": "Missing input", "body": "Reviewers had no native 3D text-entry path inside Omniverse." },
+            { "label": "Detached interface", "body": "Controls lived outside the vehicle context reviewers were evaluating." }
+          ]
         },
         {
-          "id": "spatial-interface",
-          "title": "Designing tools that stay close to the review",
-          "body": "I led the interface direction for a compact spatial toolbar and review panels. The concept brought post-it notes, measurements, part inspection, text input, voice annotations and annotation history into the session, with controls positioned around the vehicle rather than inside a separate desktop-style application."
+          "id": "space-architecture",
+          "title": "The collaboration model conflicted at the space level",
+          "body": "CloudXR required a Full Immersive Space to stream the Omniverse scene, while GroupActivities and Spatial Personas operated in a Shared Space. Because only one application can own the full visual field at a time, the desired combination of a streamed vehicle and native multi-user presence could not coexist as planned.",
+          "comparison": {
+            "observation": "The target experience combined a streamed Omniverse model with visible remote collaborators.",
+            "response": "The team built a separate spatial analogue to test the collaboration behavior and documented the platform conflict instead of hiding it."
+          }
         },
         {
-          "id": "prototype-learning",
-          "title": "Prototyping the interaction, including its limits",
-          "body": "The sprint tested Muse Pen annotation and haptic feedback on USD geometry, participant occlusion and in-session annotation UI. When multi-user CloudXR and GroupActivities could not coexist as intended, the team documented the architectural conflict and proposed native visionOS, enterprise streaming and alternative 3D approaches for future exploration."
+          "id": "spatial-notes",
+          "title": "Native windows restored a basic review behavior",
+          "body": "A SwiftUI companion layer used multiple WindowGroup scenes to create independent sticky notes in visionOS Shared Space. Reviewers could use the native keyboard and place persistent windows near vehicle parts, allowing the notes to coexist visually with CloudXR even though they were not part of the Omniverse scene graph.",
+          "comparison": {
+            "observation": "Review notes needed spatial position and reliable text input, neither of which Omniverse supplied in the headset.",
+            "response": "Treat each note as a movable native visionOS window and use visual proximity, rather than scene-graph attachment, as the bridge."
+          }
+        },
+        {
+          "id": "part-interaction",
+          "title": "A local bridge made vehicle parts respond",
+          "body": "To test direct part control without NVIDIA cloud infrastructure, the prototype connected a visionOS control to a local HTTP server and an Omniverse file watcher. A tap on the headset wrote an event that toggled a vehicle part in the live scene. The bridge was intentionally small, but the same pattern could extend to material swaps, exploded views and annotations.",
+          "flow": {
+            "label": "Prototype bridge",
+            "steps": [
+              { "label": "Tap control", "detail": "The reviewer selects a vehicle action in visionOS." },
+              { "label": "Local request", "detail": "A lightweight HTTP server records the requested state." },
+              { "label": "File watcher", "detail": "Omniverse detects the event without requiring the unavailable Channel API." },
+              { "label": "Scene update", "detail": "The selected vehicle part changes in the live model." }
+            ],
+            "caption": "Retrospective reconstruction of the local prototype bridge shown in the final sprint deck."
+          }
+        },
+        {
+          "id": "presence-occlusion",
+          "title": "Three presence models exposed different tradeoffs",
+          "body": "Sitting inside a virtual vehicle can hide the reviewer's real lower body, weakening orientation and comfort. The sprint compared three ways to reintroduce presence, from a static passthrough snapshot to a tracked avatar and a lighter information panel.",
+          "details": [
+            { "label": "PeekABoo", "body": "A pre-captured lower-body image offered a simple reference but could not update in real time because third-party camera access was unavailable." },
+            { "label": "Tracked avatar", "body": "A Mixamo USDZ avatar mapped ARKit hand and world tracking into RealityKit joint transforms." },
+            { "label": "Information panel", "body": "A compact spatial panel preserved orientation with less visual and technical overhead." }
+          ]
+        },
+        {
+          "id": "review-toolkit",
+          "title": "The interface brought review tools back to the vehicle",
+          "body": "I led the compact toolbar and review-panel direction, bringing sticky notes, Muse Pen markups, measurements, part inspection, haptic feedback, participant controls, voice annotations and annotation history into one in-session toolkit. The hierarchy kept the vehicle primary while making each review action reachable near the work."
+        },
+        {
+          "id": "future-directions",
+          "title": "The prototype clarified what the platform needs next",
+          "body": "The demonstration gave Honda R&D both working interaction examples and a clearer system boundary. The final recommendations separated near-term infrastructure, a native Apple-platform path and a lighter-weight alternative for rendering shared 3D content.",
+          "details": [
+            { "label": "Innoactive Hub", "body": "Test enterprise streaming infrastructure that can support the missing collaboration layer." },
+            { "label": "Native visionOS", "body": "Evaluate whether native rendering can provide sufficient visual quality with fewer space conflicts." },
+            { "label": "Gaussian splats", "body": "Explore a different representation when streamed scene complexity is the dominant constraint." }
+          ]
         }
       ],
       "facts": [
@@ -165,30 +223,244 @@
       "content": [
         {
           "type": "image",
-          "src": "/assets/projects/honda-interaction-gaps.png",
-          "sectionId": "omniverse-constraints",
-          "caption": "Four documented interaction gaps in NVIDIA Omniverse."
+          "src": "/assets/projects/honda-deck-01.jpg",
+          "sectionId": "review-context",
+          "presentation": "slide",
+          "caption": "Slide 01 / Final sprint deck cover framing the Omniverse interaction limitations and future directions."
         },
         {
           "type": "image",
-          "src": "/assets/projects/honda-muse-pen.png",
-          "sectionId": "prototype-learning",
-          "caption": "Muse Pen annotation and haptic-feedback explorations on the vehicle model."
+          "src": "/assets/projects/honda-deck-02.jpg",
+          "sectionId": "review-context",
+          "presentation": "slide",
+          "caption": "Slide 02 / Agenda connecting platform constraints, spatial workarounds, demos and future directions."
         },
         {
           "type": "image",
-          "src": "/assets/projects/honda-toolbar.png",
-          "sectionId": "spatial-interface",
-          "caption": "Spatial toolbar concept for notes, measurement, inspection and text input."
+          "src": "/assets/projects/honda-deck-03.jpg",
+          "sectionId": "interaction-gaps",
+          "presentation": "slide",
+          "caption": "Slide 03 / Four interaction gaps documented in the streamed Omniverse experience."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/honda-deck-04.jpg",
+          "sectionId": "interaction-gaps",
+          "presentation": "slide",
+          "caption": "Slide 04 / Existing Omniverse interface used to inspect where review actions lived outside the scene."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/honda-deck-05.jpg",
+          "sectionId": "spatial-notes",
+          "presentation": "slide",
+          "caption": "Slide 05 / Native Swift sticky-note workaround and the constraints it was designed to address."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/honda-deck-06.jpg",
+          "sectionId": "spatial-notes",
+          "presentation": "slide",
+          "caption": "Slide 06 / Native note window shown alongside the streamed vehicle model."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/honda-deck-07.jpg",
+          "sectionId": "part-interaction",
+          "presentation": "slide",
+          "caption": "Slide 07 / Local HTTP and file-watcher bridge used to control vehicle parts from visionOS."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/honda-deck-08.jpg",
+          "sectionId": "part-interaction",
+          "presentation": "slide",
+          "caption": "Slide 08 / Vehicle-part controls demonstrated in the headset."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/honda-deck-09.jpg",
+          "sectionId": "space-architecture",
+          "presentation": "slide",
+          "caption": "Slide 09 / SharePlay spatial analogue used to explore multi-user review behavior."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/honda-deck-10.jpg",
+          "sectionId": "space-architecture",
+          "presentation": "slide",
+          "caption": "Slide 10 / Spatial analogue prototype with participants, annotations and shared controls."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/honda-deck-11.jpg",
+          "sectionId": "space-architecture",
+          "presentation": "slide",
+          "caption": "Slide 11 / CloudXR and GroupActivities approach tested by the sprint team."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/honda-deck-12.jpg",
+          "sectionId": "space-architecture",
+          "presentation": "slide",
+          "caption": "Slide 12 / CloudXR collaboration prototype viewed in the headset."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/honda-deck-13.jpg",
+          "sectionId": "space-architecture",
+          "presentation": "slide",
+          "caption": "Slide 13 / Full Immersive Space and Shared Space conflict that blocked the intended collaboration model."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/honda-deck-14.jpg",
+          "sectionId": "presence-occlusion",
+          "presentation": "slide",
+          "caption": "Slide 14 / Presence challenge created when a vehicle model occludes the reviewer's lower body."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/honda-deck-15.jpg",
+          "sectionId": "presence-occlusion",
+          "presentation": "slide",
+          "caption": "Slide 15 / In-headset view used to evaluate body occlusion in the vehicle scene."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/honda-deck-16.jpg",
+          "sectionId": "presence-occlusion",
+          "presentation": "slide",
+          "caption": "Slide 16 / PeekABoo concept for restoring a lightweight body reference."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/honda-deck-17.jpg",
+          "sectionId": "presence-occlusion",
+          "presentation": "slide",
+          "caption": "Slide 17 / PeekABoo reference shown in the Omniverse proof of concept."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/honda-deck-18.jpg",
+          "sectionId": "presence-occlusion",
+          "presentation": "slide",
+          "caption": "Slide 18 / Tracked avatar approach using an authored character rig."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/honda-deck-19.jpg",
+          "sectionId": "presence-occlusion",
+          "presentation": "slide",
+          "caption": "Slide 19 / Avatar approach evaluated in the same vehicle context."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/honda-deck-20.jpg",
+          "sectionId": "presence-occlusion",
+          "presentation": "slide",
+          "caption": "Slide 20 / Information-panel workaround for orientation with less visual overhead."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/honda-deck-21.jpg",
+          "sectionId": "review-toolkit",
+          "presentation": "slide",
+          "caption": "Slide 21 / Transition into the interaction demonstrations."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/honda-deck-22.jpg",
+          "sectionId": "review-toolkit",
+          "presentation": "slide",
+          "caption": "Slide 22 / Muse Pen annotations and haptic-feedback demo references."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/honda-deck-23.jpg",
+          "sectionId": "review-toolkit",
+          "presentation": "slide",
+          "caption": "Slide 23 / Participant-occlusion demo using a USD model."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/honda-deck-24.jpg",
+          "sectionId": "review-toolkit",
+          "presentation": "slide",
+          "caption": "Slide 24 / Interface-design portion of the sprint presentation."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/honda-deck-25.jpg",
+          "sectionId": "review-toolkit",
+          "presentation": "slide",
+          "caption": "Slide 25 / Compact toolbar for notes, measurement, inspection, keyboard and reveal actions."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/honda-deck-26.jpg",
+          "sectionId": "review-toolkit",
+          "presentation": "slide",
+          "caption": "Slide 26 / Spatial post-it note states and their placement beside the toolbar."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/honda-deck-27.jpg",
+          "sectionId": "review-toolkit",
+          "presentation": "slide",
+          "caption": "Slide 27 / Supporting review functions for participant and annotation control."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/honda-deck-28.jpg",
+          "sectionId": "review-toolkit",
+          "presentation": "slide",
+          "caption": "Slide 28 / Complete review interface composed around the driver's view."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/honda-deck-29.jpg",
+          "sectionId": "review-toolkit",
+          "presentation": "slide",
+          "caption": "Slide 29 / Alternate in-context composition balancing annotations, parts and participant controls."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/honda-deck-30.jpg",
+          "sectionId": "review-toolkit",
+          "presentation": "slide",
+          "caption": "Slide 30 / Annotation UI demonstrated within a Unity-based spatial scene."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/honda-deck-31.jpg",
+          "sectionId": "future-directions",
+          "presentation": "slide",
+          "caption": "Slide 31 / Transition from working prototypes to future platform directions."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/honda-deck-32.jpg",
+          "sectionId": "future-directions",
+          "presentation": "slide",
+          "caption": "Slide 32 / Innoactive Hub, native visionOS and Gaussian-splat directions proposed for further exploration."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/honda-deck-33.jpg",
+          "sectionId": "future-directions",
+          "presentation": "slide",
+          "caption": "Slide 33 / Closing slide from the complete sprint deck."
         }
       ],
       "source": "resume: JuminShin_Resume (4).pdf, Honda Product Visualization Sprint; HondaSprint OmniverseXR Slides",
       "diagram": {
-        "title": "Spatial review workflow",
+        "title": "From platform constraints to a review toolkit",
         "steps": [
-          { "label": "Identify constraints", "detail": "Map where Omniverse and visionOS limit shared spatial interaction." },
-          { "label": "Design review tools", "detail": "Bring notes, measurement and annotation controls into the session." },
-          { "label": "Prototype and demonstrate", "detail": "Test the interaction and share live demonstrations with Honda R&D." }
+          { "label": "Understand the boundary", "detail": "Map the interaction and space-model constraints before defining the interface." },
+          { "label": "Prototype workarounds", "detail": "Use native visionOS windows, a local bridge and presence experiments to test critical behaviors." },
+          { "label": "Design the review layer", "detail": "Organize notes, measurement, inspection and history around the vehicle." },
+          { "label": "Document what remains", "detail": "Demonstrate the working pieces and give Honda R&D clear future platform directions." }
         ],
         "caption": "Retrospective sprint summary based on the final team presentation, not an original system architecture."
       }
@@ -437,7 +709,14 @@
       "category": "Experiment",
       "summary": "An independent browser experiment for drawing and signing in the air with hand gestures, with image, document, and video export.",
       "status": "Working independent demo",
-      "organization": "Independent project"
+      "organization": "Independent project",
+      "cover": {
+        "tone": "ink",
+        "layout": "single",
+        "primary": "/assets/projects/Portfolio_HandSign.svg",
+        "primaryFrame": "plain",
+        "annotation": "Gesture-controlled drawing"
+      }
     },
     "proj-007": {
       "slug": "clozumin",
@@ -453,7 +732,14 @@
       "category": "Research",
       "summary": "Podcast-format research and GUI design for job seekers through an industry-academia collaboration with Samsung Electronics.",
       "status": "Industry-academia research concept",
-      "organization": "Samsung Electronics MX Business Division x Hongik University"
+      "organization": "Samsung Electronics MX Business Division x Hongik University",
+      "cover": {
+        "tone": "paper",
+        "layout": "single",
+        "primary": "/assets/projects/Portfolio_Podcast.png",
+        "primaryFrame": "plain",
+        "annotation": "Research-led service concept"
+      }
     },
     "proj-004": {
       "slug": "lemonlight",
@@ -540,25 +826,182 @@
       "role": "Product UX, brand, and pitch",
       "team": "USC & Techstars hackathon team",
       "status": "Hackathon concept; 2nd place",
-      "summary": "An agentic AI concept for identifying missed hospital charges, grounded in original clinical billing-workflow research.",
-      "contribution": "I defined the product UX, brand, and pitch, grounding the business model in clinical billing-workflow research.",
-      "outcome": "HAiLY earned second place at USC & Techstars Startup Weekend as a research-informed product and business concept.",
+      "summary": "A two-sided service concept that detects missed hospital charges, routes one clear decision to a physician and gives billing administrators a traceable follow-up workflow.",
+      "contribution": "I translated clinical billing-workflow research into the product architecture, administrator and physician journeys, interface direction, brand and pitch. Selected presentation slides show the product logic and interface direction while omitting pilot-result and commercial-detail pages.",
+      "outcome": "HAiLY earned second place at USC & Techstars Startup Weekend as a research-informed product and business concept. It remained a hackathon proposal, not a deployed clinical system.",
       "accent": "#316b70",
-      "art": "research",
-      "image": null,
-      "imageAlt": "",
+      "art": "image",
+      "image": "/assets/projects/haily-slide-12.png",
+      "imageAlt": "HAiLY presentation slide showing the administrator and physician product surfaces",
+      "visualCaption": "Selected HAiLY pitch-deck slide showing the two-sided product concept.",
+      "cover": {
+        "tone": "research",
+        "layout": "primary-right",
+        "primary": "/assets/projects/haily-slide-12.png",
+        "primaryFrame": "plain",
+        "secondary": "/assets/projects/haily-slide-16.png",
+        "secondaryFrame": "plain",
+        "annotation": "Clinical billing workflow"
+      },
       "sections": [
         {
-          "id": "billing-workflow",
-          "title": "A product direction for missed charges",
-          "body": "HAiLY proposed an AI agent to address missed hospital charges. I defined its product UX, brand, and pitch, with a business model grounded in original clinical billing-workflow research. The documented result is a second-place hackathon award."
+          "id": "missed-charge-workflow",
+          "title": "Missed charges begin as unfinished clinical work",
+          "body": "A hospital encounter can remain pending when documentation and billing codes do not line up before submission. The research reframed a missed charge as a coordination problem: the administrator can see that something is incomplete, but the physician holds the context needed to resolve it."
+        },
+        {
+          "id": "administrative-friction",
+          "title": "One unresolved encounter creates a long manual loop",
+          "body": "The current-state workflow required an administrator to open the EHR, filter by specialty and physician, identify a pending encounter, trace its financial and visit details, select a reason and assemble a reminder. The same case often required three to four follow-ups before a code could be confirmed or the encounter could be closed.",
+          "flow": {
+            "label": "Current-state follow-up",
+            "steps": [
+              { "label": "Find", "detail": "Filter pending encounters and locate the physician responsible for the visit." },
+              { "label": "Trace", "detail": "Cross-check encounter, service-date and billing context across records." },
+              { "label": "Explain", "detail": "Choose the missing-charge reason and prepare a physician-facing reminder." },
+              { "label": "Repeat", "detail": "Monitor the response, verify the correction and follow up again when needed." }
+            ],
+            "caption": "Privacy-safe reconstruction of the researched workflow; no patient or hospital data is shown."
+          }
+        },
+        {
+          "id": "product-intervention",
+          "title": "The product sits between a pending encounter and billing",
+          "body": "HAiLY was designed as a coordination layer, not a replacement EHR. The agent audits incomplete encounters, packages the minimum context needed for a decision and routes a concise request to the physician before returning the validated response to the billing workflow.",
+          "comparison": {
+            "observation": "Administrators carried the burden of finding, explaining and repeatedly chasing each exception.",
+            "response": "Detect the exception automatically, give the physician one focused validation task and preserve a visible status trail for the administrator."
+          }
+        },
+        {
+          "id": "service-architecture",
+          "title": "The service architecture follows the decision",
+          "body": "The concept connected an existing EHR or EMR to a lightweight agent layer through FHIR R4 or HL7 data ingestion. HAiLY would audit, detect and route an exception; the physician would validate the suggested action; and the confirmed information would return to billing for submission.",
+          "flow": {
+            "label": "Proposed service flow",
+            "steps": [
+              { "label": "Ingest", "detail": "Receive encounter context from systems such as Epic, Cerner or Athena through FHIR R4 or HL7." },
+              { "label": "Audit", "detail": "Identify a likely missed charge and assemble the relevant context." },
+              { "label": "Validate", "detail": "Ask the physician for a focused, one-click decision with a path to review details." },
+              { "label": "Submit", "detail": "Return the confirmed action to the billing workflow and update its status." }
+            ],
+            "caption": "Conceptual architecture reconstructed from the hackathon pitch; integration was not deployed."
+          }
+        },
+        {
+          "id": "two-sided-interface",
+          "title": "Each role sees only the work it can resolve",
+          "body": "The product split into a desktop administrator view for oversight and a mobile physician view for decisions. The administrator needed queue health, ownership, status and escalation context; the physician needed a short explanation, the relevant encounter context and an unambiguous action.",
+          "details": [
+            { "label": "Administrator", "body": "Scan open cases, see who owns each one, understand why it was flagged and track follow-up state." },
+            { "label": "Physician", "body": "Review one exception at a time, confirm or correct it and move on without navigating the full billing system." }
+          ]
+        },
+        {
+          "id": "product-phases",
+          "title": "The roadmap moved from recovery to prevention",
+          "body": "The pitch separated the opportunity into three product phases so the concept did not depend on solving every clinical workflow at once. Each phase expanded the role of the agent while keeping a human validation point in the loop.",
+          "details": [
+            { "label": "Retrospective recovery", "body": "Find missed charges after documentation and return them to the correct reviewer." },
+            { "label": "Real-time prevention", "body": "Surface likely omissions closer to the moment of documentation." },
+            { "label": "Continuous intelligence", "body": "Use patterns across resolved exceptions to improve routing and operational visibility." }
+          ]
+        },
+        {
+          "id": "pitch-and-result",
+          "title": "A complex workflow became a concise product story",
+          "body": "For the final pitch, I connected the operational pain point, two-sided experience, service architecture, product phases and business framing into one narrative. HAiLY placed second at USC & Techstars Startup Weekend. The award is the documented outcome; the product remains an exploratory concept rather than a validated performance claim."
         }
       ],
       "facts": [
-        { "value": "2nd", "label": "USC & Techstars Startup Weekend" }
+        { "value": "2nd", "label": "USC & Techstars Startup Weekend" },
+        { "value": "2", "label": "Role-specific product views" },
+        { "value": "3", "label": "Proposed product phases" }
       ],
       "resources": [],
-      "source": "resume: JuminShin_Resume (4).pdf, HAiLY"
+      "content": [
+        {
+          "type": "image",
+          "src": "/assets/projects/haily-slide-01.png",
+          "sectionId": "missed-charge-workflow",
+          "presentation": "slide",
+          "caption": "Pitch deck cover / HAiLY, medical billing intelligence in motion."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/haily-slide-09.png",
+          "sectionId": "administrative-friction",
+          "presentation": "slide",
+          "caption": "Current-state map showing the fragmented path from pending encounter to a submitted charge."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/haily-slide-10.png",
+          "sectionId": "product-intervention",
+          "presentation": "slide",
+          "caption": "The proposed intervention closes the pending branch before it becomes lost revenue."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/haily-slide-12.png",
+          "sectionId": "product-intervention",
+          "presentation": "slide",
+          "caption": "Two-sided product concept pairing an administrator workspace with a focused physician action."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/haily-slide-13.png",
+          "sectionId": "service-architecture",
+          "presentation": "slide",
+          "caption": "One agent positioned across the EHR, data-ingestion, physician and billing handoffs."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/haily-slide-16.png",
+          "sectionId": "two-sided-interface",
+          "presentation": "slide",
+          "caption": "Administrator view for queue health, pending encounters, ownership and follow-up status."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/haily-slide-17.png",
+          "sectionId": "two-sided-interface",
+          "presentation": "slide",
+          "caption": "Physician notification entry point designed to fit an existing mobile routine."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/haily-slide-18.png",
+          "sectionId": "two-sided-interface",
+          "presentation": "slide",
+          "caption": "Focused physician decision screen with a short explanation and direct validation action."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/haily-slide-23.png",
+          "sectionId": "product-phases",
+          "presentation": "slide",
+          "caption": "Three-phase roadmap moving from recovery to prevention and continuous intelligence."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/haily-slide-26.png",
+          "sectionId": "pitch-and-result",
+          "presentation": "slide",
+          "caption": "Hackathon team slide from the final USC and Techstars presentation."
+        }
+      ],
+      "source": "Resume: JuminShin_Resume (4).pdf; user-supplied HAiLY pitch deck, reviewed September 2026. Selected deck excerpts are reproduced here; pilot-result and commercial-detail slides are intentionally omitted.",
+      "diagram": {
+        "title": "Designing around the handoff",
+        "steps": [
+          { "label": "Map the exception", "detail": "Follow a pending encounter through the administrator's complete manual process." },
+          { "label": "Locate the decision", "detail": "Separate work the system can prepare from context only the physician can confirm." },
+          { "label": "Design both sides", "detail": "Give the administrator oversight and the physician one focused action." },
+          { "label": "Frame the roadmap", "detail": "Start with retrospective recovery before proposing real-time prevention." }
+        ],
+        "caption": "Retrospective product-development summary based on the hackathon deck, not a deployed clinical workflow."
+      }
     },
     {
       "id": "ars-pharma",
