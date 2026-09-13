@@ -10,6 +10,10 @@
     "role": "Website team lead, UX/UI design, frontend & publishing",
     "team": "Nonprofit team; backend developer collaboration",
     "status": "Published at swimuphill.org",
+    "caseStudyMode": "detailed",
+    "introLead": "I carried a nonprofit website from audience needs through frontend delivery and publishing.",
+    "introSupport": "The published experience connects families, schools, volunteers, donors and partners with clear paths into the foundation's mission.",
+    "descriptors": ["Web design", "Frontend", "Published product"],
     "summary": "An end-to-end website project for a swim-education nonprofit, connecting a shared mission with clear paths for families, schools, volunteers, donors and partners.",
     "contribution": "I led the website team, owned the UX/UI design and HTML frontend implementation, and published the website. I collaborated with a backend developer on the surrounding program, outreach and reporting workflows.",
     "outcome": "A publicly accessible, responsive website at swimuphill.org, taken from UX/UI design through frontend implementation and publishing. Launch is the documented outcome; enrollment, donation and conversion improvements are not claimed without post-launch data.",
@@ -30,11 +34,13 @@
     "sections": [
       {
         "id": "different-audiences",
+        "phase": "Context",
         "title": "One mission, different reasons to visit",
         "body": "Families, schools, volunteers and donors arrive with different questions. The UX challenge was to connect the foundation's story with a relevant next step for each audience, without making everyone navigate the same long explanation."
       },
       {
         "id": "audience-paths",
+        "phase": "Insight",
         "title": "Let visitors recognize their own path",
         "body": "The homepage groups entry points by visitor type. A parent can move toward program options, a school toward a visit, and a supporter toward volunteering, giving or partnership. This organizes the experience around visitor intent rather than the nonprofit's internal departments.",
         "comparison": {
@@ -44,11 +50,15 @@
       },
       {
         "id": "responsive-delivery",
-        "title": "Carry the design into a working site",
-        "body": "I carried the interface into HTML frontend implementation and publishing. The public experience includes program discovery, location exploration and mobile navigation, while collaboration with a backend developer connected the website work to broader operational needs."
+        "phase": "Design response",
+        "title": "Carry the design into",
+        "titleAccent": "a working site",
+        "lead": "I carried the interface into HTML frontend implementation and publishing.",
+        "body": "The public experience includes program discovery, location exploration and mobile navigation, while collaboration with a backend developer connected the website work to broader operational needs."
       },
       {
         "id": "launch-scope",
+        "phase": "Outcome",
         "title": "Own the handoff through publishing",
         "body": "My responsibility did not end with a design file. I led the website work through implementation and public release. The live site is the primary artifact; the screenshots below capture the published experience rather than a speculative redesign."
       }
@@ -67,149 +77,165 @@
     "source": "User-confirmed website creation and publishing; supplied resume, Swim Up Hill experience; public site inspected September 2026."
   },
   {
-    "id": "studio-os-audit",
-    "slug": "studio-os-audit",
-    "title": "Making an AI studio workspace easier to trust",
-    "organization": "Bubba's LA / Studio.OS",
-    "category": "Research",
+    "id": "ai-3d-product-visualization",
+    "slug": "ai-3d-product-visualization",
+    "title": "Building product worlds with Blender MCP",
+    "organization": "Bubba's LA / 3D production studies",
+    "category": "Experiment",
     "year": 2026,
-    "duration": "Jun 2026",
-    "role": "UX audit & improvement recommendations",
-    "team": "Internal studio operations platform",
-    "status": "UX audit and improvement proposal",
-    "summary": "A screen-by-screen UX review of Studio.OS, translating 29 interface issues across 10 screens into concrete recommendations for navigation, AI transparency and production decisions.",
-    "contribution": "I reviewed the existing interface, paired each observed issue with a proposed response, and organized the recommendations into a 21-slide handoff. My scope was UX evaluation and improvement proposals, not authorship of the existing platform.",
-    "outcome": "A documented UX audit covering 10 screens and 29 issue/solution pairs, delivered as a 21-slide presentation. The work provides actionable design directions; implementation, usability-test results and post-release impact are not established by the supplied materials.",
-    "accent": "#b93624",
-    "art": "audit",
-    "image": "/assets/projects/studio-os-briefing.png",
-    "imageAlt": "Original Studio.OS Briefing screen reviewed during the UX audit",
-    "imagePresentation": "browser",
-    "visualCaption": "01 / Original Studio.OS Briefing screen reviewed during the audit. Existing internal platform; not designed by me.",
+    "duration": "Summer 2026",
+    "role": "AI Research Intern / 3D prototyping",
+    "team": "Bubba's LA internship",
+    "status": "Six Blender product and character renders",
+    "caseStudyMode": "detailed",
+    "introLead": "Blender MCP became an editable control layer for a product and character study.",
+    "introSupport": "I directed editable modeling, materials, lighting and camera changes, then refined hierarchy through visual review.",
+    "descriptors": [
+      "3D prototyping",
+      "Blender MCP",
+      "Art direction"
+    ],
+    "summary": "An AI-assisted 3D production study using Blender MCP to model a cosmetic bottle, build a restrained product stage and develop a companion mascot through lighting and composition iterations.",
+    "contribution": "I used Blender MCP as a conversational control layer for modeling, material, lighting and camera changes, then reviewed every render visually and refined the hierarchy by hand. The case study uses the original high-resolution stills from my Drive archive.",
+    "outcome": "A coherent six-image study spanning product close-ups, staged lighting variations and two character directions. The work demonstrates how I combine generative tooling with direct visual judgment rather than treating an AI output as the finished design.",
+    "accent": "#5f6e68",
+    "art": "image",
+    "image": "/assets/projects/blender-mcp-v04.png",
+    "imageAlt": "Mint cosmetic bottle with a gold cap on a layered studio pedestal",
+    "visualCaption": "Final product-lighting study from the original Blender MCP image set.",
     "cover": {
-      "tone": "paper",
-      "layout": "primary-left",
-      "primary": "/assets/projects/studio-os-briefing.png",
-      "primaryFrame": "browser",
-      "secondary": "/assets/projects/studio-os-bench.png",
-      "secondaryFrame": "document",
-      "annotation": "10 screens / 29 recommendations"
+      "tone": "neutral",
+      "layout": "primary-right",
+      "primary": "/assets/projects/blender-mcp-v04.png",
+      "primaryFrame": "plain",
+      "secondary": "/assets/projects/blender-mcp-mascot.png",
+      "secondaryFrame": "plain",
+      "annotation": "Blender MCP / product and character studies"
     },
     "sections": [
       {
-        "id": "audit-scope",
-        "title": "Review the work across screens",
-        "body": "I examined Briefing, Archive, Pitch Prep, News, Projects, Schedules, Budgets, Bids, Bench and Portfolio. Recurring issues were not only visual: they concerned what people could find, what they could trust, and whether the interface made the next action clear."
+        "id": "creative-direction",
+        "phase": "Context",
+        "title": "Give two simple subjects one visual language",
+        "body": "I treated a cosmetic bottle and a small mascot as parts of the same visual study. Rounded geometry, mint and peach color, restrained metallic highlights and quiet studio staging create continuity between a polished product image and a more expressive character direction."
       },
       {
-        "id": "ai-transparency",
-        "title": "Make AI output inspectable",
-        "body": "In Briefing and Pitch Prep, the interface did not clearly distinguish source-backed facts from AI interpretation. I recommended visible sources, generation context and information-type labels, treating generated content as something a person reviews rather than an unquestionable answer.",
-        "comparison": {
-          "observation": "Facts and AI inference are difficult to distinguish in a generated brief.",
-          "response": "Label evidence and inference separately, expose source context and support human review."
+        "id": "ai-assisted-workflow",
+        "phase": "Prototype",
+        "title": "Use conversation as a control layer,",
+        "titleAccent": "not a substitute for judgment",
+        "lead": "Blender MCP let me direct modeling, material, lighting and camera changes through conversation.",
+        "body": "I reviewed each result as a designer, then refined proportion, silhouette, contrast and framing from what the render actually showed rather than accepting the first generated pass.",
+        "flow": {
+          "label": "Blender MCP iteration loop",
+          "steps": [
+            {
+              "label": "Direct",
+              "detail": "Describe the form, material, light or camera change in visual terms."
+            },
+            {
+              "label": "Build",
+              "detail": "Use Blender MCP to translate that direction into editable scene changes."
+            },
+            {
+              "label": "Review",
+              "detail": "Inspect the rendered silhouette, hierarchy, surface response and composition."
+            },
+            {
+              "label": "Refine",
+              "detail": "Tune the scene through another focused prompt or a direct adjustment in Blender."
+            }
+          ],
+          "caption": "Retrospective summary of the AI-assisted Blender workflow used for these studies."
         }
       },
       {
-        "id": "decision-context",
-        "title": "Replace internal shorthand with decision context",
-        "body": "Budget confidence labels such as LOW N=4 require insider knowledge. I proposed plain-language explanations, comparable cases, assumptions and ranges so the interface communicates the basis of an estimate, not only its amount.",
-        "comparison": {
-          "observation": "LOW N=4 is compact, but leaves the meaning and next step unexplained.",
-          "response": "Low confidence - 4 similar cases, with supporting assumptions and an explanation of the limited evidence."
-        }
+        "id": "product-model",
+        "phase": "Design response",
+        "title": "Build the product from readable proportions",
+        "body": "The product study starts with a recognizable bottle silhouette: a broad cylindrical body, a narrower neck, a reflective cap and a label band that remains legible from a distance. A stepped podium and circular backdrop give the form enough context without competing with it.",
+        "details": [
+          {
+            "label": "Silhouette",
+            "body": "Simple stacked volumes keep the bottle recognizable across close and wide views."
+          },
+          {
+            "label": "Material contrast",
+            "body": "A matte mint body, glossy label detail and warm metallic cap separate the main surfaces."
+          },
+          {
+            "label": "Stage",
+            "body": "Soft peach forms and an elevated plinth create depth while preserving a product-first hierarchy."
+          }
+        ]
       },
       {
-        "id": "connected-workflow",
-        "title": "Connect information to the next action",
-        "body": "Project information was spread across schedules, budgets, bids and crew views. I proposed a Project 360 detail structure, clearer ownership and status labels, and links between related records. For search-heavy screens, I recommended less introductory space and more useful filtering and comparison.",
-        "comparison": {
-          "observation": "Related production records sit in separate views, making status and next steps harder to judge.",
-          "response": "A project-centered overview connecting timeline, budget, bid, crew, files and activity."
-        }
+        "id": "lighting-studies",
+        "phase": "Iteration",
+        "title": "Tune hierarchy through four lighting studies",
+        "body": "The four product renders test different relationships between crop, camera distance, background exposure and directional light. Together they show how the same object can move from a graphic close-up to a bright catalog composition and then to a more atmospheric final stage."
+      },
+      {
+        "id": "character-study",
+        "phase": "Reflection",
+        "title": "Carry the same softness into a mascot",
+        "body": "Two mascot variations extend the palette and rounded massing into character design. The large eyes, compact proportions and small pose or accessory changes make the figure more expressive while keeping it visually connected to the product world."
       }
     ],
     "facts": [
-      {"value": "10", "label": "Screens reviewed"},
-      {"value": "29", "label": "Issue/solution pairs"},
-      {"value": "21", "label": "Slides in the handoff"}
+      {
+        "value": "4",
+        "label": "Product-lighting renders"
+      },
+      {
+        "value": "2",
+        "label": "Mascot variations"
+      },
+      {
+        "value": "Blender MCP",
+        "label": "Production workflow"
+      }
     ],
     "resources": [],
     "content": [
       {
         "type": "image",
-        "src": "/assets/projects/studio-os-archive.png",
-        "presentation": "browser",
-        "sectionId": "audit-scope",
-        "caption": "Original Archive screen reviewed during the audit. Existing Studio.OS interface; not designed by me.",
-        "fullSize": false
+        "src": "/assets/projects/blender-mcp-v01.png",
+        "sectionId": "product-model",
+        "caption": "Product study 01 / Close framing used to inspect the bottle silhouette, cap and label relationship."
       },
       {
         "type": "image",
-        "src": "/assets/projects/studio-os-news.png",
-        "presentation": "browser",
-        "sectionId": "audit-scope",
-        "caption": "Original News screen reviewed for information hierarchy, scanning and filtering. Existing interface; not designed by me.",
-        "fullSize": false
+        "src": "/assets/projects/blender-mcp-v02.png",
+        "sectionId": "product-model",
+        "caption": "Product study 02 / Wider composition introducing the layered plinth and circular backdrop."
       },
       {
         "type": "image",
-        "src": "/assets/projects/studio-os-pitch-prep.png",
-        "presentation": "browser",
-        "sectionId": "ai-transparency",
-        "caption": "Original Pitch Prep screen used to evaluate how generated guidance, evidence and source context were communicated. Not designed by me.",
-        "fullSize": false
+        "src": "/assets/projects/blender-mcp-v03.png",
+        "sectionId": "lighting-studies",
+        "caption": "Lighting study 03 / A stronger directional setup tests shadow, edge light and atmosphere."
       },
       {
         "type": "image",
-        "src": "/assets/projects/studio-os-budgets.png",
-        "presentation": "browser",
-        "sectionId": "decision-context",
-        "caption": "Original Budgets screen reviewed for confidence language, assumptions and comparable-case context. Not designed by me.",
-        "fullSize": false
+        "src": "/assets/projects/blender-mcp-v04.png",
+        "sectionId": "lighting-studies",
+        "caption": "Lighting study 04 / Balanced studio light keeps the product dominant while preserving depth in the stage."
       },
       {
         "type": "image",
-        "src": "/assets/projects/studio-os-bids.png",
-        "presentation": "browser",
-        "sectionId": "decision-context",
-        "caption": "Original Bids screen reviewed for estimate comparison and decision support. Existing interface; not designed by me.",
-        "fullSize": false
+        "src": "/assets/projects/blender-mcp-mascot.png",
+        "sectionId": "character-study",
+        "caption": "Mascot study 01 / Rounded form, pastel surfaces and a restrained pose carry the product world's visual language into character design."
       },
       {
         "type": "image",
-        "src": "/assets/projects/studio-os-projects.png",
-        "presentation": "browser",
-        "sectionId": "connected-workflow",
-        "caption": "Original Projects screen reviewed as the proposed anchor for a connected Project 360 workflow. Not designed by me.",
-        "fullSize": false
-      },
-      {
-        "type": "image",
-        "src": "/assets/projects/studio-os-schedules.png",
-        "presentation": "browser",
-        "sectionId": "connected-workflow",
-        "caption": "Original Schedules screen reviewed for ownership, status and links to related project records. Not designed by me.",
-        "fullSize": false
-      },
-      {
-        "type": "image",
-        "src": "/assets/projects/studio-os-bench.png",
-        "presentation": "browser",
-        "sectionId": "connected-workflow",
-        "caption": "Original Bench screen reviewed for search density, filtering and comparison across available talent. Not designed by me.",
-        "fullSize": false
-      },
-      {
-        "type": "image",
-        "src": "/assets/projects/studio-os-portfolio.png",
-        "presentation": "browser",
-        "sectionId": "connected-workflow",
-        "caption": "Original Portfolio screen reviewed for discovery, filtering and movement into the next production action. Not designed by me.",
-        "fullSize": false
+        "src": "/assets/projects/blender-mcp-mascot-variant.png",
+        "sectionId": "character-study",
+        "caption": "Mascot study 02 / A second expression and accessory variation tests personality without changing the core silhouette."
       }
     ],
-    "source": "User-supplied Bubba's LA / 6. Studio os screenshots, StudioOS_UX_PNG_Issues_Solutions_KR.docx and Final/StudioOS_UX_Issues_Solutions.pptx, June 2026. Screens are shown as audit evidence; authorship is explicitly attributed to the existing platform."
+    "source": "User-supplied Bubba's LA Drive archive, 10. personal project/0706_mcp/pictures, reviewed September 2026."
   },
   {
     "id": "bubbas-daily-target",
@@ -222,6 +248,10 @@
     "role": "Workflow design & mobile dashboard implementation",
     "team": "Business-development stakeholders",
     "status": "Working dashboard; documented internship handoff",
+    "caseStudyMode": "detailed",
+    "introLead": "A contact database became a focused daily decision tool.",
+    "introSupport": "Ranked signals, relevant capabilities and warm-introduction routes support one clear next action.",
+    "descriptors": ["Workflow design", "Responsive UI", "Prototype"],
     "summary": "A mobile-oriented decision-support dashboard for business development, connecting ranked signals, relevant capabilities and warm introduction routes to a clear daily priority.",
     "contribution": "I built the spreadsheet-to-dashboard workflow and its mobile HTML interface. I integrated an 11,571-contact professional network into the supporting workbook and refined the experience through stakeholder feedback, including clearer priorities and progress that survives a refresh.",
     "outcome": "A working mobile dashboard and documented July 2026 handoff. The interface is a read-only view of the workbook; daily contact and skip states are stored locally in the browser. It does not send messages or write changes back to the workbook. Screenshots use fictional data; no revenue or conversion lift is claimed.",
@@ -242,13 +272,17 @@
     "sections": [
       {
         "id": "daily-decision",
+        "phase": "Problem",
         "title": "Design around the decision, not the database",
         "body": "The useful question was not how to display every contact. It was which opportunity to review next, why it mattered, and whether an introduction route existed. I brought the score, signal, capability fit, supporting context and next action into one focused view."
       },
       {
         "id": "workflow-boundary",
-        "title": "Keep the workbook as the source of truth",
-        "body": "The workbook owns the scoring rubric and network matching. The dashboard reads those results and presents a ranked queue with geography, signal-type and warm-route filters. It can load an updated workbook without creating a second, competing database.",
+        "phase": "System constraint",
+        "title": "Keep the workbook",
+        "titleAccent": "as the source of truth",
+        "lead": "The workbook owns the scoring rubric and network matching.",
+        "body": "The dashboard reads those results and presents a ranked queue with geography, signal-type and warm-route filters. It can load an updated workbook without creating a second, competing database.",
         "comparison": {
           "observation": "A rich spreadsheet is difficult to turn into a quick mobile decision.",
           "response": "A focused read-only view: today's priority, why it fits, the next action and a ranked queue."
@@ -256,6 +290,7 @@
       },
       {
         "id": "feedback-iteration",
+        "phase": "Design response",
         "title": "Protect progress from everyday interruptions",
         "body": "Stakeholder feedback exposed two practical risks: a refresh could erase daily progress, and moving a spreadsheet column could break the data mapping. I added date-scoped local persistence for contact/skip states and header-based column resolution with explicit missing-field errors.",
         "comparison": {
@@ -265,6 +300,7 @@
       },
       {
         "id": "handoff-tradeoffs",
+        "phase": "Outcome",
         "title": "Make ownership and limitations explicit",
         "body": "The handoff documented the master workbook, scoring and matching logic, setup responsibilities and known limitations. Keeping the dashboard read-only simplified the interface and protected the workbook, but meant local check-offs were not a shared, cross-device record. Broader network coverage and company-owned automation remained follow-up work."
       }

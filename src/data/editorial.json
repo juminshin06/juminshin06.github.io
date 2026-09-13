@@ -11,6 +11,10 @@
       "role": "AI Research Intern",
       "team": "Bubba's LA production team",
       "status": "Adopted for production use",
+      "caseStudyMode": "detailed",
+      "introLead": "I helped turn a manual video-preparation workflow into one production interface.",
+      "introSupport": "The platform brought production tools into one automated workflow, then scaled from a 10-video prototype to more than 300 videos per automated batch.",
+      "descriptors": ["AI & UX", "Production workflow", "Interface design"],
       "summary": "UX for an AI-assisted video preparation workflow, bringing production tools into one interface and scaling from a 10-video prototype to 300+ videos per automated batch.",
       "contribution": "I designed and scaled the platform and centralized real-time monitoring and control in a single production interface.",
       "outcome": "The platform was adopted for production use, replacing manual clip-by-clip organization with automated batch preparation.",
@@ -31,16 +35,21 @@
       "sections": [
         {
           "id": "production-context",
+          "phase": "Context",
           "title": "Understanding the production workflow",
-          "body": "Rough-cut preparation involved footage, scripts, storyboards, voice-over files, and production notes. I designed and scaled an AI platform to bring those materials into an automated preparation workflow, moving beyond manual clip-by-clip organization."
+          "lead": "Rough-cut preparation involved footage, scripts, storyboards, voice-over files, and production notes.",
+          "body": "I designed and scaled an AI platform to bring those materials into an automated preparation workflow, moving beyond manual clip-by-clip organization."
         },
         {
           "id": "interface-scope",
-          "title": "Bringing key tasks into one interface",
+          "phase": "Design response",
+          "title": "Bringing key tasks into",
+          "titleAccent": "one interface",
           "body": "My work centralized real-time monitoring and control of automated timeline assembly, media handling, 3D scene creation, lighting, cameras, and animation. The interface brought these production functions into a single place."
         },
         {
           "id": "production-adoption",
+          "phase": "Outcome",
           "title": "From prototype to production use",
           "body": "The platform grew from a 10-video prototype to handling more than 300 videos per automated batch and was adopted for production use. The change was in operational scope: from a small prototype to batch preparation inside a production workflow."
         }
@@ -143,7 +152,8 @@
           "id": "review-context",
           "phase": "Context",
           "title": "A shared review needed more than a shared model",
-          "body": "The Honda Product Visualization Sprint asked how automotive teams could review one vehicle model together in Apple Vision Pro. Reviewers needed to discuss details, point, measure and annotate without dropping into a detached desktop workflow or losing the physical context of the vehicle."
+          "lead": "The Honda Product Visualization Sprint asked how automotive teams could review one vehicle model together in Apple Vision Pro.",
+          "body": "Reviewers needed to discuss details, point, measure and annotate without dropping into a detached desktop workflow or losing the physical context of the vehicle."
         },
         {
           "id": "interaction-gaps",
@@ -484,6 +494,10 @@
       "role": "UI/UX designer, industry collaboration",
       "team": "9-person cross-functional team",
       "status": "Industry collaboration prototype",
+      "caseStudyMode": "detailed",
+      "introLead": "A clinical taxonomy had to become a clear, reviewable assessment workflow.",
+      "introSupport": "The prototype keeps wound imagery, DISH categories and terminology decisions visible throughout assessment training.",
+      "descriptors": ["Healthcare UX", "Interaction design", "Prototype"],
       "summary": "A clinician-facing prototype that structures how teams review wound imagery, work with DISH categories and explain terminology decisions during assessment training.",
       "contribution": "I designed key interaction and interface states across guided training, keyword selection, rationale capture and assessment review within a nine-person cross-functional team, incorporating input from clinicians and industry researchers.",
       "outcome": "The collaboration produced a clinician-facing prototype that keeps assessment decisions and supporting context reviewable. This work is presented as design exploration, not as a clinically validated or deployed system.",
@@ -504,6 +518,7 @@
       "sections": [
         {
           "id": "clinical-context",
+          "phase": "Context",
           "title": "Translate a clinical taxonomy into a usable task",
           "body": "The training experience needed to make a structured wound-assessment task understandable without separating the decision from its clinical context. Each step keeps the DISH category, proposed terminology, question and progress visible so the reviewer knows exactly what is being evaluated.",
           "comparison": {
@@ -513,8 +528,10 @@
         },
         {
           "id": "guided-classification",
+          "phase": "Design response",
           "title": "Move from validation to active classification",
-          "body": "The interface evolved from confirming whether a proposed keyword matched a category to asking clinicians to choose a primary keyword and optional secondary terms alongside the wound image. The later flow makes the classification action more direct while retaining a visible assessment sequence.",
+          "lead": "The interface evolved from confirming whether a proposed keyword matched a category to asking clinicians to choose a primary keyword and optional secondary terms alongside the wound image.",
+          "body": "The later flow makes the classification action more direct while retaining a visible assessment sequence.",
           "comparison": {
             "observation": "A binary confirmation can validate a suggestion, but it does not capture the clinician's own terminology choice.",
             "response": "Pair the wound evidence with primary and secondary keyword controls so classification happens in context."
@@ -522,7 +539,9 @@
         },
         {
           "id": "feedback-rationale",
-          "title": "Capture disagreement, not just a yes or no",
+          "phase": "Iteration",
+          "title": "Capture disagreement,",
+          "titleAccent": "not just a yes or no",
           "body": "When a reviewer marks a proposed keyword as irrelevant, the flow asks why. A focused feedback state preserves the category and keyword, provides space for observations and still allows the reviewer to skip when no additional context is available.",
           "comparison": {
             "observation": "A negative response identifies disagreement but leaves the reason invisible to the team reviewing the assessment.",
@@ -531,6 +550,7 @@
         },
         {
           "id": "review-handoff",
+          "phase": "Outcome",
           "title": "Make the completed assessment traceable",
           "body": "The review state brings the wound image, DISH category, selected keyword, clinical elements, EHR elements, additional context and image description into one record. Reviewers can move across the twelve assessments, edit a response or continue with the full decision context intact.",
           "comparison": {
@@ -600,6 +620,10 @@
       "role": "Research Assistant; UX researcher and designer",
       "team": "3-person prototype team",
       "status": "Research prototype; ICIDS and KIISE 2023",
+      "caseStudyMode": "detailed",
+      "introLead": "A research prototype made branching, AI-assisted storytelling easier to structure.",
+      "introSupport": "The work connected interaction design and an authoring prototype with publications at ICIDS and KIISE.",
+      "descriptors": ["Human-AI", "UX research", "Prototyping"],
       "summary": "A research-led authoring prototype for creating branching stories with AI, connecting interaction design with publications at ICIDS and KIISE.",
       "contribution": "I designed and prototyped the authoring tool and co-authored the team's research publications.",
       "outcome": "The collaborative work led to publications at ICIDS 2023 and the KIISE Conference, alongside a creator-facing research prototype.",
@@ -617,17 +641,22 @@
       "sections": [
         {
           "id": "authoring-question",
+          "phase": "Problem",
           "title": "Making branching stories approachable",
-          "body": "The project explored an authoring environment where people without programming knowledge could create branching interactive stories with generative language models. Related work included Inkweaver and Twine."
+          "lead": "The project explored an authoring environment where people without programming knowledge could create branching interactive stories with generative language models.",
+          "body": "Related work included Inkweaver and Twine."
         },
         {
           "id": "narrative-elements",
+          "phase": "Design response",
           "title": "Giving narrative elements a structure",
           "body": "The prototype concept combined branching choices with AI-generated character traits, plot elements, and narrative arcs. Its design considered flat and round character types, 20 master plot archetypes, and attribute-driven story progression."
         },
         {
           "id": "research-contribution",
-          "title": "From interface prototype to publication",
+          "phase": "Outcome",
+          "title": "From interface prototype",
+          "titleAccent": "to publication",
           "body": "As a research assistant at Hongik University under Prof. Byung-Chull Bae, I designed and prototyped the creator-facing tool. The collaborative research appeared at ICIDS 2023 and the KIISE Conference in June 2023. The existing project materials include research boards and authoring-interface designs."
         }
       ],
@@ -662,6 +691,10 @@
       "role": "Researcher & Designer Intern",
       "team": "Research teams across client engagements",
       "status": "Research and design contributions completed",
+      "caseStudyMode": "detailed",
+      "introLead": "User research became product direction across mobile, automotive, and workplace services.",
+      "introSupport": "Mixed-method engagements across Samsung Electronics, Hyundai Motor Company and SK involved approximately 100 participants in total.",
+      "descriptors": ["UX research", "Product strategy", "Interface concepts"],
       "summary": "Mixed-method UX research across Samsung Electronics, Hyundai Motor Company, and SK, involving approximately 100 participants in total.",
       "contribution": "I contributed to interviews, surveys, and usability tests, then translated findings into strategies, concepts, and UI prototypes.",
       "outcome": "The work informed Galaxy personalization strategies and UI prototypes, Hyundai SUV camping-feature concepts, and an SK employee service platform. I presented outcomes at a generative AI workshop.",
@@ -678,16 +711,21 @@
       "sections": [
         {
           "id": "research-scope",
+          "phase": "Context",
           "title": "Research across different contexts",
           "body": "I contributed to mixed-method UX research for Samsung Electronics, Hyundai Motor Company, and SK. Interviews, surveys, and usability tests involved approximately 100 participants across the engagements, not 100 participants in each study."
         },
         {
           "id": "design-directions",
-          "title": "Moving from findings to design",
-          "body": "I translated findings into personalization strategies and UI prototypes for Samsung Galaxy, camping-feature concepts for Hyundai SUVs, and an employee service platform for SK. These were distinct client contexts within my internship."
+          "phase": "Insight",
+          "title": "Moving from findings",
+          "titleAccent": "to design",
+          "lead": "I translated findings into personalization strategies and UI prototypes for Samsung Galaxy, camping-feature concepts for Hyundai SUVs, and an employee service platform for SK.",
+          "body": "These were distinct client contexts within my internship."
         },
         {
           "id": "sharing-outcomes",
+          "phase": "Design response",
           "title": "Communicating the work",
           "body": "I presented the research and design outcomes at a generative AI workshop, connecting findings with the resulting strategies, service concepts and interface prototypes."
         }
@@ -834,6 +872,10 @@
       "role": "Product UX, brand, and pitch",
       "team": "USC & Techstars hackathon team",
       "status": "Hackathon concept; 2nd place",
+      "caseStudyMode": "detailed",
+      "introLead": "A long missed-charge handoff became a two-sided healthcare workflow proposal.",
+      "introSupport": "The concept detects incomplete encounters, routes one clear physician decision and returns traceable context to billing administrators.",
+      "descriptors": ["Healthcare UX", "Service design", "Product strategy"],
       "summary": "A two-sided service concept that detects missed hospital charges, routes one clear decision to a physician and gives billing administrators a traceable follow-up workflow.",
       "contribution": "I translated clinical billing-workflow research into the product architecture, administrator and physician journeys, interface direction, brand and pitch. Selected presentation slides show the product logic and interface direction while omitting pilot-result and commercial-detail pages.",
       "outcome": "HAiLY earned second place at USC & Techstars Startup Weekend as a research-informed product and business concept. It remained a hackathon proposal, not a deployed clinical system.",
@@ -854,11 +896,13 @@
       "sections": [
         {
           "id": "missed-charge-workflow",
+          "phase": "Problem",
           "title": "Missed charges begin as unfinished clinical work",
           "body": "A hospital encounter can remain pending when documentation and billing codes do not line up before submission. The research reframed a missed charge as a coordination problem: the administrator can see that something is incomplete, but the physician holds the context needed to resolve it."
         },
         {
           "id": "administrative-friction",
+          "phase": "Problem",
           "title": "One unresolved encounter creates a long manual loop",
           "body": "The current-state workflow required an administrator to open the EHR, filter by specialty and physician, identify a pending encounter, trace its financial and visit details, select a reason and assemble a reminder. The same case often required three to four follow-ups before a code could be confirmed or the encounter could be closed.",
           "flow": {
@@ -874,8 +918,11 @@
         },
         {
           "id": "product-intervention",
-          "title": "The product sits between a pending encounter and billing",
-          "body": "HAiLY was designed as a coordination layer, not a replacement EHR. The agent audits incomplete encounters, packages the minimum context needed for a decision and routes a concise request to the physician before returning the validated response to the billing workflow.",
+          "phase": "Design response",
+          "title": "The product sits between",
+          "titleAccent": "a pending encounter and billing",
+          "lead": "HAiLY was designed as a coordination layer, not a replacement EHR.",
+          "body": "The agent audits incomplete encounters, packages the minimum context needed for a decision and routes a concise request to the physician before returning the validated response to the billing workflow.",
           "comparison": {
             "observation": "Administrators carried the burden of finding, explaining and repeatedly chasing each exception.",
             "response": "Detect the exception automatically, give the physician one focused validation task and preserve a visible status trail for the administrator."
@@ -883,6 +930,7 @@
         },
         {
           "id": "service-architecture",
+          "phase": "System constraint",
           "title": "The service architecture follows the decision",
           "body": "The concept connected an existing EHR or EMR to a lightweight agent layer through FHIR R4 or HL7 data ingestion. HAiLY would audit, detect and route an exception; the physician would validate the suggested action; and the confirmed information would return to billing for submission.",
           "flow": {
@@ -898,6 +946,7 @@
         },
         {
           "id": "two-sided-interface",
+          "phase": "Design response",
           "title": "Each role sees only the work it can resolve",
           "body": "The product split into a desktop administrator view for oversight and a mobile physician view for decisions. The administrator needed queue health, ownership, status and escalation context; the physician needed a short explanation, the relevant encounter context and an unambiguous action.",
           "details": [
@@ -907,6 +956,7 @@
         },
         {
           "id": "product-phases",
+          "phase": "Iteration",
           "title": "The roadmap moved from recovery to prevention",
           "body": "The pitch separated the opportunity into three product phases so the concept did not depend on solving every clinical workflow at once. Each phase expanded the role of the agent while keeping a human validation point in the loop.",
           "details": [
@@ -917,6 +967,7 @@
         },
         {
           "id": "pitch-and-result",
+          "phase": "Outcome",
           "title": "A complex workflow became a concise product story",
           "body": "For the final pitch, I connected the operational pain point, two-sided experience, service architecture, product phases and business framing into one narrative. HAiLY placed second at USC & Techstars Startup Weekend. The award is the documented outcome; the product remains an exploratory concept rather than a validated performance claim."
         }
@@ -1022,6 +1073,10 @@
       "role": "Package, service, and UI designer",
       "team": "2-person team",
       "status": "Industry Challenge Sprint proposal",
+      "caseStudyMode": "detailed",
+      "introLead": "An emergency medication concept expanded into a campus preparedness service.",
+      "introSupport": "Awareness, medication access and bystander action connect across service, package and interface design.",
+      "descriptors": ["Service design", "Healthcare", "Package & UI"],
       "summary": "A campus-wide anaphylaxis response system connecting awareness, medication access and bystander action through service, package and interface design.",
       "contribution": "On a two-person team, I designed the package, service and interface concepts for ARS Pharma's Industry Challenge Sprint, connecting physical access to neffy with campus education and digital wayfinding.",
       "outcome": "The sprint produced an end-to-end service proposal rather than a deployed program: a campus response model spanning training, kit placement, wayfinding, packaging and awareness touchpoints.",
@@ -1042,26 +1097,33 @@
       "sections": [
         {
           "id": "preparedness-research",
+          "phase": "Problem",
           "title": "Starting with the preparedness gap",
           "body": "The team used a short USC student survey and secondary research to understand awareness of anaphylaxis and emergency medication. The work pointed to a connected problem: students needed to know what to do, where treatment was available and how to reach it quickly."
         },
         {
           "id": "campus-service",
-          "title": "Building a campus response, not a single touchpoint",
+          "phase": "Design response",
+          "title": "Building a campus response,",
+          "titleAccent": "not a single touchpoint",
           "body": "The service proposal paired resident-assistant and public-safety training with high-risk campus locations, health partners and awareness events. Placing neffy near existing emergency infrastructure created a recognizable access model while distributing responsibility across campus teams."
         },
         {
           "id": "location-interface",
+          "phase": "Design response",
           "title": "Making the nearest kit visible and actionable",
           "body": "The interface concept helped a bystander locate the nearest neffy kit, check whether it was available and receive walking directions. It was framed as an integration with existing USC maps and safety or health services, not as a disconnected standalone app."
         },
         {
           "id": "one-handed-package",
+          "phase": "Prototype",
           "title": "Redesigning the case for one-handed access",
-          "body": "The existing zip case requires two hands, which conflicts with the urgency and simplicity of nasal administration. The selected concept replaced the zipper with a single-thumb slide mechanism, kept two doses immediately available and added concise instructions, a video QR code and low-light identification."
+          "lead": "The existing zip case requires two hands, which conflicts with the urgency and simplicity of nasal administration.",
+          "body": "The selected concept replaced the zipper with a single-thumb slide mechanism, kept two doses immediately available and added concise instructions, a video QR code and low-light identification."
         },
         {
           "id": "awareness-system",
+          "phase": "Outcome",
           "title": "Extending preparedness beyond the emergency",
           "body": "A friendly guardian character and campus activation concepts made education less clinical and more memorable. Scenario cards, demonstrations and portable brand touchpoints were designed to help students encounter and rehearse the response before an emergency occurs."
         }
