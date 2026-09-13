@@ -13,6 +13,14 @@ export function NarrativeHeading({ children, accent }) {
   return <h2>{children}{accent ? <> <span className={s.narrativeAccent}>{accent}</span></> : null}</h2>
 }
 
+export function DesignDecision({ comparison }) {
+  if (!comparison) return null
+  return <dl className={s.designDecision} data-design-decision="true">
+    <div><dt>Problem</dt><dd>{comparison.observation}</dd></div>
+    <div><dt>Design response</dt><dd>{comparison.response}</dd></div>
+  </dl>
+}
+
 export function SectionDetails({ items = [] }) {
   if (!items.length) return null
   return <dl className={s.sectionDetails} data-detail-list="true">

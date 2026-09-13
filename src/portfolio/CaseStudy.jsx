@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { ArrowLeft, ArrowRight, ArrowUpRight, Play, X } from 'lucide-react'
 import { allProjects } from '../data/portfolio'
 import { ProjectImage, TextLink } from './Shell'
-import { NarrativeCopy, NarrativeHeading, SectionDetails, SectionFlow } from './CaseStudyBlocks'
+import { DesignDecision, NarrativeCopy, NarrativeHeading, SectionDetails, SectionFlow } from './CaseStudyBlocks'
 import { buildPhaseNavigation, getCaseStudyMode, getProjectFacts, getSectionPhase } from './caseStudyNarrative'
 import ProjectArt from './ProjectArt'
 import s from './Portfolio.module.css'
@@ -143,10 +143,7 @@ export default function CaseStudy({ project }) {
             <NarrativeCopy lead={section.lead} body={section.body} className={s.storyCopy} />
             <SectionDetails items={section.details} />
             <SectionFlow flow={section.flow} />
-            {section.comparison && <dl className={s.designDecision}>
-              <div><dt>Design challenge</dt><dd>{section.comparison.observation}</dd></div>
-              <div><dt>{project.art === 'audit' ? 'Proposed response' : 'Design response'}</dt><dd>{section.comparison.response}</dd></div>
-            </dl>}
+            <DesignDecision comparison={section.comparison} />
           </div>
           {evidence.length > 0 ? <div className={`${s.storyEvidenceGrid} ${evidence.length === 1 ? s.storyEvidenceGridSingle : ''}`} data-evidence-grid="true">
             {evidence.map(block => <EvidenceFigure key={block.src} block={block} sectionId={section.id} number={artifactNumber++} />)}
@@ -163,7 +160,7 @@ export default function CaseStudy({ project }) {
 
       {assignments.resources.length > 0 && <div className={s.caseResources}>{assignments.resources.map((block, index) => <Resource key={`${block.src}-${index}`} block={block} />)}</div>}
 
-      <section className={s.outcome} id="outcome">
+      <section className={s.outcome} id="outcome" data-outcome-section="true">
         <span className={s.label}>Outcome</span>
         <h2>{project.status}</h2>
         <p>{project.outcome}</p>

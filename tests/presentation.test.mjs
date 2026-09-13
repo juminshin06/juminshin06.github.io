@@ -344,3 +344,20 @@ test('case study navigation exposes authored phases without numeric section head
     assert.match(concise, /data-story-phase="Project overview"/)
   } finally { await server.close() }
 })
+
+test('case study evidence and decisions use the open editorial treatment', async () => {
+  const server = await createServer({ server: { middlewareMode: true, ws: false }, appType: 'custom', logLevel: 'error' })
+  try {
+    const { render } = await server.ssrLoadModule('/src/entry-server.jsx')
+    const honda = render('/work/honda-spatial/')
+    assert.match(honda, /data-design-decision="true"/)
+    assert.match(honda, />Problem</)
+    assert.match(honda, />Design response</)
+    assert.match(honda, /data-image-presentation="slide"/)
+    assert.match(honda, /data-outcome-section="true"/)
+    const css = readFileSync(new URL('../src/portfolio/Portfolio.module.css', import.meta.url), 'utf8')
+    assert.match(css, /\.storyArtifactSlide img\s*{[^}]*object-fit:\s*contain/s)
+    assert.match(css, /\.outcome\s*{[^}]*background:\s*var\(--paper\)/s)
+    assert.doesNotMatch(css, /\.designDecision > div\s*{[^}]*border:\s*1px solid/s)
+  } finally { await server.close() }
+})
