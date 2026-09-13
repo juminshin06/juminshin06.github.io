@@ -39,6 +39,17 @@ test('the work-led homepage uses the natural hero portrait without editorial lab
   } finally { await server.close() }
 })
 
+test('the homepage uses the editorial type system without project phase navigation', async () => {
+  const server = await createServer({ server: { middlewareMode: true, ws: false }, appType: 'custom', logLevel: 'error' })
+  try {
+    const { render } = await server.ssrLoadModule('/src/entry-server.jsx')
+    const html = render('/')
+
+    assert.match(html, /data-home-editorial-type="true"/)
+    assert.doesNotMatch(html, /aria-label="In this project"/)
+  } finally { await server.close() }
+})
+
 test('the homepage prioritizes projects by UX Design Engineer relevance and stated preference', async () => {
   const server = await createServer({ server: { middlewareMode: true, ws: false }, appType: 'custom', logLevel: 'error' })
   try {

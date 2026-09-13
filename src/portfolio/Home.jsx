@@ -1,5 +1,5 @@
 import { ArrowRight, ArrowUpRight } from 'lucide-react'
-import { featuredProjects, practiceProjects } from '../data/portfolio'
+import { allProjects } from '../data/portfolio'
 import profile from '../data/profile.json'
 import { ProjectImage, SectionHeading, TextLink } from './Shell'
 import ProjectCover from './ProjectCover'
@@ -12,15 +12,23 @@ const caseStudyTitles = {
   'story-authoring': 'Human-AI storytelling',
   'swim-up-hill': 'Website design and delivery',
   'embrain-research': 'Product direction',
-  'studio-os-audit': 'Studio.OS audit',
+  'ai-3d-product-visualization': 'AI-assisted 3D production',
   'bubbas-daily-target': 'Daily Target',
   'ars-pharma': 'Anaphylaxis care',
 }
 
-const homepageProjects = new Map([...featuredProjects, ...practiceProjects].map(project => [project.slug, project]))
+const homepageProjects = new Map(allProjects.map(project => [project.slug, project]))
 const leadProjects = ['bubbas-production', 'swim-up-hill', 'ethicon-care', 'ars-pharma'].map(slug => homepageProjects.get(slug))
-const supportingProjects = ['bubbas-daily-target', 'honda-spatial', 'story-authoring', 'studio-os-audit', 'embrain-research'].map(slug => homepageProjects.get(slug))
-const heroProjects = [...leadProjects, ...supportingProjects].filter(Boolean)
+const supportingProjects = [
+  'bubbas-daily-target',
+  'honda-spatial',
+  'story-authoring',
+  'ai-3d-product-visualization',
+  'embrain-research',
+  'haily',
+  'handsign',
+  'samsung-podcast',
+].map(slug => homepageProjects.get(slug)).filter(Boolean)
 
 function CaseStudyRow({ project, index }) {
   const primaryFact = project.facts?.[0]
@@ -62,33 +70,46 @@ function CompactProject({ project, index }) {
   </a>
 }
 
-function HeroProjectTile({ project, index }) {
-  const title = caseStudyTitles[project.slug] || project.title
-  return <a className={s.heroProjectTile} href={`/work/${project.slug}/`} aria-label={`${title}, ${project.organization}`}>
-    <ProjectCover project={project} variant="micro" eager={index < 3} />
-    <span className={s.heroProjectNumber} aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
-    <span className={s.heroProjectLabel} aria-hidden="true">{title}</span>
-  </a>
+function EditorialPortrait() {
+  return <figure className={s.heroPortrait} data-hero-portrait="true">
+    <div className={s.heroPortraitFrame}>
+      <picture>
+        <source
+          srcSet="/assets/optimized/jumin-editorial-portrait-v2-720.webp 720w, /assets/optimized/jumin-editorial-portrait-v2.webp 1122w"
+          sizes="(max-width: 600px) calc(100vw - 40px), 360px"
+          type="image/webp"
+        />
+        <img
+          src="/assets/jumin-editorial-portrait-v2.png"
+          width="1122"
+          height="1402"
+          alt="Editorial portrait of Jumin Shin"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+        />
+      </picture>
+    </div>
+  </figure>
 }
 
 export default function Home() {
-  return <>
+  return <div className={s.homePage} data-home-editorial-type="true">
     <section className={s.hero} aria-label="Jumin Shin, UX Design Engineer">
       <div className={s.heroCopy}>
         <h1>Jumin Shin</h1>
         <p className={s.heroRole}>UX Design Engineer</p>
         <p className={s.heroStatement}>I turn research into working interfaces across AI, spatial computing and digital products.</p>
         <p className={s.heroMeta}>Los Angeles · Research · Interaction · Prototyping</p>
+        <div className={s.heroAffiliation} aria-label="Graduate student at USC Iovine and Young Academy">
+          <img src="/assets/USC_logo.svg" width="30" height="31" alt="" aria-hidden="true" />
+          <span>
+            <strong>USC Iovine and Young Academy</strong>
+            <small>M.S. Student · Integrated Design, Business and Technology</small>
+          </span>
+        </div>
       </div>
-      <nav className={s.heroProjectNav} aria-label="Project shortcuts">
-        <div className={s.heroProjectNavHeader}>
-          <span>Project index</span>
-          <span>{String(heroProjects.length).padStart(2, '0')}</span>
-        </div>
-        <div className={s.heroProjectGrid}>
-          {heroProjects.map((project, index) => <HeroProjectTile key={project.id} project={project} index={index} />)}
-        </div>
-      </nav>
+      <EditorialPortrait />
     </section>
 
     <section className={s.caseStudies} id="work" aria-labelledby="case-studies-heading">
@@ -138,5 +159,5 @@ export default function Home() {
         <div className={s.miniExperience}>{profile.experience.filter(p => /Bubba|Swim|Embrain/.test(p.organization)).map(p => <div key={p.organization}><strong>{p.organization}</strong><span>{p.title}</span></div>)}</div>
       </div>
     </section>
-  </>
+  </div>
 }
