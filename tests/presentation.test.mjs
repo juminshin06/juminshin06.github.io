@@ -80,6 +80,9 @@ test('the homepage prioritizes projects by UX Design Engineer relevance and stat
       'story-authoring',
       'bubbas-daily-target',
       'ai-3d-product-visualization',
+      'handsign',
+      'samsung-podcast',
+      'wood-chip',
     ]
     assert.doesNotMatch(html, /Project index|aria-label="Project shortcuts"/)
 
@@ -94,7 +97,7 @@ test('the homepage prioritizes projects by UX Design Engineer relevance and stat
   } finally { await server.close() }
 })
 
-test('homepage project covers use four lead and six gallery presentations', async () => {
+test('homepage project covers use four lead and nine gallery presentations', async () => {
   const server = await createServer({ server: { middlewareMode: true, ws: false }, appType: 'custom', logLevel: 'error' })
   try {
     const { render } = await server.ssrLoadModule('/src/entry-server.jsx')
@@ -104,7 +107,7 @@ test('homepage project covers use four lead and six gallery presentations', asyn
 
     assert.equal((html.match(/data-project-cover="micro"/g) || []).length, 0)
     assert.equal((featured.match(/data-project-cover="lead"/g) || []).length, 4)
-    assert.equal((supporting.match(/data-project-cover="gallery"/g) || []).length, 6)
+    assert.equal((supporting.match(/data-project-cover="gallery"/g) || []).length, 9)
     assert.match(featured, /data-cover-tone="bubbas-blue"/)
     assert.match(featured, /data-cover-layout="immersive"/)
     assert.match(featured, /bubbas-assist-media/)
@@ -182,7 +185,7 @@ test('homepage project framing keeps company names concise and roles visible', a
     assert.match(featured, />Ethicon R&amp;D, Johnson &amp; Johnson MedTech</)
     assert.doesNotMatch(featured, /American Honda x USC Iovine and Young Academy/)
     assert.doesNotMatch(featured, /Ethicon R&amp;D, Johnson &amp; Johnson MedTech x USC Iovine and Young Academy/)
-    assert.equal((supporting.match(/data-project-role="true"/g) || []).length, 6)
+    assert.equal((supporting.match(/data-project-role="true"/g) || []).length, 9)
     assert.match(supporting, /Package, service, and UI designer/)
     assert.doesNotMatch(supporting, /ARS Pharma x USC Iovine and Young Academy/)
   } finally { await server.close() }
@@ -232,11 +235,11 @@ test('the homepage hero presents USC as a quiet academic affiliation', async () 
     const { render } = await server.ssrLoadModule('/src/entry-server.jsx')
     const html = render('/')
     const hero = html.slice(html.indexOf('<section'), html.indexOf('</section>'))
-    assert.match(hero, /USC_logo\.svg/)
+    assert.match(hero, /logo-usc\.png/)
     assert.match(hero, /USC Iovine and Young Academy/)
     assert.match(hero, /M\.S\. Student/)
     assert.match(hero, /Integrated Design, Business and Technology/)
-    assert.equal(existsSync(new URL('../public/assets/USC_logo.svg', import.meta.url)), true)
+    assert.equal(existsSync(new URL('../public/assets/logo-usc.png', import.meta.url)), true)
 
     const moduleCss = readFileSync(new URL('../src/portfolio/Portfolio.module.css', import.meta.url), 'utf8')
     const currentCss = moduleCss.slice(moduleCss.indexOf('/* UX Design Engineer portfolio */'))
@@ -270,21 +273,23 @@ test('PACEPOP presents dense phone evidence as a responsive visual gallery', asy
   } finally { await server.close() }
 })
 
-test('more product work uses a compact six-project gallery', async () => {
+test('more product work uses a spacious nine-project gallery without divider rules', async () => {
   const server = await createServer({ server: { middlewareMode: true, ws: false }, appType: 'custom', logLevel: 'error' })
   try {
     const { render } = await server.ssrLoadModule('/src/entry-server.jsx')
     const html = render('/')
     const supporting = html.slice(html.indexOf('aria-labelledby="more-work-heading"'), html.indexOf('aria-labelledby="home-about-heading"'))
 
-    assert.equal((supporting.match(/data-more-work-project="true"/g) || []).length, 6)
-    assert.equal((supporting.match(/data-project-cover="gallery"/g) || []).length, 6)
+    assert.equal((supporting.match(/data-more-work-project="true"/g) || []).length, 9)
+    assert.equal((supporting.match(/data-project-cover="gallery"/g) || []).length, 9)
+    for (const slug of ['handsign', 'samsung-podcast', 'wood-chip']) assert.match(supporting, new RegExp(`/work/${slug}/`))
     assert.doesNotMatch(supporting, /Web delivery \/ UX evaluation \/ Internal tools \/ Service design/)
 
     const moduleCss = readFileSync(new URL('../src/portfolio/Portfolio.module.css', import.meta.url), 'utf8')
     const currentCss = moduleCss.slice(moduleCss.indexOf('/* UX Design Engineer portfolio */'))
     assert.match(currentCss, /\.productWorkGrid\s*{[^}]*grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\)/s)
     assert.match(currentCss, /\.productWorkMedia \.projectCover\s*{[^}]*aspect-ratio:\s*1\.5/s)
+    assert.match(currentCss, /\.productWorkCaption\s*{[^}]*border-bottom:\s*0/s)
   } finally { await server.close() }
 })
 
@@ -355,10 +360,12 @@ test('about page presents a branded toolkit, compact profile links and school id
 
     assert.equal((html.match(/data-tech-tool="true"/g) || []).length, 7)
     for (const tool of ['Figma', 'React', 'JavaScript', 'Python', 'Blender', 'Unity', 'Unreal Engine']) assert.match(html, new RegExp(`>${tool}<`))
+    assert.doesNotMatch(html, /data-tech-tool="true"[^>]*tabindex=/i)
     assert.match(html, /data-about-links="true"/)
     for (const label of ['Email', 'LinkedIn', 'Resume', 'Scholar']) assert.match(html, new RegExp(`>${label}<`))
     assert.equal((html.match(/data-education-entry="true"/g) || []).length, 3)
-    for (const logo of ['logo-usc.svg', 'logo-tu-berlin.svg', 'logo-hongik.svg']) assert.match(html, new RegExp(logo.replace('.', '\\.')))
+    for (const logo of ['logo-usc.png', 'logo-tu-berlin.png', 'logo-hongik.png']) assert.match(html, new RegExp(logo.replace('.', '\\.')))
+    assert.equal((html.match(/loading="lazy"/g) || []).length >= 3, true)
     assert.doesNotMatch(html, /About \/ Los Angeles/)
 
     const moduleCss = readFileSync(new URL('../src/portfolio/Portfolio.module.css', import.meta.url), 'utf8')
@@ -366,6 +373,21 @@ test('about page presents a branded toolkit, compact profile links and school id
     assert.match(currentCss, /\.techTool:is\(:hover, :focus-visible\)\s*{[^}]*color:\s*var\(--tool-color\)/s)
     assert.match(currentCss, /\.aboutLinkButton\s*{[^}]*display:\s*inline-flex/s)
     assert.match(currentCss, /\.educationLogo\s*{[^}]*display:\s*grid/s)
+  } finally { await server.close() }
+})
+
+test('homepage about includes the complete toolkit and a compact school list', async () => {
+  const server = await createServer({ server: { middlewareMode: true, ws: false }, appType: 'custom', logLevel: 'error' })
+  try {
+    const { render } = await server.ssrLoadModule('/src/entry-server.jsx')
+    const html = render('/')
+    const about = html.slice(html.indexOf('aria-labelledby="home-about-heading"'), html.indexOf('<footer'))
+
+    assert.equal((about.match(/data-home-tech-tool="true"/g) || []).length, 7)
+    for (const tool of ['Figma', 'React', 'JavaScript', 'Python', 'Blender', 'Unity', 'Unreal Engine']) assert.match(about, new RegExp(`>${tool}<`))
+    assert.equal((about.match(/data-home-education-entry="true"/g) || []).length, 3)
+    for (const logo of ['logo-usc.png', 'logo-tu-berlin.png', 'logo-hongik.png']) assert.match(about, new RegExp(logo.replace('.', '\\.')))
+    assert.equal((about.match(/loading="lazy"/g) || []).length >= 3, true)
   } finally { await server.close() }
 })
 
@@ -399,6 +421,7 @@ test('the homepage removes decorative section framing and prioritizes direct con
     assert.match(moreWork, /Research notes and publications/)
     assert.doesNotMatch(html, /I(?:’|&#x27;)d love to hear what you(?:’|&#x27;)re working on/)
     assert.match(footer, /data-contact-links="true"/)
+    assert.match(footer, /data-footer-explore="true"/)
     for (const label of ['Email', 'LinkedIn', 'Resume', 'Scholar']) assert.match(footer, new RegExp(`>${label}<`))
     assert.match(footer, />Archive</)
     assert.match(footer, />Life</)
@@ -408,6 +431,7 @@ test('the homepage removes decorative section framing and prioritizes direct con
     assert.match(currentCss, /\.researchCallout\s*{[^}]*border:\s*1px solid var\(--ink\)/s)
     assert.match(currentCss, /\.contactLinks\s*{[^}]*display:\s*grid/s)
     assert.match(currentCss, /\.contactIcon\s*{[^}]*display:\s*grid/s)
+    assert.match(currentCss, /\.footerExploreLinks\s*{[^}]*display:\s*grid/s)
     assert.doesNotMatch(currentCss, /\.contactLinkPrimary\s*{[^}]*grid-column:/s)
   } finally { await server.close() }
 })

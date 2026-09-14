@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react'
-import { ArrowUpRight, ArrowRight, Menu, X, Download, Mail, Link2, FileText, BookOpen } from 'lucide-react'
+import { ArrowUpRight, ArrowRight, Menu, X, Download, Mail, Link2, FileText, BookOpen, Archive as ArchiveIcon, Sparkles } from 'lucide-react'
 import profile from '../data/profile.json'
 import imageManifest from '../../public/assets/optimized/manifest.json'
 import s from './Portfolio.module.css'
@@ -42,26 +42,29 @@ export function Footer() {
         <p className={s.label}>Contact</p>
         <h2>Let’s connect.</h2>
       </div>
-      <div className={s.contactLinks} data-contact-links="true">
-        <a className={s.contactLink} href={`mailto:${profile.email}`} aria-label={`Email ${profile.email}`} title={profile.email}>
-          <span className={s.contactIcon}><Mail size={18} aria-hidden="true" /></span><strong>Email</strong><ArrowUpRight size={17} aria-hidden="true" />
-        </a>
-        <a className={s.contactLink} href={profile.linkedin} target="_blank" rel="noreferrer">
-          <span className={s.contactIcon}><Link2 size={18} aria-hidden="true" /></span><strong>LinkedIn</strong><ArrowUpRight size={17} aria-hidden="true" />
-        </a>
-        <a className={s.contactLink} href={resumeUrl} target="_blank" rel="noreferrer">
-          <span className={s.contactIcon}><FileText size={18} aria-hidden="true" /></span><strong>Resume</strong><ArrowUpRight size={17} aria-hidden="true" />
-        </a>
-        <a className={s.contactLink} href={profile.scholar} target="_blank" rel="noreferrer">
-          <span className={s.contactIcon}><BookOpen size={18} aria-hidden="true" /></span><strong>Scholar</strong><ArrowUpRight size={17} aria-hidden="true" />
-        </a>
+      <div className={s.footerActions}>
+        <div className={s.contactLinks} data-contact-links="true">
+          <a className={s.contactLink} href={`mailto:${profile.email}`} aria-label={`Email ${profile.email}`} title={profile.email}>
+            <span className={s.contactIcon}><Mail size={18} aria-hidden="true" /></span><strong>Email</strong><ArrowUpRight size={17} aria-hidden="true" />
+          </a>
+          <a className={s.contactLink} href={profile.linkedin} target="_blank" rel="noreferrer">
+            <span className={s.contactIcon}><Link2 size={18} aria-hidden="true" /></span><strong>LinkedIn</strong><ArrowUpRight size={17} aria-hidden="true" />
+          </a>
+          <a className={s.contactLink} href={resumeUrl} target="_blank" rel="noreferrer">
+            <span className={s.contactIcon}><FileText size={18} aria-hidden="true" /></span><strong>Resume</strong><ArrowUpRight size={17} aria-hidden="true" />
+          </a>
+          <a className={s.contactLink} href={profile.scholar} target="_blank" rel="noreferrer">
+            <span className={s.contactIcon}><BookOpen size={18} aria-hidden="true" /></span><strong>Scholar</strong><ArrowUpRight size={17} aria-hidden="true" />
+          </a>
+        </div>
+        <nav className={s.footerExploreLinks} data-footer-explore="true" aria-label="Explore more">
+          <a href="/archive/"><ArchiveIcon size={22} aria-hidden="true" /><strong>Archive</strong><ArrowRight size={21} aria-hidden="true" /></a>
+          <a href="/life/"><Sparkles size={22} aria-hidden="true" /><strong>Life</strong><ArrowRight size={21} aria-hidden="true" /></a>
+        </nav>
       </div>
     </div>
     <div className={s.footerBottom}>
       <a className={s.brand} href="/">Jumin Shin</a>
-      <div className={s.footerLinks}>
-        <a href="/archive/">Archive</a><a href="/life/">Life</a>
-      </div>
       <span className={s.copyright}>© {new Date().getFullYear()}</span>
     </div>
   </footer>

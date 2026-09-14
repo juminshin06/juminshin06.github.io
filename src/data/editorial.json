@@ -1140,6 +1140,12 @@
       "art": "production",
       "image": null,
       "imageAlt": "",
+      "cover": {
+        "tone": "neutral",
+        "layout": "single",
+        "primary": null,
+        "primaryFrame": "plain"
+      },
       "sections": [
         {
           "id": "product-launch",

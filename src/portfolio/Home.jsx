@@ -3,6 +3,7 @@ import { allProjects } from '../data/portfolio'
 import profile from '../data/profile.json'
 import { ProjectImage, SectionHeading, TextLink } from './Shell'
 import ProjectCover from './ProjectCover'
+import TechTools from './Toolkit'
 import s from './Portfolio.module.css'
 
 const caseStudyTitles = {
@@ -26,7 +27,16 @@ const supportingProjects = [
   'story-authoring',
   'bubbas-daily-target',
   'ai-3d-product-visualization',
+  'handsign',
+  'samsung-podcast',
+  'wood-chip',
 ].map(slug => homepageProjects.get(slug)).filter(Boolean)
+
+const homeSchools = [
+  { name: 'USC Iovine and Young Academy', degree: 'M.S. Integrated Design, Business & Technology', logo: '/assets/logo-usc.png' },
+  { name: 'TU Berlin', degree: 'International Exchange Program', logo: '/assets/logo-tu-berlin.png' },
+  { name: 'Hongik University', degree: 'BFA Design Convergence · B.Eng. Game Software', logo: '/assets/logo-hongik.png' },
+]
 
 function CaseStudyRow({ project, index }) {
   const primaryFact = project.facts?.[0]
@@ -102,7 +112,7 @@ export default function Home() {
         <p className={s.heroStatement}>I turn research into working interfaces across AI, spatial computing and digital products.</p>
         <p className={s.heroMeta}>Research · Interaction · Prototyping · AI</p>
         <div className={s.heroAffiliation} aria-label="Graduate student at USC Iovine and Young Academy">
-          <img src="/assets/USC_logo.svg" width="30" height="31" alt="" aria-hidden="true" />
+          <img src="/assets/logo-usc.png" width="30" height="31" alt="" aria-hidden="true" />
           <span>
             <strong>USC Iovine and Young Academy</strong>
             <small>M.S. Student · Integrated Design, Business and Technology</small>
@@ -145,7 +155,21 @@ export default function Home() {
         <p className={s.bodyText}>From UX research with Samsung and Hyundai to AI-assisted production workflows, I turn complex requirements into interfaces and prototypes. I’m pursuing an M.S. in Integrated Design, Business and Technology at USC.</p>
         <TextLink href="/about/">Experience and background</TextLink>
         <div className={s.miniExperience}>{profile.experience.map(p => <article key={`${p.organization}-${p.period}`} data-home-experience="true"><strong>{p.organization}</strong><span>{p.title}</span><small>{p.period}</small></article>)}</div>
+        <section className={s.homeEducation} aria-labelledby="home-education-heading">
+          <h3 id="home-education-heading">Education</h3>
+          <ul>{homeSchools.map(school => <li data-home-education-entry="true" key={school.name}>
+            <img src={school.logo} alt="" aria-hidden="true" loading="lazy" decoding="async" />
+            <span><strong>{school.name}</strong><small>{school.degree}</small></span>
+          </li>)}</ul>
+        </section>
       </div>
+      <section className={s.homeToolkit} aria-labelledby="home-toolkit-heading">
+        <div className={s.homeToolkitHeading}>
+          <h2 id="home-toolkit-heading">Tools I work with</h2>
+          <span>Design, research and prototyping</span>
+        </div>
+        <TechTools home />
+      </section>
     </section>
   </div>
 }
