@@ -35,6 +35,6 @@ export default function ProjectCover({ project, variant = 'lead', eager = false 
         : <div className={s.coverFallback} aria-hidden="true"><ProjectArt project={project} /></div>}
       {showSecondary && <CoverFrame src={cover.secondary} frame={cover.secondaryFrame} sizes="(max-width: 1200px) 14vw, 240px" className={s.coverSecondary} />}
     </div>
-    {variant === 'lead' && <span className={s.coverAnnotation}>{cover.annotation}</span>}
+    {variant === 'lead' && cover.annotation && <span className={s.coverAnnotation}>{cover.annotation}</span>}
   </div>
 }

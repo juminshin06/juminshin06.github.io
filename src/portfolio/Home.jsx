@@ -39,8 +39,8 @@ function CaseStudyRow({ project, index }) {
     </a>
     <div className={s.caseStudyCaption} data-project-caption="true">
       <div className={s.caseStudyIdentity}>
-        <span>{String(index + 1).padStart(2, '0')}</span>
-        <span>{project.organization}</span>
+        <span className={s.caseStudyCompany} data-project-company="true">{project.organization}</span>
+        <span className={s.caseStudyNumber}>{String(index + 1).padStart(2, '0')}</span>
       </div>
       <div className={s.caseStudyCopy}>
         <h3><a href={`/work/${project.slug}/`}>{caseStudyTitles[project.slug] || project.title}</a></h3>
@@ -62,9 +62,9 @@ function CompactProject({ project, index }) {
     <span className={s.projectNumber}>{String(index + 5).padStart(2, '0')}</span>
     <div className={s.compactThumb} aria-hidden="true"><ProjectCover project={project} variant="compact" /></div>
     <span className={s.compactCopy}>
-      <span className={s.caseStudyOrg}>{project.organization}</span>
+      <span className={s.caseStudyOrg} data-project-company="true">{project.organization}</span>
       <strong>{caseStudyTitles[project.slug] || project.title}</strong>
-      <span>{project.status}</span>
+      <span className={s.compactRole} data-project-role="true">{project.role}</span>
     </span>
     <ArrowUpRight size={22} aria-hidden="true" />
   </a>

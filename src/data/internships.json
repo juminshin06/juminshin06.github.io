@@ -26,8 +26,7 @@
       "tone": "paper",
       "layout": "single",
       "primary": "/assets/projects/pacepop-cover-v2.png",
-      "primaryFrame": "plain",
-      "annotation": "Two roles / one temporary room"
+      "primaryFrame": "plain"
     },
     "sections": [
       {

@@ -170,8 +170,54 @@ test('Honda and J&J covers foreground the product without template overlays', as
       assert.match(currentCss, new RegExp(`\\.caseStudyMedia\\[data-project-slug='${slug}'\\] \\.projectAction\\s*\\{[^}]*display:\\s*none`, 's'))
       assert.match(currentCss, new RegExp(`\\.caseStudyMedia\\[data-project-slug='${slug}'\\] \\.coverPrimary\\s*\\{`, 's'))
     }
-    assert.match(currentCss, /\.caseStudyMedia\[data-project-slug='ethicon-care'\] \.coverPrimary img\s*{[^}]*transform:\s*scale\(/s)
+    assert.match(currentCss, /\.caseStudyMedia\[data-project-slug='ethicon-care'\] \.coverPrimary img\s*{[^}]*object-fit:\s*contain[^}]*transform:\s*none/s)
   } finally { await server.close() }
+})
+
+test('homepage project framing keeps company names concise and roles visible', async () => {
+  const server = await createServer({ server: { middlewareMode: true, ws: false }, appType: 'custom', logLevel: 'error' })
+  try {
+    const { render } = await server.ssrLoadModule('/src/entry-server.jsx')
+    const html = render('/')
+    const featured = html.slice(html.indexOf('id="work"'), html.indexOf('aria-labelledby="capability-heading"'))
+    const supporting = html.slice(html.indexOf('aria-labelledby="more-work-heading"'), html.indexOf('aria-labelledby="home-about-heading"'))
+
+    assert.match(featured, /data-project-company="true"/)
+    assert.doesNotMatch(featured, /Two roles \/ one temporary room|12-assessment review flow/)
+    assert.match(featured, />American Honda</)
+    assert.match(featured, />Ethicon R&amp;D, Johnson &amp; Johnson MedTech</)
+    assert.doesNotMatch(featured, /American Honda x USC Iovine and Young Academy/)
+    assert.doesNotMatch(featured, /Ethicon R&amp;D, Johnson &amp; Johnson MedTech x USC Iovine and Young Academy/)
+    assert.equal((supporting.match(/data-project-role="true"/g) || []).length, 8)
+    assert.match(supporting, /Package, service, and UI designer/)
+    assert.doesNotMatch(supporting, /ARS Pharma x USC Iovine and Young Academy/)
+  } finally { await server.close() }
+})
+
+test('case study introductions pair the project story with its hero artifact', async () => {
+  const server = await createServer({ server: { middlewareMode: true, ws: false }, appType: 'custom', logLevel: 'error' })
+  try {
+    const { render } = await server.ssrLoadModule('/src/entry-server.jsx')
+    for (const slug of ['bubbas-production', 'pacepop', 'honda-spatial', 'ethicon-care']) {
+      const html = render(`/work/${slug}/`)
+      const overview = html.indexOf('id="overview"')
+      const header = html.slice(html.lastIndexOf('<header', overview), html.indexOf('</header>', overview))
+      assert.match(header, /data-case-intro-layout="split"/)
+      assert.match(header, /data-case-hero-media="true"/)
+      assert.match(header, /data-project-facts="true"/)
+      assert.equal((html.match(/data-case-hero-media="true"/g) || []).length, 1)
+    }
+  } finally { await server.close() }
+})
+
+test('mobile case studies expose swipeable evidence with restrained PACEPOP corners', () => {
+  const moduleCss = readFileSync(new URL('../src/portfolio/Portfolio.module.css', import.meta.url), 'utf8')
+  const currentCss = moduleCss.slice(moduleCss.indexOf('/* UX Design Engineer portfolio */'))
+  const mobileCss = currentCss.slice(currentCss.lastIndexOf('@media (max-width: 600px)'))
+
+  assert.match(mobileCss, /\.storyEvidenceGrid:not\(\.storyEvidenceGridSingle\)\s*{[^}]*display:\s*flex[^}]*overflow-x:\s*auto[^}]*scroll-snap-type:\s*x\s+mandatory/s)
+  assert.match(mobileCss, /\.casePage\[data-project-slug='pacepop'\]\s+\.storyArtifactPhone img\s*{[^}]*border-radius:\s*18px[^}]*clip-path:\s*inset\(1px\s+round\s+18px\)/s)
+  assert.match(mobileCss, /\.caseToc\s*{[^}]*scroll-padding-inline:/s)
 })
 
 test('the hero portrait uses correctly sized responsive sources', async () => {
@@ -257,18 +303,18 @@ test('homepage projects preserve their original media sizing with editorial text
 
     const moduleCss = readFileSync(new URL('../src/portfolio/Portfolio.module.css', import.meta.url), 'utf8')
     const currentCss = moduleCss.slice(moduleCss.indexOf('/* UX Design Engineer portfolio */'))
-    assert.match(currentCss, /\.caseStudyList\s*{[^}]*display:\s*grid[^}]*grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\)/s)
+    assert.match(currentCss, /\.caseStudyList\s*{[^}]*display:\s*grid[^}]*grid-template-columns:\s*repeat\(4,\s*minmax\(0,\s*1fr\)\)/s)
     assert.match(currentCss, /\.caseStudyRow\s*{[^}]*display:\s*block[^}]*min-height:\s*0/s)
     assert.match(currentCss, /\.caseStudyCaption\s*{[^}]*max-width:\s*580px/s)
     assert.doesNotMatch(currentCss, /\.caseStudyRow:nth-child\(even\)\s+\.caseStudyMedia/)
     assert.match(currentCss, /\.caseStudyMedia \.projectArt\s*{[^}]*aspect-ratio:\s*1\.55/s)
     assert.doesNotMatch(currentCss, /\.caseStudyTopline\b|\.caseStudyEvidence\b/)
-    assert.match(currentCss, /\.compactProjectList\s*{[^}]*display:\s*grid[^}]*grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\)[^}]*border-top:\s*1px solid var\(--ink\)/s)
+    assert.match(currentCss, /\.compactProjectList\s*{[^}]*display:\s*grid[^}]*grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\)[^}]*border-top:\s*1px solid var\(--ink\)/s)
     assert.doesNotMatch(currentCss, /\.compactProject:nth-child\(1\)[^}]*grid-column:\s*span\s+7/s)
   } finally { await server.close() }
 })
 
-test('the homepage opens with a clean portrait and moves directly into two-column case studies', async () => {
+test('the homepage opens with a clean portrait and presents four lead projects together', async () => {
   const server = await createServer({ server: { middlewareMode: true, ws: false }, appType: 'custom', logLevel: 'error' })
   try {
     const { render } = await server.ssrLoadModule('/src/entry-server.jsx')
@@ -290,8 +336,8 @@ test('the homepage opens with a clean portrait and moves directly into two-colum
     assert.match(currentCss, /\.heroPortraitFrame\s*{[^}]*background:\s*(?:transparent|#fff(?:fff)?)[^}]*border:\s*0/s)
     assert.doesNotMatch(currentCss, /\.heroPortraitMark\s*{/)
     assert.doesNotMatch(currentCss, /\.projectIndexStrip\s*{|\.heroProjectGrid\s*{/)
-    assert.match(currentCss, /\.caseStudyList\s*{[^}]*grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\)/s)
-    assert.match(currentCss, /\.compactProjectList\s*{[^}]*grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\)/s)
+    assert.match(currentCss, /\.caseStudyList\s*{[^}]*grid-template-columns:\s*repeat\(4,\s*minmax\(0,\s*1fr\)\)/s)
+    assert.match(currentCss, /\.compactProjectList\s*{[^}]*grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\)/s)
     assert.match(currentCss, /@media\s*\(max-width:\s*1024px\)\s+and\s+\(min-width:\s*601px\)[\s\S]*?\.hero\s*{[^}]*grid-template-columns:\s*minmax\(0,\s*1\.15fr\)\s+minmax\(260px,\s*\.85fr\)/s)
     assert.match(currentCss, /@media\s*\(max-width:\s*760px\)\s+and\s+\(min-width:\s*601px\)[\s\S]*?\.caseStudyList,\s*\.compactProjectList\s*{[^}]*grid-template-columns:\s*1fr/s)
     assert.match(currentCss, /@media\s*\(max-width:\s*600px\)[\s\S]*?\.caseStudyList\s*{[^}]*grid-template-columns:\s*1fr/s)
@@ -399,7 +445,7 @@ test('the portfolio stylesheet enforces the approved readable visual system', ()
   assert.match(moduleCss, /\.storyArtifact:not\(\.storyArtifactBrowser\) \.storyArtifactMedia\s*{[^}]*display:\s*flex[^}]*justify-content:\s*center/s)
   assert.match(moduleCss, /\.storyArtifact:not\(\.storyArtifactBrowser\) img\s*{[^}]*width:\s*auto[^}]*max-width:\s*100%[^}]*max-height:\s*min\(74svh,\s*700px\)/s)
   assert.match(moduleCss, /@media\s*\(max-width:\s*600px\)[\s\S]*?\.caseStudyRow\s*{[^}]*grid-template-columns:\s*1fr/s)
-  assert.match(moduleCss, /@media\s*\(max-width:\s*600px\)[\s\S]*?\.caseVisual\.caseImage \.projectArt\s*{[^}]*aspect-ratio:\s*auto/s)
+  assert.match(moduleCss, /@media\s*\(max-width:\s*600px\)[\s\S]*?\.caseVisual\.caseImage \.projectArt\s*{[^}]*aspect-ratio:\s*1\.35/s)
   assert.match(moduleCss, /@media\s*\(max-width:\s*600px\)[\s\S]*?\.storyArtifact:not\(\.storyArtifactBrowser\) img\s*{[^}]*width:\s*100%[^}]*max-height:\s*none/s)
 })
 

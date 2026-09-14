@@ -117,7 +117,7 @@
       "id": "honda-spatial",
       "slug": "honda-spatial",
       "title": "Spatial UX for collaborative design reviews",
-      "organization": "American Honda x USC Iovine and Young Academy",
+      "organization": "American Honda",
       "category": "Spatial",
       "year": 2026,
       "duration": "Feb - May 2026",
@@ -483,7 +483,7 @@
       "id": "ethicon-care",
       "slug": "ethicon-care",
       "title": "Designing a clearer wound assessment workflow",
-      "organization": "Ethicon R&D, Johnson & Johnson MedTech x USC Iovine and Young Academy",
+      "organization": "Ethicon R&D, Johnson & Johnson MedTech",
       "category": "Clinical UX",
       "year": 2026,
       "duration": "Jan - May 2026",
@@ -506,8 +506,7 @@
         "tone": "clinical",
         "layout": "immersive",
         "primary": "/assets/projects/jj-training-decision.png",
-        "primaryFrame": "plain",
-        "annotation": "12-assessment review flow"
+        "primaryFrame": "plain"
       },
       "sections": [
         {
@@ -993,7 +992,7 @@
       "id": "ars-pharma",
       "slug": "ars-pharma",
       "title": "Anaphylaxis care on campus",
-      "organization": "ARS Pharma x USC Iovine and Young Academy",
+      "organization": "ARS Pharma",
       "category": "Product",
       "year": 2026,
       "duration": "Jan - May 2026",

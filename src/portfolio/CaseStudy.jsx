@@ -125,20 +125,28 @@ export default function CaseStudy({ project }) {
   return <article ref={article} className={s.casePage} data-case-study-mode={mode} data-project-slug={project.slug}>
     <header className={s.caseHeader} id="overview">
       <a className={s.backLink} href="/#work"><ArrowLeft size={17} />Work</a>
-      <div className={s.caseIntro}>
-        <p className={s.label}>{project.organization}</p>
-        <h1>{displayTitles[project.slug] || project.title}</h1>
-        <div data-intro-lead="true">
-          <NarrativeCopy lead={project.introLead || project.summary} body={project.introSupport} className={s.caseSummary} />
+      <div className={s.caseHeaderGrid} data-case-intro-layout="split">
+        <div className={s.caseIntroColumn}>
+          <div className={s.caseIntro}>
+            <p className={s.label}>{project.organization}</p>
+            <h1>{displayTitles[project.slug] || project.title}</h1>
+            <div data-intro-lead="true">
+              <NarrativeCopy lead={project.introLead || project.summary} body={project.introSupport} className={s.caseSummary} />
+            </div>
+            {project.descriptors?.length > 0 && <ul className={s.caseDescriptors} data-project-descriptors="true">
+              {project.descriptors.slice(0, 3).map(descriptor => <li key={descriptor}>{descriptor}</li>)}
+            </ul>}
+            {primaryResources.length > 0 && <div className={s.casePrimaryLinks}>{primaryResources.map(resource => <TextLink key={resource.href} href={resource.href} external>{resource.label}</TextLink>)}</div>}
+          </div>
+          <dl className={s.caseMetadata} data-project-facts="true">
+            {projectFacts.map(fact => <div key={fact.label}><dt>{fact.label}</dt><dd>{fact.value}</dd></div>)}
+          </dl>
         </div>
-        {project.descriptors?.length > 0 && <ul className={s.caseDescriptors} data-project-descriptors="true">
-          {project.descriptors.slice(0, 3).map(descriptor => <li key={descriptor}>{descriptor}</li>)}
-        </ul>}
-        {primaryResources.length > 0 && <div className={s.casePrimaryLinks}>{primaryResources.map(resource => <TextLink key={resource.href} href={resource.href} external>{resource.label}</TextLink>)}</div>}
+        <figure className={`${s.caseVisual} ${project.image ? s.caseImage : ''}`} data-case-hero-media="true">
+          <ProjectArt project={project} eager presentation />
+          <figcaption>{project.visualCaption || (project.image ? 'Project artifact' : 'Documented project scope')}</figcaption>
+        </figure>
       </div>
-      <dl className={s.caseMetadata} data-project-facts="true">
-        {projectFacts.map(fact => <div key={fact.label}><dt>{fact.label}</dt><dd>{fact.value}</dd></div>)}
-      </dl>
     </header>
 
     {phaseNavigation.length > 0 && <nav className={s.caseToc} aria-label="Case study sections" data-phase-navigation="true">
@@ -146,11 +154,6 @@ export default function CaseStudy({ project }) {
       {phaseNavigation.map(item => <a key={item.id} href={`#${item.id}`} aria-current={activePhase?.id === item.id ? 'location' : undefined}>{item.label}</a>)}
       <a href="#outcome" aria-current={activeSection === 'outcome' ? 'location' : undefined}>Outcome</a>
     </nav>}
-
-    <figure className={`${s.caseVisual} ${project.image ? s.caseImage : ''}`}>
-      <ProjectArt project={project} eager presentation />
-      <figcaption>{project.visualCaption || (project.image ? 'Project artifact' : 'Documented project scope')}</figcaption>
-    </figure>
 
     <section className={s.caseContributionPanel} aria-label="My contribution">
       <span className={s.label}>My contribution</span>

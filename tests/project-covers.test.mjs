@@ -30,7 +30,9 @@ test('homepage projects define supported editorial cover metadata', () => {
     assert.ok(project.cover, `missing cover metadata: ${slug}`)
     assert.ok(allowedTones.has(project.cover.tone), `invalid tone: ${slug}`)
     assert.ok(allowedLayouts.has(project.cover.layout), `invalid layout: ${slug}`)
-    assert.ok(project.cover.annotation, `missing factual annotation: ${slug}`)
+    if (project.cover.annotation !== undefined) {
+      assert.equal(typeof project.cover.annotation, 'string', `invalid factual annotation: ${slug}`)
+    }
 
     if (project.cover.primary) {
       assert.ok(allowedFrames.has(project.cover.primaryFrame), `invalid primary frame: ${slug}`)
