@@ -96,7 +96,7 @@ test('the homepage prioritizes projects by UX Design Engineer relevance and stat
   } finally { await server.close() }
 })
 
-test('homepage project covers use four lead and eight compact presentations', async () => {
+test('homepage project covers use four lead and eight gallery presentations', async () => {
   const server = await createServer({ server: { middlewareMode: true, ws: false }, appType: 'custom', logLevel: 'error' })
   try {
     const { render } = await server.ssrLoadModule('/src/entry-server.jsx')
@@ -106,7 +106,7 @@ test('homepage project covers use four lead and eight compact presentations', as
 
     assert.equal((html.match(/data-project-cover="micro"/g) || []).length, 0)
     assert.equal((featured.match(/data-project-cover="lead"/g) || []).length, 4)
-    assert.equal((supporting.match(/data-project-cover="compact"/g) || []).length, 8)
+    assert.equal((supporting.match(/data-project-cover="gallery"/g) || []).length, 8)
     assert.match(featured, /data-cover-tone="bubbas-blue"/)
     assert.match(featured, /data-cover-layout="immersive"/)
     assert.match(featured, /bubbas-assist-media/)
@@ -157,7 +157,7 @@ test('Honda and J&J covers foreground the product without template overlays', as
       assert.match(entry, /data-cover-frame="plain"/)
       assert.doesNotMatch(entry, /coverSecondary/)
     }
-    assert.match(entries['honda-spatial'], /honda-deck-28/)
+    assert.match(entries['honda-spatial'], /honda-deck-22/)
     assert.match(entries['ethicon-care'], /jj-training-decision/)
 
     const moduleCss = readFileSync(new URL('../src/portfolio/Portfolio.module.css', import.meta.url), 'utf8')
@@ -272,15 +272,20 @@ test('PACEPOP presents dense phone evidence as a responsive visual gallery', asy
   } finally { await server.close() }
 })
 
-test('compact project covers use a block wrapper for their block content', async () => {
+test('more product work uses large two-column visual profiles', async () => {
   const server = await createServer({ server: { middlewareMode: true, ws: false }, appType: 'custom', logLevel: 'error' })
   try {
     const { render } = await server.ssrLoadModule('/src/entry-server.jsx')
     const html = render('/')
     const supporting = html.slice(html.indexOf('aria-labelledby="more-work-heading"'), html.indexOf('aria-labelledby="home-about-heading"'))
 
-    assert.equal((supporting.match(/<div class="[^"]*compactThumb/g) || []).length, 8)
-    assert.doesNotMatch(supporting, /<span class="[^"]*compactThumb/)
+    assert.equal((supporting.match(/data-more-work-project="true"/g) || []).length, 8)
+    assert.equal((supporting.match(/data-project-cover="gallery"/g) || []).length, 8)
+
+    const moduleCss = readFileSync(new URL('../src/portfolio/Portfolio.module.css', import.meta.url), 'utf8')
+    const currentCss = moduleCss.slice(moduleCss.indexOf('/* UX Design Engineer portfolio */'))
+    assert.match(currentCss, /\.productWorkGrid\s*{[^}]*grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\)/s)
+    assert.match(currentCss, /\.productWorkMedia \.projectCover\s*{[^}]*aspect-ratio:\s*1\.4/s)
   } finally { await server.close() }
 })
 
@@ -300,13 +305,15 @@ test('homepage projects preserve their original media sizing with editorial text
     const moduleCss = readFileSync(new URL('../src/portfolio/Portfolio.module.css', import.meta.url), 'utf8')
     const currentCss = moduleCss.slice(moduleCss.indexOf('/* UX Design Engineer portfolio */'))
     assert.match(currentCss, /\.caseStudyList\s*{[^}]*display:\s*grid[^}]*grid-template-columns:\s*repeat\(4,\s*minmax\(0,\s*1fr\)\)/s)
-    assert.match(currentCss, /\.caseStudyRow\s*{[^}]*display:\s*block[^}]*min-height:\s*0/s)
-    assert.match(currentCss, /\.caseStudyCaption\s*{[^}]*max-width:\s*580px/s)
+    assert.match(currentCss, /\.caseStudyRow\s*{[^}]*display:\s*grid[^}]*grid-template-rows:\s*auto\s+1fr/s)
+    assert.match(currentCss, /\.caseStudyCaption\s*{[^}]*display:\s*grid[^}]*grid-template-rows:\s*auto\s+1fr\s+auto/s)
+    assert.match(currentCss, /\.caseStudyDetails\s*{[^}]*display:\s*grid[^}]*grid-template-rows:\s*1fr\s+auto/s)
+    assert.match(currentCss, /\.caseStudyDetails dl > div:first-child\s*{[^}]*min-height:/s)
     assert.doesNotMatch(currentCss, /\.caseStudyRow:nth-child\(even\)\s+\.caseStudyMedia/)
     assert.match(currentCss, /\.caseStudyMedia \.projectArt\s*{[^}]*aspect-ratio:\s*1\.55/s)
     assert.doesNotMatch(currentCss, /\.caseStudyTopline\b|\.caseStudyEvidence\b/)
-    assert.match(currentCss, /\.compactProjectList\s*{[^}]*display:\s*grid[^}]*grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\)[^}]*border-top:\s*1px solid var\(--ink\)/s)
-    assert.doesNotMatch(currentCss, /\.compactProject:nth-child\(1\)[^}]*grid-column:\s*span\s+7/s)
+    assert.match(currentCss, /\.caseStudyMedia\[data-project-slug='pacepop'\] \.coverPrimary\s*{[^}]*inset:\s*0/s)
+    assert.match(currentCss, /\.caseStudyMedia\[data-project-slug='pacepop'\] \.coverPrimary img\s*{[^}]*object-fit:\s*cover/s)
   } finally { await server.close() }
 })
 
@@ -333,11 +340,11 @@ test('the homepage opens with a clean portrait and presents four lead projects t
     assert.doesNotMatch(currentCss, /\.heroPortraitMark\s*{/)
     assert.doesNotMatch(currentCss, /\.projectIndexStrip\s*{|\.heroProjectGrid\s*{/)
     assert.match(currentCss, /\.caseStudyList\s*{[^}]*grid-template-columns:\s*repeat\(4,\s*minmax\(0,\s*1fr\)\)/s)
-    assert.match(currentCss, /\.compactProjectList\s*{[^}]*grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\)/s)
+    assert.match(currentCss, /\.productWorkGrid\s*{[^}]*grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\)/s)
     assert.match(currentCss, /@media\s*\(max-width:\s*1024px\)\s+and\s+\(min-width:\s*601px\)[\s\S]*?\.hero\s*{[^}]*grid-template-columns:\s*minmax\(0,\s*1\.15fr\)\s+minmax\(260px,\s*\.85fr\)/s)
-    assert.match(currentCss, /@media\s*\(max-width:\s*760px\)\s+and\s+\(min-width:\s*601px\)[\s\S]*?\.caseStudyList,\s*\.compactProjectList\s*{[^}]*grid-template-columns:\s*1fr/s)
+    assert.match(currentCss, /@media\s*\(max-width:\s*760px\)\s+and\s+\(min-width:\s*601px\)[\s\S]*?\.caseStudyList\s*{[^}]*grid-template-columns:\s*1fr/s)
     assert.match(currentCss, /@media\s*\(max-width:\s*600px\)[\s\S]*?\.caseStudyList\s*{[^}]*grid-template-columns:\s*1fr/s)
-    assert.match(currentCss, /@media\s*\(max-width:\s*600px\)[\s\S]*?\.compactProjectList\s*{[^}]*grid-template-columns:\s*1fr/s)
+    assert.match(currentCss, /@media\s*\(max-width:\s*600px\)[\s\S]*?\.productWorkGrid\s*{[^}]*grid-template-columns:\s*1fr/s)
   } finally { await server.close() }
 })
 
@@ -363,7 +370,34 @@ test('the homepage removes decorative section framing and prioritizes direct con
     const currentCss = moduleCss.slice(moduleCss.indexOf('/* UX Design Engineer portfolio */'))
     assert.match(currentCss, /\.researchCallout\s*{[^}]*border:\s*1px solid var\(--ink\)/s)
     assert.match(currentCss, /\.contactLinks\s*{[^}]*display:\s*grid/s)
-    assert.match(currentCss, /\.contactLinkPrimary\s*{[^}]*grid-column:/s)
+    assert.match(currentCss, /\.contactIcon\s*{[^}]*display:\s*grid/s)
+    assert.doesNotMatch(currentCss, /\.contactLinkPrimary\s*{[^}]*grid-column:/s)
+  } finally { await server.close() }
+})
+
+test('the homepage shows the full experience list with compact periods', async () => {
+  const server = await createServer({ server: { middlewareMode: true, ws: false }, appType: 'custom', logLevel: 'error' })
+  try {
+    const { render } = await server.ssrLoadModule('/src/entry-server.jsx')
+    const html = render('/')
+    const about = html.slice(html.indexOf('aria-labelledby="home-about-heading"'), html.indexOf('<footer'))
+    assert.equal((about.match(/data-home-experience="true"/g) || []).length, 7)
+    for (const employer of ['USC Thomas Lord Department of Computer Science', "Bubba&#x27;s LA", 'Swim Up Hill', 'USC Iovine and Young Academy', 'Macromill Embrain', 'Zephframe', 'Cheil Worldwide']) {
+      assert.match(about, new RegExp(employer))
+    }
+    assert.match(about, /Jul 2026/)
+    assert.match(about, /Mar - Jun 2022/)
+  } finally { await server.close() }
+})
+
+test('contact links use familiar icons in an open editorial list', async () => {
+  const server = await createServer({ server: { middlewareMode: true, ws: false }, appType: 'custom', logLevel: 'error' })
+  try {
+    const { render } = await server.ssrLoadModule('/src/entry-server.jsx')
+    const html = render('/')
+    const footer = html.slice(html.indexOf('<footer'))
+    for (const icon of ['lucide-mail', 'lucide-link-2', 'lucide-file-text', 'lucide-book-open']) assert.match(footer, new RegExp(icon))
+    assert.equal((footer.match(/class="[^"]*contactIcon/g) || []).length, 4)
   } finally { await server.close() }
 })
 

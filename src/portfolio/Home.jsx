@@ -57,16 +57,18 @@ function CaseStudyRow({ project, index }) {
   </article>
 }
 
-function CompactProject({ project, index }) {
-  return <a data-reveal className={s.compactProject} href={`/work/${project.slug}/`}>
-    <span className={s.projectNumber}>{String(index + 5).padStart(2, '0')}</span>
-    <div className={s.compactThumb} aria-hidden="true"><ProjectCover project={project} variant="compact" /></div>
-    <span className={s.compactCopy}>
-      <span className={s.caseStudyOrg} data-project-company="true">{project.organization}</span>
+function ProductWorkCard({ project }) {
+  return <a data-reveal data-more-work-project="true" className={s.productWorkCard} href={`/work/${project.slug}/`}>
+    <div className={s.productWorkMedia} aria-hidden="true"><ProjectCover project={project} variant="gallery" /></div>
+    <span className={s.productWorkCaption}>
+      <span className={s.productWorkIdentity}>
+        <span className={s.caseStudyOrg} data-project-company="true">{project.organization}</span>
+        <span>{project.year}</span>
+      </span>
       <strong>{caseStudyTitles[project.slug] || project.title}</strong>
-      <span className={s.compactRole} data-project-role="true">{project.role}</span>
+      <span className={s.productWorkRole} data-project-role="true">{project.role}</span>
+      <ArrowUpRight size={22} aria-hidden="true" />
     </span>
-    <ArrowUpRight size={22} aria-hidden="true" />
   </a>
 }
 
@@ -120,8 +122,8 @@ export default function Home() {
 
     <section className={s.moreWork} aria-labelledby="more-work-heading">
       <SectionHeading id="more-work-heading" title="More product work" note="Web delivery / UX evaluation / Internal tools / Service design" />
-      <div className={s.compactProjectList}>
-        {supportingProjects.map((project, index) => <CompactProject key={project.id} project={project} index={index} />)}
+      <div className={s.productWorkGrid}>
+        {supportingProjects.map(project => <ProductWorkCard key={project.id} project={project} />)}
       </div>
       <a className={s.researchCallout} href="/research/" data-research-cta="true">
         <span>Research notes and publications</span>
@@ -144,7 +146,7 @@ export default function Home() {
         <p className={s.aboutStatement}>I connect user research, interaction design and hands-on prototyping.</p>
         <p className={s.bodyText}>From UX research with Samsung and Hyundai to AI-assisted production workflows, I turn complex requirements into interfaces and prototypes. I’m pursuing an M.S. in Integrated Design, Business and Technology at USC.</p>
         <TextLink href="/about/">Experience and background</TextLink>
-        <div className={s.miniExperience}>{profile.experience.filter(p => /Bubba|Swim|Embrain/.test(p.organization)).map(p => <div key={p.organization}><strong>{p.organization}</strong><span>{p.title}</span></div>)}</div>
+        <div className={s.miniExperience}>{profile.experience.map(p => <div key={`${p.organization}-${p.period}`} data-home-experience="true"><strong>{p.organization}</strong><span>{p.title}</span><small>{p.period}</small></div>)}</div>
       </div>
     </section>
   </div>

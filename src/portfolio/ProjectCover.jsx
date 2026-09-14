@@ -4,6 +4,7 @@ import s from './Portfolio.module.css'
 
 const imageSizes = {
   lead: '(max-width: 600px) 84vw, (max-width: 1200px) 32vw, 620px',
+  gallery: '(max-width: 600px) 92vw, (max-width: 1200px) 46vw, 860px',
   compact: '(max-width: 600px) 82px, 220px',
   micro: '(max-width: 900px) 104px, 160px',
 }

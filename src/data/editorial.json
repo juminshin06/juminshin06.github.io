@@ -133,15 +133,15 @@
       "outcome": "The team documented where the Omniverse and visionOS collaboration models broke down, demonstrated working review interactions and shared a clear set of platform directions with Honda R&D.",
       "accent": "#476675",
       "art": "image",
-      "image": "/assets/projects/honda-deck-28.jpg",
-      "imageAlt": "Complete Honda sprint slide showing a spatial annotation and review interface inside a vehicle",
-      "visualCaption": "Full 16:9 sprint slide showing the spatial review interface in its automotive context.",
+      "image": "/assets/projects/honda-deck-22.jpg",
+      "imageAlt": "Honda spatial review slide showing Muse Pen annotation and haptic feedback interactions around a vehicle model",
+      "visualCaption": "Spatial annotation and haptic feedback concepts for reviewing the vehicle model.",
       "cover": {
         "tone": "spatial",
         "layout": "immersive",
-        "primary": "/assets/projects/honda-deck-28.jpg",
+        "primary": "/assets/projects/honda-deck-22.jpg",
         "primaryFrame": "plain",
-        "annotation": "Vision Pro design review"
+        "annotation": "Spatial review interactions"
       },
       "sections": [
         {

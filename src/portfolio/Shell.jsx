@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react'
-import { ArrowUpRight, ArrowRight, Menu, X, Download } from 'lucide-react'
+import { ArrowUpRight, ArrowRight, Menu, X, Download, Mail, Link2, FileText, BookOpen } from 'lucide-react'
 import profile from '../data/profile.json'
 import imageManifest from '../../public/assets/optimized/manifest.json'
 import s from './Portfolio.module.css'
@@ -43,17 +43,17 @@ export function Footer() {
         <h2>Let’s connect.</h2>
       </div>
       <div className={s.contactLinks} data-contact-links="true">
-        <a className={`${s.contactLink} ${s.contactLinkPrimary}`} href={`mailto:${profile.email}`}>
-          <span>Email</span><strong>{profile.email}</strong><ArrowUpRight aria-hidden="true" />
+        <a className={s.contactLink} href={`mailto:${profile.email}`}>
+          <span className={s.contactIcon}><Mail size={18} aria-hidden="true" /></span><span>Email</span><strong>{profile.email}</strong><ArrowUpRight size={19} aria-hidden="true" />
         </a>
         <a className={s.contactLink} href={profile.linkedin} target="_blank" rel="noreferrer">
-          <span>LinkedIn</span><strong>Connect</strong><ArrowUpRight aria-hidden="true" />
+          <span className={s.contactIcon}><Link2 size={18} aria-hidden="true" /></span><span>LinkedIn</span><strong>Connect</strong><ArrowUpRight size={19} aria-hidden="true" />
         </a>
         <a className={s.contactLink} href={resumeUrl} target="_blank" rel="noreferrer">
-          <span>Resume</span><strong>View PDF</strong><ArrowUpRight aria-hidden="true" />
+          <span className={s.contactIcon}><FileText size={18} aria-hidden="true" /></span><span>Resume</span><strong>View PDF</strong><ArrowUpRight size={19} aria-hidden="true" />
         </a>
         <a className={s.contactLink} href={profile.scholar} target="_blank" rel="noreferrer">
-          <span>Scholar</span><strong>Publications</strong><ArrowUpRight aria-hidden="true" />
+          <span className={s.contactIcon}><BookOpen size={18} aria-hidden="true" /></span><span>Scholar</span><strong>Publications</strong><ArrowUpRight size={19} aria-hidden="true" />
         </a>
       </div>
     </div>
