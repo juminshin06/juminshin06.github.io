@@ -4,13 +4,5 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   base: '/',
-  build: {
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          p5: ['p5'],
-        },
-      },
-    },
-  },
+  build: { outDir: process.env.PORTFOLIO_BUILD_DIR || 'dist' },
 })

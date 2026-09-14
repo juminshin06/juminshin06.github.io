@@ -1,5 +1,138 @@
 [
   {
+    "id": "pacepop",
+    "slug": "pacepop",
+    "title": "Designing connection that ends with the moment",
+    "organization": "PACEPOP / Two-person project",
+    "category": "Product",
+    "year": 2026,
+    "duration": "Sep 2026",
+    "role": "Product strategy, UX research, product design, prototyping & front-end development",
+    "team": "Two-person team",
+    "status": "Interactive Host and Runner prototype",
+    "caseStudyMode": "detailed",
+    "introLead": "PACEPOP is a temporary social layer for people sharing one real-world activity.",
+    "introSupport": "It lets a small running group coordinate, ask for help and close the experience without exchanging contact information or creating a permanent group chat.",
+    "descriptors": ["Product design", "Interaction system", "Front-end prototype"],
+    "summary": "A mobile experience for short-lived running groups, replacing permanent group chats and contact exchange with QR entry, temporary identities, safety-aware coordination and explicit room retention.",
+    "contribution": "In a two-person team, I owned product strategy, UX research, product design, prototyping and front-end development. I translated the temporary-group premise into separate Host and Runner flows, designed the safety and privacy states, and built the interactive prototype used to test the end-to-end experience.",
+    "outcome": "A working mobile prototype spanning two role-specific flows and 26 designed interface states. It demonstrates account-free entry, live group awareness, lightweight communication, help and exit states, and an explicit end to the room. The next validation step is field testing whether a temporary room reduces social overhead while preserving enough continuity for safety.",
+    "accent": "#d93628",
+    "art": "image",
+    "image": "/assets/projects/pacepop-cover-v2.png",
+    "imageAlt": "PACEPOP prototype screens showing QR entry, the live Runner map and the in-run Help response",
+    "visualCaption": "01 / Working prototype: temporary entry, live coordination and safety-aware support.",
+    "cover": {
+      "tone": "paper",
+      "layout": "single",
+      "primary": "/assets/projects/pacepop-cover-v2.png",
+      "primaryFrame": "plain",
+      "annotation": "Two roles / one temporary room"
+    },
+    "sections": [
+      {
+        "id": "temporary-social-overhead",
+        "phase": "Problem",
+        "title": "A short encounter should not create a permanent social obligation",
+        "lead": "Small events create an immediate need to coordinate, but the usual tools ask for a longer relationship.",
+        "body": "People who meet through Luma events, running groups or one-night activities often need a shared place for directions, updates and safety. Creating a permanent group chat or exchanging contact information solves the moment by adding another channel to manage afterward. The social and privacy cost is larger than the brief connection requires.",
+        "comparison": {
+          "observation": "Temporary groups are pushed into permanent communication tools before they can coordinate.",
+          "response": "Create a purpose-bound room that is easy to enter, useful during the activity and designed to end afterward."
+        }
+      },
+      {
+        "id": "ephemeral-principle",
+        "phase": "Insight",
+        "title": "Let the life of the product match the life of the group",
+        "lead": "The group does not need a new social network. It needs a temporary layer of shared awareness.",
+        "body": "The product direction centered on four principles: join without an account, use a temporary identity, request only activity-specific access, and make retention visible. This reframed disappearance as a feature rather than a missing capability.",
+        "details": [
+          {"label": "Entry", "body": "A single QR replaces account creation, friend requests and contact exchange."},
+          {"label": "Identity", "body": "A temporary nickname and avatar are enough for the group to recognize one another during the run."},
+          {"label": "Exit", "body": "The room has a visible retention window instead of becoming another permanent inbox."}
+        ]
+      },
+      {
+        "id": "host-runner-flows",
+        "phase": "Design response",
+        "title": "One scan opens two purpose-built experiences",
+        "lead": "Host and Runner share the same room, but they do not need the same interface.",
+        "body": "The Runner flow prioritizes location, pace, group distance and quick signals. The Host flow prioritizes the whole crew: who is ready, who is falling behind, which request is open and whether the group can safely finish. Separating these responsibilities kept each view focused while preserving one shared system state.",
+        "flow": {
+          "label": "Role-based journey",
+          "steps": [
+            {"label": "Enter", "detail": "Scan a QR, choose a temporary identity and grant only the permissions needed for the run."},
+            {"label": "Coordinate", "detail": "Runners send lightweight signals while the Host monitors position, spread and open alerts."},
+            {"label": "Close", "detail": "The group sees a shared result and the room follows an explicit retention window."}
+          ],
+          "caption": "The same room state is translated into different decisions for the Host and Runner."
+        }
+      },
+      {
+        "id": "safety-interactions",
+        "phase": "Safety system",
+        "title": "Design the difficult moments before the celebratory ones",
+        "lead": "A runner who is moving cannot compose a careful message or decode a subtle notification.",
+        "body": "Large Help, Water, Rest and Give Up actions turn common running situations into fast, legible signals. Help keeps the runner's last known position visible and tells them that nearby people are checking. Give Up avoids failure language and keeps location available long enough to support a safe transition out of the run.",
+        "comparison": {
+          "observation": "Free-form chat is slow and ambiguous when someone is tired, separated from the group or needs assistance.",
+          "response": "Use named states, strong visual contrast and clear follow-up language for time-sensitive coordination."
+        }
+      },
+      {
+        "id": "social-closure",
+        "phase": "Design response",
+        "title": "End with recognition, then let the room disappear",
+        "lead": "Temporary does not have to feel disposable.",
+        "body": "Quick chat and KUDO create enough warmth for a shared activity without asking participants to become permanent contacts. At the end, the Host chooses how long results and chat remain available. The closure screen makes that decision explicit instead of hiding retention inside settings or policy copy.",
+        "details": [
+          {"label": "During", "body": "Short preset messages reduce typing and keep communication tied to the run."},
+          {"label": "After", "body": "KUDO and a team summary provide a lightweight social ending."},
+          {"label": "Retention", "body": "The Host selects one hour, one day or one week for results and chat to remain available."}
+        ]
+      },
+      {
+        "id": "prototype-build",
+        "phase": "Prototype",
+        "title": "Build the state system, not only the happy path",
+        "lead": "I carried the interaction model into a working front-end prototype.",
+        "body": "The prototype covers 13 Runner states and 13 Host states, including entry, permissions, live movement, temporary signals, help escalation, voluntary exit, roster controls, simulation and room closure. Building both sides exposed dependencies that a linear screen deck would miss: shared status language, permission timing, alert acknowledgement and retention behavior.",
+        "comparison": {
+          "observation": "A polished happy path cannot show whether two roles remain understandable when the group's state changes.",
+          "response": "Prototype the operational states and transitions so the interaction logic can be exercised end to end."
+        }
+      }
+    ],
+    "facts": [
+      {"value": "2", "label": "Role-specific flows"},
+      {"value": "26", "label": "Designed prototype states"},
+      {"value": "1 scan", "label": "Account-free entry path"}
+    ],
+    "resources": [],
+    "content": [
+      {"type": "image", "src": "/assets/projects/pacepop-start.png", "sectionId": "temporary-social-overhead", "presentation": "phone", "caption": "A temporary room begins without an account or phone number."},
+      {"type": "image", "src": "/assets/projects/pacepop-scan.png", "sectionId": "temporary-social-overhead", "presentation": "phone", "caption": "One QR replaces contact exchange and permanent group setup."},
+      {"type": "image", "src": "/assets/projects/pacepop-join.png", "sectionId": "ephemeral-principle", "presentation": "phone", "caption": "A lightweight identity is enough for one shared activity."},
+      {"type": "image", "src": "/assets/projects/pacepop-access.png", "sectionId": "ephemeral-principle", "presentation": "phone", "caption": "Permissions are explained in the context of the run."},
+      {"type": "image", "src": "/assets/projects/pacepop-runner-live.png", "sectionId": "host-runner-flows", "presentation": "phone", "caption": "Runner view keeps the group, pace and actions in one glance."},
+      {"type": "image", "src": "/assets/projects/pacepop-host-setup.png", "sectionId": "host-runner-flows", "presentation": "phone", "caption": "The Host defines the route before opening the room."},
+      {"type": "image", "src": "/assets/projects/pacepop-host-lobby.png", "sectionId": "host-runner-flows", "presentation": "phone", "caption": "The lobby shows who joined and who is ready."},
+      {"type": "image", "src": "/assets/projects/pacepop-water-rest.png", "sectionId": "safety-interactions", "presentation": "phone", "caption": "Water and rest become quick, named signals."},
+      {"type": "image", "src": "/assets/projects/pacepop-runner-detail.png", "sectionId": "safety-interactions", "presentation": "phone", "caption": "A separated runner can be located without opening chat."},
+      {"type": "image", "src": "/assets/projects/pacepop-help.png", "sectionId": "safety-interactions", "presentation": "phone", "caption": "Help confirms that the Host and crew are responding."},
+      {"type": "image", "src": "/assets/projects/pacepop-give-up.png", "sectionId": "safety-interactions", "presentation": "phone", "caption": "Leaving the run uses a clear, reversible confirmation."},
+      {"type": "image", "src": "/assets/projects/pacepop-chat.png", "sectionId": "social-closure", "presentation": "phone", "caption": "Short messages keep conversation tied to the activity."},
+      {"type": "image", "src": "/assets/projects/pacepop-kudo.png", "sectionId": "social-closure", "presentation": "phone", "caption": "KUDO gives the group a lightweight social ending."},
+      {"type": "image", "src": "/assets/projects/pacepop-finish.png", "sectionId": "social-closure", "presentation": "phone", "caption": "The personal finish state closes the run before results."},
+      {"type": "image", "src": "/assets/projects/pacepop-team-result.png", "sectionId": "social-closure", "presentation": "phone", "caption": "Team results preserve recognition without a permanent feed."},
+      {"type": "image", "src": "/assets/projects/pacepop-host-alerts.png", "sectionId": "prototype-build", "presentation": "phone", "caption": "Host alerts translate group movement into actionable states."},
+      {"type": "image", "src": "/assets/projects/pacepop-host-roster.png", "sectionId": "prototype-build", "presentation": "phone", "caption": "The roster exposes status, distance and unresolved help."},
+      {"type": "image", "src": "/assets/projects/pacepop-host-simulator.png", "sectionId": "prototype-build", "presentation": "phone", "caption": "A simulator exercises the system beyond the happy path."}
+    ],
+    "source": "User-confirmed two-person project scope and ownership; working PACEPOP prototype and product specification inspected September 2026. Prototype screenshots captured from the supplied local build."
+  },
+  {
     "id": "swim-up-hill",
     "slug": "swim-up-hill",
     "title": "From a nonprofit mission to a live website",

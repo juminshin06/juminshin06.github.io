@@ -5,6 +5,12 @@ import { renderToStaticMarkup } from 'react-dom/server'
 import { createServer } from 'vite'
 import { allProjects, resolvePage, routes } from '../src/data/portfolio.js'
 
+test('Macromill Embrain remains experience only and is not a published project', () => {
+  assert.ok(!allProjects.some(project => project.slug === 'embrain-research'))
+  assert.ok(!routes.includes('/work/embrain-research/'))
+  assert.equal(resolvePage('/work/embrain-research/').type, 'not-found')
+})
+
 test('case-study detail and flow blocks preserve semantic reading order', async () => {
   const server = await createServer({ server: { middlewareMode: true, ws: false }, appType: 'custom', logLevel: 'error' })
   try {
@@ -110,15 +116,15 @@ const editorialDetailedSlugs = [
   'honda-spatial',
   'ethicon-care',
   'story-authoring',
-  'embrain-research',
   'swim-up-hill',
   'ai-3d-product-visualization',
   'bubbas-daily-target',
+  'pacepop',
   'haily',
   'ars-pharma',
 ]
 
-test('the ten detailed projects have authored editorial narrative fields', () => {
+test('the detailed projects have authored editorial narrative fields', () => {
   for (const slug of editorialDetailedSlugs) {
     const project = allProjects.find(item => item.slug === slug)
     assert.equal(project.caseStudyMode, 'detailed', slug)
@@ -129,6 +135,55 @@ test('the ten detailed projects have authored editorial narrative fields', () =>
     assert.equal(project.sections[0]?.phase, 'Problem', `${slug}: first phase`)
     assert.ok(project.sections.some(section => ['Design response', 'Prototype'].includes(section.phase)), `${slug}: response`)
     assert.ok(project.sections.some(section => section.lead), `${slug}: mixed-weight lead`)
+  }
+})
+
+test('PACEPOP frames temporary group coordination as a two-person design engineering project', () => {
+  const project = allProjects.find(item => item.slug === 'pacepop')
+  assert.ok(project)
+  assert.equal(project.team, 'Two-person team')
+  for (const responsibility of ['Product strategy', 'UX research', 'Product design', 'Prototyping', 'Front-end development']) {
+    assert.match(project.role, new RegExp(responsibility, 'i'))
+  }
+  assert.equal(project.sections[0]?.phase, 'Problem')
+  assert.equal(project.image, '/assets/projects/pacepop-cover-v2.png')
+  assert.equal(project.cover?.primary, '/assets/projects/pacepop-cover-v2.png')
+
+  const narrative = JSON.stringify(project)
+  for (const idea of ['permanent group chat', 'contact information', 'QR', 'temporary', 'retention', 'Host', 'Runner']) {
+    assert.match(narrative, new RegExp(idea, 'i'))
+  }
+  assert.doesNotMatch(narrative, /localhost|127\.0\.0\.1/i)
+
+  const evidence = project.content.filter(block => block.type === 'image')
+  assert.deepEqual(evidence.map(block => block.src), [
+    '/assets/projects/pacepop-start.png',
+    '/assets/projects/pacepop-scan.png',
+    '/assets/projects/pacepop-join.png',
+    '/assets/projects/pacepop-access.png',
+    '/assets/projects/pacepop-runner-live.png',
+    '/assets/projects/pacepop-host-setup.png',
+    '/assets/projects/pacepop-host-lobby.png',
+    '/assets/projects/pacepop-water-rest.png',
+    '/assets/projects/pacepop-runner-detail.png',
+    '/assets/projects/pacepop-help.png',
+    '/assets/projects/pacepop-give-up.png',
+    '/assets/projects/pacepop-chat.png',
+    '/assets/projects/pacepop-kudo.png',
+    '/assets/projects/pacepop-finish.png',
+    '/assets/projects/pacepop-team-result.png',
+    '/assets/projects/pacepop-host-alerts.png',
+    '/assets/projects/pacepop-host-roster.png',
+    '/assets/projects/pacepop-host-simulator.png',
+  ])
+  assert.doesNotMatch(narrative, /pacepop-(?:host-live|retention)/i)
+  for (const section of project.sections) {
+    const sectionEvidence = evidence.filter(block => block.sectionId === section.id)
+    assert.ok(sectionEvidence.length >= 2, `${section.id} needs multiple screens`)
+  }
+  for (const block of evidence) {
+    assert.equal(block.presentation, 'phone')
+    assert.ok(existsSync(new URL(`../public${block.src}`, import.meta.url)), block.src)
   }
 })
 

@@ -11,21 +11,21 @@ const caseStudyTitles = {
   'ethicon-care': 'Post-operative care',
   'story-authoring': 'Human-AI storytelling',
   'swim-up-hill': 'Website design and delivery',
-  'embrain-research': 'Product direction',
   'ai-3d-product-visualization': 'AI-assisted 3D production',
   'bubbas-daily-target': 'Daily Target',
   'ars-pharma': 'Anaphylaxis care',
+  pacepop: 'PACEPOP',
 }
 
 const homepageProjects = new Map(allProjects.map(project => [project.slug, project]))
-const leadProjects = ['bubbas-production', 'swim-up-hill', 'ethicon-care', 'ars-pharma'].map(slug => homepageProjects.get(slug))
+const leadProjects = ['bubbas-production', 'pacepop', 'honda-spatial', 'ethicon-care'].map(slug => homepageProjects.get(slug))
 const supportingProjects = [
-  'bubbas-daily-target',
-  'honda-spatial',
-  'story-authoring',
-  'ai-3d-product-visualization',
-  'embrain-research',
+  'swim-up-hill',
   'haily',
+  'ars-pharma',
+  'story-authoring',
+  'bubbas-daily-target',
+  'ai-3d-product-visualization',
   'handsign',
   'samsung-podcast',
 ].map(slug => homepageProjects.get(slug)).filter(Boolean)
@@ -33,7 +33,7 @@ const supportingProjects = [
 function CaseStudyRow({ project, index }) {
   const primaryFact = project.facts?.[0]
   return <article data-reveal data-case-study-entry="true" className={s.caseStudyRow}>
-    <a href={`/work/${project.slug}/`} className={s.caseStudyMedia} aria-label={`View case study: ${project.title}`}>
+    <a href={`/work/${project.slug}/`} className={s.caseStudyMedia} data-project-slug={project.slug} aria-label={`View case study: ${project.title}`}>
       <ProjectCover project={project} variant="lead" eager={index === 0} />
       <span className={s.projectAction} aria-hidden="true">View case study<ArrowUpRight size={18} /></span>
     </a>

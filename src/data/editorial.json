@@ -24,12 +24,10 @@
       "imageAlt": "Bubba's Rough Cut Prep media workspace showing a sample source clip and generated frame grid",
       "visualCaption": "01 / Original internship interface running locally in mock mode with bundled sample media. No client footage is shown.",
       "cover": {
-        "tone": "warm-gray",
-        "layout": "primary-left",
+        "tone": "bubbas-blue",
+        "layout": "immersive",
         "primary": "/assets/projects/bubbas-assist-media.png",
-        "primaryFrame": "browser",
-        "secondary": "/assets/projects/bubbas-assist-result.png",
-        "secondaryFrame": "document",
+        "primaryFrame": "plain",
         "annotation": "300+ videos per batch"
       },
       "sections": [
@@ -65,43 +63,43 @@
           "type": "image",
           "src": "/assets/projects/bubbas-assist-library.png",
           "sectionId": "production-context",
-          "caption": "Project library view for scanning workspace status, input readiness and the most recent analysis run."
+          "caption": "The library makes input readiness and recent run status visible at a glance."
         },
         {
           "type": "image",
           "src": "/assets/projects/bubbas-assist-input.png",
           "sectionId": "production-context",
-          "caption": "Source setup brings footage, script maps, boards and production notes into one preparation flow."
+          "caption": "One setup flow connects footage, scripts, boards and production notes."
         },
         {
           "type": "image",
           "src": "/assets/projects/bubbas-assist-progress.png",
           "sectionId": "interface-scope",
-          "caption": "Live analysis progress exposes the current stage, sampled frames and run log instead of hiding automation behind a spinner."
+          "caption": "Live progress keeps the current stage, sampled frames and run log visible."
         },
         {
           "type": "image",
           "src": "/assets/projects/bubbas-assist-catalog.png",
           "sectionId": "interface-scope",
-          "caption": "The generated shot catalog lets an editor compare frame-level notes, confidence and source timing before using the output."
+          "caption": "Editors can review frame notes, confidence and source timing before using the output."
         },
         {
           "type": "image",
           "src": "/assets/projects/bubbas-assist-result.png",
           "sectionId": "production-adoption",
-          "caption": "Completed-run summary after a local mock analysis of one bundled sample clip, including output counts and export readiness."
+          "caption": "The completed-run summary surfaces output counts and export readiness."
         },
         {
           "type": "image",
           "src": "/assets/projects/bubbas-assist-selects.png",
           "sectionId": "production-adoption",
-          "caption": "Suggested selects and trim ranges keep automated recommendations reviewable before they enter an edit."
+          "caption": "Suggested selects remain reviewable before entering the edit."
         },
         {
           "type": "image",
           "src": "/assets/projects/bubbas-assist-export.png",
           "sectionId": "production-adoption",
-          "caption": "Export view packages editor-facing files while keeping output locations and delivery status visible."
+          "caption": "Export keeps editor-facing files, locations and delivery status together."
         }
       ],
       "source": "Resume: JuminShin_Resume (4).pdf; user-supplied Bubba's LA AssistEditor bundle, executed locally in mock mode with bundled sample media in September 2026.",
@@ -678,73 +676,6 @@
           { "label": "The interface", "detail": "Brings narrative elements into a branching authoring environment without requiring programming knowledge." }
         ],
         "caption": "Retrospective interaction summary of the original prototype concept; not an evaluation result."
-      }
-    },
-    {
-      "id": "embrain-research",
-      "slug": "embrain-research",
-      "title": "From user research to product direction",
-      "organization": "Macromill Embrain",
-      "category": "Research",
-      "year": 2024,
-      "duration": "Nov 2023 - Jun 2024",
-      "role": "Researcher & Designer Intern",
-      "team": "Research teams across client engagements",
-      "status": "Research and design contributions completed",
-      "caseStudyMode": "detailed",
-      "introLead": "User research became product direction across mobile, automotive, and workplace services.",
-      "introSupport": "Mixed-method engagements across Samsung Electronics, Hyundai Motor Company and SK involved approximately 100 participants in total.",
-      "descriptors": ["UX research", "Product strategy", "Interface concepts"],
-      "summary": "Mixed-method UX research across Samsung Electronics, Hyundai Motor Company, and SK, involving approximately 100 participants in total.",
-      "contribution": "I contributed to interviews, surveys, and usability tests, then translated findings into strategies, concepts, and UI prototypes.",
-      "outcome": "The work informed Galaxy personalization strategies and UI prototypes, Hyundai SUV camping-feature concepts, and an SK employee service platform. I presented outcomes at a generative AI workshop.",
-      "accent": "#616d43",
-      "art": "research",
-      "image": null,
-      "imageAlt": "",
-      "cover": {
-        "tone": "research",
-        "layout": "single",
-        "primaryFrame": "plain",
-        "annotation": "~100 research participants"
-      },
-      "sections": [
-        {
-          "id": "research-scope",
-          "phase": "Problem",
-          "title": "Research findings needed to become usable direction",
-          "body": "Samsung Electronics, Hyundai Motor Company and SK brought different product questions, but each engagement shared the same challenge: interviews, surveys and usability tests had to lead to decisions a product team could act on. Approximately 100 participants took part across the engagements, not in each study."
-        },
-        {
-          "id": "design-directions",
-          "phase": "Insight",
-          "title": "Moving from findings",
-          "titleAccent": "to design",
-          "lead": "I translated findings into personalization strategies and UI prototypes for Samsung Galaxy, camping-feature concepts for Hyundai SUVs, and an employee service platform for SK.",
-          "body": "These were distinct client contexts within my internship."
-        },
-        {
-          "id": "sharing-outcomes",
-          "phase": "Design response",
-          "title": "Communicating the work",
-          "body": "I presented the research and design outcomes at a generative AI workshop, connecting findings with the resulting strategies, service concepts and interface prototypes."
-        }
-      ],
-      "facts": [
-        { "value": "~100", "label": "Participants across engagements" },
-        { "value": "3", "label": "Client organizations" },
-        { "value": "Mixed methods", "label": "Interviews, surveys, usability tests" }
-      ],
-      "resources": [],
-      "source": "resume: JuminShin_Resume (4).pdf, Macromill Embrain",
-      "diagram": {
-        "title": "Research and design contribution",
-        "steps": [
-          { "label": "Research", "detail": "Contributed to interviews, surveys, and usability tests." },
-          { "label": "Design directions", "detail": "Translated findings into strategies, concepts, and UI prototypes." },
-          { "label": "Communication", "detail": "Presented outcomes at a generative AI workshop." }
-        ],
-        "caption": "Retrospective summary across engagements; individual client study findings are not reproduced here."
       }
     }
   ],

@@ -12,15 +12,15 @@ const homepageSlugs = [
   'swim-up-hill',
   'ethicon-care',
   'ars-pharma',
+  'pacepop',
   'bubbas-daily-target',
   'honda-spatial',
   'story-authoring',
-  'studio-os-audit',
-  'embrain-research',
+  'ai-3d-product-visualization',
 ]
 const projects = [...editorial.featured, ...editorial.additional, ...internships]
-const allowedTones = new Set(['warm-gray', 'pale-green', 'clinical', 'coral', 'neutral', 'spatial', 'ink', 'paper', 'research'])
-const allowedLayouts = new Set(['primary-left', 'primary-right', 'desktop-mobile', 'single'])
+const allowedTones = new Set(['warm-gray', 'pale-green', 'clinical', 'coral', 'neutral', 'spatial', 'ink', 'paper', 'research', 'bubbas-blue'])
+const allowedLayouts = new Set(['primary-left', 'primary-right', 'desktop-mobile', 'single', 'immersive'])
 const allowedFrames = new Set(['browser', 'document', 'phone', 'plain'])
 
 test('homepage projects define supported editorial cover metadata', () => {

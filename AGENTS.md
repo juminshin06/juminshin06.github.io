@@ -4,13 +4,13 @@ Project-specific instructions for Codex working in this repository.
 
 ## Project Overview
 
-This is Jumin Shin's personal portfolio website: an interactive, visually expressive React/Vite site with project case studies, a Life page, custom canvas effects, and an embedded HandSign demo.
+This is Jumin Shin's personal portfolio website: an editorial React/Vite site for a UX/UI designer and researcher, with AI and spatial UX specializations, project case studies, Research, About, Archive, Life and an embedded HandSign demo.
 
 Primary stack:
 - React 18 + Vite 5
 - CSS Modules for component styling
-- `@paper-design/shaders-react` for the mesh background
-- `canvas-confetti` for the floating PDF button
+- `lucide-react` icons and self-hosted Geist typography
+- Build-time React rendering for static GitHub Pages routes
 - A standalone Vanilla JS demo in `public/handsign`
 
 ## Installed Codex Plugins
@@ -45,49 +45,50 @@ Use npm for this project.
 npm ci
 npm run dev
 npm run build
+npm test
 npm run preview
 npm run deploy
 ```
 
 Notes:
 - `npm run dev` starts Vite, usually at `http://localhost:5173`.
-- There is no dedicated lint or test script in `package.json`.
+- `npm test` runs Node tests for project preservation, route resolution and local media. There is no lint script.
 - Use `npm run build` as the main verification command after changing app code, data, or public assets.
+- To verify without changing the tracked legacy `dist`, use `PORTFOLIO_BUILD_DIR=/tmp/jumin-portfolio-build npm run build`. Both Vite and the prerender script honor this variable; production builds default to `dist`.
 - If dependencies are missing, install with `npm ci` before running build or dev commands.
 
 ## Architecture
 
-The app does not use React Router. Page-level navigation is state-driven in `src/App.jsx`.
+The app uses native links and path resolution in `src/data/portfolio.js`, not React Router or custom window navigation events. `src/App.jsx` renders the matching view.
 
 Main views:
-- Home: `LandingSection`, `ProjectsSection`, `AboutSection`
-- Project detail: `ProjectPage`
-- Life detail: `LifePage`
+- Home: `src/portfolio/Home.jsx`
+- Project detail: `src/portfolio/CaseStudy.jsx`
+- Research, About, Archive, Life and 404: `src/portfolio/Pages.jsx`
 
-Global layers:
-- `MeshBackground`
-- `PixelBackground`
-- `GlobalCursor`
-- `FloatingPDFButton`
-- `NavBar`
-- `Footer`
+Shared primitives live in `src/portfolio/Shell.jsx` and `ProjectArt.jsx`; styling lives in `Portfolio.module.css` and `src/index.css`.
 
-Project opening is handled through `window.dispatchEvent(new CustomEvent('open-project', ...))`, with the listener in `src/App.jsx`.
+Keep the public language UX-led: user needs, user research, interaction design, interfaces and prototyping. Preserve official employment/publication titles and factual outcomes. The homepage portrait links to About. `usePageMotion.js` provides progressive scroll reveals without hiding static content; respect live reduced-motion preference changes. Case-study navigation tracks the current section with `aria-current="location"`.
+
+`npm run build` runs Vite followed by `scripts/prerender.mjs`, generating static HTML for every route plus `404.html`, sitemap and robots.txt. `src/main.jsx` hydrates prerendered pages or mounts the dev app. Keep direct links, index.html aliases and browser back functional. HandSign remains an independent static page.
 
 ## Content Sources
 
 Edit portfolio content primarily through:
-- `src/data/projects.json` for project cards and case-study content
+- `src/data/editorial.json` for featured projects, new work and legacy project framing
+- `src/data/projects.json` for preserved original project assets and archive metadata
+- `src/data/portfolio.js` for the combined project collection, routes and SEO metadata
 - `src/data/events.json` for Life page entries
-- `src/components/AboutSection.jsx` for bio, education, work, research, publications, and recognition
+- `src/data/profile.json` for bio, education, experience, publications and recognition
+
+Use the latest resume at `public/assets/JuminShin_Resume.pdf` as the factual baseline. Never fabricate outcomes, metrics, research findings, job titles or individual ownership. Scope diagrams must be labeled retrospective; do not present them as original product artifacts. Research and curation rationale is in `docs/portfolio-strategy.md`.
 
 Static assets used by JSON paths live under:
 - `public/assets/projects`
 - `public/assets/life`
 - `public/assets`
 
-Profile images imported by React live under:
-- `src/assets`
+Optimized WebP derivatives live in `public/assets/optimized`, with dimensions and provenance in `manifest.json`. `ProjectImage` uses the manifest for responsive sources and reserves image dimensions. Preserve original images/PDFs and full-size links. `scripts/prepare-images.mjs` regenerates derivatives using Sharp; see README.
 
 The `src/components/Figma_Image` folder appears to contain source or backup images and is not currently imported by the app.
 
@@ -107,7 +108,7 @@ Keep changes to this mini-app scoped to `public/handsign/index.html`, `public/ha
 ## Styling Conventions
 
 - Prefer CSS Modules next to their components.
-- Match the current visual language: clean portfolio layout, glass surfaces, lime/pixel accents, soft motion.
+- Match the current visual language: editorial type, near-white paper, charcoal ink, vermilion accents, ruled sections, asymmetric work layouts and restrained motion. Do not restore legacy glass/pixel/lime decoration.
 - Do not introduce a new UI framework unless the user explicitly asks.
 - Avoid broad restyles when making content or bugfix changes.
 - Keep mobile behavior in mind; many sections already have responsive CSS.
@@ -138,7 +139,7 @@ On pushes to `main`, the workflow:
 
 ## Files That May Be Legacy Or Experimental
 
-These files are present but are not currently used by `src/App.jsx`:
+The old `src/components` implementation is retained but is not imported by the redesigned app. This includes:
 - `src/components/ProjectCard.jsx`
 - `src/components/LifeSection.jsx`
 - `src/components/TabSection.jsx`
@@ -165,6 +166,7 @@ After source changes, run:
 
 ```bash
 npm run build
+npm test
 ```
 
 If changing only documentation, no build is required; check `git diff --check` instead.

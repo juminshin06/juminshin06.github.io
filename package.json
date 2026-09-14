@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && node scripts/prerender.mjs",
+    "test": "node --test tests/*.test.mjs",
     "preview": "vite preview",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
@@ -13,6 +14,7 @@
   "dependencies": {
     "@paper-design/shaders-react": "^0.0.72",
     "canvas-confetti": "^1.9.4",
+    "lucide-react": "^1.41.0",
     "p5": "^1.9.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"

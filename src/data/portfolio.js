@@ -25,8 +25,37 @@ const archived = legacy.filter(project => !featuredIds.has(project.id)).map(proj
   }
 })
 export const practiceProjects = [...internships, ...editorial.additional.filter(project => project.slug === 'ars-pharma')]
-export const allProjects = [...featuredProjects, ...internships, ...editorial.additional, ...archived]
-export const researchProjects = allProjects.filter(project => ['story-authoring', 'embrain-research', 'sing-in-sign', 'samsung-podcast'].includes(project.slug))
+export const projectPriority = [
+  'bubbas-production',
+  'pacepop',
+  'honda-spatial',
+  'ethicon-care',
+  'swim-up-hill',
+  'haily',
+  'ars-pharma',
+  'story-authoring',
+  'bubbas-daily-target',
+  'ai-3d-product-visualization',
+  'handsign',
+  'samsung-podcast',
+  'wood-chip',
+  'newegg',
+  'ai-native-mvp',
+  'sing-in-sign',
+  'fairads',
+  'b4q4-widgets',
+  'lemonlight',
+  'clozumin',
+  'ev-charging-security',
+  'learning-mobility',
+  'cookids',
+]
+const projectRank = new Map(projectPriority.map((slug, index) => [slug, index]))
+const unorderedProjects = [...featuredProjects, ...internships, ...editorial.additional, ...archived]
+export const allProjects = [...unorderedProjects].sort((a, b) => (
+  (projectRank.get(a.slug) ?? Number.MAX_SAFE_INTEGER) - (projectRank.get(b.slug) ?? Number.MAX_SAFE_INTEGER)
+))
+export const researchProjects = allProjects.filter(project => ['story-authoring', 'sing-in-sign', 'samsung-podcast'].includes(project.slug))
 export const legacyProjectAliases = {
   '/work/studio-os-audit/': 'ai-3d-product-visualization',
 }

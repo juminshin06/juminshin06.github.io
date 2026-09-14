@@ -1,0 +1,140 @@
+{
+  "name": "Jumin Shin",
+  "role": "UX Design Engineer",
+  "tagline": "I translate user needs into working digital experiences.",
+  "bio": [
+    "I'm a UX Design Engineer based in Los Angeles. I connect user research, interaction design, prototyping and front-end implementation to shape digital experiences, from AI-assisted creative tools to spatial interfaces and healthcare workflows.",
+    "I study Integrated Design, Business and Technology at USC's Iovine and Young Academy, following a double degree in Design Convergence and Game Software at Hongik University. That background brings design, research, and implementation into the same practice.",
+    "My experience includes an AI production platform at Bubba's LA, mixed-method UX research at Macromill Embrain, and USC industry collaborations with American Honda, Johnson & Johnson MedTech, and ARS Pharma. I have also co-authored research on interactive storytelling, music expression, and electric-vehicle charging interfaces."
+  ],
+  "email": "juminshi@usc.edu",
+  "linkedin": "https://www.linkedin.com/in/juminshin",
+  "scholar": "https://scholar.google.com/citations?user=RxmsjhAAAAAJ&hl=ko",
+  "github": "https://github.com/juminshin06",
+  "location": "Los Angeles, CA",
+  "experience": [
+    {
+      "organization": "USC Thomas Lord Department of Computer Science",
+      "title": "Program Teaching Assistant, Summer Computer Science Program",
+      "period": "Jul 2026",
+      "description": "Coached 22 students from seven Korean universities in machine learning, data science, and AI-assisted software development. Co-developed course materials and hands-on exercises, and mentored final-hackathon teams through ideation, implementation, and debugging."
+    },
+    {
+      "organization": "Bubba's LA",
+      "title": "AI Research Intern",
+      "period": "May - Jul 2026",
+      "description": "Designed and scaled an AI rough-cut preparation platform from a 10-video prototype to 300+ videos per automated batch, adopted for production use. Centralized real-time production monitoring and control, led AI SEO and business-development initiatives, and integrated 11,500+ professional connections into a mobile lead-prioritization dashboard."
+    },
+    {
+      "organization": "Swim Up Hill",
+      "title": "Operations & User Experience Intern",
+      "period": "Jun - Aug 2026",
+      "description": "Led internal-systems and workflow optimization for a swim-education nonprofit. Led the website team and owned UX/UI design, HTML frontend implementation and publishing at swimuphill.org, collaborating with a backend developer on program, outreach and reporting workflows."
+    },
+    {
+      "organization": "USC Iovine and Young Academy",
+      "title": "Student Assistant",
+      "period": "Sep - Dec 2025",
+      "description": "Restructured lecture content, curated industry UI/UX case studies, and coached students through project critiques and presentations for ACAD-325, Human Technology Interaction and the User Experience."
+    },
+    {
+      "organization": "Macromill Embrain",
+      "title": "Researcher & Designer Intern",
+      "period": "Nov 2023 - Jun 2024",
+      "description": "Contributed to mixed-method UX research with approximately 100 participants across engagements for Samsung Electronics, Hyundai Motor Company, and SK. Translated findings into strategies, concepts, and UI prototypes, and presented outcomes at a generative AI workshop."
+    },
+    {
+      "organization": "Zephframe",
+      "title": "Web Developer Intern",
+      "period": "Aug - Dec 2022",
+      "description": "Built scroll-responsive JavaScript frontend animations and developed Unreal Engine virtual spaces showcasing an AI-powered modular smart-door concept."
+    },
+    {
+      "organization": "Cheil Worldwide",
+      "title": "UX Designer Intern",
+      "period": "Mar - Jun 2022",
+      "description": "Shipped localized campaign websites and promotional UI for Samsung Galaxy Z Fold4 and Flip4 across approximately 10 international markets, including the UK, Germany, and France, adapting global launch concepts for local audiences."
+    }
+  ],
+  "education": [
+    {
+      "school": "University of Southern California, Iovine and Young Academy",
+      "degree": "M.S. in Integrated Design, Business and Technology",
+      "period": "Aug 2025 - May 2027 (expected)"
+    },
+    {
+      "school": "Hongik University",
+      "degree": "BFA in Design Convergence; B.Eng. in Game Software (double degree)",
+      "period": "Mar 2019 - Aug 2024"
+    },
+    {
+      "school": "Technical University of Berlin",
+      "degree": "Exchange Student, Summer University: Gaming for Virtual and Augmented Reality",
+      "period": "Jul - Aug 2022"
+    }
+  ],
+  "publications": [
+    {
+      "title": "Designing a Language Model-Based Authoring Tool Prototype for Interactive Storytelling",
+      "authors": "Park, J., Shin, J., Kim, G., and Bae, B.C.",
+      "venue": "Proceedings of ICIDS 2023",
+      "year": 2023,
+      "projectId": "proj-013",
+      "href": "https://scholar.google.com/citations?user=RxmsjhAAAAAJ&hl=ko"
+    },
+    {
+      "title": "Designing a Prototype for an Interactive Story Authoring Tool Utilizing Generative Language Models",
+      "authors": "Park, J., Shin, J., Kim, G., Nam, J., and Bae, B.C.",
+      "venue": "Proceedings of the KIISE Conference, Jeju Island, South Korea",
+      "year": 2023,
+      "projectId": "proj-013",
+      "href": "https://scholar.google.com/citations?user=RxmsjhAAAAAJ&hl=ko"
+    },
+    {
+      "title": "A Study on the Design of Exterior Doors and Indicators for Improved Usability of Electric Vehicle Charging Ports",
+      "authors": "Kim, H., Shin, J., Cho, S., and Park, K.",
+      "venue": "Proceedings of the KSDS Conference, Sejong, South Korea",
+      "year": 2023,
+      "href": "https://scholar.google.com/citations?user=RxmsjhAAAAAJ&hl=ko"
+    },
+    {
+      "title": "Sing In Sign",
+      "authors": "Co-authored by Jumin Shin",
+      "venue": "Proceedings of the HCI Korea Conference",
+      "year": 2022,
+      "projectId": "proj-005",
+      "href": "https://scholar.google.com/citations?user=RxmsjhAAAAAJ&hl=ko"
+    }
+  ],
+  "recognition": [
+    { "title": "HAiLY: 2nd Place, USC & Techstars Startup Weekend", "year": 2026 },
+    { "title": "Future Gaming Service Design: 1st Place, Newegg Gamer Zone (WD & UGREEN)", "year": 2026 },
+    { "title": "AI Native MVP: Team Award, USC IYA Vibe Coding Hackathon", "year": 2026 },
+    { "title": "Lotte Scholarship Foundation", "year": 2023 },
+    { "title": "Hongik University Internal Scholarship", "year": "2019 - 2023" },
+    { "title": "Korea Student Aid Foundation Arts and Sports Vision Scholarship", "year": "2021 - 2022" },
+    { "title": "CLOZUMIN: Social Problem Solving Award, Human City Design University Student Workshop (Seoul Mayor's Award)", "year": 2021 }
+  ],
+  "capabilities": [
+    {
+      "title": "UX for AI experiences",
+      "description": "Interfaces for generative and agentic AI, from creator-facing authoring tools to real-time production workflows."
+    },
+    {
+      "title": "User research & synthesis",
+      "description": "Interviews, surveys, usability testing, and analysis translated into service concepts, interface directions, and prototypes."
+    },
+    {
+      "title": "UI design & implementation",
+      "description": "UI/GUI design, design systems, data visualization, and responsive web interfaces built with Figma, React, JavaScript, and HTML/CSS."
+    },
+    {
+      "title": "Spatial UX & interaction design",
+      "description": "3D and immersive prototyping with Unity PolySpatial for visionOS, Unreal Engine, and Blender."
+    },
+    {
+      "title": "Rapid product prototyping",
+      "description": "Product UX, working MVPs, and pitches that connect a service idea with an interface people can try."
+    }
+  ]
+}

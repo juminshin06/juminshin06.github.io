@@ -1,0 +1,4393 @@
+{
+  "summary": {
+    "sourceCount": 169,
+    "uniqueImageCount": 168,
+    "derivativeCount": 336,
+    "originalBytes": 282910900,
+    "selectedOriginalBytes": 282868640,
+    "webp1600Bytes": 9923440,
+    "webp800Bytes": 4862636,
+    "quality": 82
+  },
+  "collisions": [
+    {
+      "sources": [
+        "public/assets/projects/Portfolio_Sign_In_Sign.jpg",
+        "public/assets/projects/Portfolio_Sign_In_Sign.png"
+      ],
+      "selected": "public/assets/projects/Portfolio_Sign_In_Sign.png",
+      "reason": "prefer PNG"
+    }
+  ],
+  "images": [
+    {
+      "source": "public/assets/life/life-001.jpg",
+      "aliases": [
+        "public/assets/life/life-001.jpg"
+      ],
+      "sha256": "831a353018d3958a011056d4fccbf629d41739678c97a551577dbeb52b2917fb",
+      "originalBytes": 303261,
+      "originalWidth": 1280,
+      "originalHeight": 1280,
+      "variants": [
+        {
+          "path": "/assets/optimized/life-001.webp",
+          "maxWidth": 1600,
+          "width": 1280,
+          "height": 1280,
+          "bytes": 270226
+        },
+        {
+          "path": "/assets/optimized/life-001-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 800,
+          "bytes": 118322
+        }
+      ]
+    },
+    {
+      "source": "public/assets/life/life-002.jpg",
+      "aliases": [
+        "public/assets/life/life-002.jpg"
+      ],
+      "sha256": "1d0a958735b8c1f380b38a3fe38fa2f187e659824db881e2672f734ef5ccddf9",
+      "originalBytes": 81288,
+      "originalWidth": 800,
+      "originalHeight": 533,
+      "variants": [
+        {
+          "path": "/assets/optimized/life-002.webp",
+          "maxWidth": 1600,
+          "width": 800,
+          "height": 533,
+          "bytes": 65796
+        },
+        {
+          "path": "/assets/optimized/life-002-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 533,
+          "bytes": 65796
+        }
+      ]
+    },
+    {
+      "source": "public/assets/life/life-003.jpg",
+      "aliases": [
+        "public/assets/life/life-003.jpg"
+      ],
+      "sha256": "398427acfe1c57e15f9fdbd3d5030a4cdde793379246fe2480b9af851d0d1d86",
+      "originalBytes": 65107,
+      "originalWidth": 800,
+      "originalHeight": 450,
+      "variants": [
+        {
+          "path": "/assets/optimized/life-003.webp",
+          "maxWidth": 1600,
+          "width": 800,
+          "height": 450,
+          "bytes": 51218
+        },
+        {
+          "path": "/assets/optimized/life-003-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 51218
+        }
+      ]
+    },
+    {
+      "source": "public/assets/life/life-004.jpg",
+      "aliases": [
+        "public/assets/life/life-004.jpg"
+      ],
+      "sha256": "fd0672281d4a482a030fcba6be5c5fd8c8f4302ce00461cf0d9f516a83de01af",
+      "originalBytes": 470581,
+      "originalWidth": 2048,
+      "originalHeight": 1536,
+      "variants": [
+        {
+          "path": "/assets/optimized/life-004.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 1200,
+          "bytes": 243986
+        },
+        {
+          "path": "/assets/optimized/life-004-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 600,
+          "bytes": 86648
+        }
+      ]
+    },
+    {
+      "source": "public/assets/life/life-005.jpg",
+      "aliases": [
+        "public/assets/life/life-005.jpg"
+      ],
+      "sha256": "3ffcc12f9f5362e96924ed8217e4b721798bee123de4b32786eb4fdf234a0096",
+      "originalBytes": 81139,
+      "originalWidth": 800,
+      "originalHeight": 600,
+      "variants": [
+        {
+          "path": "/assets/optimized/life-005.webp",
+          "maxWidth": 1600,
+          "width": 800,
+          "height": 600,
+          "bytes": 64512
+        },
+        {
+          "path": "/assets/optimized/life-005-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 600,
+          "bytes": 64512
+        }
+      ]
+    },
+    {
+      "source": "public/assets/life/life-006.jpg",
+      "aliases": [
+        "public/assets/life/life-006.jpg"
+      ],
+      "sha256": "0e09ebff00da0ddf5ade6d16b4158cf667f648f0b72c46468456935752b0e66d",
+      "originalBytes": 49616,
+      "originalWidth": 800,
+      "originalHeight": 533,
+      "variants": [
+        {
+          "path": "/assets/optimized/life-006.webp",
+          "maxWidth": 1600,
+          "width": 800,
+          "height": 533,
+          "bytes": 29178
+        },
+        {
+          "path": "/assets/optimized/life-006-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 533,
+          "bytes": 29178
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/AI_LemonLight.png",
+      "aliases": [
+        "public/assets/projects/AI_LemonLight.png"
+      ],
+      "sha256": "b71238954b3fd1289c590c53a7fb0caed10130684948ccb17671ac03226a1cf0",
+      "originalBytes": 1258428,
+      "originalWidth": 1796,
+      "originalHeight": 1006,
+      "variants": [
+        {
+          "path": "/assets/optimized/AI_LemonLight.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 896,
+          "bytes": 103570
+        },
+        {
+          "path": "/assets/optimized/AI_LemonLight-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 448,
+          "bytes": 34638
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/Autonomous.png",
+      "aliases": [
+        "public/assets/projects/Autonomous.png"
+      ],
+      "sha256": "4c7a1e2a98167b31318d84a4ac9a352d95f3b1eecae39bd03a36e888a94489f7",
+      "originalBytes": 11971770,
+      "originalWidth": 7680,
+      "originalHeight": 4320,
+      "variants": [
+        {
+          "path": "/assets/optimized/Autonomous.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 900,
+          "bytes": 171130
+        },
+        {
+          "path": "/assets/optimized/Autonomous-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 59338
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/Cheil_Worldwide.png",
+      "aliases": [
+        "public/assets/projects/Cheil_Worldwide.png"
+      ],
+      "sha256": "4243687719f62e12e927c3543fca1b0682c68e6bbbc9fe01fda770fb9177360b",
+      "originalBytes": 975213,
+      "originalWidth": 3424,
+      "originalHeight": 2160,
+      "variants": [
+        {
+          "path": "/assets/optimized/Cheil_Worldwide.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 1009,
+          "bytes": 40860
+        },
+        {
+          "path": "/assets/optimized/Cheil_Worldwide-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 505,
+          "bytes": 18252
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/Cheilwold.png",
+      "aliases": [
+        "public/assets/projects/Cheilwold.png"
+      ],
+      "sha256": "7a6e53c15c959d4735abe6a981a214c5f08f79a72bf3daddbafd37f0c35e78e4",
+      "originalBytes": 2893276,
+      "originalWidth": 7680,
+      "originalHeight": 4320,
+      "variants": [
+        {
+          "path": "/assets/optimized/Cheilwold.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 900,
+          "bytes": 48920
+        },
+        {
+          "path": "/assets/optimized/Cheilwold-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 18630
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/Cheilwold_2.png",
+      "aliases": [
+        "public/assets/projects/Cheilwold_2.png"
+      ],
+      "sha256": "efadfd10f40ddfe61229ce4e213a24a9c15e346000f0bd446d6eed5641a9844f",
+      "originalBytes": 7970475,
+      "originalWidth": 7680,
+      "originalHeight": 4320,
+      "variants": [
+        {
+          "path": "/assets/optimized/Cheilwold_2.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 900,
+          "bytes": 79440
+        },
+        {
+          "path": "/assets/optimized/Cheilwold_2-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 28366
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/Cheilwold_3.png",
+      "aliases": [
+        "public/assets/projects/Cheilwold_3.png"
+      ],
+      "sha256": "4eb375a8d273a97e079049e50b90ea00ab94cf6be96571e1a32cada4503eeda0",
+      "originalBytes": 767980,
+      "originalWidth": 7680,
+      "originalHeight": 4320,
+      "variants": [
+        {
+          "path": "/assets/optimized/Cheilwold_3.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 900,
+          "bytes": 32576
+        },
+        {
+          "path": "/assets/optimized/Cheilwold_3-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 11214
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/Clozumin.png",
+      "aliases": [
+        "public/assets/projects/Clozumin.png"
+      ],
+      "sha256": "263c83b79862261fc5f093c6dd7c1619001f1f497591bdebaae3ccb148f6d6af",
+      "originalBytes": 5582996,
+      "originalWidth": 7680,
+      "originalHeight": 4320,
+      "variants": [
+        {
+          "path": "/assets/optimized/Clozumin.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 900,
+          "bytes": 85938
+        },
+        {
+          "path": "/assets/optimized/Clozumin-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 36394
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/Clozumin_2.png",
+      "aliases": [
+        "public/assets/projects/Clozumin_2.png"
+      ],
+      "sha256": "4c1d3582ee3c1ab46ec1794b2bc24948f1876c5ab670a7bc4f5dfbd09145a9dc",
+      "originalBytes": 7420150,
+      "originalWidth": 7680,
+      "originalHeight": 4320,
+      "variants": [
+        {
+          "path": "/assets/optimized/Clozumin_2.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 900,
+          "bytes": 76496
+        },
+        {
+          "path": "/assets/optimized/Clozumin_2-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 26938
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/Clozumin_3.png",
+      "aliases": [
+        "public/assets/projects/Clozumin_3.png"
+      ],
+      "sha256": "e1c7afb0c98819fa0435a2e8cbe0b1f38df5fc331b26380f23c281b7b318044d",
+      "originalBytes": 1826721,
+      "originalWidth": 7680,
+      "originalHeight": 4320,
+      "variants": [
+        {
+          "path": "/assets/optimized/Clozumin_3.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 900,
+          "bytes": 88322
+        },
+        {
+          "path": "/assets/optimized/Clozumin_3-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 29606
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/Clozumin_4.png",
+      "aliases": [
+        "public/assets/projects/Clozumin_4.png"
+      ],
+      "sha256": "853582c71817c81f0b956206e1d3a235120d9f6451f96d0ae51bb3b489e25147",
+      "originalBytes": 4088114,
+      "originalWidth": 7680,
+      "originalHeight": 4320,
+      "variants": [
+        {
+          "path": "/assets/optimized/Clozumin_4.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 900,
+          "bytes": 68328
+        },
+        {
+          "path": "/assets/optimized/Clozumin_4-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 22266
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/Clozumin_5.png",
+      "aliases": [
+        "public/assets/projects/Clozumin_5.png"
+      ],
+      "sha256": "1336f62c13109eed0a7c9198f6bcc5fcee64ee7eb36934273cdae1a03fa99a97",
+      "originalBytes": 3818437,
+      "originalWidth": 7680,
+      "originalHeight": 4320,
+      "variants": [
+        {
+          "path": "/assets/optimized/Clozumin_5.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 900,
+          "bytes": 71616
+        },
+        {
+          "path": "/assets/optimized/Clozumin_5-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 23210
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/Clozumin_6.png",
+      "aliases": [
+        "public/assets/projects/Clozumin_6.png"
+      ],
+      "sha256": "740e4fd440193a80fd2bb7acceacaa2fe77d1cc5fb6965e97f2a0d792d999e7a",
+      "originalBytes": 6870130,
+      "originalWidth": 7680,
+      "originalHeight": 4320,
+      "variants": [
+        {
+          "path": "/assets/optimized/Clozumin_6.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 900,
+          "bytes": 88488
+        },
+        {
+          "path": "/assets/optimized/Clozumin_6-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 29002
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/Cookid.png",
+      "aliases": [
+        "public/assets/projects/Cookid.png"
+      ],
+      "sha256": "7867bd3dfa460159904cb7920cc5d6d3aeece3c1e848c7edc410a323e7605c7d",
+      "originalBytes": 8277075,
+      "originalWidth": 7680,
+      "originalHeight": 4320,
+      "variants": [
+        {
+          "path": "/assets/optimized/Cookid.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 900,
+          "bytes": 89510
+        },
+        {
+          "path": "/assets/optimized/Cookid-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 33138
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/Cookid_2.png",
+      "aliases": [
+        "public/assets/projects/Cookid_2.png"
+      ],
+      "sha256": "2c63d72c87dcc93f95e405964765d0bbb25280567a95ebc68792bf3782292b97",
+      "originalBytes": 1095357,
+      "originalWidth": 7680,
+      "originalHeight": 4357,
+      "variants": [
+        {
+          "path": "/assets/optimized/Cookid_2.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 908,
+          "bytes": 87534
+        },
+        {
+          "path": "/assets/optimized/Cookid_2-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 454,
+          "bytes": 27976
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/Cookid_3.png",
+      "aliases": [
+        "public/assets/projects/Cookid_3.png"
+      ],
+      "sha256": "5733e14b4b72db75a7b211b3fd9cd816af8de449755a56719506893e20f49da0",
+      "originalBytes": 9145488,
+      "originalWidth": 7680,
+      "originalHeight": 4303,
+      "variants": [
+        {
+          "path": "/assets/optimized/Cookid_3.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 896,
+          "bytes": 86834
+        },
+        {
+          "path": "/assets/optimized/Cookid_3-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 448,
+          "bytes": 30736
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/Cookids.png",
+      "aliases": [
+        "public/assets/projects/Cookids.png"
+      ],
+      "sha256": "5a3192ee5d37db3abb484a12c59beea870e31efe4a19d1a2ffd395b906d59429",
+      "originalBytes": 3693505,
+      "originalWidth": 4160,
+      "originalHeight": 4320,
+      "variants": [
+        {
+          "path": "/assets/optimized/Cookids.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 1662,
+          "bytes": 47416
+        },
+        {
+          "path": "/assets/optimized/Cookids-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 831,
+          "bytes": 20472
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/EV_1.png",
+      "aliases": [
+        "public/assets/projects/EV_1.png"
+      ],
+      "sha256": "8caf67eac6a407eb0be6ae6c37a55af1d6a44f98763e79f7883e9f7ed328fc8e",
+      "originalBytes": 8037818,
+      "originalWidth": 7680,
+      "originalHeight": 4320,
+      "variants": [
+        {
+          "path": "/assets/optimized/EV_1.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 900,
+          "bytes": 120704
+        },
+        {
+          "path": "/assets/optimized/EV_1-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 44726
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/EV_2.png",
+      "aliases": [
+        "public/assets/projects/EV_2.png"
+      ],
+      "sha256": "4404937722ce65b7a92a738a3da4afdd6964defd40f1d2b242cd08fd062edc7f",
+      "originalBytes": 15315939,
+      "originalWidth": 7680,
+      "originalHeight": 4320,
+      "variants": [
+        {
+          "path": "/assets/optimized/EV_2.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 900,
+          "bytes": 64888
+        },
+        {
+          "path": "/assets/optimized/EV_2-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 24326
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/EV_Charging.png",
+      "aliases": [
+        "public/assets/projects/EV_Charging.png"
+      ],
+      "sha256": "c2a2a2cad21194ed10e40c918f5ff046bfaac3ef0c53cf0b632f8c8921d3540a",
+      "originalBytes": 12817202,
+      "originalWidth": 5052,
+      "originalHeight": 4320,
+      "variants": [
+        {
+          "path": "/assets/optimized/EV_Charging.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 1368,
+          "bytes": 70200
+        },
+        {
+          "path": "/assets/optimized/EV_Charging-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 684,
+          "bytes": 25788
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/Fairads.png",
+      "aliases": [
+        "public/assets/projects/Fairads.png"
+      ],
+      "sha256": "716d75005292acc83a69e5a4995aeb5a8841a3f599395047021a8862bef54d47",
+      "originalBytes": 236287,
+      "originalWidth": 1526,
+      "originalHeight": 788,
+      "variants": [
+        {
+          "path": "/assets/optimized/Fairads.webp",
+          "maxWidth": 1600,
+          "width": 1526,
+          "height": 788,
+          "bytes": 39380
+        },
+        {
+          "path": "/assets/optimized/Fairads-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 413,
+          "bytes": 16476
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/IYA_ViveCoding_Hackathon.png",
+      "aliases": [
+        "public/assets/projects/IYA_ViveCoding_Hackathon.png"
+      ],
+      "sha256": "ca76c43589ee60f2ee6207a3cef0b0f71c0241cf4309746212b27d5cc8948d0e",
+      "originalBytes": 456480,
+      "originalWidth": 2648,
+      "originalHeight": 1524,
+      "variants": [
+        {
+          "path": "/assets/optimized/IYA_ViveCoding_Hackathon.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 921,
+          "bytes": 48804
+        },
+        {
+          "path": "/assets/optimized/IYA_ViveCoding_Hackathon-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 460,
+          "bytes": 18238
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/Interactive_Story.png",
+      "aliases": [
+        "public/assets/projects/Interactive_Story.png"
+      ],
+      "sha256": "2e7f7c56726d0f79f555fe4bda357499d31dcd4227542a3e513ef0f8c9d171dc",
+      "originalBytes": 719455,
+      "originalWidth": 1143,
+      "originalHeight": 1580,
+      "variants": [
+        {
+          "path": "/assets/optimized/Interactive_Story.webp",
+          "maxWidth": 1600,
+          "width": 1143,
+          "height": 1580,
+          "bytes": 169710
+        },
+        {
+          "path": "/assets/optimized/Interactive_Story-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 1106,
+          "bytes": 105070
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/Mobility_1.png",
+      "aliases": [
+        "public/assets/projects/Mobility_1.png"
+      ],
+      "sha256": "4728aedb7b54d35138a737d51bee8bc93a20965274500c5acea5c65d200d2cd0",
+      "originalBytes": 11850363,
+      "originalWidth": 7680,
+      "originalHeight": 4320,
+      "variants": [
+        {
+          "path": "/assets/optimized/Mobility_1.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 900,
+          "bytes": 160266
+        },
+        {
+          "path": "/assets/optimized/Mobility_1-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 55624
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/Mobility_2.png",
+      "aliases": [
+        "public/assets/projects/Mobility_2.png"
+      ],
+      "sha256": "68bce17b8af039064052658126f8d0c518e33f643a0830ac3e5f7f70d96d80ed",
+      "originalBytes": 23890117,
+      "originalWidth": 7680,
+      "originalHeight": 4320,
+      "variants": [
+        {
+          "path": "/assets/optimized/Mobility_2.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 900,
+          "bytes": 135138
+        },
+        {
+          "path": "/assets/optimized/Mobility_2-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 45950
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/Podcast Service for Job Seekers.png",
+      "aliases": [
+        "public/assets/projects/Podcast Service for Job Seekers.png"
+      ],
+      "sha256": "e82a0e3496466956e3b987e2deafe7979555c6e49166d842cd7bac47178257e8",
+      "originalBytes": 3532276,
+      "originalWidth": 4908,
+      "originalHeight": 2948,
+      "variants": [
+        {
+          "path": "/assets/optimized/Podcast Service for Job Seekers.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 961,
+          "bytes": 75198
+        },
+        {
+          "path": "/assets/optimized/Podcast Service for Job Seekers-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 481,
+          "bytes": 28026
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/Podcast_1.png",
+      "aliases": [
+        "public/assets/projects/Podcast_1.png"
+      ],
+      "sha256": "8e2d6c1c05d0193811f608e9ff2d44d74380381e49b0a9be8ed61deabb1aebcd",
+      "originalBytes": 1872836,
+      "originalWidth": 7680,
+      "originalHeight": 4320,
+      "variants": [
+        {
+          "path": "/assets/optimized/Podcast_1.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 900,
+          "bytes": 89180
+        },
+        {
+          "path": "/assets/optimized/Podcast_1-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 31500
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/Podcast_2.png",
+      "aliases": [
+        "public/assets/projects/Podcast_2.png"
+      ],
+      "sha256": "100166a263a8d65ac33adc3fd10a4d336bc1830567858c5898288c5af1df42f1",
+      "originalBytes": 2695977,
+      "originalWidth": 7680,
+      "originalHeight": 4320,
+      "variants": [
+        {
+          "path": "/assets/optimized/Podcast_2.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 900,
+          "bytes": 89282
+        },
+        {
+          "path": "/assets/optimized/Podcast_2-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 31142
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/Podcast_3.png",
+      "aliases": [
+        "public/assets/projects/Podcast_3.png"
+      ],
+      "sha256": "2d99b20e6a6958881f33ed04537210c0bf3e0e4f5cecef76801640a706008560",
+      "originalBytes": 3040103,
+      "originalWidth": 7680,
+      "originalHeight": 4320,
+      "variants": [
+        {
+          "path": "/assets/optimized/Podcast_3.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 900,
+          "bytes": 78760
+        },
+        {
+          "path": "/assets/optimized/Podcast_3-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 24716
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/Podcast_4.png",
+      "aliases": [
+        "public/assets/projects/Podcast_4.png"
+      ],
+      "sha256": "b7bf98b8df615a1c8bd85d8dad08f2535f3b0b3ee14ae13ddf295a87e935c383",
+      "originalBytes": 7476888,
+      "originalWidth": 7680,
+      "originalHeight": 4320,
+      "variants": [
+        {
+          "path": "/assets/optimized/Podcast_4.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 900,
+          "bytes": 81118
+        },
+        {
+          "path": "/assets/optimized/Podcast_4-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 28806
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/Portfolio_B4Q4.png",
+      "aliases": [
+        "public/assets/projects/Portfolio_B4Q4.png"
+      ],
+      "sha256": "a2f9ad7e821d3978e8777b9a2d530865bf54ff62582dae5f688a0bfeb384ceee",
+      "originalBytes": 475027,
+      "originalWidth": 2236,
+      "originalHeight": 1052,
+      "variants": [
+        {
+          "path": "/assets/optimized/Portfolio_B4Q4.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 753,
+          "bytes": 35576
+        },
+        {
+          "path": "/assets/optimized/Portfolio_B4Q4-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 376,
+          "bytes": 16234
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/Portfolio_Clozumin.png",
+      "aliases": [
+        "public/assets/projects/Portfolio_Clozumin.png"
+      ],
+      "sha256": "5530ac2bd7f7123b6f66b0baa0d195af05a35d7c513f6221363a5a68bd03a1e6",
+      "originalBytes": 1924687,
+      "originalWidth": 4452,
+      "originalHeight": 2740,
+      "variants": [
+        {
+          "path": "/assets/optimized/Portfolio_Clozumin.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 985,
+          "bytes": 38780
+        },
+        {
+          "path": "/assets/optimized/Portfolio_Clozumin-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 492,
+          "bytes": 16184
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/Portfolio_Cookids.png",
+      "aliases": [
+        "public/assets/projects/Portfolio_Cookids.png"
+      ],
+      "sha256": "ee5c168443e7efa2c8988ff9306c276fa17d45fb95cb9e8d2837b7782e4085e3",
+      "originalBytes": 3693510,
+      "originalWidth": 4160,
+      "originalHeight": 4320,
+      "variants": [
+        {
+          "path": "/assets/optimized/Portfolio_Cookids.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 1662,
+          "bytes": 47422
+        },
+        {
+          "path": "/assets/optimized/Portfolio_Cookids-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 831,
+          "bytes": 20466
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/Portfolio_Cookids_new.png",
+      "aliases": [
+        "public/assets/projects/Portfolio_Cookids_new.png"
+      ],
+      "sha256": "fe4cb6c84ccc7c2034932467cb6c8e750877396bd50a058b5d5fb7cca4d224e0",
+      "originalBytes": 3667140,
+      "originalWidth": 4160,
+      "originalHeight": 4320,
+      "variants": [
+        {
+          "path": "/assets/optimized/Portfolio_Cookids_new.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 1662,
+          "bytes": 45574
+        },
+        {
+          "path": "/assets/optimized/Portfolio_Cookids_new-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 831,
+          "bytes": 19500
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/Portfolio_EV_Charging.png",
+      "aliases": [
+        "public/assets/projects/Portfolio_EV_Charging.png"
+      ],
+      "sha256": "79365d2771017436d72006378868cb4127e1a3a79e01f80aa10743c231836abb",
+      "originalBytes": 13814364,
+      "originalWidth": 5052,
+      "originalHeight": 4320,
+      "variants": [
+        {
+          "path": "/assets/optimized/Portfolio_EV_Charging.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 1368,
+          "bytes": 68470
+        },
+        {
+          "path": "/assets/optimized/Portfolio_EV_Charging-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 684,
+          "bytes": 22846
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/Portfolio_Fairads.png",
+      "aliases": [
+        "public/assets/projects/Portfolio_Fairads.png"
+      ],
+      "sha256": "ad848afb50ea38b9cf24bb4b43d401fc5a87b431f103a892e568c5ac7ed719f0",
+      "originalBytes": 719094,
+      "originalWidth": 1442,
+      "originalHeight": 806,
+      "variants": [
+        {
+          "path": "/assets/optimized/Portfolio_Fairads.webp",
+          "maxWidth": 1600,
+          "width": 1442,
+          "height": 806,
+          "bytes": 94282
+        },
+        {
+          "path": "/assets/optimized/Portfolio_Fairads-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 447,
+          "bytes": 37580
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/Portfolio_IYA_vibe.png",
+      "aliases": [
+        "public/assets/projects/Portfolio_IYA_vibe.png"
+      ],
+      "sha256": "903b8301bb65589eaa062472aa54e2b27343b1669def04ab30ab39d2b884ac18",
+      "originalBytes": 190997,
+      "originalWidth": 1436,
+      "originalHeight": 802,
+      "variants": [
+        {
+          "path": "/assets/optimized/Portfolio_IYA_vibe.webp",
+          "maxWidth": 1600,
+          "width": 1436,
+          "height": 802,
+          "bytes": 40102
+        },
+        {
+          "path": "/assets/optimized/Portfolio_IYA_vibe-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 447,
+          "bytes": 20908
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/Portfolio_Lemonlight.png",
+      "aliases": [
+        "public/assets/projects/Portfolio_Lemonlight.png"
+      ],
+      "sha256": "605e6cb2e9859752648c61f6f093dbe3316d2d17960b1cb0e5e07e9091a85c9a",
+      "originalBytes": 3423427,
+      "originalWidth": 1938,
+      "originalHeight": 1082,
+      "variants": [
+        {
+          "path": "/assets/optimized/Portfolio_Lemonlight.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 893,
+          "bytes": 131616
+        },
+        {
+          "path": "/assets/optimized/Portfolio_Lemonlight-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 447,
+          "bytes": 63502
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/Portfolio_Mobility.png",
+      "aliases": [
+        "public/assets/projects/Portfolio_Mobility.png"
+      ],
+      "sha256": "1c20dc60d7d3f1e846d7140236a804157e9dd652b6aac40d2a8ef079cb5e5076",
+      "originalBytes": 12045833,
+      "originalWidth": 7680,
+      "originalHeight": 4320,
+      "variants": [
+        {
+          "path": "/assets/optimized/Portfolio_Mobility.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 900,
+          "bytes": 171770
+        },
+        {
+          "path": "/assets/optimized/Portfolio_Mobility-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 59388
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/Portfolio_Podcast.png",
+      "aliases": [
+        "public/assets/projects/Portfolio_Podcast.png"
+      ],
+      "sha256": "3024424ef611aed644b3ccac1cadfc0bcb5b911d2a8c8ff551932f24dac3e405",
+      "originalBytes": 3532197,
+      "originalWidth": 4908,
+      "originalHeight": 2948,
+      "variants": [
+        {
+          "path": "/assets/optimized/Portfolio_Podcast.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 961,
+          "bytes": 75218
+        },
+        {
+          "path": "/assets/optimized/Portfolio_Podcast-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 481,
+          "bytes": 28050
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/Portfolio_Sign_In_Sign.png",
+      "aliases": [
+        "public/assets/projects/Portfolio_Sign_In_Sign.jpg",
+        "public/assets/projects/Portfolio_Sign_In_Sign.png"
+      ],
+      "sha256": "7fd65d28bbcc9ee1f02d35014960e46d14aba6cac9f394d0e742718b3ca998ee",
+      "originalBytes": 108374,
+      "originalWidth": 1230,
+      "originalHeight": 755,
+      "variants": [
+        {
+          "path": "/assets/optimized/Portfolio_Sign_In_Sign.webp",
+          "maxWidth": 1600,
+          "width": 1230,
+          "height": 755,
+          "bytes": 37848
+        },
+        {
+          "path": "/assets/optimized/Portfolio_Sign_In_Sign-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 491,
+          "bytes": 22062
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/Portfolio_interactive_storytelling.png",
+      "aliases": [
+        "public/assets/projects/Portfolio_interactive_storytelling.png"
+      ],
+      "sha256": "13188daad35dd64a70bc25c731092e3d79bcc3c5917a06c0fd62d7595d004d54",
+      "originalBytes": 113374,
+      "originalWidth": 1068,
+      "originalHeight": 601,
+      "variants": [
+        {
+          "path": "/assets/optimized/Portfolio_interactive_storytelling.webp",
+          "maxWidth": 1600,
+          "width": 1068,
+          "height": 601,
+          "bytes": 25044
+        },
+        {
+          "path": "/assets/optimized/Portfolio_interactive_storytelling-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 15880
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/Sign in Sign.png",
+      "aliases": [
+        "public/assets/projects/Sign in Sign.png"
+      ],
+      "sha256": "701df603559aa444afd538000a64f3ad35d90118b90b20658371100e5e9422bb",
+      "originalBytes": 1431390,
+      "originalWidth": 1152,
+      "originalHeight": 928,
+      "variants": [
+        {
+          "path": "/assets/optimized/Sign in Sign.webp",
+          "maxWidth": 1600,
+          "width": 1152,
+          "height": 928,
+          "bytes": 34834
+        },
+        {
+          "path": "/assets/optimized/Sign in Sign-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 644,
+          "bytes": 21840
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/SignInSign.png",
+      "aliases": [
+        "public/assets/projects/SignInSign.png"
+      ],
+      "sha256": "54144d1fbfb6e191643b2c7bf19584814f5ac49d15c207f04349529538eddea4",
+      "originalBytes": 3201229,
+      "originalWidth": 7680,
+      "originalHeight": 4320,
+      "variants": [
+        {
+          "path": "/assets/optimized/SignInSign.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 900,
+          "bytes": 105640
+        },
+        {
+          "path": "/assets/optimized/SignInSign-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 36446
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/StoryAuthoring_1.png",
+      "aliases": [
+        "public/assets/projects/StoryAuthoring_1.png"
+      ],
+      "sha256": "f8767a0700852733db680a51bb69d441bfd598ed331c8c7add6a66149892f9b2",
+      "originalBytes": 5818114,
+      "originalWidth": 7680,
+      "originalHeight": 4320,
+      "variants": [
+        {
+          "path": "/assets/optimized/StoryAuthoring_1.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 900,
+          "bytes": 114550
+        },
+        {
+          "path": "/assets/optimized/StoryAuthoring_1-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 39064
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/StoryAuthoring_2.png",
+      "aliases": [
+        "public/assets/projects/StoryAuthoring_2.png"
+      ],
+      "sha256": "8f24c746578f738c1c033b63010582d497dc713f705955f9445fa0645ff6b0bb",
+      "originalBytes": 5236740,
+      "originalWidth": 7680,
+      "originalHeight": 4320,
+      "variants": [
+        {
+          "path": "/assets/optimized/StoryAuthoring_2.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 900,
+          "bytes": 89268
+        },
+        {
+          "path": "/assets/optimized/StoryAuthoring_2-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 28664
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/ars-brand-system.png",
+      "aliases": [
+        "public/assets/projects/ars-brand-system.png"
+      ],
+      "sha256": "42579771671951753a3507f0f6c97103bad6638e06e53d3175f1c58be5c4331a",
+      "originalBytes": 372801,
+      "originalWidth": 1440,
+      "originalHeight": 810,
+      "variants": [
+        {
+          "path": "/assets/optimized/ars-brand-system.webp",
+          "maxWidth": 1600,
+          "width": 1440,
+          "height": 810,
+          "bytes": 75184
+        },
+        {
+          "path": "/assets/optimized/ars-brand-system-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 34188
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/ars-location-ui.png",
+      "aliases": [
+        "public/assets/projects/ars-location-ui.png"
+      ],
+      "sha256": "855d5cc05dcff8814e774087cd034088c24644d815befa742d769941aff26049",
+      "originalBytes": 490799,
+      "originalWidth": 1440,
+      "originalHeight": 810,
+      "variants": [
+        {
+          "path": "/assets/optimized/ars-location-ui.webp",
+          "maxWidth": 1600,
+          "width": 1440,
+          "height": 810,
+          "bytes": 63180
+        },
+        {
+          "path": "/assets/optimized/ars-location-ui-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 29444
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/ars-package.png",
+      "aliases": [
+        "public/assets/projects/ars-package.png"
+      ],
+      "sha256": "68281d95925f67c1f6f6032d6c47c18b0ede592710e9ebccffb2a9321391b1d6",
+      "originalBytes": 696353,
+      "originalWidth": 1440,
+      "originalHeight": 810,
+      "variants": [
+        {
+          "path": "/assets/optimized/ars-package.webp",
+          "maxWidth": 1600,
+          "width": 1440,
+          "height": 810,
+          "bytes": 93016
+        },
+        {
+          "path": "/assets/optimized/ars-package-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 39730
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/ars-research.png",
+      "aliases": [
+        "public/assets/projects/ars-research.png"
+      ],
+      "sha256": "ec4f335830c2114689bb77cffedae8ccb4d393ad4aa07ee90f921a3b95b9860c",
+      "originalBytes": 498643,
+      "originalWidth": 1440,
+      "originalHeight": 810,
+      "variants": [
+        {
+          "path": "/assets/optimized/ars-research.webp",
+          "maxWidth": 1600,
+          "width": 1440,
+          "height": 810,
+          "bytes": 83708
+        },
+        {
+          "path": "/assets/optimized/ars-research-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 33516
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/blender-mcp-mascot-variant.png",
+      "aliases": [
+        "public/assets/projects/blender-mcp-mascot-variant.png"
+      ],
+      "sha256": "db6a61d76cf10b2afbbf887e632b1c4514cdc05c5e9bce51bd1f2d8f013c60b8",
+      "originalBytes": 1308017,
+      "originalWidth": 1080,
+      "originalHeight": 1080,
+      "variants": [
+        {
+          "path": "/assets/optimized/blender-mcp-mascot-variant.webp",
+          "maxWidth": 1600,
+          "width": 1080,
+          "height": 1080,
+          "bytes": 14658
+        },
+        {
+          "path": "/assets/optimized/blender-mcp-mascot-variant-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 800,
+          "bytes": 10064
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/blender-mcp-mascot.png",
+      "aliases": [
+        "public/assets/projects/blender-mcp-mascot.png"
+      ],
+      "sha256": "dec51598520f9fdd7973bce90c8e2608d38505917c01aedcd84ef46259b371f4",
+      "originalBytes": 1313781,
+      "originalWidth": 1080,
+      "originalHeight": 1080,
+      "variants": [
+        {
+          "path": "/assets/optimized/blender-mcp-mascot.webp",
+          "maxWidth": 1600,
+          "width": 1080,
+          "height": 1080,
+          "bytes": 15218
+        },
+        {
+          "path": "/assets/optimized/blender-mcp-mascot-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 800,
+          "bytes": 10484
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/blender-mcp-v01.png",
+      "aliases": [
+        "public/assets/projects/blender-mcp-v01.png"
+      ],
+      "sha256": "00be4dbad206c6db5156373df72ebf33c7121fe02589921e19b5806f5a9243a7",
+      "originalBytes": 1829080,
+      "originalWidth": 1920,
+      "originalHeight": 1080,
+      "variants": [
+        {
+          "path": "/assets/optimized/blender-mcp-v01.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 900,
+          "bytes": 10142
+        },
+        {
+          "path": "/assets/optimized/blender-mcp-v01-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 4024
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/blender-mcp-v02.png",
+      "aliases": [
+        "public/assets/projects/blender-mcp-v02.png"
+      ],
+      "sha256": "f8e74da5a8da577d94b47e454e0aa074c2fb24141825cd0d7c80d345c14449ff",
+      "originalBytes": 1838886,
+      "originalWidth": 1920,
+      "originalHeight": 1080,
+      "variants": [
+        {
+          "path": "/assets/optimized/blender-mcp-v02.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 900,
+          "bytes": 14344
+        },
+        {
+          "path": "/assets/optimized/blender-mcp-v02-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 5980
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/blender-mcp-v03.png",
+      "aliases": [
+        "public/assets/projects/blender-mcp-v03.png"
+      ],
+      "sha256": "e494ac4676dc8a207b6a617eff1188a78f9404c434783f5835cb4d3bcae0c247",
+      "originalBytes": 2094739,
+      "originalWidth": 1920,
+      "originalHeight": 1080,
+      "variants": [
+        {
+          "path": "/assets/optimized/blender-mcp-v03.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 900,
+          "bytes": 22650
+        },
+        {
+          "path": "/assets/optimized/blender-mcp-v03-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 8704
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/blender-mcp-v04.png",
+      "aliases": [
+        "public/assets/projects/blender-mcp-v04.png"
+      ],
+      "sha256": "37ff8940e9c419a85bb4b2a6f98e68d7042256526362f47bfef0a00243eda1a1",
+      "originalBytes": 1926371,
+      "originalWidth": 1920,
+      "originalHeight": 1080,
+      "variants": [
+        {
+          "path": "/assets/optimized/blender-mcp-v04.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 900,
+          "bytes": 15868
+        },
+        {
+          "path": "/assets/optimized/blender-mcp-v04-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 6904
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/bubbas-assist-catalog.png",
+      "aliases": [
+        "public/assets/projects/bubbas-assist-catalog.png"
+      ],
+      "sha256": "204a10a847c1a8de47c601884f555e7bdc7795e85879618ea5492d745adb3949",
+      "originalBytes": 289504,
+      "originalWidth": 1440,
+      "originalHeight": 1000,
+      "variants": [
+        {
+          "path": "/assets/optimized/bubbas-assist-catalog.webp",
+          "maxWidth": 1600,
+          "width": 1440,
+          "height": 1000,
+          "bytes": 44044
+        },
+        {
+          "path": "/assets/optimized/bubbas-assist-catalog-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 556,
+          "bytes": 20832
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/bubbas-assist-export.png",
+      "aliases": [
+        "public/assets/projects/bubbas-assist-export.png"
+      ],
+      "sha256": "4096f216426d5a678bb7c32f8f56b26e5973c5b7d9b514fe0549d7b52a001a24",
+      "originalBytes": 221491,
+      "originalWidth": 1440,
+      "originalHeight": 1000,
+      "variants": [
+        {
+          "path": "/assets/optimized/bubbas-assist-export.webp",
+          "maxWidth": 1600,
+          "width": 1440,
+          "height": 1000,
+          "bytes": 40470
+        },
+        {
+          "path": "/assets/optimized/bubbas-assist-export-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 556,
+          "bytes": 18178
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/bubbas-assist-input.png",
+      "aliases": [
+        "public/assets/projects/bubbas-assist-input.png"
+      ],
+      "sha256": "8ff29bcd990d1229b5115dad1bff491e6d9fa0513bd4452ff4a1c0e62d794aa5",
+      "originalBytes": 130418,
+      "originalWidth": 1440,
+      "originalHeight": 1000,
+      "variants": [
+        {
+          "path": "/assets/optimized/bubbas-assist-input.webp",
+          "maxWidth": 1600,
+          "width": 1440,
+          "height": 1000,
+          "bytes": 43294
+        },
+        {
+          "path": "/assets/optimized/bubbas-assist-input-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 556,
+          "bytes": 19920
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/bubbas-assist-library.png",
+      "aliases": [
+        "public/assets/projects/bubbas-assist-library.png"
+      ],
+      "sha256": "10a993ec2ba7c81ade8dc9c13614fd3ac166844696da38095878b884e2717cf5",
+      "originalBytes": 142579,
+      "originalWidth": 1440,
+      "originalHeight": 1000,
+      "variants": [
+        {
+          "path": "/assets/optimized/bubbas-assist-library.webp",
+          "maxWidth": 1600,
+          "width": 1440,
+          "height": 1000,
+          "bytes": 34808
+        },
+        {
+          "path": "/assets/optimized/bubbas-assist-library-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 556,
+          "bytes": 16292
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/bubbas-assist-media.png",
+      "aliases": [
+        "public/assets/projects/bubbas-assist-media.png"
+      ],
+      "sha256": "ce7b8a9e4bd0238aa9d055ded137f486bb9d2301aa440ee603cddd365eedc7d5",
+      "originalBytes": 304351,
+      "originalWidth": 1440,
+      "originalHeight": 1000,
+      "variants": [
+        {
+          "path": "/assets/optimized/bubbas-assist-media.webp",
+          "maxWidth": 1600,
+          "width": 1440,
+          "height": 1000,
+          "bytes": 42910
+        },
+        {
+          "path": "/assets/optimized/bubbas-assist-media-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 556,
+          "bytes": 20000
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/bubbas-assist-progress.png",
+      "aliases": [
+        "public/assets/projects/bubbas-assist-progress.png"
+      ],
+      "sha256": "7ddb4bd1df8933346ba6bb75b79784f9b3f9b973e03a6f78bf5dd4bb103d87b1",
+      "originalBytes": 229395,
+      "originalWidth": 1440,
+      "originalHeight": 1000,
+      "variants": [
+        {
+          "path": "/assets/optimized/bubbas-assist-progress.webp",
+          "maxWidth": 1600,
+          "width": 1440,
+          "height": 1000,
+          "bytes": 44432
+        },
+        {
+          "path": "/assets/optimized/bubbas-assist-progress-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 556,
+          "bytes": 21192
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/bubbas-assist-result.png",
+      "aliases": [
+        "public/assets/projects/bubbas-assist-result.png"
+      ],
+      "sha256": "f93b40fd888f0d15783ad8508a5f2e36448a5b46e691e4c7fba8c624aec98758",
+      "originalBytes": 260478,
+      "originalWidth": 1440,
+      "originalHeight": 1000,
+      "variants": [
+        {
+          "path": "/assets/optimized/bubbas-assist-result.webp",
+          "maxWidth": 1600,
+          "width": 1440,
+          "height": 1000,
+          "bytes": 52710
+        },
+        {
+          "path": "/assets/optimized/bubbas-assist-result-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 556,
+          "bytes": 24886
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/bubbas-assist-selects.png",
+      "aliases": [
+        "public/assets/projects/bubbas-assist-selects.png"
+      ],
+      "sha256": "5542013852e03f5ecc5bb51e04909ffadf5795347cfab9ede2b05f08eb928c72",
+      "originalBytes": 200942,
+      "originalWidth": 1440,
+      "originalHeight": 1000,
+      "variants": [
+        {
+          "path": "/assets/optimized/bubbas-assist-selects.webp",
+          "maxWidth": 1600,
+          "width": 1440,
+          "height": 1000,
+          "bytes": 38038
+        },
+        {
+          "path": "/assets/optimized/bubbas-assist-selects-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 556,
+          "bytes": 17128
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/bubbas-daily-target-mobile.png",
+      "aliases": [
+        "public/assets/projects/bubbas-daily-target-mobile.png"
+      ],
+      "sha256": "593491d45e8fd44825ec93f200709ad29499307ece8afef57ecec3b640094fa0",
+      "originalBytes": 84907,
+      "originalWidth": 390,
+      "originalHeight": 844,
+      "variants": [
+        {
+          "path": "/assets/optimized/bubbas-daily-target-mobile.webp",
+          "maxWidth": 1600,
+          "width": 390,
+          "height": 844,
+          "bytes": 32594
+        },
+        {
+          "path": "/assets/optimized/bubbas-daily-target-mobile-800.webp",
+          "maxWidth": 800,
+          "width": 390,
+          "height": 844,
+          "bytes": 32594
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/bubbas-daily-target-queue.png",
+      "aliases": [
+        "public/assets/projects/bubbas-daily-target-queue.png"
+      ],
+      "sha256": "ce06c33009a6acb23b4cef7882732dcd317caf04a9d78e14e37b45616ed51277",
+      "originalBytes": 34098,
+      "originalWidth": 720,
+      "originalHeight": 303,
+      "variants": [
+        {
+          "path": "/assets/optimized/bubbas-daily-target-queue.webp",
+          "maxWidth": 1600,
+          "width": 720,
+          "height": 303,
+          "bytes": 11646
+        },
+        {
+          "path": "/assets/optimized/bubbas-daily-target-queue-800.webp",
+          "maxWidth": 800,
+          "width": 720,
+          "height": 303,
+          "bytes": 11646
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/bubbas-daily-target.png",
+      "aliases": [
+        "public/assets/projects/bubbas-daily-target.png"
+      ],
+      "sha256": "b8e6246de1e54d69992867ff3ff1b575fc1c155363f5392a359dc0f5af8ca556",
+      "originalBytes": 119956,
+      "originalWidth": 1440,
+      "originalHeight": 1000,
+      "variants": [
+        {
+          "path": "/assets/optimized/bubbas-daily-target.webp",
+          "maxWidth": 1600,
+          "width": 1440,
+          "height": 1000,
+          "bytes": 45366
+        },
+        {
+          "path": "/assets/optimized/bubbas-daily-target-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 556,
+          "bytes": 19606
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/cup-noodle-frame-030.png",
+      "aliases": [
+        "public/assets/projects/cup-noodle-frame-030.png"
+      ],
+      "sha256": "1d7c3e801a876708aef2eed6a52aa331a2e4e97cf0db08cd864549961a911819",
+      "originalBytes": 1309675,
+      "originalWidth": 1600,
+      "originalHeight": 900,
+      "variants": [
+        {
+          "path": "/assets/optimized/cup-noodle-frame-030.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 900,
+          "bytes": 30702
+        },
+        {
+          "path": "/assets/optimized/cup-noodle-frame-030-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 14788
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/cup-noodle-frame-060.png",
+      "aliases": [
+        "public/assets/projects/cup-noodle-frame-060.png"
+      ],
+      "sha256": "a64ef6fc922ceeb86a58e9c2e5c3b8676e5054f48ca90a83e808af0943d76ff1",
+      "originalBytes": 1303343,
+      "originalWidth": 1600,
+      "originalHeight": 900,
+      "variants": [
+        {
+          "path": "/assets/optimized/cup-noodle-frame-060.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 900,
+          "bytes": 29596
+        },
+        {
+          "path": "/assets/optimized/cup-noodle-frame-060-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 13816
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/cup-noodle-frame-090.png",
+      "aliases": [
+        "public/assets/projects/cup-noodle-frame-090.png"
+      ],
+      "sha256": "95d05f2a61db6c742976160b8f9e5039ebfb9e25c24b149e28da0b6bdaad5400",
+      "originalBytes": 1309466,
+      "originalWidth": 1600,
+      "originalHeight": 900,
+      "variants": [
+        {
+          "path": "/assets/optimized/cup-noodle-frame-090.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 900,
+          "bytes": 30496
+        },
+        {
+          "path": "/assets/optimized/cup-noodle-frame-090-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 14644
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/cup-noodle-scene-breakdown.png",
+      "aliases": [
+        "public/assets/projects/cup-noodle-scene-breakdown.png"
+      ],
+      "sha256": "3c3ed6192af9b75ce23731adbe9eb479582ed0e776dd10e8dc5af02c0e638e37",
+      "originalBytes": 1244694,
+      "originalWidth": 1600,
+      "originalHeight": 900,
+      "variants": [
+        {
+          "path": "/assets/optimized/cup-noodle-scene-breakdown.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 900,
+          "bytes": 16868
+        },
+        {
+          "path": "/assets/optimized/cup-noodle-scene-breakdown-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 7308
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/haily-slide-01.png",
+      "aliases": [
+        "public/assets/projects/haily-slide-01.png"
+      ],
+      "sha256": "cd6036d7970c160c824aa0c1566423b93225c4f4a6f4f8582cd794c85cd01941",
+      "originalBytes": 233344,
+      "originalWidth": 1920,
+      "originalHeight": 1080,
+      "variants": [
+        {
+          "path": "/assets/optimized/haily-slide-01.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 900,
+          "bytes": 19512
+        },
+        {
+          "path": "/assets/optimized/haily-slide-01-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 8232
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/haily-slide-09.png",
+      "aliases": [
+        "public/assets/projects/haily-slide-09.png"
+      ],
+      "sha256": "afc3af0c1ad12b808ffd60f6a60d84278841ffc0234d0fa48973fda438016158",
+      "originalBytes": 316831,
+      "originalWidth": 1920,
+      "originalHeight": 1080,
+      "variants": [
+        {
+          "path": "/assets/optimized/haily-slide-09.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 900,
+          "bytes": 94324
+        },
+        {
+          "path": "/assets/optimized/haily-slide-09-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 37968
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/haily-slide-10.png",
+      "aliases": [
+        "public/assets/projects/haily-slide-10.png"
+      ],
+      "sha256": "1b2abd5e88659364a9cad911e7a7669a549a40ac76e4185c171eab9275f9273b",
+      "originalBytes": 97332,
+      "originalWidth": 1920,
+      "originalHeight": 1080,
+      "variants": [
+        {
+          "path": "/assets/optimized/haily-slide-10.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 900,
+          "bytes": 23966
+        },
+        {
+          "path": "/assets/optimized/haily-slide-10-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 10620
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/haily-slide-12.png",
+      "aliases": [
+        "public/assets/projects/haily-slide-12.png"
+      ],
+      "sha256": "374ab4599aaaff7322111938c2eaba0e4a0d8ca192731eabd006c29e11afbcfe",
+      "originalBytes": 375633,
+      "originalWidth": 1920,
+      "originalHeight": 1080,
+      "variants": [
+        {
+          "path": "/assets/optimized/haily-slide-12.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 900,
+          "bytes": 69214
+        },
+        {
+          "path": "/assets/optimized/haily-slide-12-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 30380
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/haily-slide-13.png",
+      "aliases": [
+        "public/assets/projects/haily-slide-13.png"
+      ],
+      "sha256": "e9ad275f3245a57d49f64f2fec08c0bcca32935f3503458a7106083cb646f509",
+      "originalBytes": 377484,
+      "originalWidth": 1920,
+      "originalHeight": 1080,
+      "variants": [
+        {
+          "path": "/assets/optimized/haily-slide-13.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 900,
+          "bytes": 46120
+        },
+        {
+          "path": "/assets/optimized/haily-slide-13-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 20994
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/haily-slide-16.png",
+      "aliases": [
+        "public/assets/projects/haily-slide-16.png"
+      ],
+      "sha256": "3e9dda63703edda8d3e7e556f8abc0f8e227bc6d87a5e3cef3b02cf76f788c00",
+      "originalBytes": 299600,
+      "originalWidth": 1920,
+      "originalHeight": 1080,
+      "variants": [
+        {
+          "path": "/assets/optimized/haily-slide-16.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 900,
+          "bytes": 33226
+        },
+        {
+          "path": "/assets/optimized/haily-slide-16-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 13358
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/haily-slide-17.png",
+      "aliases": [
+        "public/assets/projects/haily-slide-17.png"
+      ],
+      "sha256": "cdc1d6400980ebccf3208f53565663f763956d9ef5b7cef4e27572861e52b38d",
+      "originalBytes": 450882,
+      "originalWidth": 1920,
+      "originalHeight": 1080,
+      "variants": [
+        {
+          "path": "/assets/optimized/haily-slide-17.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 900,
+          "bytes": 41416
+        },
+        {
+          "path": "/assets/optimized/haily-slide-17-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 18446
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/haily-slide-18.png",
+      "aliases": [
+        "public/assets/projects/haily-slide-18.png"
+      ],
+      "sha256": "bb29a8edafc48c49569b24099e6a89fbf785ec15ada258643c03f881350f0121",
+      "originalBytes": 155810,
+      "originalWidth": 1920,
+      "originalHeight": 1080,
+      "variants": [
+        {
+          "path": "/assets/optimized/haily-slide-18.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 900,
+          "bytes": 26062
+        },
+        {
+          "path": "/assets/optimized/haily-slide-18-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 10748
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/haily-slide-23.png",
+      "aliases": [
+        "public/assets/projects/haily-slide-23.png"
+      ],
+      "sha256": "38b1f56a851911d1aaae0c5be8dd51e3eed0475e12c9d0e67d0366cf52bcbd68",
+      "originalBytes": 211217,
+      "originalWidth": 1920,
+      "originalHeight": 1080,
+      "variants": [
+        {
+          "path": "/assets/optimized/haily-slide-23.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 900,
+          "bytes": 56480
+        },
+        {
+          "path": "/assets/optimized/haily-slide-23-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 23794
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/haily-slide-26.png",
+      "aliases": [
+        "public/assets/projects/haily-slide-26.png"
+      ],
+      "sha256": "3bd1644e12ddf42a6fae5dae681bd43053d0611081a3ad29dc5693da8dd9c813",
+      "originalBytes": 715686,
+      "originalWidth": 1920,
+      "originalHeight": 1080,
+      "variants": [
+        {
+          "path": "/assets/optimized/haily-slide-26.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 900,
+          "bytes": 82858
+        },
+        {
+          "path": "/assets/optimized/haily-slide-26-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 31304
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/honda-deck-01.jpg",
+      "aliases": [
+        "public/assets/projects/honda-deck-01.jpg"
+      ],
+      "sha256": "0b4ed6457b0479b9e7a92eae28781690688fa37aeb971bda8d0b1cd78e27b7a4",
+      "originalBytes": 89814,
+      "originalWidth": 1280,
+      "originalHeight": 720,
+      "variants": [
+        {
+          "path": "/assets/optimized/honda-deck-01.webp",
+          "maxWidth": 1600,
+          "width": 1280,
+          "height": 720,
+          "bytes": 62076
+        },
+        {
+          "path": "/assets/optimized/honda-deck-01-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 30696
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/honda-deck-02.jpg",
+      "aliases": [
+        "public/assets/projects/honda-deck-02.jpg"
+      ],
+      "sha256": "5d6af945c57fc3cde8dbba87453c6e73a812665c8e4fd2feae2bac762505e97f",
+      "originalBytes": 46712,
+      "originalWidth": 1280,
+      "originalHeight": 720,
+      "variants": [
+        {
+          "path": "/assets/optimized/honda-deck-02.webp",
+          "maxWidth": 1600,
+          "width": 1280,
+          "height": 720,
+          "bytes": 27828
+        },
+        {
+          "path": "/assets/optimized/honda-deck-02-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 15458
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/honda-deck-03.jpg",
+      "aliases": [
+        "public/assets/projects/honda-deck-03.jpg"
+      ],
+      "sha256": "288fe9a62335737d1301857d27eb6739672d85270d3f42fc18fd09235d90b8ce",
+      "originalBytes": 59900,
+      "originalWidth": 1280,
+      "originalHeight": 720,
+      "variants": [
+        {
+          "path": "/assets/optimized/honda-deck-03.webp",
+          "maxWidth": 1600,
+          "width": 1280,
+          "height": 720,
+          "bytes": 35154
+        },
+        {
+          "path": "/assets/optimized/honda-deck-03-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 18074
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/honda-deck-04.jpg",
+      "aliases": [
+        "public/assets/projects/honda-deck-04.jpg"
+      ],
+      "sha256": "34ca5fecfeee4743ddf3489cfecc7473126e3c31d1b4f4222478a78d15b562c8",
+      "originalBytes": 86548,
+      "originalWidth": 1280,
+      "originalHeight": 720,
+      "variants": [
+        {
+          "path": "/assets/optimized/honda-deck-04.webp",
+          "maxWidth": 1600,
+          "width": 1280,
+          "height": 720,
+          "bytes": 52136
+        },
+        {
+          "path": "/assets/optimized/honda-deck-04-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 24732
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/honda-deck-05.jpg",
+      "aliases": [
+        "public/assets/projects/honda-deck-05.jpg"
+      ],
+      "sha256": "63f06968c5789f873a76ff18f67090e5e82bb74652d0e1ce80f5a9efed571d9e",
+      "originalBytes": 103108,
+      "originalWidth": 1280,
+      "originalHeight": 720,
+      "variants": [
+        {
+          "path": "/assets/optimized/honda-deck-05.webp",
+          "maxWidth": 1600,
+          "width": 1280,
+          "height": 720,
+          "bytes": 75894
+        },
+        {
+          "path": "/assets/optimized/honda-deck-05-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 37694
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/honda-deck-06.jpg",
+      "aliases": [
+        "public/assets/projects/honda-deck-06.jpg"
+      ],
+      "sha256": "cb4f0038cd2cbdcf3798a48c212af94c8e835310be6022d2abbaa6b525b6c3c3",
+      "originalBytes": 53670,
+      "originalWidth": 1280,
+      "originalHeight": 720,
+      "variants": [
+        {
+          "path": "/assets/optimized/honda-deck-06.webp",
+          "maxWidth": 1600,
+          "width": 1280,
+          "height": 720,
+          "bytes": 29770
+        },
+        {
+          "path": "/assets/optimized/honda-deck-06-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 15834
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/honda-deck-07.jpg",
+      "aliases": [
+        "public/assets/projects/honda-deck-07.jpg"
+      ],
+      "sha256": "3518c5e3ff4584a4f3f4a8fad9012a7ff97bc7c7825619f653d12b12b2a0b3e1",
+      "originalBytes": 88497,
+      "originalWidth": 1280,
+      "originalHeight": 720,
+      "variants": [
+        {
+          "path": "/assets/optimized/honda-deck-07.webp",
+          "maxWidth": 1600,
+          "width": 1280,
+          "height": 720,
+          "bytes": 58194
+        },
+        {
+          "path": "/assets/optimized/honda-deck-07-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 29722
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/honda-deck-08.jpg",
+      "aliases": [
+        "public/assets/projects/honda-deck-08.jpg"
+      ],
+      "sha256": "3fc1398e5834784ac83012ee2228d3b3fb061a8ab4e63ec9caa8fbea35abdc94",
+      "originalBytes": 38739,
+      "originalWidth": 1280,
+      "originalHeight": 720,
+      "variants": [
+        {
+          "path": "/assets/optimized/honda-deck-08.webp",
+          "maxWidth": 1600,
+          "width": 1280,
+          "height": 720,
+          "bytes": 20322
+        },
+        {
+          "path": "/assets/optimized/honda-deck-08-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 11504
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/honda-deck-09.jpg",
+      "aliases": [
+        "public/assets/projects/honda-deck-09.jpg"
+      ],
+      "sha256": "8deddd53aa687d1439ac13440026e1602792a3a3c24340041dba74c3226dc490",
+      "originalBytes": 86379,
+      "originalWidth": 1280,
+      "originalHeight": 720,
+      "variants": [
+        {
+          "path": "/assets/optimized/honda-deck-09.webp",
+          "maxWidth": 1600,
+          "width": 1280,
+          "height": 720,
+          "bytes": 53888
+        },
+        {
+          "path": "/assets/optimized/honda-deck-09-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 27232
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/honda-deck-10.jpg",
+      "aliases": [
+        "public/assets/projects/honda-deck-10.jpg"
+      ],
+      "sha256": "fcfe8c3fd3f1963e960870650dd031bfb202b5ea947077aa1ec69b46bfd1a1ce",
+      "originalBytes": 52577,
+      "originalWidth": 1280,
+      "originalHeight": 720,
+      "variants": [
+        {
+          "path": "/assets/optimized/honda-deck-10.webp",
+          "maxWidth": 1600,
+          "width": 1280,
+          "height": 720,
+          "bytes": 28690
+        },
+        {
+          "path": "/assets/optimized/honda-deck-10-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 16742
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/honda-deck-11.jpg",
+      "aliases": [
+        "public/assets/projects/honda-deck-11.jpg"
+      ],
+      "sha256": "6d6ecd5d033e18e454d219021d1c041207c1fe6be5e8241b3f98a0fe162e727a",
+      "originalBytes": 58431,
+      "originalWidth": 1280,
+      "originalHeight": 720,
+      "variants": [
+        {
+          "path": "/assets/optimized/honda-deck-11.webp",
+          "maxWidth": 1600,
+          "width": 1280,
+          "height": 720,
+          "bytes": 36708
+        },
+        {
+          "path": "/assets/optimized/honda-deck-11-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 19164
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/honda-deck-12.jpg",
+      "aliases": [
+        "public/assets/projects/honda-deck-12.jpg"
+      ],
+      "sha256": "473a649d59d23553404a88e7640dfc5e4b11f8e900e5cf0a9f9b0945cfea80b0",
+      "originalBytes": 36303,
+      "originalWidth": 1280,
+      "originalHeight": 720,
+      "variants": [
+        {
+          "path": "/assets/optimized/honda-deck-12.webp",
+          "maxWidth": 1600,
+          "width": 1280,
+          "height": 720,
+          "bytes": 14068
+        },
+        {
+          "path": "/assets/optimized/honda-deck-12-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 6004
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/honda-deck-13.jpg",
+      "aliases": [
+        "public/assets/projects/honda-deck-13.jpg"
+      ],
+      "sha256": "4f97b1ae6421e04a5731c26d06fe2d2264f6f16ef9f7006f1542be4d674d31c1",
+      "originalBytes": 58074,
+      "originalWidth": 1280,
+      "originalHeight": 720,
+      "variants": [
+        {
+          "path": "/assets/optimized/honda-deck-13.webp",
+          "maxWidth": 1600,
+          "width": 1280,
+          "height": 720,
+          "bytes": 32240
+        },
+        {
+          "path": "/assets/optimized/honda-deck-13-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 17104
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/honda-deck-14.jpg",
+      "aliases": [
+        "public/assets/projects/honda-deck-14.jpg"
+      ],
+      "sha256": "764751eaaae838dfcb7abb3806aa6c4dd7e2f10fd03c31d5f8053861c08ca5e0",
+      "originalBytes": 79263,
+      "originalWidth": 1280,
+      "originalHeight": 720,
+      "variants": [
+        {
+          "path": "/assets/optimized/honda-deck-14.webp",
+          "maxWidth": 1600,
+          "width": 1280,
+          "height": 720,
+          "bytes": 51276
+        },
+        {
+          "path": "/assets/optimized/honda-deck-14-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 28046
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/honda-deck-15.jpg",
+      "aliases": [
+        "public/assets/projects/honda-deck-15.jpg"
+      ],
+      "sha256": "6db9d35faa457df7c93e117ede36ff8bafa7a555937fe6895a259cf38b9f285a",
+      "originalBytes": 32784,
+      "originalWidth": 1280,
+      "originalHeight": 720,
+      "variants": [
+        {
+          "path": "/assets/optimized/honda-deck-15.webp",
+          "maxWidth": 1600,
+          "width": 1280,
+          "height": 720,
+          "bytes": 15958
+        },
+        {
+          "path": "/assets/optimized/honda-deck-15-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 8488
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/honda-deck-16.jpg",
+      "aliases": [
+        "public/assets/projects/honda-deck-16.jpg"
+      ],
+      "sha256": "89219533422050a5b7060908be3f49e8315d6add81ccd1af6f9258ffcdfb5e40",
+      "originalBytes": 85421,
+      "originalWidth": 1280,
+      "originalHeight": 720,
+      "variants": [
+        {
+          "path": "/assets/optimized/honda-deck-16.webp",
+          "maxWidth": 1600,
+          "width": 1280,
+          "height": 720,
+          "bytes": 58676
+        },
+        {
+          "path": "/assets/optimized/honda-deck-16-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 28574
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/honda-deck-17.jpg",
+      "aliases": [
+        "public/assets/projects/honda-deck-17.jpg"
+      ],
+      "sha256": "97b587dde41a30a17aa4fbf6b46d6558d2381d8ddb1808a2a302c1c705c81426",
+      "originalBytes": 32773,
+      "originalWidth": 1280,
+      "originalHeight": 720,
+      "variants": [
+        {
+          "path": "/assets/optimized/honda-deck-17.webp",
+          "maxWidth": 1600,
+          "width": 1280,
+          "height": 720,
+          "bytes": 16104
+        },
+        {
+          "path": "/assets/optimized/honda-deck-17-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 8490
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/honda-deck-18.jpg",
+      "aliases": [
+        "public/assets/projects/honda-deck-18.jpg"
+      ],
+      "sha256": "884d63ed8f2f2a3984405fe5b1840e41851223e32005207ea410633ea6988b4a",
+      "originalBytes": 113281,
+      "originalWidth": 1280,
+      "originalHeight": 720,
+      "variants": [
+        {
+          "path": "/assets/optimized/honda-deck-18.webp",
+          "maxWidth": 1600,
+          "width": 1280,
+          "height": 720,
+          "bytes": 75572
+        },
+        {
+          "path": "/assets/optimized/honda-deck-18-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 36594
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/honda-deck-19.jpg",
+      "aliases": [
+        "public/assets/projects/honda-deck-19.jpg"
+      ],
+      "sha256": "d631b65dd48b0b825c2407fa6de7b05dba4f3b8229f1e7ca02ddb351a9e367d7",
+      "originalBytes": 32502,
+      "originalWidth": 1280,
+      "originalHeight": 720,
+      "variants": [
+        {
+          "path": "/assets/optimized/honda-deck-19.webp",
+          "maxWidth": 1600,
+          "width": 1280,
+          "height": 720,
+          "bytes": 15998
+        },
+        {
+          "path": "/assets/optimized/honda-deck-19-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 8546
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/honda-deck-20.jpg",
+      "aliases": [
+        "public/assets/projects/honda-deck-20.jpg"
+      ],
+      "sha256": "d728b8f457f786b1a764b6b2a295dc8725033b931211a3f6fd1f29ed31ca758d",
+      "originalBytes": 93632,
+      "originalWidth": 1280,
+      "originalHeight": 720,
+      "variants": [
+        {
+          "path": "/assets/optimized/honda-deck-20.webp",
+          "maxWidth": 1600,
+          "width": 1280,
+          "height": 720,
+          "bytes": 61678
+        },
+        {
+          "path": "/assets/optimized/honda-deck-20-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 30616
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/honda-deck-21.jpg",
+      "aliases": [
+        "public/assets/projects/honda-deck-21.jpg"
+      ],
+      "sha256": "3de3a5da2c4292b8672ba19618c96a928568671149f29c9bdd46dd5c66b8c56c",
+      "originalBytes": 22838,
+      "originalWidth": 1280,
+      "originalHeight": 720,
+      "variants": [
+        {
+          "path": "/assets/optimized/honda-deck-21.webp",
+          "maxWidth": 1600,
+          "width": 1280,
+          "height": 720,
+          "bytes": 11796
+        },
+        {
+          "path": "/assets/optimized/honda-deck-21-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 6150
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/honda-deck-22.jpg",
+      "aliases": [
+        "public/assets/projects/honda-deck-22.jpg"
+      ],
+      "sha256": "8a6825f9b80f2b4154e374452a324593673aa4081fd7c5d788056544862078f4",
+      "originalBytes": 71351,
+      "originalWidth": 1280,
+      "originalHeight": 720,
+      "variants": [
+        {
+          "path": "/assets/optimized/honda-deck-22.webp",
+          "maxWidth": 1600,
+          "width": 1280,
+          "height": 720,
+          "bytes": 44518
+        },
+        {
+          "path": "/assets/optimized/honda-deck-22-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 22816
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/honda-deck-23.jpg",
+      "aliases": [
+        "public/assets/projects/honda-deck-23.jpg"
+      ],
+      "sha256": "4484e414f701d448eba258fd132bc60c4d60fb5b29a9e6063df390c800f712ff",
+      "originalBytes": 50626,
+      "originalWidth": 1280,
+      "originalHeight": 720,
+      "variants": [
+        {
+          "path": "/assets/optimized/honda-deck-23.webp",
+          "maxWidth": 1600,
+          "width": 1280,
+          "height": 720,
+          "bytes": 30730
+        },
+        {
+          "path": "/assets/optimized/honda-deck-23-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 15820
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/honda-deck-24.jpg",
+      "aliases": [
+        "public/assets/projects/honda-deck-24.jpg"
+      ],
+      "sha256": "3de3a5da2c4292b8672ba19618c96a928568671149f29c9bdd46dd5c66b8c56c",
+      "originalBytes": 22838,
+      "originalWidth": 1280,
+      "originalHeight": 720,
+      "variants": [
+        {
+          "path": "/assets/optimized/honda-deck-24.webp",
+          "maxWidth": 1600,
+          "width": 1280,
+          "height": 720,
+          "bytes": 11796
+        },
+        {
+          "path": "/assets/optimized/honda-deck-24-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 6150
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/honda-deck-25.jpg",
+      "aliases": [
+        "public/assets/projects/honda-deck-25.jpg"
+      ],
+      "sha256": "d400a50f6e1c2bcee0b2235e649de4fe1fe470a92329518082232ad86989c228",
+      "originalBytes": 33428,
+      "originalWidth": 1280,
+      "originalHeight": 720,
+      "variants": [
+        {
+          "path": "/assets/optimized/honda-deck-25.webp",
+          "maxWidth": 1600,
+          "width": 1280,
+          "height": 720,
+          "bytes": 16052
+        },
+        {
+          "path": "/assets/optimized/honda-deck-25-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 8100
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/honda-deck-26.jpg",
+      "aliases": [
+        "public/assets/projects/honda-deck-26.jpg"
+      ],
+      "sha256": "38b70bd1fe04360b2cd0feffaffd79258071bbdde6cee8d13bb4742ded9cd725",
+      "originalBytes": 38586,
+      "originalWidth": 1280,
+      "originalHeight": 720,
+      "variants": [
+        {
+          "path": "/assets/optimized/honda-deck-26.webp",
+          "maxWidth": 1600,
+          "width": 1280,
+          "height": 720,
+          "bytes": 18282
+        },
+        {
+          "path": "/assets/optimized/honda-deck-26-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 9250
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/honda-deck-27.jpg",
+      "aliases": [
+        "public/assets/projects/honda-deck-27.jpg"
+      ],
+      "sha256": "fd486c08336557ade278853b9392b7d68e82a04ee4c4a01cc67fa8334a22b677",
+      "originalBytes": 28884,
+      "originalWidth": 1280,
+      "originalHeight": 720,
+      "variants": [
+        {
+          "path": "/assets/optimized/honda-deck-27.webp",
+          "maxWidth": 1600,
+          "width": 1280,
+          "height": 720,
+          "bytes": 12412
+        },
+        {
+          "path": "/assets/optimized/honda-deck-27-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 6354
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/honda-deck-28.jpg",
+      "aliases": [
+        "public/assets/projects/honda-deck-28.jpg"
+      ],
+      "sha256": "e8e910710248cea2221478eff99f43f2e5e5dd1a15731170003a66c77987e9b7",
+      "originalBytes": 118606,
+      "originalWidth": 1280,
+      "originalHeight": 720,
+      "variants": [
+        {
+          "path": "/assets/optimized/honda-deck-28.webp",
+          "maxWidth": 1600,
+          "width": 1280,
+          "height": 720,
+          "bytes": 81794
+        },
+        {
+          "path": "/assets/optimized/honda-deck-28-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 40940
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/honda-deck-29.jpg",
+      "aliases": [
+        "public/assets/projects/honda-deck-29.jpg"
+      ],
+      "sha256": "49dde1b1c714a508af4358691cf8b0c646db93706e7c6eaf3a70e368a76d7f0c",
+      "originalBytes": 122365,
+      "originalWidth": 1280,
+      "originalHeight": 720,
+      "variants": [
+        {
+          "path": "/assets/optimized/honda-deck-29.webp",
+          "maxWidth": 1600,
+          "width": 1280,
+          "height": 720,
+          "bytes": 84292
+        },
+        {
+          "path": "/assets/optimized/honda-deck-29-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 42578
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/honda-deck-30.jpg",
+      "aliases": [
+        "public/assets/projects/honda-deck-30.jpg"
+      ],
+      "sha256": "d40fc2c00346e61045dc0642e73b858d880ed5f8ef6365fb742080bcc2a5a70c",
+      "originalBytes": 55767,
+      "originalWidth": 1280,
+      "originalHeight": 720,
+      "variants": [
+        {
+          "path": "/assets/optimized/honda-deck-30.webp",
+          "maxWidth": 1600,
+          "width": 1280,
+          "height": 720,
+          "bytes": 34428
+        },
+        {
+          "path": "/assets/optimized/honda-deck-30-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 17578
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/honda-deck-31.jpg",
+      "aliases": [
+        "public/assets/projects/honda-deck-31.jpg"
+      ],
+      "sha256": "31c213dc6f3e3bf51f787df778f96bef2bb18e7c7ead487918fd48a8db880530",
+      "originalBytes": 28869,
+      "originalWidth": 1280,
+      "originalHeight": 720,
+      "variants": [
+        {
+          "path": "/assets/optimized/honda-deck-31.webp",
+          "maxWidth": 1600,
+          "width": 1280,
+          "height": 720,
+          "bytes": 15396
+        },
+        {
+          "path": "/assets/optimized/honda-deck-31-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 8210
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/honda-deck-32.jpg",
+      "aliases": [
+        "public/assets/projects/honda-deck-32.jpg"
+      ],
+      "sha256": "ac5dceaefa3097424c2c2f4fb9ccc83efab00b2c6dafa14d1d8c87fce54541cf",
+      "originalBytes": 76744,
+      "originalWidth": 1280,
+      "originalHeight": 720,
+      "variants": [
+        {
+          "path": "/assets/optimized/honda-deck-32.webp",
+          "maxWidth": 1600,
+          "width": 1280,
+          "height": 720,
+          "bytes": 52614
+        },
+        {
+          "path": "/assets/optimized/honda-deck-32-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 24940
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/honda-deck-33.jpg",
+      "aliases": [
+        "public/assets/projects/honda-deck-33.jpg"
+      ],
+      "sha256": "cb7b7f1fd91202e7d09ed80c0bd3315d6016c3679302bb1aee2f8bb8ca67cefc",
+      "originalBytes": 24255,
+      "originalWidth": 1280,
+      "originalHeight": 720,
+      "variants": [
+        {
+          "path": "/assets/optimized/honda-deck-33.webp",
+          "maxWidth": 1600,
+          "width": 1280,
+          "height": 720,
+          "bytes": 12656
+        },
+        {
+          "path": "/assets/optimized/honda-deck-33-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 6694
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/honda-interaction-gaps.png",
+      "aliases": [
+        "public/assets/projects/honda-interaction-gaps.png"
+      ],
+      "sha256": "03fffc07ef587d92338addeb6f28be8f1bf914c97ab6d7c1c7388d30841b4203",
+      "originalBytes": 277968,
+      "originalWidth": 1440,
+      "originalHeight": 810,
+      "variants": [
+        {
+          "path": "/assets/optimized/honda-interaction-gaps.webp",
+          "maxWidth": 1600,
+          "width": 1440,
+          "height": 810,
+          "bytes": 42094
+        },
+        {
+          "path": "/assets/optimized/honda-interaction-gaps-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 19094
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/honda-muse-pen.png",
+      "aliases": [
+        "public/assets/projects/honda-muse-pen.png"
+      ],
+      "sha256": "db1063a965bd1e07c3f794ba6171c8703badb501488b4a1d1c5386baf37b9182",
+      "originalBytes": 288172,
+      "originalWidth": 1440,
+      "originalHeight": 810,
+      "variants": [
+        {
+          "path": "/assets/optimized/honda-muse-pen.webp",
+          "maxWidth": 1600,
+          "width": 1440,
+          "height": 810,
+          "bytes": 50166
+        },
+        {
+          "path": "/assets/optimized/honda-muse-pen-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 23808
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/honda-part-controls.jpg",
+      "aliases": [
+        "public/assets/projects/honda-part-controls.jpg"
+      ],
+      "sha256": "175aa92ba3198b34f72b59e0305735bce7b236f3e0917302d162c4315506f2b6",
+      "originalBytes": 88281,
+      "originalWidth": 1097,
+      "originalHeight": 680,
+      "variants": [
+        {
+          "path": "/assets/optimized/honda-part-controls.webp",
+          "maxWidth": 1600,
+          "width": 1097,
+          "height": 680,
+          "bytes": 53882
+        },
+        {
+          "path": "/assets/optimized/honda-part-controls-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 496,
+          "bytes": 33956
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/honda-presence-options.jpg",
+      "aliases": [
+        "public/assets/projects/honda-presence-options.jpg"
+      ],
+      "sha256": "e1f3d5701177a1ca2f82eafcacc0cb46b8d28ec73a16e3d6e13a097b30c9c5ad",
+      "originalBytes": 75332,
+      "originalWidth": 1097,
+      "originalHeight": 680,
+      "variants": [
+        {
+          "path": "/assets/optimized/honda-presence-options.webp",
+          "maxWidth": 1600,
+          "width": 1097,
+          "height": 680,
+          "bytes": 48492
+        },
+        {
+          "path": "/assets/optimized/honda-presence-options-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 496,
+          "bytes": 31286
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/honda-space-conflict.jpg",
+      "aliases": [
+        "public/assets/projects/honda-space-conflict.jpg"
+      ],
+      "sha256": "6f86e81a1080881f840187ea959cd108adae802c573729049582e869f7de6d1a",
+      "originalBytes": 52451,
+      "originalWidth": 1097,
+      "originalHeight": 680,
+      "variants": [
+        {
+          "path": "/assets/optimized/honda-space-conflict.webp",
+          "maxWidth": 1600,
+          "width": 1097,
+          "height": 680,
+          "bytes": 29838
+        },
+        {
+          "path": "/assets/optimized/honda-space-conflict-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 496,
+          "bytes": 18904
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/honda-spatial-ui.png",
+      "aliases": [
+        "public/assets/projects/honda-spatial-ui.png"
+      ],
+      "sha256": "55be46fbbb40cb7eacfb112bbe76ebfac6b1af44a029a0c10c2178f15a838b74",
+      "originalBytes": 1233274,
+      "originalWidth": 1440,
+      "originalHeight": 810,
+      "variants": [
+        {
+          "path": "/assets/optimized/honda-spatial-ui.webp",
+          "maxWidth": 1600,
+          "width": 1440,
+          "height": 810,
+          "bytes": 92376
+        },
+        {
+          "path": "/assets/optimized/honda-spatial-ui-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 42066
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/honda-sticky-notes.jpg",
+      "aliases": [
+        "public/assets/projects/honda-sticky-notes.jpg"
+      ],
+      "sha256": "e4ba60d309a55b36935ba4fc6967a811345f1d57090775521f540a7d56aa5fd9",
+      "originalBytes": 97785,
+      "originalWidth": 1097,
+      "originalHeight": 680,
+      "variants": [
+        {
+          "path": "/assets/optimized/honda-sticky-notes.webp",
+          "maxWidth": 1600,
+          "width": 1097,
+          "height": 680,
+          "bytes": 71030
+        },
+        {
+          "path": "/assets/optimized/honda-sticky-notes-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 496,
+          "bytes": 43382
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/honda-toolbar.png",
+      "aliases": [
+        "public/assets/projects/honda-toolbar.png"
+      ],
+      "sha256": "8e87578cba144dfcfd25522ef403b3d712e002d1539a8684d9e2f45299bf62b1",
+      "originalBytes": 91700,
+      "originalWidth": 1440,
+      "originalHeight": 810,
+      "variants": [
+        {
+          "path": "/assets/optimized/honda-toolbar.webp",
+          "maxWidth": 1600,
+          "width": 1440,
+          "height": 810,
+          "bytes": 18364
+        },
+        {
+          "path": "/assets/optimized/honda-toolbar-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 8486
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/jj-feedback-loop.png",
+      "aliases": [
+        "public/assets/projects/jj-feedback-loop.png"
+      ],
+      "sha256": "78143a592102d23724c876d7711cd84165951d3e8103a9d76d5331204d85b041",
+      "originalBytes": 86421,
+      "originalWidth": 1440,
+      "originalHeight": 1024,
+      "variants": [
+        {
+          "path": "/assets/optimized/jj-feedback-loop.webp",
+          "maxWidth": 1600,
+          "width": 1440,
+          "height": 1024,
+          "bytes": 26880
+        },
+        {
+          "path": "/assets/optimized/jj-feedback-loop-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 569,
+          "bytes": 11924
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/jj-keyword-assessment.png",
+      "aliases": [
+        "public/assets/projects/jj-keyword-assessment.png"
+      ],
+      "sha256": "19a16209f719a78a39fe3b0bb65f923b048e6b86eabbcf83da3b9d12d9ed74e5",
+      "originalBytes": 318844,
+      "originalWidth": 1440,
+      "originalHeight": 1024,
+      "variants": [
+        {
+          "path": "/assets/optimized/jj-keyword-assessment.webp",
+          "maxWidth": 1600,
+          "width": 1440,
+          "height": 1024,
+          "bytes": 46768
+        },
+        {
+          "path": "/assets/optimized/jj-keyword-assessment-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 569,
+          "bytes": 19444
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/jj-medtech.png",
+      "aliases": [
+        "public/assets/projects/jj-medtech.png"
+      ],
+      "sha256": "9a7530f80ac8dcaecc43a6e6fe0ff91fec8ea446c508cba8884fe66b681d844d",
+      "originalBytes": 3401547,
+      "originalWidth": 4083,
+      "originalHeight": 2856,
+      "variants": [
+        {
+          "path": "/assets/optimized/jj-medtech.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 1119,
+          "bytes": 129370
+        },
+        {
+          "path": "/assets/optimized/jj-medtech-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 560,
+          "bytes": 40886
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/jj-review-assessments.png",
+      "aliases": [
+        "public/assets/projects/jj-review-assessments.png"
+      ],
+      "sha256": "a41e5c17af411600ae71081439983954d31032b07773200f62249b58946fb9e0",
+      "originalBytes": 240716,
+      "originalWidth": 1440,
+      "originalHeight": 1024,
+      "variants": [
+        {
+          "path": "/assets/optimized/jj-review-assessments.webp",
+          "maxWidth": 1600,
+          "width": 1440,
+          "height": 1024,
+          "bytes": 41802
+        },
+        {
+          "path": "/assets/optimized/jj-review-assessments-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 569,
+          "bytes": 17118
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/jj-training-decision.png",
+      "aliases": [
+        "public/assets/projects/jj-training-decision.png"
+      ],
+      "sha256": "7e0c141a7b112c4c4511cc044a2a2f35636f285fbf50e1ac698e9924a011d1ff",
+      "originalBytes": 50780,
+      "originalWidth": 1440,
+      "originalHeight": 1024,
+      "variants": [
+        {
+          "path": "/assets/optimized/jj-training-decision.webp",
+          "maxWidth": 1600,
+          "width": 1440,
+          "height": 1024,
+          "bytes": 22874
+        },
+        {
+          "path": "/assets/optimized/jj-training-decision-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 569,
+          "bytes": 9876
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/pacepop-access.png",
+      "aliases": [
+        "public/assets/projects/pacepop-access.png"
+      ],
+      "sha256": "6dc46a7a1bb0a73ceeee1d1c8420f445db553afffb707974838480edf41edafa",
+      "originalBytes": 643377,
+      "originalWidth": 740,
+      "originalHeight": 1648,
+      "variants": [
+        {
+          "path": "/assets/optimized/pacepop-access.webp",
+          "maxWidth": 1600,
+          "width": 740,
+          "height": 1648,
+          "bytes": 44294
+        },
+        {
+          "path": "/assets/optimized/pacepop-access-800.webp",
+          "maxWidth": 800,
+          "width": 740,
+          "height": 1648,
+          "bytes": 44294
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/pacepop-chat.png",
+      "aliases": [
+        "public/assets/projects/pacepop-chat.png"
+      ],
+      "sha256": "b4105b0920bc7ce4faa269c1246eb990899ea53574f82746dc5672b72308ab62",
+      "originalBytes": 660034,
+      "originalWidth": 740,
+      "originalHeight": 1648,
+      "variants": [
+        {
+          "path": "/assets/optimized/pacepop-chat.webp",
+          "maxWidth": 1600,
+          "width": 740,
+          "height": 1648,
+          "bytes": 43368
+        },
+        {
+          "path": "/assets/optimized/pacepop-chat-800.webp",
+          "maxWidth": 800,
+          "width": 740,
+          "height": 1648,
+          "bytes": 43368
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/pacepop-cover-v2.png",
+      "aliases": [
+        "public/assets/projects/pacepop-cover-v2.png"
+      ],
+      "sha256": "73fbb4611924004422e02e49640eba518d38f648a98b2a378d3fdaddb9ba1a15",
+      "originalBytes": 599486,
+      "originalWidth": 1600,
+      "originalHeight": 1000,
+      "variants": [
+        {
+          "path": "/assets/optimized/pacepop-cover-v2.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 1000,
+          "bytes": 71712
+        },
+        {
+          "path": "/assets/optimized/pacepop-cover-v2-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 500,
+          "bytes": 29940
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/pacepop-cover.png",
+      "aliases": [
+        "public/assets/projects/pacepop-cover.png"
+      ],
+      "sha256": "73fbb4611924004422e02e49640eba518d38f648a98b2a378d3fdaddb9ba1a15",
+      "originalBytes": 599486,
+      "originalWidth": 1600,
+      "originalHeight": 1000,
+      "variants": [
+        {
+          "path": "/assets/optimized/pacepop-cover.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 1000,
+          "bytes": 71712
+        },
+        {
+          "path": "/assets/optimized/pacepop-cover-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 500,
+          "bytes": 29940
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/pacepop-finish.png",
+      "aliases": [
+        "public/assets/projects/pacepop-finish.png"
+      ],
+      "sha256": "531684ce6f1619a83cffb76970d2e9153c61326c7a9124939d8a14ec97810c3f",
+      "originalBytes": 663357,
+      "originalWidth": 740,
+      "originalHeight": 1648,
+      "variants": [
+        {
+          "path": "/assets/optimized/pacepop-finish.webp",
+          "maxWidth": 1600,
+          "width": 740,
+          "height": 1648,
+          "bytes": 42196
+        },
+        {
+          "path": "/assets/optimized/pacepop-finish-800.webp",
+          "maxWidth": 800,
+          "width": 740,
+          "height": 1648,
+          "bytes": 42196
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/pacepop-give-up.png",
+      "aliases": [
+        "public/assets/projects/pacepop-give-up.png"
+      ],
+      "sha256": "329a3f69a40cbd4e91aac2326d3ffe6dba493329eca3d35a767abe40a2c99321",
+      "originalBytes": 193307,
+      "originalWidth": 740,
+      "originalHeight": 1648,
+      "variants": [
+        {
+          "path": "/assets/optimized/pacepop-give-up.webp",
+          "maxWidth": 1600,
+          "width": 740,
+          "height": 1648,
+          "bytes": 21984
+        },
+        {
+          "path": "/assets/optimized/pacepop-give-up-800.webp",
+          "maxWidth": 800,
+          "width": 740,
+          "height": 1648,
+          "bytes": 21984
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/pacepop-help.png",
+      "aliases": [
+        "public/assets/projects/pacepop-help.png"
+      ],
+      "sha256": "8b84f28cbabfe357a1a32b65cd7058b0b1d0c9ffadd8f7d871df8eefd039dddc",
+      "originalBytes": 200654,
+      "originalWidth": 740,
+      "originalHeight": 1648,
+      "variants": [
+        {
+          "path": "/assets/optimized/pacepop-help.webp",
+          "maxWidth": 1600,
+          "width": 740,
+          "height": 1648,
+          "bytes": 28936
+        },
+        {
+          "path": "/assets/optimized/pacepop-help-800.webp",
+          "maxWidth": 800,
+          "width": 740,
+          "height": 1648,
+          "bytes": 28936
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/pacepop-host-alerts.png",
+      "aliases": [
+        "public/assets/projects/pacepop-host-alerts.png"
+      ],
+      "sha256": "89a1cadca9ad79456a102b3fda498b6e1c9a0ba952026964358d30939bd4263e",
+      "originalBytes": 340470,
+      "originalWidth": 740,
+      "originalHeight": 1648,
+      "variants": [
+        {
+          "path": "/assets/optimized/pacepop-host-alerts.webp",
+          "maxWidth": 1600,
+          "width": 740,
+          "height": 1648,
+          "bytes": 48620
+        },
+        {
+          "path": "/assets/optimized/pacepop-host-alerts-800.webp",
+          "maxWidth": 800,
+          "width": 740,
+          "height": 1648,
+          "bytes": 48620
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/pacepop-host-lobby.png",
+      "aliases": [
+        "public/assets/projects/pacepop-host-lobby.png"
+      ],
+      "sha256": "bcb8a3f5446828f6fd1cf7d1a278c18fd9caf43997c7015d954e8a4493cfa099",
+      "originalBytes": 578404,
+      "originalWidth": 740,
+      "originalHeight": 1648,
+      "variants": [
+        {
+          "path": "/assets/optimized/pacepop-host-lobby.webp",
+          "maxWidth": 1600,
+          "width": 740,
+          "height": 1648,
+          "bytes": 42962
+        },
+        {
+          "path": "/assets/optimized/pacepop-host-lobby-800.webp",
+          "maxWidth": 800,
+          "width": 740,
+          "height": 1648,
+          "bytes": 42962
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/pacepop-host-roster.png",
+      "aliases": [
+        "public/assets/projects/pacepop-host-roster.png"
+      ],
+      "sha256": "705b05fa24b7d4b17537cd2378b7735aa374f6079e438c8ebbf642584f45acc7",
+      "originalBytes": 354655,
+      "originalWidth": 740,
+      "originalHeight": 1648,
+      "variants": [
+        {
+          "path": "/assets/optimized/pacepop-host-roster.webp",
+          "maxWidth": 1600,
+          "width": 740,
+          "height": 1648,
+          "bytes": 46304
+        },
+        {
+          "path": "/assets/optimized/pacepop-host-roster-800.webp",
+          "maxWidth": 800,
+          "width": 740,
+          "height": 1648,
+          "bytes": 46304
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/pacepop-host-setup.png",
+      "aliases": [
+        "public/assets/projects/pacepop-host-setup.png"
+      ],
+      "sha256": "7bc518a05934672cfdadcff3a8dce5486e6e41ebda33138a7982353a056b9b95",
+      "originalBytes": 616872,
+      "originalWidth": 740,
+      "originalHeight": 1648,
+      "variants": [
+        {
+          "path": "/assets/optimized/pacepop-host-setup.webp",
+          "maxWidth": 1600,
+          "width": 740,
+          "height": 1648,
+          "bytes": 25848
+        },
+        {
+          "path": "/assets/optimized/pacepop-host-setup-800.webp",
+          "maxWidth": 800,
+          "width": 740,
+          "height": 1648,
+          "bytes": 25848
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/pacepop-host-simulator.png",
+      "aliases": [
+        "public/assets/projects/pacepop-host-simulator.png"
+      ],
+      "sha256": "9822511a1db66cfe7b15dd64a0a1ef1747156e857b1aa7a3631ab28724c3a547",
+      "originalBytes": 455311,
+      "originalWidth": 740,
+      "originalHeight": 1648,
+      "variants": [
+        {
+          "path": "/assets/optimized/pacepop-host-simulator.webp",
+          "maxWidth": 1600,
+          "width": 740,
+          "height": 1648,
+          "bytes": 30926
+        },
+        {
+          "path": "/assets/optimized/pacepop-host-simulator-800.webp",
+          "maxWidth": 800,
+          "width": 740,
+          "height": 1648,
+          "bytes": 30926
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/pacepop-join.png",
+      "aliases": [
+        "public/assets/projects/pacepop-join.png"
+      ],
+      "sha256": "a2e9563c7ba9b153670afe13eef65e4d959a4446266f6d061c8e25570059df83",
+      "originalBytes": 620654,
+      "originalWidth": 740,
+      "originalHeight": 1648,
+      "variants": [
+        {
+          "path": "/assets/optimized/pacepop-join.webp",
+          "maxWidth": 1600,
+          "width": 740,
+          "height": 1648,
+          "bytes": 26720
+        },
+        {
+          "path": "/assets/optimized/pacepop-join-800.webp",
+          "maxWidth": 800,
+          "width": 740,
+          "height": 1648,
+          "bytes": 26720
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/pacepop-kudo.png",
+      "aliases": [
+        "public/assets/projects/pacepop-kudo.png"
+      ],
+      "sha256": "0010582c6501d27bada83c02085c146eb367a86227915cebc9d0dd9f8cd5910b",
+      "originalBytes": 468935,
+      "originalWidth": 740,
+      "originalHeight": 1648,
+      "variants": [
+        {
+          "path": "/assets/optimized/pacepop-kudo.webp",
+          "maxWidth": 1600,
+          "width": 740,
+          "height": 1648,
+          "bytes": 45144
+        },
+        {
+          "path": "/assets/optimized/pacepop-kudo-800.webp",
+          "maxWidth": 800,
+          "width": 740,
+          "height": 1648,
+          "bytes": 45144
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/pacepop-runner-detail.png",
+      "aliases": [
+        "public/assets/projects/pacepop-runner-detail.png"
+      ],
+      "sha256": "d1ba7fbc97030a18c8342a20593148241b6edf439a8fc73ccd53245dd816dd1f",
+      "originalBytes": 415580,
+      "originalWidth": 740,
+      "originalHeight": 1648,
+      "variants": [
+        {
+          "path": "/assets/optimized/pacepop-runner-detail.webp",
+          "maxWidth": 1600,
+          "width": 740,
+          "height": 1648,
+          "bytes": 51238
+        },
+        {
+          "path": "/assets/optimized/pacepop-runner-detail-800.webp",
+          "maxWidth": 800,
+          "width": 740,
+          "height": 1648,
+          "bytes": 51238
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/pacepop-runner-live.png",
+      "aliases": [
+        "public/assets/projects/pacepop-runner-live.png"
+      ],
+      "sha256": "faa2e7fbc86edfbcc66858ca6cccf9d03a29c6e3f2a7ee5c9c8a3eb2112b051c",
+      "originalBytes": 534604,
+      "originalWidth": 740,
+      "originalHeight": 1648,
+      "variants": [
+        {
+          "path": "/assets/optimized/pacepop-runner-live.webp",
+          "maxWidth": 1600,
+          "width": 740,
+          "height": 1648,
+          "bytes": 61802
+        },
+        {
+          "path": "/assets/optimized/pacepop-runner-live-800.webp",
+          "maxWidth": 800,
+          "width": 740,
+          "height": 1648,
+          "bytes": 61802
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/pacepop-scan.png",
+      "aliases": [
+        "public/assets/projects/pacepop-scan.png"
+      ],
+      "sha256": "f54c9e326006871cf045d705f645486a50c2051990b9c4dee6b458e5c8910cd2",
+      "originalBytes": 788571,
+      "originalWidth": 740,
+      "originalHeight": 1648,
+      "variants": [
+        {
+          "path": "/assets/optimized/pacepop-scan.webp",
+          "maxWidth": 1600,
+          "width": 740,
+          "height": 1648,
+          "bytes": 40762
+        },
+        {
+          "path": "/assets/optimized/pacepop-scan-800.webp",
+          "maxWidth": 800,
+          "width": 740,
+          "height": 1648,
+          "bytes": 40762
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/pacepop-start.png",
+      "aliases": [
+        "public/assets/projects/pacepop-start.png"
+      ],
+      "sha256": "e60d291d8743499071965d9f82b0fec4d1902a139bd34509bf0086c490372924",
+      "originalBytes": 1046891,
+      "originalWidth": 740,
+      "originalHeight": 1648,
+      "variants": [
+        {
+          "path": "/assets/optimized/pacepop-start.webp",
+          "maxWidth": 1600,
+          "width": 740,
+          "height": 1648,
+          "bytes": 70590
+        },
+        {
+          "path": "/assets/optimized/pacepop-start-800.webp",
+          "maxWidth": 800,
+          "width": 740,
+          "height": 1648,
+          "bytes": 70590
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/pacepop-team-result.png",
+      "aliases": [
+        "public/assets/projects/pacepop-team-result.png"
+      ],
+      "sha256": "4281f5638682a8b0a5907929036a0c5e9ad0a3014be931f83d73330357e4ab71",
+      "originalBytes": 272450,
+      "originalWidth": 740,
+      "originalHeight": 1648,
+      "variants": [
+        {
+          "path": "/assets/optimized/pacepop-team-result.webp",
+          "maxWidth": 1600,
+          "width": 740,
+          "height": 1648,
+          "bytes": 46294
+        },
+        {
+          "path": "/assets/optimized/pacepop-team-result-800.webp",
+          "maxWidth": 800,
+          "width": 740,
+          "height": 1648,
+          "bytes": 46294
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/pacepop-water-rest.png",
+      "aliases": [
+        "public/assets/projects/pacepop-water-rest.png"
+      ],
+      "sha256": "ad148b755e38edb054ee6492242d2ada699cecf1ea364454d23654902c7cee8f",
+      "originalBytes": 481453,
+      "originalWidth": 740,
+      "originalHeight": 1648,
+      "variants": [
+        {
+          "path": "/assets/optimized/pacepop-water-rest.webp",
+          "maxWidth": 1600,
+          "width": 740,
+          "height": 1648,
+          "bytes": 65254
+        },
+        {
+          "path": "/assets/optimized/pacepop-water-rest-800.webp",
+          "maxWidth": 800,
+          "width": 740,
+          "height": 1648,
+          "bytes": 65254
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/studio-os-archive.png",
+      "aliases": [
+        "public/assets/projects/studio-os-archive.png"
+      ],
+      "sha256": "bd839ab9bb52df6aaca30e7ba5657649cbcce86da8d9d7ebaa1552fed0ad48af",
+      "originalBytes": 605718,
+      "originalWidth": 2940,
+      "originalHeight": 1912,
+      "variants": [
+        {
+          "path": "/assets/optimized/studio-os-archive.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 1041,
+          "bytes": 77594
+        },
+        {
+          "path": "/assets/optimized/studio-os-archive-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 520,
+          "bytes": 30280
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/studio-os-bench.png",
+      "aliases": [
+        "public/assets/projects/studio-os-bench.png"
+      ],
+      "sha256": "4ba43e1ce6d769937bdd776249e409e5f782a67ffa5433cfcca216ea5e5d8a65",
+      "originalBytes": 705978,
+      "originalWidth": 2940,
+      "originalHeight": 1912,
+      "variants": [
+        {
+          "path": "/assets/optimized/studio-os-bench.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 1041,
+          "bytes": 87330
+        },
+        {
+          "path": "/assets/optimized/studio-os-bench-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 520,
+          "bytes": 32748
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/studio-os-bids.png",
+      "aliases": [
+        "public/assets/projects/studio-os-bids.png"
+      ],
+      "sha256": "87a6b032a707f3f6247ba401973257676d30868f64466a91ce572fadfaac1aee",
+      "originalBytes": 635522,
+      "originalWidth": 2940,
+      "originalHeight": 1912,
+      "variants": [
+        {
+          "path": "/assets/optimized/studio-os-bids.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 1041,
+          "bytes": 66782
+        },
+        {
+          "path": "/assets/optimized/studio-os-bids-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 520,
+          "bytes": 25446
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/studio-os-briefing.png",
+      "aliases": [
+        "public/assets/projects/studio-os-briefing.png"
+      ],
+      "sha256": "96456ebb34973cc07c77ec44282b527c7a7116a3e7bf8f60d9188b47a7d313ed",
+      "originalBytes": 645689,
+      "originalWidth": 2940,
+      "originalHeight": 1912,
+      "variants": [
+        {
+          "path": "/assets/optimized/studio-os-briefing.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 1041,
+          "bytes": 85112
+        },
+        {
+          "path": "/assets/optimized/studio-os-briefing-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 520,
+          "bytes": 33992
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/studio-os-budgets.png",
+      "aliases": [
+        "public/assets/projects/studio-os-budgets.png"
+      ],
+      "sha256": "5afe0b4037125ac6183eea2fdc20640c13961ed09ae9ecc036e6e98bc85564c4",
+      "originalBytes": 572177,
+      "originalWidth": 2940,
+      "originalHeight": 1912,
+      "variants": [
+        {
+          "path": "/assets/optimized/studio-os-budgets.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 1041,
+          "bytes": 59264
+        },
+        {
+          "path": "/assets/optimized/studio-os-budgets-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 520,
+          "bytes": 22574
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/studio-os-news.png",
+      "aliases": [
+        "public/assets/projects/studio-os-news.png"
+      ],
+      "sha256": "f005addf1c76ba774d7147cf35cdb6f0c5ce9d57c58f9e0250e3178bce074e44",
+      "originalBytes": 760693,
+      "originalWidth": 2940,
+      "originalHeight": 1912,
+      "variants": [
+        {
+          "path": "/assets/optimized/studio-os-news.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 1041,
+          "bytes": 102882
+        },
+        {
+          "path": "/assets/optimized/studio-os-news-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 520,
+          "bytes": 37798
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/studio-os-pitch-prep.png",
+      "aliases": [
+        "public/assets/projects/studio-os-pitch-prep.png"
+      ],
+      "sha256": "29bc9e6fee49fff9239368ebb81a258348ea91f0978a754de4ac7f7c1a89a2d2",
+      "originalBytes": 493434,
+      "originalWidth": 2940,
+      "originalHeight": 1912,
+      "variants": [
+        {
+          "path": "/assets/optimized/studio-os-pitch-prep.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 1041,
+          "bytes": 50860
+        },
+        {
+          "path": "/assets/optimized/studio-os-pitch-prep-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 520,
+          "bytes": 19352
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/studio-os-portfolio.png",
+      "aliases": [
+        "public/assets/projects/studio-os-portfolio.png"
+      ],
+      "sha256": "1d2d1f395588dabd19023070b77460eb9edb8ddecf7f66289033a4bd2b24f0c7",
+      "originalBytes": 695033,
+      "originalWidth": 2940,
+      "originalHeight": 1912,
+      "variants": [
+        {
+          "path": "/assets/optimized/studio-os-portfolio.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 1041,
+          "bytes": 85772
+        },
+        {
+          "path": "/assets/optimized/studio-os-portfolio-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 520,
+          "bytes": 33524
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/studio-os-projects.png",
+      "aliases": [
+        "public/assets/projects/studio-os-projects.png"
+      ],
+      "sha256": "587c1b5e04bc2f11ab04e96ea1d9fd2ac15b94211d3c86da6bcad6b9b45bef8c",
+      "originalBytes": 692588,
+      "originalWidth": 2940,
+      "originalHeight": 1912,
+      "variants": [
+        {
+          "path": "/assets/optimized/studio-os-projects.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 1041,
+          "bytes": 75686
+        },
+        {
+          "path": "/assets/optimized/studio-os-projects-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 520,
+          "bytes": 29004
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/studio-os-schedules.png",
+      "aliases": [
+        "public/assets/projects/studio-os-schedules.png"
+      ],
+      "sha256": "7b3a146d6b624a417275ff0e2364ebdcd76e2e89cd766036a07280ec1fd9fa33",
+      "originalBytes": 739613,
+      "originalWidth": 2940,
+      "originalHeight": 1912,
+      "variants": [
+        {
+          "path": "/assets/optimized/studio-os-schedules.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 1041,
+          "bytes": 80638
+        },
+        {
+          "path": "/assets/optimized/studio-os-schedules-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 520,
+          "bytes": 30424
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/swim-up-hill-home.png",
+      "aliases": [
+        "public/assets/projects/swim-up-hill-home.png"
+      ],
+      "sha256": "7c77d414fc0b90957e8e2fd09d701cccfdcbe15fb77d852bd0810db31a2ab359",
+      "originalBytes": 590117,
+      "originalWidth": 1440,
+      "originalHeight": 1000,
+      "variants": [
+        {
+          "path": "/assets/optimized/swim-up-hill-home.webp",
+          "maxWidth": 1600,
+          "width": 1440,
+          "height": 1000,
+          "bytes": 89630
+        },
+        {
+          "path": "/assets/optimized/swim-up-hill-home-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 556,
+          "bytes": 39408
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/swim-up-hill-journeys.png",
+      "aliases": [
+        "public/assets/projects/swim-up-hill-journeys.png"
+      ],
+      "sha256": "7de6882c6640c2446a3f3c5665a57bd0396f0dd0a4f877fe012df77d0e11dcdd",
+      "originalBytes": 210625,
+      "originalWidth": 1440,
+      "originalHeight": 1000,
+      "variants": [
+        {
+          "path": "/assets/optimized/swim-up-hill-journeys.webp",
+          "maxWidth": 1600,
+          "width": 1440,
+          "height": 1000,
+          "bytes": 75900
+        },
+        {
+          "path": "/assets/optimized/swim-up-hill-journeys-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 556,
+          "bytes": 33170
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/swim-up-hill-mobile.png",
+      "aliases": [
+        "public/assets/projects/swim-up-hill-mobile.png"
+      ],
+      "sha256": "1b3eba261fa3b44b68f9f91d121dbf74929d3661e775e2c561c8d583ee72e435",
+      "originalBytes": 166067,
+      "originalWidth": 390,
+      "originalHeight": 844,
+      "variants": [
+        {
+          "path": "/assets/optimized/swim-up-hill-mobile.webp",
+          "maxWidth": 1600,
+          "width": 390,
+          "height": 844,
+          "bytes": 37258
+        },
+        {
+          "path": "/assets/optimized/swim-up-hill-mobile-800.webp",
+          "maxWidth": 800,
+          "width": 390,
+          "height": 844,
+          "bytes": 37258
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/swim-up-hill-programs.png",
+      "aliases": [
+        "public/assets/projects/swim-up-hill-programs.png"
+      ],
+      "sha256": "f4a8afcc3a68ba52762ca2d547a33884a1c0b68ea578eb12a2f89cacc3c9533e",
+      "originalBytes": 140047,
+      "originalWidth": 1440,
+      "originalHeight": 1000,
+      "variants": [
+        {
+          "path": "/assets/optimized/swim-up-hill-programs.webp",
+          "maxWidth": 1600,
+          "width": 1440,
+          "height": 1000,
+          "bytes": 51858
+        },
+        {
+          "path": "/assets/optimized/swim-up-hill-programs-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 556,
+          "bytes": 23288
+        }
+      ]
+    },
+    {
+      "source": "src/assets/profile.png",
+      "aliases": [
+        "src/assets/profile.png"
+      ],
+      "sha256": "2336cd49dc33eb6faa00802c0c866b321c899713b4b57e63087e83af00f0b384",
+      "originalBytes": 1445082,
+      "originalWidth": 938,
+      "originalHeight": 1198,
+      "variants": [
+        {
+          "path": "/assets/optimized/profile.webp",
+          "maxWidth": 1600,
+          "width": 938,
+          "height": 1198,
+          "bytes": 99340
+        },
+        {
+          "path": "/assets/optimized/profile-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 1022,
+          "bytes": 70966
+        }
+      ]
+    },
+    {
+      "source": "src/assets/profile_hover2.png",
+      "aliases": [
+        "src/assets/profile_hover2.png"
+      ],
+      "sha256": "0e1ebaae9517130275b067c9f8c157558aba214b7a2c064e398263528a638b28",
+      "originalBytes": 2076939,
+      "originalWidth": 1154,
+      "originalHeight": 1164,
+      "variants": [
+        {
+          "path": "/assets/optimized/profile_hover2.webp",
+          "maxWidth": 1600,
+          "width": 1154,
+          "height": 1164,
+          "bytes": 138300
+        },
+        {
+          "path": "/assets/optimized/profile_hover2-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 807,
+          "bytes": 88594
+        }
+      ]
+    }
+  ]
+}

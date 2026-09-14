@@ -70,17 +70,17 @@ test('the homepage prioritizes projects by UX Design Engineer relevance and stat
     assert.doesNotMatch(html, /Selected work|UX in practice/)
     const expectedLeadOrder = [
       'bubbas-production',
-      'swim-up-hill',
+      'pacepop',
+      'honda-spatial',
       'ethicon-care',
-      'ars-pharma',
     ]
     const expectedSupportingOrder = [
-      'bubbas-daily-target',
-      'honda-spatial',
-      'story-authoring',
-      'ai-3d-product-visualization',
-      'embrain-research',
+      'swim-up-hill',
       'haily',
+      'ars-pharma',
+      'story-authoring',
+      'bubbas-daily-target',
+      'ai-3d-product-visualization',
       'handsign',
       'samsung-podcast',
     ]
@@ -111,15 +111,38 @@ test('homepage project covers use four lead and eight compact presentations', as
     assert.equal((html.match(/data-project-cover="micro"/g) || []).length, 0)
     assert.equal((featured.match(/data-project-cover="lead"/g) || []).length, 4)
     assert.equal((supporting.match(/data-project-cover="compact"/g) || []).length, 8)
-    assert.match(featured, /data-cover-tone="warm-gray"/)
-    assert.match(featured, /data-cover-layout="desktop-mobile"/)
-    assert.match(featured, /bubbas-assist-result/)
+    assert.match(featured, /data-cover-tone="bubbas-blue"/)
+    assert.match(featured, /data-cover-layout="immersive"/)
+    assert.match(featured, /bubbas-assist-media/)
     assert.match(featured, /300\+ videos per batch/)
     assert.doesNotMatch(featured, /alt="Bubba(?:'|&#x27;)s Rough Cut Prep/)
     assert.doesNotMatch(html, /class="[^"]*\bundefined\b/)
 
     const bubbasRow = featured.split('data-case-study-entry="true"')[1].split('</article>')[0]
     assert.equal((bubbasRow.match(/Bubba(?:'|&#x27;)s LA/g) || []).length, 1)
+  } finally { await server.close() }
+})
+
+test('Bubbas uses an immersive product close-up on the homepage and case study', async () => {
+  const server = await createServer({ server: { middlewareMode: true, ws: false }, appType: 'custom', logLevel: 'error' })
+  try {
+    const { render } = await server.ssrLoadModule('/src/entry-server.jsx')
+    const home = render('/')
+    const detail = render('/work/bubbas-production/')
+    const bubbasEntry = home.slice(home.indexOf('data-project-slug="bubbas-production"'), home.indexOf('</article>', home.indexOf('data-project-slug="bubbas-production"')))
+
+    assert.match(bubbasEntry, /data-cover-tone="bubbas-blue"/)
+    assert.match(bubbasEntry, /data-cover-layout="immersive"/)
+    assert.doesNotMatch(bubbasEntry, /coverSecondary/)
+    assert.match(detail, /data-project-slug="bubbas-production"/)
+    assert.equal((detail.match(/data-story-artifact=/g) || []).length, 7)
+
+    const moduleCss = readFileSync(new URL('../src/portfolio/Portfolio.module.css', import.meta.url), 'utf8')
+    const currentCss = moduleCss.slice(moduleCss.indexOf('/* UX Design Engineer portfolio */'))
+    assert.match(currentCss, /\.projectCover\[data-cover-tone='bubbas-blue'\]\s*{[^}]*background:\s*#[0-9a-f]{6}/is)
+    assert.match(currentCss, /\.projectCover\[data-project-cover='lead'\]\[data-cover-layout='immersive'\]\s+\.coverPrimary\s*{/s)
+    assert.match(currentCss, /\.casePage\[data-project-slug='bubbas-production'\]\s+\.storyEvidenceGrid\s*{[^}]*grid-column:\s*1\s*\/\s*-1/s)
+    assert.match(currentCss, /\.casePage\[data-project-slug='bubbas-production'\]\s+\.storyArtifactMedia\s*{[^}]*border-radius:\s*8px/s)
   } finally { await server.close() }
 })
 
@@ -151,6 +174,31 @@ test('the homepage hero presents USC as a quiet academic affiliation', async () 
     const currentCss = moduleCss.slice(moduleCss.indexOf('/* UX Design Engineer portfolio */'))
     assert.match(currentCss, /\.heroAffiliation\s*{[^}]*display:\s*flex[^}]*border:\s*0/s)
     assert.match(currentCss, /\.heroAffiliation\s*>\s*img\s*{[^}]*width:\s*30px/s)
+  } finally { await server.close() }
+})
+
+test('phone evidence is clipped to a rounded screen without exposed capture edges', () => {
+  const moduleCss = readFileSync(new URL('../src/portfolio/Portfolio.module.css', import.meta.url), 'utf8')
+  const currentCss = moduleCss.slice(moduleCss.indexOf('/* UX Design Engineer portfolio */'))
+
+  assert.match(currentCss, /\.storyArtifactPhone img\s*{[^}]*border-radius:\s*clamp\([^}]*clip-path:\s*inset\([^}]*round/s)
+})
+
+test('PACEPOP presents dense phone evidence as a responsive visual gallery', async () => {
+  const server = await createServer({ server: { middlewareMode: true, ws: false }, appType: 'custom', logLevel: 'error' })
+  try {
+    const { render } = await server.ssrLoadModule('/src/entry-server.jsx')
+    const html = render('/work/pacepop/')
+    assert.equal((html.match(/data-image-presentation="phone"/g) || []).length, 18)
+    assert.equal((html.match(/data-evidence-layout="phone-pair"/g) || []).length, 2)
+    assert.equal((html.match(/data-evidence-layout="phone-gallery"/g) || []).length, 2)
+    assert.equal((html.match(/data-evidence-layout="phone-quad"/g) || []).length, 2)
+
+    const moduleCss = readFileSync(new URL('../src/portfolio/Portfolio.module.css', import.meta.url), 'utf8')
+    const currentCss = moduleCss.slice(moduleCss.indexOf('/* UX Design Engineer portfolio */'))
+    assert.match(currentCss, /\.storyEvidenceGridPhonePair\s*{[^}]*grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\)/s)
+    assert.match(currentCss, /\.storyEvidenceGridPhoneGallery\s*{[^}]*grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\)/s)
+    assert.match(currentCss, /\.storyEvidenceGridPhoneQuad\s*{[^}]*grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\)/s)
   } finally { await server.close() }
 })
 

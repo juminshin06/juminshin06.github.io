@@ -4,6 +4,36 @@ import { readFileSync, existsSync } from 'node:fs'
 import { allProjects, featuredProjects, normalizePath, resolvePage, routes, pageMetadata } from '../src/data/portfolio.js'
 import { getCaseStudyMode, getSectionPhase } from '../src/portfolio/caseStudyNarrative.js'
 
+const approvedProjectOrder = [
+  'bubbas-production',
+  'pacepop',
+  'honda-spatial',
+  'ethicon-care',
+  'swim-up-hill',
+  'haily',
+  'ars-pharma',
+  'story-authoring',
+  'bubbas-daily-target',
+  'ai-3d-product-visualization',
+  'handsign',
+  'samsung-podcast',
+  'wood-chip',
+  'newegg',
+  'ai-native-mvp',
+  'sing-in-sign',
+  'fairads',
+  'b4q4-widgets',
+  'lemonlight',
+  'clozumin',
+  'ev-charging-security',
+  'learning-mobility',
+  'cookids',
+]
+
+test('projects follow the approved UX Design Engineer hiring priority', () => {
+  assert.deepEqual(allProjects.map(project => project.slug), approvedProjectOrder)
+})
+
 test('every original project remains reachable with a unique public URL', () => {
   const original = JSON.parse(readFileSync(new URL('../src/data/projects.json', import.meta.url)))
   for (const project of original) {
@@ -12,7 +42,7 @@ test('every original project remains reachable with a unique public URL', () => 
     assert.equal(resolvePage(`/work/${published.slug}/`).project.id, project.id)
   }
   assert.equal(new Set(allProjects.map(p => p.slug)).size, allProjects.length)
-  assert.equal(featuredProjects.length, 5)
+  assert.equal(featuredProjects.length, 4)
 })
 
 test('direct links, trailing slashes and missing pages resolve consistently', () => {

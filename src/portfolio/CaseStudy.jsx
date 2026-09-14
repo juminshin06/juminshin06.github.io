@@ -13,7 +13,7 @@ const displayTitles = {
   'ethicon-care': 'Post-operative care',
   'story-authoring': 'Human-AI storytelling',
   'ai-3d-product-visualization': 'AI-assisted 3D production',
-  'embrain-research': 'Research to product direction',
+  pacepop: 'PACEPOP: temporary connection for real-world groups',
 }
 
 function Resource({ block }) {
@@ -31,7 +31,7 @@ function EvidenceFigure({ block, sectionId, number }) {
   const image = <ProjectImage src={block.src} alt={block.caption} sizes="(max-width: 900px) 100vw, 46vw" />
   const isFullSizeAvailable = block.fullSize !== false
 
-  return <figure className={`${s.storyArtifact} ${isFullSizeAvailable ? '' : s.storyArtifactRestricted} ${block.presentation === 'browser' ? s.storyArtifactBrowser : ''} ${block.presentation === 'slide' ? s.storyArtifactSlide : ''}`} data-story-artifact={sectionId} data-image-presentation={block.presentation}>
+  return <figure className={`${s.storyArtifact} ${isFullSizeAvailable ? '' : s.storyArtifactRestricted} ${block.presentation === 'browser' ? s.storyArtifactBrowser : ''} ${block.presentation === 'slide' ? s.storyArtifactSlide : ''} ${block.presentation === 'phone' ? s.storyArtifactPhone : ''}`} data-story-artifact={sectionId} data-image-presentation={block.presentation}>
     {isFullSizeAvailable
       ? <a className={s.storyArtifactMedia} href={block.src} target="_blank" rel="noreferrer" aria-label={`Open full-size evidence: ${block.caption}`}>{image}</a>
       : <div className={s.storyArtifactMedia}>{image}</div>}
@@ -122,7 +122,7 @@ export default function CaseStudy({ project }) {
     }
   }, [project])
 
-  return <article ref={article} className={s.casePage} data-case-study-mode={mode}>
+  return <article ref={article} className={s.casePage} data-case-study-mode={mode} data-project-slug={project.slug}>
     <header className={s.caseHeader} id="overview">
       <a className={s.backLink} href="/#work"><ArrowLeft size={17} />Work</a>
       <div className={s.caseIntro}>
@@ -160,6 +160,11 @@ export default function CaseStudy({ project }) {
     <div className={s.caseBody}>
       {project.sections.map(section => {
         const evidence = assignments.bySection.get(section.id) || []
+        const isPhoneSet = evidence.length > 1 && evidence.every(block => block.presentation === 'phone')
+        const isPhonePair = isPhoneSet && evidence.length === 2
+        const isPhoneQuad = isPhoneSet && evidence.length === 4
+        const isPhoneGallery = isPhoneSet && evidence.length > 2 && !isPhoneQuad
+        const evidenceLayout = isPhonePair ? 'phone-pair' : (isPhoneQuad ? 'phone-quad' : (isPhoneGallery ? 'phone-gallery' : 'standard'))
         const phase = getSectionPhase(section, mode)
         return <section data-reveal data-story-phase={phase} className={s.storySection} id={section.id} key={section.id}>
           <div className={s.storyLabel}>{phase}</div>
@@ -170,7 +175,7 @@ export default function CaseStudy({ project }) {
             <SectionFlow flow={section.flow} />
             <DesignDecision comparison={section.comparison} />
           </div>
-          {evidence.length > 0 ? <div className={`${s.storyEvidenceGrid} ${evidence.length === 1 ? s.storyEvidenceGridSingle : ''}`} data-evidence-grid="true">
+          {evidence.length > 0 ? <div className={`${s.storyEvidenceGrid} ${evidence.length === 1 ? s.storyEvidenceGridSingle : ''} ${isPhonePair ? s.storyEvidenceGridPhonePair : ''} ${isPhoneQuad ? s.storyEvidenceGridPhoneQuad : ''} ${isPhoneGallery ? s.storyEvidenceGridPhoneGallery : ''}`} data-evidence-grid="true" data-evidence-layout={evidenceLayout}>
             {evidence.map(block => <EvidenceFigure key={block.src} block={block} sectionId={section.id} number={artifactNumber++} />)}
           </div> : null}
         </section>
