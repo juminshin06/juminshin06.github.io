@@ -15,6 +15,8 @@ test('the work-led homepage uses the natural hero portrait without editorial lab
     assert.match(hero, /data-hero-portrait="true"/)
     assert.match(hero, /alt="Editorial portrait of Jumin Shin"/)
     assert.match(hero, /jumin-editorial-portrait-v2(?:-720)?\.webp/)
+    assert.match(hero, /Research · Interaction · Prototyping · AI/)
+    assert.doesNotMatch(hero, /Los Angeles/)
     assert.doesNotMatch(hero, /J\.S\. \/ 26/)
     assert.doesNotMatch(hero, /<figcaption>|Portrait \/ 2026/)
     for (const asset of [

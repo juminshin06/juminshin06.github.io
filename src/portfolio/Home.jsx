@@ -100,7 +100,7 @@ export default function Home() {
         <h1>Jumin Shin</h1>
         <p className={s.heroRole}>UX Design Engineer</p>
         <p className={s.heroStatement}>I turn research into working interfaces across AI, spatial computing and digital products.</p>
-        <p className={s.heroMeta}>Los Angeles · Research · Interaction · Prototyping</p>
+        <p className={s.heroMeta}>Research · Interaction · Prototyping · AI</p>
         <div className={s.heroAffiliation} aria-label="Graduate student at USC Iovine and Young Academy">
           <img src="/assets/USC_logo.svg" width="30" height="31" alt="" aria-hidden="true" />
           <span>
