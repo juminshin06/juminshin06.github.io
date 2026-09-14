@@ -26,8 +26,6 @@ const supportingProjects = [
   'story-authoring',
   'bubbas-daily-target',
   'ai-3d-product-visualization',
-  'handsign',
-  'samsung-podcast',
 ].map(slug => homepageProjects.get(slug)).filter(Boolean)
 
 function CaseStudyRow({ project, index }) {
@@ -121,7 +119,7 @@ export default function Home() {
     </section>
 
     <section className={s.moreWork} aria-labelledby="more-work-heading">
-      <SectionHeading id="more-work-heading" title="More product work" note="Web delivery / UX evaluation / Internal tools / Service design" />
+      <SectionHeading id="more-work-heading" title="More product work" />
       <div className={s.productWorkGrid}>
         {supportingProjects.map(project => <ProductWorkCard key={project.id} project={project} />)}
       </div>
@@ -146,7 +144,7 @@ export default function Home() {
         <p className={s.aboutStatement}>I connect user research, interaction design and hands-on prototyping.</p>
         <p className={s.bodyText}>From UX research with Samsung and Hyundai to AI-assisted production workflows, I turn complex requirements into interfaces and prototypes. I’m pursuing an M.S. in Integrated Design, Business and Technology at USC.</p>
         <TextLink href="/about/">Experience and background</TextLink>
-        <div className={s.miniExperience}>{profile.experience.map(p => <div key={`${p.organization}-${p.period}`} data-home-experience="true"><strong>{p.organization}</strong><span>{p.title}</span><small>{p.period}</small></div>)}</div>
+        <div className={s.miniExperience}>{profile.experience.map(p => <article key={`${p.organization}-${p.period}`} data-home-experience="true"><strong>{p.organization}</strong><span>{p.title}</span><small>{p.period}</small></article>)}</div>
       </div>
     </section>
   </div>

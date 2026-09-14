@@ -139,9 +139,9 @@
       "cover": {
         "tone": "spatial",
         "layout": "immersive",
-        "primary": "/assets/projects/honda-deck-22.jpg",
+        "primary": "/assets/projects/honda-omniverse-poc.png",
         "primaryFrame": "plain",
-        "annotation": "Spatial review interactions"
+        "annotation": "Omniverse spatial POC"
       },
       "sections": [
         {

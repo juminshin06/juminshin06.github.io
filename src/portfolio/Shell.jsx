@@ -43,17 +43,17 @@ export function Footer() {
         <h2>Let’s connect.</h2>
       </div>
       <div className={s.contactLinks} data-contact-links="true">
-        <a className={s.contactLink} href={`mailto:${profile.email}`}>
-          <span className={s.contactIcon}><Mail size={18} aria-hidden="true" /></span><span>Email</span><strong>{profile.email}</strong><ArrowUpRight size={19} aria-hidden="true" />
+        <a className={s.contactLink} href={`mailto:${profile.email}`} aria-label={`Email ${profile.email}`} title={profile.email}>
+          <span className={s.contactIcon}><Mail size={18} aria-hidden="true" /></span><strong>Email</strong><ArrowUpRight size={17} aria-hidden="true" />
         </a>
         <a className={s.contactLink} href={profile.linkedin} target="_blank" rel="noreferrer">
-          <span className={s.contactIcon}><Link2 size={18} aria-hidden="true" /></span><span>LinkedIn</span><strong>Connect</strong><ArrowUpRight size={19} aria-hidden="true" />
+          <span className={s.contactIcon}><Link2 size={18} aria-hidden="true" /></span><strong>LinkedIn</strong><ArrowUpRight size={17} aria-hidden="true" />
         </a>
         <a className={s.contactLink} href={resumeUrl} target="_blank" rel="noreferrer">
-          <span className={s.contactIcon}><FileText size={18} aria-hidden="true" /></span><span>Resume</span><strong>View PDF</strong><ArrowUpRight size={19} aria-hidden="true" />
+          <span className={s.contactIcon}><FileText size={18} aria-hidden="true" /></span><strong>Resume</strong><ArrowUpRight size={17} aria-hidden="true" />
         </a>
         <a className={s.contactLink} href={profile.scholar} target="_blank" rel="noreferrer">
-          <span className={s.contactIcon}><BookOpen size={18} aria-hidden="true" /></span><span>Scholar</span><strong>Publications</strong><ArrowUpRight size={19} aria-hidden="true" />
+          <span className={s.contactIcon}><BookOpen size={18} aria-hidden="true" /></span><strong>Scholar</strong><ArrowUpRight size={17} aria-hidden="true" />
         </a>
       </div>
     </div>

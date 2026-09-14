@@ -80,8 +80,6 @@ test('the homepage prioritizes projects by UX Design Engineer relevance and stat
       'story-authoring',
       'bubbas-daily-target',
       'ai-3d-product-visualization',
-      'handsign',
-      'samsung-podcast',
     ]
     assert.doesNotMatch(html, /Project index|aria-label="Project shortcuts"/)
 
@@ -96,7 +94,7 @@ test('the homepage prioritizes projects by UX Design Engineer relevance and stat
   } finally { await server.close() }
 })
 
-test('homepage project covers use four lead and eight gallery presentations', async () => {
+test('homepage project covers use four lead and six gallery presentations', async () => {
   const server = await createServer({ server: { middlewareMode: true, ws: false }, appType: 'custom', logLevel: 'error' })
   try {
     const { render } = await server.ssrLoadModule('/src/entry-server.jsx')
@@ -106,7 +104,7 @@ test('homepage project covers use four lead and eight gallery presentations', as
 
     assert.equal((html.match(/data-project-cover="micro"/g) || []).length, 0)
     assert.equal((featured.match(/data-project-cover="lead"/g) || []).length, 4)
-    assert.equal((supporting.match(/data-project-cover="gallery"/g) || []).length, 8)
+    assert.equal((supporting.match(/data-project-cover="gallery"/g) || []).length, 6)
     assert.match(featured, /data-cover-tone="bubbas-blue"/)
     assert.match(featured, /data-cover-layout="immersive"/)
     assert.match(featured, /bubbas-assist-media/)
@@ -157,7 +155,7 @@ test('Honda and J&J covers foreground the product without template overlays', as
       assert.match(entry, /data-cover-frame="plain"/)
       assert.doesNotMatch(entry, /coverSecondary/)
     }
-    assert.match(entries['honda-spatial'], /honda-deck-22/)
+    assert.match(entries['honda-spatial'], /honda-omniverse-poc/)
     assert.match(entries['ethicon-care'], /jj-training-decision/)
 
     const moduleCss = readFileSync(new URL('../src/portfolio/Portfolio.module.css', import.meta.url), 'utf8')
@@ -184,7 +182,7 @@ test('homepage project framing keeps company names concise and roles visible', a
     assert.match(featured, />Ethicon R&amp;D, Johnson &amp; Johnson MedTech</)
     assert.doesNotMatch(featured, /American Honda x USC Iovine and Young Academy/)
     assert.doesNotMatch(featured, /Ethicon R&amp;D, Johnson &amp; Johnson MedTech x USC Iovine and Young Academy/)
-    assert.equal((supporting.match(/data-project-role="true"/g) || []).length, 8)
+    assert.equal((supporting.match(/data-project-role="true"/g) || []).length, 6)
     assert.match(supporting, /Package, service, and UI designer/)
     assert.doesNotMatch(supporting, /ARS Pharma x USC Iovine and Young Academy/)
   } finally { await server.close() }
@@ -272,20 +270,21 @@ test('PACEPOP presents dense phone evidence as a responsive visual gallery', asy
   } finally { await server.close() }
 })
 
-test('more product work uses large two-column visual profiles', async () => {
+test('more product work uses a compact six-project gallery', async () => {
   const server = await createServer({ server: { middlewareMode: true, ws: false }, appType: 'custom', logLevel: 'error' })
   try {
     const { render } = await server.ssrLoadModule('/src/entry-server.jsx')
     const html = render('/')
     const supporting = html.slice(html.indexOf('aria-labelledby="more-work-heading"'), html.indexOf('aria-labelledby="home-about-heading"'))
 
-    assert.equal((supporting.match(/data-more-work-project="true"/g) || []).length, 8)
-    assert.equal((supporting.match(/data-project-cover="gallery"/g) || []).length, 8)
+    assert.equal((supporting.match(/data-more-work-project="true"/g) || []).length, 6)
+    assert.equal((supporting.match(/data-project-cover="gallery"/g) || []).length, 6)
+    assert.doesNotMatch(supporting, /Web delivery \/ UX evaluation \/ Internal tools \/ Service design/)
 
     const moduleCss = readFileSync(new URL('../src/portfolio/Portfolio.module.css', import.meta.url), 'utf8')
     const currentCss = moduleCss.slice(moduleCss.indexOf('/* UX Design Engineer portfolio */'))
-    assert.match(currentCss, /\.productWorkGrid\s*{[^}]*grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\)/s)
-    assert.match(currentCss, /\.productWorkMedia \.projectCover\s*{[^}]*aspect-ratio:\s*1\.4/s)
+    assert.match(currentCss, /\.productWorkGrid\s*{[^}]*grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\)/s)
+    assert.match(currentCss, /\.productWorkMedia \.projectCover\s*{[^}]*aspect-ratio:\s*1\.5/s)
   } finally { await server.close() }
 })
 
@@ -340,11 +339,49 @@ test('the homepage opens with a clean portrait and presents four lead projects t
     assert.doesNotMatch(currentCss, /\.heroPortraitMark\s*{/)
     assert.doesNotMatch(currentCss, /\.projectIndexStrip\s*{|\.heroProjectGrid\s*{/)
     assert.match(currentCss, /\.caseStudyList\s*{[^}]*grid-template-columns:\s*repeat\(4,\s*minmax\(0,\s*1fr\)\)/s)
-    assert.match(currentCss, /\.productWorkGrid\s*{[^}]*grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\)/s)
+    assert.match(currentCss, /\.productWorkGrid\s*{[^}]*grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\)/s)
     assert.match(currentCss, /@media\s*\(max-width:\s*1024px\)\s+and\s+\(min-width:\s*601px\)[\s\S]*?\.hero\s*{[^}]*grid-template-columns:\s*minmax\(0,\s*1\.15fr\)\s+minmax\(260px,\s*\.85fr\)/s)
     assert.match(currentCss, /@media\s*\(max-width:\s*760px\)\s+and\s+\(min-width:\s*601px\)[\s\S]*?\.caseStudyList\s*{[^}]*grid-template-columns:\s*1fr/s)
     assert.match(currentCss, /@media\s*\(max-width:\s*600px\)[\s\S]*?\.caseStudyList\s*{[^}]*grid-template-columns:\s*1fr/s)
     assert.match(currentCss, /@media\s*\(max-width:\s*600px\)[\s\S]*?\.productWorkGrid\s*{[^}]*grid-template-columns:\s*1fr/s)
+  } finally { await server.close() }
+})
+
+test('about page presents a branded toolkit, compact profile links and school identities', async () => {
+  const server = await createServer({ server: { middlewareMode: true, ws: false }, appType: 'custom', logLevel: 'error' })
+  try {
+    const { render } = await server.ssrLoadModule('/src/entry-server.jsx')
+    const html = render('/about/')
+
+    assert.equal((html.match(/data-tech-tool="true"/g) || []).length, 7)
+    for (const tool of ['Figma', 'React', 'JavaScript', 'Python', 'Blender', 'Unity', 'Unreal Engine']) assert.match(html, new RegExp(`>${tool}<`))
+    assert.match(html, /data-about-links="true"/)
+    for (const label of ['Email', 'LinkedIn', 'Resume', 'Scholar']) assert.match(html, new RegExp(`>${label}<`))
+    assert.equal((html.match(/data-education-entry="true"/g) || []).length, 3)
+    for (const logo of ['logo-usc.svg', 'logo-tu-berlin.svg', 'logo-hongik.svg']) assert.match(html, new RegExp(logo.replace('.', '\\.')))
+    assert.doesNotMatch(html, /About \/ Los Angeles/)
+
+    const moduleCss = readFileSync(new URL('../src/portfolio/Portfolio.module.css', import.meta.url), 'utf8')
+    const currentCss = moduleCss.slice(moduleCss.indexOf('/* UX Design Engineer portfolio */'))
+    assert.match(currentCss, /\.techTool:is\(:hover, :focus-visible\)\s*{[^}]*color:\s*var\(--tool-color\)/s)
+    assert.match(currentCss, /\.aboutLinkButton\s*{[^}]*display:\s*inline-flex/s)
+    assert.match(currentCss, /\.educationLogo\s*{[^}]*display:\s*grid/s)
+  } finally { await server.close() }
+})
+
+test('lead covers use the requested image treatments and compact metadata rhythm', async () => {
+  const server = await createServer({ server: { middlewareMode: true, ws: false }, appType: 'custom', logLevel: 'error' })
+  try {
+    const { render } = await server.ssrLoadModule('/src/entry-server.jsx')
+    const html = render('/')
+    const featured = html.slice(html.indexOf('id="work"'), html.indexOf('aria-labelledby="more-work-heading"'))
+    assert.match(featured, /honda-omniverse-poc/)
+
+    const moduleCss = readFileSync(new URL('../src/portfolio/Portfolio.module.css', import.meta.url), 'utf8')
+    const currentCss = moduleCss.slice(moduleCss.indexOf('/* UX Design Engineer portfolio */'))
+    assert.match(currentCss, /\.caseStudyMedia\[data-project-slug='pacepop'\] \.coverPrimary img\s*{[^}]*transform:\s*scale\(1\.12\)/s)
+    assert.match(currentCss, /\.caseStudyMedia\[data-project-slug='ethicon-care'\] \.projectCover\s*{[^}]*background:\s*#d63b30/s)
+    assert.match(currentCss, /\.caseStudyDetails dl\s*{[^}]*grid-template-rows:\s*minmax\(48px,\s*auto\)\s+minmax\(38px,\s*auto\)/s)
   } finally { await server.close() }
 })
 

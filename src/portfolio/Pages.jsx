@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { ArrowUpRight, ArrowRight } from 'lucide-react'
+import { ArrowUpRight, ArrowRight, BookOpen, Code2, FileText, Link2, Mail } from 'lucide-react'
+import { siBlender, siFigma, siJavascript, siPython, siReact, siUnity, siUnrealengine } from 'simple-icons'
 import { allProjects, researchProjects, categoryLabels } from '../data/portfolio'
 import profile from '../data/profile.json'
 import events from '../data/events.json'
@@ -24,10 +25,39 @@ const researchThemes = [
   },
 ]
 
+const toolkit = [
+  { name: 'Figma', icon: siFigma, color: '#f24e1e' },
+  { name: 'React', icon: siReact, color: '#149eca' },
+  { name: 'JavaScript', icon: siJavascript, color: '#b89600' },
+  { name: 'Python', icon: siPython, color: '#3776ab' },
+  { name: 'Blender', icon: siBlender, color: '#e87d0d' },
+  { name: 'Unity', icon: siUnity, color: '#111111' },
+  { name: 'Unreal Engine', icon: siUnrealengine, color: '#0e1128' },
+]
+
+const educationLogos = {
+  'University of Southern California, Iovine and Young Academy': '/assets/logo-usc.svg',
+  'Technical University of Berlin': '/assets/logo-tu-berlin.svg',
+  'Hongik University': '/assets/logo-hongik.svg',
+}
+
+function TechTool({ tool }) {
+  return <li className={s.techTool} data-tech-tool="true" tabIndex="0" style={{ '--tool-color': tool.color }}>
+    <svg viewBox="0 0 24 24" role="img" aria-label={`${tool.name} logo`}><path d={tool.icon.path} /></svg>
+    <span>{tool.name}</span>
+  </li>
+}
+
+function AboutLink({ href, label, icon: Icon, external = true }) {
+  return <a className={s.aboutLinkButton} href={href} {...(external ? { target: '_blank', rel: 'noreferrer' } : {})}>
+    <Icon size={17} aria-hidden="true" /><span>{label}</span><ArrowUpRight size={15} aria-hidden="true" />
+  </a>
+}
+
 export function About() {
   return <div className={s.innerPage}>
     <header className={s.pageHeading}>
-      <p className={s.label}>About / {profile.location}</p>
+      <p className={s.label}>About / Design + research + code</p>
       <h1>A people-first approach to UX.</h1>
     </header>
     <section className={s.aboutIntro} aria-label="About Jumin Shin">
@@ -35,12 +65,18 @@ export function About() {
       <div>
         <h2>{profile.tagline}</h2>
         {profile.bio.slice(0, 2).map(paragraph => <p className={s.bodyText} key={paragraph}>{paragraph}</p>)}
-        <div className={s.aboutLinks}>
-          <TextLink href={resumeUrl} external>Resume</TextLink>
-          {profile.linkedin && <TextLink href={profile.linkedin} external>LinkedIn</TextLink>}
-          {profile.github && <TextLink href={profile.github} external>GitHub</TextLink>}
+        <div className={s.aboutLinks} data-about-links="true">
+          <AboutLink href={`mailto:${profile.email}`} label="Email" icon={Mail} external={false} />
+          {profile.linkedin && <AboutLink href={profile.linkedin} label="LinkedIn" icon={Link2} />}
+          <AboutLink href={resumeUrl} label="Resume" icon={FileText} />
+          {profile.scholar && <AboutLink href={profile.scholar} label="Scholar" icon={BookOpen} />}
+          {profile.github && <AboutLink href={profile.github} label="GitHub" icon={Code2} />}
         </div>
       </div>
+    </section>
+    <section className={s.toolkit} aria-labelledby="toolkit-heading">
+      <SectionHeading id="toolkit-heading" title="Tools I work with" note="From research flows to working prototypes" />
+      <ul className={s.techTools}>{toolkit.map(tool => <TechTool key={tool.name} tool={tool} />)}</ul>
     </section>
     <section className={s.capabilities} aria-labelledby="capabilities-heading">
       <SectionHeading id="capabilities-heading" title="UX skills & capabilities" />
@@ -64,9 +100,10 @@ export function About() {
     </section>
     <section className={s.education} aria-labelledby="education-heading">
       <SectionHeading id="education-heading" title="Education" />
-      {profile.education.map(education => <article className={s.educationRow} key={education.school}>
-        <p className={s.label}>{education.period}</p>
-        <div><h3>{education.school}</h3><p className={s.bodyText}>{education.degree}</p></div>
+      {profile.education.map(education => <article className={`${s.educationRow} ${s.schoolRow}`} data-education-entry="true" key={education.school}>
+        <div className={s.educationLogo}><img src={educationLogos[education.school]} alt="" aria-hidden="true" /></div>
+        <div className={s.educationCopy}><h3>{education.school}</h3><p className={s.bodyText}>{education.degree}</p></div>
+        <p className={`${s.label} ${s.educationPeriod}`}>{education.period}</p>
       </article>)}
     </section>
     <section className={s.recognition} aria-labelledby="recognition-heading">
