@@ -816,7 +816,7 @@
 .caseStudyDetails dd { margin-top: 5px; font-size: 13px; line-height: 1.48; }
 .caseStudyDetails .textLink { margin-top: 8px; color: var(--accent); font-size: 13px; }
 
-.moreWork { padding: 88px var(--gutter) 104px; background: var(--paper); border-top: 1px solid var(--line); }
+.moreWork { padding: 88px var(--gutter) 104px; background: var(--paper); border-top: 0; }
 .moreWork .sectionHeading { margin-bottom: 28px; }
 .moreWork .sectionHeading h2 { font-size: 44px; line-height: 1.04; font-weight: 560; }
 .productWorkGrid {
@@ -898,7 +898,7 @@
 .researchCallout:is(:hover, :focus-visible) > span { color: rgba(255, 255, 255, .68); }
 .researchCallout:is(:hover, :focus-visible) svg { transform: translateX(3px); }
 
-.homeAbout { grid-template-columns: minmax(280px, 4fr) minmax(0, 8fr); gap: 7%; padding-top: 104px; padding-bottom: 104px; }
+.homeAbout { grid-template-columns: minmax(280px, 4fr) minmax(0, 8fr); gap: 7%; padding-top: 104px; padding-bottom: 104px; background: #f7f7f5; }
 .homeAboutCopy { max-width: none; }
 .homeAbout h2 { max-width: 650px; font-size: 54px; line-height: 1.06; font-weight: 560; }
 .aboutPortrait figcaption { font-family: inherit; font-size: 12px; }
@@ -940,12 +940,12 @@
 .educationCopy p { margin-top: 5px; }
 .educationPeriod { justify-self: end; margin: 0; text-align: right; }
 
-.footer { padding-top: 94px; background: var(--paper); border-top: 1px solid var(--line); }
+.footer { padding-top: 94px; background: #ececea; border-top: 1px solid var(--line); }
 .footerTop { display: grid; grid-template-columns: minmax(220px, 3fr) minmax(0, 9fr); gap: clamp(54px, 8vw, 132px); align-items: start; }
 .footerHeading .label { color: var(--accent); }
 .footerHeading h2 { max-width: 320px; margin-top: 18px; font-size: 48px; line-height: 1.04; font-weight: 560; }
 .footerActions { min-width: 0; }
-.contactLinks { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 30px; border-top: 1px solid var(--ink); }
+.contactLinks { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 30px; border-top: 0; }
 .contactLink {
   position: relative;
   display: grid;
@@ -967,16 +967,7 @@
 .contactLink:is(:hover, :focus-visible) { color: var(--accent); background: transparent; }
 .contactLink:is(:hover, :focus-visible) .contactIcon { color: var(--ink); transform: translateY(-2px); }
 .contactLink:is(:hover, :focus-visible) > svg { transform: translate(3px, -3px); }
-.footerExploreLinks { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 30px; margin-top: 34px; }
-.footerExploreLinks a { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 14px; min-height: 88px; padding: 22px 0; color: var(--ink); background: transparent; border-top: 1px solid var(--ink); transition: color 180ms ease; }
-.footerExploreLinks a:last-child { background: transparent; }
-.footerExploreLinks a:first-child > svg:first-child { color: var(--muted); }
-.footerExploreLinks a:last-child > svg:first-child { color: var(--accent); }
-.footerExploreLinks strong { font-size: 26px; line-height: 1.08; font-weight: 560; }
-.footerExploreLinks a:is(:hover, :focus-visible) { color: var(--accent); background: transparent; }
-.footerExploreLinks a:last-child:is(:hover, :focus-visible) { background: transparent; }
-.footerExploreLinks a > svg:last-child { transition: transform 180ms ease; }
-.footerExploreLinks a:is(:hover, :focus-visible) > svg:last-child { transform: translateX(4px); }
+.footerExploreLinks { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 30px; margin-top: 0; }
 .footerBottom { margin-top: 84px; }
 
 /* Case studies */
@@ -1333,9 +1324,7 @@
   .contactLinks { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .contactLink { min-height: 58px; padding: 13px 0; }
   .contactLink > strong { font-size: 13px; }
-  .footerExploreLinks { gap: 18px; margin-top: 28px; }
-  .footerExploreLinks a { min-height: 72px; padding: 16px 0; }
-  .footerExploreLinks strong { font-size: 19px; }
+  .footerExploreLinks { gap: 0 30px; margin-top: 0; }
   .footerBottom { margin-top: 52px; }
   .casePage { padding-top: 22px; }
   .backLink { margin-bottom: 30px; }

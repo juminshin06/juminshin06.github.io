@@ -58,8 +58,8 @@ export function Footer() {
           </a>
         </div>
         <nav className={s.footerExploreLinks} data-footer-explore="true" aria-label="Explore more">
-          <a href="/archive/"><ArchiveIcon size={22} aria-hidden="true" /><strong>Archive</strong><ArrowRight size={21} aria-hidden="true" /></a>
-          <a href="/life/"><Sparkles size={22} aria-hidden="true" /><strong>Life</strong><ArrowRight size={21} aria-hidden="true" /></a>
+          <a className={s.contactLink} href="/archive/"><span className={s.contactIcon}><ArchiveIcon size={18} aria-hidden="true" /></span><strong>Archive</strong><ArrowUpRight size={17} aria-hidden="true" /></a>
+          <a className={s.contactLink} href="/life/"><span className={s.contactIcon}><Sparkles size={18} aria-hidden="true" /></span><strong>Life</strong><ArrowUpRight size={17} aria-hidden="true" /></a>
         </nav>
       </div>
     </div>

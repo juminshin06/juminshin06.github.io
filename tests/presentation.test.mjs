@@ -437,7 +437,12 @@ test('the homepage removes decorative section framing and prioritizes direct con
     assert.match(currentCss, /\.contactIcon\s*{[^}]*display:\s*grid/s)
     assert.match(currentCss, /\.footerExploreLinks\s*{[^}]*display:\s*grid/s)
     assert.match(currentCss, /\.contactLink\s*{[^}]*border-radius:\s*0/s)
-    assert.match(currentCss, /\.footerExploreLinks a\s*{[^}]*color:\s*var\(--ink\)[^}]*background:\s*transparent/s)
+    assert.match(currentCss, /\.moreWork\s*{[^}]*border-top:\s*0/s)
+    assert.match(currentCss, /\.homeAbout\s*{[^}]*background:\s*#f7f7f5/s)
+    assert.match(currentCss, /\.footer\s*{[^}]*background:\s*#ececea/s)
+    assert.match(currentCss, /\.contactLinks\s*{[^}]*border-top:\s*0/s)
+    assert.match(currentCss, /\.footerExploreLinks\s*{[^}]*margin-top:\s*0/s)
+    assert.doesNotMatch(currentCss, /\.footerExploreLinks a\s*{[^}]*border-top:/s)
     assert.doesNotMatch(currentCss, /\.contactLinkPrimary\s*{[^}]*grid-column:/s)
   } finally { await server.close() }
 })
@@ -464,7 +469,11 @@ test('contact links use familiar icons in an open editorial list', async () => {
     const html = render('/')
     const footer = html.slice(html.indexOf('<footer'))
     for (const icon of ['lucide-mail', 'lucide-link-2', 'lucide-file-text', 'lucide-book-open']) assert.match(footer, new RegExp(icon))
-    assert.equal((footer.match(/class="[^"]*contactIcon/g) || []).length, 4)
+    assert.equal((footer.match(/class="[^"]*contactIcon/g) || []).length, 6)
+    assert.equal((footer.match(/<a class="[^"]*contactLink_/g) || []).length, 6)
+    const moduleCss = readFileSync(new URL('../src/portfolio/Portfolio.module.css', import.meta.url), 'utf8')
+    const mobileCss = moduleCss.slice(moduleCss.lastIndexOf('@media (max-width: 600px)'))
+    assert.match(mobileCss, /\.footerExploreLinks\s*{[^}]*gap:\s*0 30px/s)
   } finally { await server.close() }
 })
 
