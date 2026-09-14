@@ -709,15 +709,70 @@
 .projectCover[data-project-cover='lead'][data-cover-layout='desktop-mobile'] .coverSecondary { right: 7%; bottom: 6%; width: 18%; }
 .projectCover[data-project-cover='lead'][data-cover-layout='single'] .coverPrimary { left: 9%; top: 18%; width: 82%; }
 .projectCover[data-project-cover='lead'][data-cover-layout='immersive'] .coverPrimary {
-  left: 7%;
-  top: 14%;
-  width: 108%;
+  left: var(--cover-left, 7%);
+  top: var(--cover-top, 14%);
+  width: var(--cover-width, 108%);
+  height: var(--cover-height, auto);
   border: 0;
-  border-radius: 8px 0 0;
-  box-shadow: 0 26px 56px rgba(12, 20, 34, .25);
+  border-radius: var(--cover-radius, 8px 0 0);
+  box-shadow: var(--cover-shadow, 0 26px 56px rgba(12, 20, 34, .25));
 }
 .projectCover[data-project-cover='lead'][data-cover-layout='immersive'] .coverPrimary img { width: 100%; }
 .projectCover[data-cover-tone='bubbas-blue'] .coverAnnotation { display: none; }
+
+.caseStudyMedia[data-project-slug='honda-spatial'] .projectCover {
+  --cover-left: clamp(12px, 2vw, 24px);
+  --cover-top: clamp(12px, 2vw, 24px);
+  --cover-width: calc(100% - clamp(24px, 4vw, 48px));
+  --cover-height: calc(100% - clamp(24px, 4vw, 48px));
+  --cover-radius: 6px;
+  --cover-shadow: 0 22px 48px rgba(7, 12, 10, .26);
+  --cover-mobile-left: 12px;
+  --cover-mobile-top: 12px;
+  --cover-mobile-width: calc(100% - 24px);
+  --cover-mobile-height: calc(100% - 24px);
+  border-radius: 8px;
+}
+.caseStudyMedia[data-project-slug='honda-spatial'] .coverPrimary { overflow: hidden; }
+.caseStudyMedia[data-project-slug='honda-spatial'] .coverPrimary img {
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.caseStudyMedia[data-project-slug='honda-spatial'] .coverAnnotation {
+  top: auto;
+  bottom: clamp(22px, 3vw, 34px);
+  left: clamp(22px, 3vw, 34px);
+  color: rgba(255, 255, 255, .88);
+  text-shadow: 0 1px 12px rgba(7, 12, 10, .55);
+}
+
+.caseStudyMedia[data-project-slug='ethicon-care'] .projectCover {
+  --cover-left: 5%;
+  --cover-top: 9%;
+  --cover-width: 105%;
+  --cover-height: 100%;
+  --cover-radius: 8px 0 0;
+  --cover-shadow: 0 24px 50px rgba(32, 54, 62, .18);
+  --cover-mobile-left: 12px;
+  --cover-mobile-top: 14px;
+  --cover-mobile-width: 108%;
+  --cover-mobile-height: calc(100% - 14px);
+  border-radius: 8px;
+}
+.caseStudyMedia[data-project-slug='ethicon-care'] .coverPrimary { overflow: hidden; }
+.caseStudyMedia[data-project-slug='ethicon-care'] .coverPrimary img {
+  height: 100%;
+  object-fit: cover;
+  object-position: 43% center;
+  transform: scale(1.22);
+  transform-origin: 56% 43%;
+}
+.caseStudyMedia[data-project-slug='ethicon-care'] .coverAnnotation {
+  top: 18px;
+  left: 20px;
+  color: rgba(32, 54, 62, .72);
+}
 
 .projectCover[data-project-cover='compact'] .coverPrimary { left: 7%; top: 50%; width: 86%; transform: translateY(-50%); box-shadow: 0 8px 20px rgba(20, 20, 18, .13); }
 .projectCover[data-project-cover='compact'] .coverBrowserBar { height: 9px; padding: 0 4px; gap: 2px; }
@@ -728,6 +783,8 @@
 
 .caseStudyMedia .projectAction { z-index: 6; }
 .caseStudyMedia[data-project-slug='bubbas-production'] .projectAction { display: none; }
+.caseStudyMedia[data-project-slug='honda-spatial'] .projectAction { display: none; }
+.caseStudyMedia[data-project-slug='ethicon-care'] .projectAction { display: none; }
 .caseStudyMedia:is(:hover, :focus-visible) .coverPrimary { transform: scale(1.012); box-shadow: 0 22px 44px rgba(20, 20, 18, .18); }
 .caseStudyMedia:is(:hover, :focus-visible) .coverSecondary { transform: translateY(-5px); box-shadow: 0 22px 44px rgba(20, 20, 18, .18); }
 .compactProject:is(:hover, :focus-visible) .compactThumb .projectCover { transform: scale(1.018); }
@@ -1089,7 +1146,13 @@
   .caseStudyList { grid-template-columns: 1fr; gap: 36px; padding-top: 28px; }
   .caseStudyRow { display: grid; grid-template-columns: 1fr; min-height: 0; padding: 0 0 30px; }
   .caseStudyMedia .projectArt, .caseStudyMedia .projectCover { aspect-ratio: 1.42; }
-  .projectCover[data-project-cover='lead'][data-cover-layout] .coverPrimary { left: 8%; right: auto; top: 17%; width: 84%; }
+  .projectCover[data-project-cover='lead'][data-cover-layout] .coverPrimary {
+    left: var(--cover-mobile-left, 8%);
+    right: auto;
+    top: var(--cover-mobile-top, 17%);
+    width: var(--cover-mobile-width, 84%);
+    height: var(--cover-mobile-height, auto);
+  }
   .projectCover[data-project-cover='lead'] .coverSecondary { display: none; }
   .projectCover[data-project-cover='lead'] .coverAnnotation { top: 12px; left: 14px; }
   .projectCover[data-project-cover='lead'] .coverBrowserBar { height: 12px; }

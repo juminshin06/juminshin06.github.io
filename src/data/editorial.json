@@ -138,11 +138,9 @@
       "visualCaption": "Full 16:9 sprint slide showing the spatial review interface in its automotive context.",
       "cover": {
         "tone": "spatial",
-        "layout": "primary-right",
+        "layout": "immersive",
         "primary": "/assets/projects/honda-deck-28.jpg",
         "primaryFrame": "plain",
-        "secondary": "/assets/projects/honda-deck-25.jpg",
-        "secondaryFrame": "document",
         "annotation": "Vision Pro design review"
       },
       "sections": [
@@ -506,11 +504,9 @@
       "visualCaption": "Patient and clinician interface explorations created for the Johnson & Johnson MedTech industry collaboration.",
       "cover": {
         "tone": "clinical",
-        "layout": "primary-right",
+        "layout": "immersive",
         "primary": "/assets/projects/jj-training-decision.png",
-        "primaryFrame": "browser",
-        "secondary": "/assets/projects/jj-feedback-loop.png",
-        "secondaryFrame": "document",
+        "primaryFrame": "plain",
         "annotation": "12-assessment review flow"
       },
       "sections": [

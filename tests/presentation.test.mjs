@@ -146,6 +146,34 @@ test('Bubbas uses an immersive product close-up on the homepage and case study',
   } finally { await server.close() }
 })
 
+test('Honda and J&J covers foreground the product without template overlays', async () => {
+  const server = await createServer({ server: { middlewareMode: true, ws: false }, appType: 'custom', logLevel: 'error' })
+  try {
+    const { render } = await server.ssrLoadModule('/src/entry-server.jsx')
+    const home = render('/')
+    const entries = Object.fromEntries(['honda-spatial', 'ethicon-care'].map(slug => {
+      const start = home.indexOf(`data-project-slug="${slug}"`)
+      return [slug, home.slice(start, home.indexOf('</article>', start))]
+    }))
+
+    for (const entry of Object.values(entries)) {
+      assert.match(entry, /data-cover-layout="immersive"/)
+      assert.match(entry, /data-cover-frame="plain"/)
+      assert.doesNotMatch(entry, /coverSecondary/)
+    }
+    assert.match(entries['honda-spatial'], /honda-deck-28/)
+    assert.match(entries['ethicon-care'], /jj-training-decision/)
+
+    const moduleCss = readFileSync(new URL('../src/portfolio/Portfolio.module.css', import.meta.url), 'utf8')
+    const currentCss = moduleCss.slice(moduleCss.indexOf('/* UX Design Engineer portfolio */'))
+    for (const slug of ['honda-spatial', 'ethicon-care']) {
+      assert.match(currentCss, new RegExp(`\\.caseStudyMedia\\[data-project-slug='${slug}'\\] \\.projectAction\\s*\\{[^}]*display:\\s*none`, 's'))
+      assert.match(currentCss, new RegExp(`\\.caseStudyMedia\\[data-project-slug='${slug}'\\] \\.coverPrimary\\s*\\{`, 's'))
+    }
+    assert.match(currentCss, /\.caseStudyMedia\[data-project-slug='ethicon-care'\] \.coverPrimary img\s*{[^}]*transform:\s*scale\(/s)
+  } finally { await server.close() }
+})
+
 test('the hero portrait uses correctly sized responsive sources', async () => {
   const server = await createServer({ server: { middlewareMode: true, ws: false }, appType: 'custom', logLevel: 'error' })
   try {
