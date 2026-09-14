@@ -112,27 +112,10 @@ export default function Home() {
       <EditorialPortrait />
     </section>
 
-    <section className={s.caseStudies} id="work" aria-labelledby="case-studies-heading">
-      <header className={s.caseStudiesHeader}>
-        <h2 id="case-studies-heading">Case studies</h2>
-        <span className={s.caseStudiesCount}>01–04</span>
-      </header>
+    <section className={s.caseStudies} id="work" aria-label="Selected work">
       <div className={s.caseStudyList}>
         {leadProjects.map((project, index) => <CaseStudyRow key={project.id} project={project} index={index} />)}
       </div>
-    </section>
-
-    <section className={s.capabilityBand} aria-labelledby="capability-heading">
-      <div className={s.capabilityIntro}>
-        <p className={s.label}>How I work</p>
-        <h2 id="capability-heading">I like to get close to the problem, then make something people can react to.</h2>
-        <p className={s.capabilityAside}>Sometimes that means a Figma flow. Sometimes it means shipping the front end myself.</p>
-      </div>
-      <a className={s.researchCallout} href="/research/">
-        <span>Research notes and publications</span>
-        <strong>Human-AI collaboration, accessibility and product direction.</strong>
-        <ArrowRight size={28} aria-hidden="true" />
-      </a>
     </section>
 
     <section className={s.moreWork} aria-labelledby="more-work-heading">
@@ -140,6 +123,11 @@ export default function Home() {
       <div className={s.compactProjectList}>
         {supportingProjects.map((project, index) => <CompactProject key={project.id} project={project} index={index} />)}
       </div>
+      <a className={s.researchCallout} href="/research/" data-research-cta="true">
+        <span>Research notes and publications</span>
+        <strong>Human-AI collaboration, accessibility and product direction.</strong>
+        <ArrowRight size={28} aria-hidden="true" />
+      </a>
       <div className={s.archiveCta}><p>Research, experiments and earlier projects remain available in the archive.</p><TextLink href="/archive/">View all projects</TextLink></div>
     </section>
 

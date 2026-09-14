@@ -38,26 +38,31 @@ export function Header({ active }) {
 export function Footer() {
   return <footer className={s.footer} id="contact">
     <div className={s.footerTop}>
-      <div className={s.footerIntro}>
-        <p className={s.label}>Thanks for making it this far.</p>
-        <h2>I'd love to hear what you're working on.</h2>
-        <p className={s.footerStatement}>Especially if it lives somewhere between research, interaction and code.</p>
+      <div className={s.footerHeading}>
+        <p className={s.label}>Contact</p>
+        <h2>Let’s connect.</h2>
       </div>
-      <div className={s.footerContact}>
-        <p className={s.label}>Say hello</p>
-        <a className={s.email} href={`mailto:${profile.email}`}>{profile.email}<ArrowUpRight aria-hidden="true" /></a>
-        <p className={s.footerLocation}>Los Angeles, CA · USC</p>
+      <div className={s.contactLinks} data-contact-links="true">
+        <a className={`${s.contactLink} ${s.contactLinkPrimary}`} href={`mailto:${profile.email}`}>
+          <span>Email</span><strong>{profile.email}</strong><ArrowUpRight aria-hidden="true" />
+        </a>
+        <a className={s.contactLink} href={profile.linkedin} target="_blank" rel="noreferrer">
+          <span>LinkedIn</span><strong>Connect</strong><ArrowUpRight aria-hidden="true" />
+        </a>
+        <a className={s.contactLink} href={resumeUrl} target="_blank" rel="noreferrer">
+          <span>Resume</span><strong>View PDF</strong><ArrowUpRight aria-hidden="true" />
+        </a>
+        <a className={s.contactLink} href={profile.scholar} target="_blank" rel="noreferrer">
+          <span>Scholar</span><strong>Publications</strong><ArrowUpRight aria-hidden="true" />
+        </a>
       </div>
     </div>
     <div className={s.footerBottom}>
       <a className={s.brand} href="/">Jumin Shin</a>
       <div className={s.footerLinks}>
-        <TextLink href={profile.linkedin} external>LinkedIn</TextLink>
-        <TextLink href={profile.scholar} external>Scholar</TextLink>
-        <TextLink href={resumeUrl} external>Resume</TextLink>
         <a href="/archive/">Archive</a><a href="/life/">Life</a>
       </div>
-      <span className={s.copyright}>Los Angeles, CA / © {new Date().getFullYear()}</span>
+      <span className={s.copyright}>© {new Date().getFullYear()}</span>
     </div>
   </footer>
 }

@@ -58,16 +58,15 @@ test('the homepage prioritizes projects by UX Design Engineer relevance and stat
     const { render } = await server.ssrLoadModule('/src/entry-server.jsx')
     const html = render('/')
     assert.match(html, /UX Design Engineer/)
-    assert.match(html, /Case studies/)
-    assert.match(html, /<h2 id="case-studies-heading">Case studies<\/h2>/)
-    assert.match(html, /01–04/)
+    assert.match(html, /aria-label="Selected work"/)
+    assert.doesNotMatch(html, /<h2 id="case-studies-heading">/)
+    assert.doesNotMatch(html, /01–04/)
     assert.doesNotMatch(html, /From complex workflows to testable systems\./)
     assert.doesNotMatch(html, /AI production systems|Shipped web experiences|Healthcare interfaces|Service ecosystems/)
     assert.doesNotMatch(html, /Four projects showing how I frame problems/)
     assert.match(html, /Research/)
-    assert.match(html, /Figma flow/)
-    assert.match(html, /shipping the front end/)
-    assert.doesNotMatch(html, /Selected work|UX in practice/)
+    assert.doesNotMatch(html, /Figma flow|shipping the front end/)
+    assert.doesNotMatch(html, /UX in practice/)
     const expectedLeadOrder = [
       'bubbas-production',
       'pacepop',
@@ -86,13 +85,10 @@ test('the homepage prioritizes projects by UX Design Engineer relevance and stat
     ]
     assert.doesNotMatch(html, /Project index|aria-label="Project shortcuts"/)
 
-    const featured = html.slice(html.indexOf('id="work"'), html.indexOf('aria-labelledby="capability-heading"'))
+    const moreWorkPosition = html.indexOf('aria-labelledby="more-work-heading"')
+    const featured = html.slice(html.indexOf('id="work"'), moreWorkPosition)
     const featuredOrder = expectedLeadOrder.map(slug => featured.indexOf(`/work/${slug}/`))
     assert.ok(featuredOrder.every((position, index) => position >= 0 && (index === 0 || position > featuredOrder[index - 1])))
-
-    const capabilityPosition = html.indexOf('aria-labelledby="capability-heading"')
-    const moreWorkPosition = html.indexOf('aria-labelledby="more-work-heading"')
-    assert.ok(capabilityPosition < moreWorkPosition)
 
     const supporting = html.slice(moreWorkPosition, html.indexOf('aria-labelledby="home-about-heading"'))
     const supportingOrder = expectedSupportingOrder.map(slug => supporting.indexOf(`/work/${slug}/`))
@@ -345,36 +341,41 @@ test('the homepage opens with a clean portrait and presents four lead projects t
   } finally { await server.close() }
 })
 
-test('the homepage presents the working process and contact invitation in a personal voice', async () => {
+test('the homepage removes decorative section framing and prioritizes direct contact actions', async () => {
   const server = await createServer({ server: { middlewareMode: true, ws: false }, appType: 'custom', logLevel: 'error' })
   try {
     const { render } = await server.ssrLoadModule('/src/entry-server.jsx')
     const html = render('/')
 
-    const workingProcess = html.slice(html.indexOf('aria-labelledby="capability-heading"'), html.indexOf('aria-labelledby="more-work-heading"'))
-    assert.match(workingProcess, /I like to get close to the problem/)
-    assert.match(workingProcess, /Sometimes that means a Figma flow/)
-    assert.match(workingProcess, /Research notes and publications/)
-    assert.doesNotMatch(workingProcess, /Listen closely/)
-    assert.doesNotMatch(workingProcess, /Make the messy parts visible/)
-    assert.doesNotMatch(workingProcess, /Put a prototype in someone(?:’|&#x27;)s hands/)
-    assert.doesNotMatch(workingProcess, /In the work/)
-    assert.doesNotMatch(html, /Research\. Design\. Build\./)
-
-    assert.match(html, /Thanks for making it this far/)
-    assert.match(html, /I(?:’|&#x27;)d love to hear what you(?:’|&#x27;)re working on/)
-    assert.doesNotMatch(html, /Better experiences.*start with a conversation/s)
+    const featured = html.slice(html.indexOf('id="work"'), html.indexOf('aria-labelledby="more-work-heading"'))
+    const moreWork = html.slice(html.indexOf('aria-labelledby="more-work-heading"'), html.indexOf('aria-labelledby="home-about-heading"'))
+    const footer = html.slice(html.indexOf('<footer'))
+    assert.doesNotMatch(featured, /Case studies|01(?:–|&ndash;)04|How I work|I like to get close to the problem/)
+    assert.match(moreWork, /data-research-cta="true"/)
+    assert.match(moreWork, /Research notes and publications/)
+    assert.doesNotMatch(html, /I(?:’|&#x27;)d love to hear what you(?:’|&#x27;)re working on/)
+    assert.match(footer, /data-contact-links="true"/)
+    for (const label of ['Email', 'LinkedIn', 'Resume', 'Scholar']) assert.match(footer, new RegExp(`>${label}<`))
+    assert.match(footer, />Archive</)
+    assert.match(footer, />Life</)
 
     const moduleCss = readFileSync(new URL('../src/portfolio/Portfolio.module.css', import.meta.url), 'utf8')
     const currentCss = moduleCss.slice(moduleCss.indexOf('/* UX Design Engineer portfolio */'))
-    assert.match(currentCss, /\.capabilityBand\s*{[^}]*background:\s*var\(--paper\)[^}]*color:\s*var\(--ink\)/s)
-    assert.doesNotMatch(currentCss, /\.workNotes?\b/)
-    const capabilityRule = currentCss.match(/\.capabilityBand\s*{([^}]*)}/)?.[1] || ''
-    const researchRule = currentCss.match(/\.researchCallout\s*{([^}]*)}/)?.[1] || ''
-    assert.doesNotMatch(capabilityRule, /border-(?:top|bottom)/)
-    assert.doesNotMatch(researchRule, /border-top/)
-    assert.match(currentCss, /\.footerTop\s*{[^}]*display:\s*grid/s)
-    assert.match(currentCss, /\.footerTop h2\s*{[^}]*font-size:\s*42px/s)
+    assert.match(currentCss, /\.researchCallout\s*{[^}]*border:\s*1px solid var\(--ink\)/s)
+    assert.match(currentCss, /\.contactLinks\s*{[^}]*display:\s*grid/s)
+    assert.match(currentCss, /\.contactLinkPrimary\s*{[^}]*grid-column:/s)
+  } finally { await server.close() }
+})
+
+test('lead project cards use one consistent team-size fact', async () => {
+  const server = await createServer({ server: { middlewareMode: true, ws: false }, appType: 'custom', logLevel: 'error' })
+  try {
+    const { render } = await server.ssrLoadModule('/src/entry-server.jsx')
+    const html = render('/')
+    const featured = html.slice(html.indexOf('id="work"'), html.indexOf('aria-labelledby="more-work-heading"'))
+    assert.equal((featured.match(/<dt>Team size<\/dt>/g) || []).length, 4)
+    for (const value of ['1 person', '2 people', '8 people', '9 people']) assert.match(featured, new RegExp(`>${value}<`))
+    assert.doesNotMatch(featured, /Role-specific flows|People in the sprint|People on the cross-functional team|Videos in the initial prototype/)
   } finally { await server.close() }
 })
 
@@ -436,9 +437,8 @@ test('the portfolio stylesheet enforces the approved readable visual system', ()
   assert.match(rootCss, /--paper:\s*#fff(?:fff)?;/i)
   assert.match(moduleCss, /\.label\s*{[^}]*font-size:\s*13px/s)
   assert.match(moduleCss, /\.hero\s*{[^}]*min-height:\s*min\(520px,\s*calc\(100svh - 72px\)\)/s)
-  assert.match(moduleCss, /\.caseStudies\s*{[^}]*padding:\s*30px\s+var\(--gutter\)\s+76px/s)
-  assert.match(moduleCss, /\.caseStudiesHeader\s*{[^}]*display:\s*flex/s)
-  assert.match(moduleCss, /\.caseStudiesHeader h2\s*{[^}]*font-size:\s*13px/s)
+  assert.match(moduleCss, /\.caseStudies\s*{[^}]*padding:\s*58px\s+var\(--gutter\)\s+76px/s)
+  assert.doesNotMatch(moduleCss.slice(moduleCss.indexOf('/* UX Design Engineer portfolio */')), /\.caseStudiesHeader\s*{/)
   assert.doesNotMatch(moduleCss, /\.caseStudyScopes/)
   assert.match(moduleCss, /\/\* UX Design Engineer portfolio \*\/[\s\S]*?\.caseToc\s*{[^}]*position:\s*sticky[^}]*overflow-x:\s*auto/s)
   assert.match(moduleCss, /\.caseStudyMedia:is\(:hover,\s*:focus-visible\) \.projectAction\s*{[^}]*opacity:\s*1/s)

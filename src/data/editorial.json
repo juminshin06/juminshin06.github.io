@@ -9,7 +9,7 @@
       "year": 2026,
       "duration": "May - Jul 2026",
       "role": "AI Research Intern",
-      "team": "Bubba's LA production team",
+      "team": "1-person internship project",
       "status": "Adopted for production use",
       "caseStudyMode": "detailed",
       "introLead": "I helped turn a manual video-preparation workflow into one production interface.",
@@ -53,7 +53,7 @@
         }
       ],
       "facts": [
-        { "value": "10", "label": "Videos in the initial prototype" },
+        { "value": "1 person", "label": "Team size" },
         { "value": "300+", "label": "Videos per automated batch" },
         { "value": "Production", "label": "Adoption status" }
       ],
@@ -229,7 +229,7 @@
         }
       ],
       "facts": [
-        { "value": "8", "label": "People in the sprint" },
+        { "value": "8 people", "label": "Team size" },
         { "value": "2", "label": "People on the design team" },
         { "value": "Vision Pro", "label": "Prototype platform" }
       ],
@@ -553,7 +553,7 @@
         }
       ],
       "facts": [
-        { "value": "9", "label": "People on the cross-functional team" },
+        { "value": "9 people", "label": "Team size" },
         { "value": "12", "label": "Assessments shown in the review flow" },
         { "value": "UI/UX", "label": "My contribution" }
       ],
