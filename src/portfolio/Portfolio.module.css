@@ -816,34 +816,39 @@
 .caseStudyDetails dd { margin-top: 5px; font-size: 13px; line-height: 1.48; }
 .caseStudyDetails .textLink { margin-top: 8px; color: var(--accent); font-size: 13px; }
 
-.moreWork { padding: 76px var(--gutter) 88px; background: #f3f4f1; }
+.moreWork { padding: 88px var(--gutter) 104px; background: var(--paper); border-top: 1px solid var(--line); }
 .moreWork .sectionHeading { margin-bottom: 28px; }
-.moreWork .sectionHeading h2 { font-size: 48px; line-height: 1.04; }
+.moreWork .sectionHeading h2 { font-size: 44px; line-height: 1.04; font-weight: 560; }
 .productWorkGrid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 58px 20px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 54px 18px;
 }
-.productWorkCard { display: block; min-width: 0; }
-.productWorkMedia { overflow: hidden; background: #e8e9e4; }
-.productWorkMedia .projectCover { aspect-ratio: 1.5; transition: transform 500ms cubic-bezier(.2, .7, .2, 1); }
-.productWorkCard:is(:hover, :focus-visible) .productWorkMedia .projectCover { transform: scale(1.012); }
+.productWorkCard { display: flex; min-width: 0; flex-direction: column; }
+.productWorkMedia { overflow: hidden; border-radius: 6px; background: #eef0ed; transition: box-shadow 280ms ease, transform 280ms cubic-bezier(.2, .7, .2, 1); }
+.productWorkMedia .projectCover { aspect-ratio: 1.5; border-radius: inherit; transition: transform 500ms cubic-bezier(.2, .7, .2, 1); }
+.productWorkMedia .coverFrame { border-color: rgba(20, 20, 18, .11); box-shadow: 0 10px 28px rgba(20, 20, 18, .11); }
+.productWorkCard:is(:hover, :focus-visible) .productWorkMedia { box-shadow: 0 14px 34px rgba(20, 20, 18, .1); transform: translateY(-3px); }
+.productWorkCard:is(:hover, :focus-visible) .productWorkMedia .projectCover { transform: scale(1.008); }
+.productWorkCard[data-project-slug='learning-mobility'] .coverPrimary,
+.productWorkCard[data-project-slug='samsung-podcast'] .coverPrimary,
+.productWorkCard[data-project-slug='b4q4-widgets'] .coverPrimary { left: 4%; width: 92%; max-height: 88%; box-shadow: none; }
 .productWorkCaption {
   position: relative;
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
-  gap: 7px 20px;
-  min-height: 102px;
-  padding: 13px 0 15px;
+  gap: 6px 14px;
+  min-height: 0;
+  padding: 15px 2px 0;
   border-bottom: 0;
 }
-.productWorkIdentity { grid-column: 1 / -1; display: flex; justify-content: space-between; gap: 20px; color: var(--muted); font-size: 12px; line-height: 1.45; }
+.productWorkIdentity { grid-column: 1 / -1; display: flex; justify-content: space-between; gap: 16px; color: var(--muted); font-size: 10px; line-height: 1.4; }
 .productWorkIdentity .caseStudyOrg { margin: 0; color: var(--ink); font-size: inherit; font-weight: 620; }
-.productWorkCaption > strong { font-size: 21px; line-height: 1.14; font-weight: 590; transition: color 180ms ease; }
-.productWorkRole { grid-column: 1; color: var(--muted); font-size: 12px; line-height: 1.45; }
-.productWorkCaption > svg { grid-column: 2; grid-row: 2 / span 2; align-self: start; color: var(--accent); transition: transform 180ms ease; }
+.productWorkCaption > strong { font-size: 18px; line-height: 1.18; font-weight: 590; transition: color 180ms ease; }
+.productWorkRole { grid-column: 1; color: var(--muted); font-size: 11px; line-height: 1.45; }
+.productWorkCaption > svg { grid-column: 2; grid-row: 2 / span 2; align-self: start; width: 18px; height: 18px; color: var(--muted); opacity: .72; transition: color 180ms ease, transform 180ms ease; }
 .productWorkCard:is(:hover, :focus-visible) .productWorkCaption > strong { color: var(--accent); }
-.productWorkCard:is(:hover, :focus-visible) .productWorkCaption > svg { transform: translate(3px, -3px); }
+.productWorkCard:is(:hover, :focus-visible) .productWorkCaption > svg { color: var(--accent); opacity: 1; transform: translate(3px, -3px); }
 .compactProjectList {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -910,21 +915,20 @@
 .homeEducation li > span { display: flex; min-width: 0; flex-direction: column; gap: 3px; }
 .homeEducation strong { font-size: 11px; line-height: 1.35; font-weight: 620; }
 .homeEducation small { color: var(--muted); font-size: 9px; line-height: 1.4; }
-.homeToolkit { grid-column: 1 / -1; margin-top: 72px; }
-.homeToolkitHeading { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 20px; }
+.homeToolkit { grid-column: 1 / -1; margin-top: 80px; padding-top: 38px; border-top: 1px solid var(--ink); }
+.homeToolkitHeading { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 30px; }
 .homeToolkitHeading h2 { margin: 0; font-size: 30px; line-height: 1.1; }
 .homeToolkitHeading span { color: var(--muted); font-size: 11px; line-height: 1.4; }
-.homeToolkit .techTool { min-height: 112px; }
+.homeToolkit .techTool { min-height: 92px; }
 
 .toolkit { margin-top: 92px; }
 .toolkit .sectionHeading { margin-bottom: 24px; }
-.techTools { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--line); }
-.techTool { display: flex; min-width: 0; min-height: 132px; flex-direction: column; align-items: flex-start; justify-content: space-between; gap: 20px; padding: 20px 16px; color: #a9aaa6; border-right: 1px solid var(--line); transition: color 180ms ease, background 180ms ease; }
-.techTool:last-child { border-right: 0; }
-.techTool svg { width: 34px; height: 34px; fill: currentColor; }
-.techTool span { color: var(--ink); font-size: 13px; font-weight: 560; }
-.techTool:is(:hover, :focus-visible) { color: var(--tool-color); background: #f5f6f3; outline: 0; }
-.techTool:focus-visible { box-shadow: inset 0 0 0 2px var(--tool-color); }
+.techTools { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: clamp(18px, 3vw, 52px); margin: 0; padding: 0; list-style: none; border: 0; }
+.techTool { display: flex; min-width: 0; min-height: 104px; flex-direction: column; align-items: flex-start; justify-content: flex-start; gap: 18px; padding: 0; color: #aaaba8; border: 0; transition: color 180ms ease; }
+.techTool svg { width: 32px; height: 32px; fill: currentColor; transition: color 180ms ease, transform 220ms cubic-bezier(.2, .7, .2, 1); }
+.techTool span { color: var(--ink); font-size: 12px; font-weight: 560; }
+.techTool:is(:hover, :focus-visible) { color: var(--tool-color); background: transparent; outline: 0; }
+.techTool:is(:hover, :focus-visible) svg { transform: translateY(-3px); }
 .aboutLinks { gap: 8px; margin-top: 26px; }
 .aboutLinkButton { display: inline-flex; min-height: 40px; align-items: center; gap: 8px; padding: 8px 12px; border: 1px solid var(--line); border-radius: 999px; background: #f7f8f5; font-size: 12px; font-weight: 560; transition: color 180ms ease, border-color 180ms ease, background 180ms ease; }
 .aboutLinkButton > svg:last-child { color: var(--accent); transition: transform 180ms ease; }
@@ -936,40 +940,44 @@
 .educationCopy p { margin-top: 5px; }
 .educationPeriod { justify-self: end; margin: 0; text-align: right; }
 
-.footer { padding-top: 72px; background: #f3f4f1; }
-.footerTop { display: grid; grid-template-columns: minmax(190px, 3fr) minmax(0, 9fr); gap: clamp(44px, 7vw, 112px); align-items: center; }
+.footer { padding-top: 94px; background: var(--paper); border-top: 1px solid var(--line); }
+.footerTop { display: grid; grid-template-columns: minmax(220px, 3fr) minmax(0, 9fr); gap: clamp(54px, 8vw, 132px); align-items: start; }
 .footerHeading .label { color: var(--accent); }
-.footerHeading h2 { max-width: 280px; margin-top: 16px; font-size: 42px; line-height: 1.08; font-weight: 560; }
+.footerHeading h2 { max-width: 320px; margin-top: 18px; font-size: 48px; line-height: 1.04; font-weight: 560; }
 .footerActions { min-width: 0; }
-.contactLinks { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+.contactLinks { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 30px; border-top: 1px solid var(--ink); }
 .contactLink {
   position: relative;
   display: grid;
-  grid-template-columns: 32px minmax(0, 1fr) auto;
+  grid-template-columns: 28px minmax(0, 1fr) auto;
   align-items: center;
-  gap: 9px;
-  min-height: 52px;
-  padding: 7px 11px 7px 7px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  background: var(--paper);
-  transition: color 180ms ease, border-color 180ms ease, background 180ms ease;
+  gap: 12px;
+  min-height: 66px;
+  padding: 15px 0;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  background: transparent;
+  transition: color 180ms ease;
 }
-.contactIcon { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: #f0f1ed; color: var(--accent); transition: background 180ms ease, color 180ms ease, transform 180ms ease; }
-.contactLink > strong { min-width: 0; font-size: 13px; line-height: 1.25; font-weight: 600; }
+.contactIcon { display: grid; place-items: start; width: 28px; height: 28px; border-radius: 0; background: transparent; color: var(--accent); transition: color 180ms ease, transform 180ms ease; }
+.contactIcon svg { width: 21px; height: 21px; }
+.contactLink > strong { min-width: 0; font-size: 15px; line-height: 1.25; font-weight: 560; }
 .contactLink > svg { color: var(--accent); transition: transform 180ms ease; }
-.contactLink:is(:hover, :focus-visible) { color: #fff; border-color: var(--ink); background: var(--ink); }
-.contactLink:is(:hover, :focus-visible) .contactIcon { background: var(--accent); color: #fff; transform: rotate(-3deg); }
+.contactLink:is(:hover, :focus-visible) { color: var(--accent); background: transparent; }
+.contactLink:is(:hover, :focus-visible) .contactIcon { color: var(--ink); transform: translateY(-2px); }
 .contactLink:is(:hover, :focus-visible) > svg { transform: translate(3px, -3px); }
-.footerExploreLinks { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 14px; }
-.footerExploreLinks a { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 12px; min-height: 76px; padding: 18px 20px; color: #fff; background: var(--ink); transition: transform 180ms ease, background 180ms ease; }
-.footerExploreLinks a:last-child { background: var(--accent); }
-.footerExploreLinks strong { font-size: 21px; line-height: 1.1; font-weight: 600; }
-.footerExploreLinks a:is(:hover, :focus-visible) { transform: translateY(-2px); background: #34342f; }
-.footerExploreLinks a:last-child:is(:hover, :focus-visible) { background: #b82f25; }
+.footerExploreLinks { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 30px; margin-top: 34px; }
+.footerExploreLinks a { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 14px; min-height: 88px; padding: 22px 0; color: var(--ink); background: transparent; border-top: 1px solid var(--ink); transition: color 180ms ease; }
+.footerExploreLinks a:last-child { background: transparent; }
+.footerExploreLinks a:first-child > svg:first-child { color: var(--muted); }
+.footerExploreLinks a:last-child > svg:first-child { color: var(--accent); }
+.footerExploreLinks strong { font-size: 26px; line-height: 1.08; font-weight: 560; }
+.footerExploreLinks a:is(:hover, :focus-visible) { color: var(--accent); background: transparent; }
+.footerExploreLinks a:last-child:is(:hover, :focus-visible) { background: transparent; }
 .footerExploreLinks a > svg:last-child { transition: transform 180ms ease; }
 .footerExploreLinks a:is(:hover, :focus-visible) > svg:last-child { transform: translateX(4px); }
-.footerBottom { margin-top: 72px; }
+.footerBottom { margin-top: 84px; }
 
 /* Case studies */
 .casePage { padding: 34px var(--gutter) 0; }
@@ -1214,8 +1222,6 @@
   .footerTop { grid-template-columns: minmax(160px, 2fr) minmax(0, 7fr); gap: 44px; }
   .contactLinks { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .techTools { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-  .techTool:nth-child(4) { border-right: 0; }
-  .techTool:nth-child(-n + 4) { border-bottom: 1px solid var(--line); }
   .caseHeaderGrid { grid-template-columns: 1fr; gap: 36px; }
   .caseHeaderGrid .caseVisual { max-width: 760px; }
   .caseHeader h1 { font-size: 48px; }
@@ -1310,27 +1316,25 @@
   .homeEducation img { width: 42px; height: 42px; }
   .homeEducation strong { font-size: 12px; }
   .homeEducation small { font-size: 10px; }
-  .homeToolkit { margin-top: 56px; }
+  .homeToolkit { margin-top: 56px; padding-top: 30px; }
   .homeToolkitHeading { display: block; margin-bottom: 16px; }
   .homeToolkitHeading h2 { font-size: 28px; }
   .homeToolkitHeading span { display: block; margin-top: 7px; }
   .toolkit { margin-top: 64px; }
   .toolkit .sectionHeading { display: block; }
   .toolkit .sectionHeading .label { display: block; margin-top: 8px; }
-  .techTools { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .techTool { min-height: 112px; padding: 17px 14px; }
-  .techTool:nth-child(2n) { border-right: 0; }
-  .techTool:nth-child(-n + 6) { border-bottom: 1px solid var(--line); }
-  .techTool:nth-child(4) { border-right: 0; }
+  .techTools { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 30px 20px; }
+  .techTool { min-height: 78px; padding: 0; }
   .schoolRow { grid-template-columns: 54px minmax(0, 1fr); gap: 16px; }
   .educationLogo { width: 50px; height: 50px; padding: 6px; }
   .educationPeriod { grid-column: 2; justify-self: start; text-align: left; }
   .footerTop { grid-template-columns: 1fr; gap: 32px; }
   .footerHeading h2 { font-size: 34px; }
   .contactLinks { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .contactLink { min-height: 50px; padding: 7px 10px 7px 7px; }
-  .contactLink > strong { font-size: 12px; }
-  .footerExploreLinks a { min-height: 68px; padding: 15px; }
+  .contactLink { min-height: 58px; padding: 13px 0; }
+  .contactLink > strong { font-size: 13px; }
+  .footerExploreLinks { gap: 18px; margin-top: 28px; }
+  .footerExploreLinks a { min-height: 72px; padding: 16px 0; }
   .footerExploreLinks strong { font-size: 19px; }
   .footerBottom { margin-top: 52px; }
   .casePage { padding-top: 22px; }

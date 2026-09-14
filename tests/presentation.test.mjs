@@ -79,10 +79,9 @@ test('the homepage prioritizes projects by UX Design Engineer relevance and stat
       'ars-pharma',
       'story-authoring',
       'bubbas-daily-target',
-      'ai-3d-product-visualization',
-      'handsign',
+      'learning-mobility',
       'samsung-podcast',
-      'wood-chip',
+      'b4q4-widgets',
     ]
     assert.doesNotMatch(html, /Project index|aria-label="Project shortcuts"/)
 
@@ -97,7 +96,7 @@ test('the homepage prioritizes projects by UX Design Engineer relevance and stat
   } finally { await server.close() }
 })
 
-test('homepage project covers use four lead and nine gallery presentations', async () => {
+test('homepage project covers use four lead and eight gallery presentations', async () => {
   const server = await createServer({ server: { middlewareMode: true, ws: false }, appType: 'custom', logLevel: 'error' })
   try {
     const { render } = await server.ssrLoadModule('/src/entry-server.jsx')
@@ -107,7 +106,7 @@ test('homepage project covers use four lead and nine gallery presentations', asy
 
     assert.equal((html.match(/data-project-cover="micro"/g) || []).length, 0)
     assert.equal((featured.match(/data-project-cover="lead"/g) || []).length, 4)
-    assert.equal((supporting.match(/data-project-cover="gallery"/g) || []).length, 9)
+    assert.equal((supporting.match(/data-project-cover="gallery"/g) || []).length, 8)
     assert.match(featured, /data-cover-tone="bubbas-blue"/)
     assert.match(featured, /data-cover-layout="immersive"/)
     assert.match(featured, /bubbas-assist-media/)
@@ -185,7 +184,7 @@ test('homepage project framing keeps company names concise and roles visible', a
     assert.match(featured, />Ethicon R&amp;D, Johnson &amp; Johnson MedTech</)
     assert.doesNotMatch(featured, /American Honda x USC Iovine and Young Academy/)
     assert.doesNotMatch(featured, /Ethicon R&amp;D, Johnson &amp; Johnson MedTech x USC Iovine and Young Academy/)
-    assert.equal((supporting.match(/data-project-role="true"/g) || []).length, 9)
+    assert.equal((supporting.match(/data-project-role="true"/g) || []).length, 8)
     assert.match(supporting, /Package, service, and UI designer/)
     assert.doesNotMatch(supporting, /ARS Pharma x USC Iovine and Young Academy/)
   } finally { await server.close() }
@@ -273,21 +272,24 @@ test('PACEPOP presents dense phone evidence as a responsive visual gallery', asy
   } finally { await server.close() }
 })
 
-test('more product work uses a spacious nine-project gallery without divider rules', async () => {
+test('more product work uses a balanced four-column gallery with the requested final projects', async () => {
   const server = await createServer({ server: { middlewareMode: true, ws: false }, appType: 'custom', logLevel: 'error' })
   try {
     const { render } = await server.ssrLoadModule('/src/entry-server.jsx')
     const html = render('/')
     const supporting = html.slice(html.indexOf('aria-labelledby="more-work-heading"'), html.indexOf('aria-labelledby="home-about-heading"'))
 
-    assert.equal((supporting.match(/data-more-work-project="true"/g) || []).length, 9)
-    assert.equal((supporting.match(/data-project-cover="gallery"/g) || []).length, 9)
-    for (const slug of ['handsign', 'samsung-podcast', 'wood-chip']) assert.match(supporting, new RegExp(`/work/${slug}/`))
+    assert.equal((supporting.match(/data-more-work-project="true"/g) || []).length, 8)
+    assert.equal((supporting.match(/data-project-cover="gallery"/g) || []).length, 8)
+    for (const slug of ['learning-mobility', 'samsung-podcast', 'b4q4-widgets']) assert.match(supporting, new RegExp(`/work/${slug}/`))
+    for (const removedSlug of ['handsign', 'wood-chip']) assert.doesNotMatch(supporting, new RegExp(`/work/${removedSlug}/`))
+    for (const image of ['Portfolio_Mobility.webp', 'Portfolio_Podcast.webp', 'Portfolio_B4Q4.webp']) assert.match(supporting, new RegExp(image.replace('.', '\\.')))
+    assert.equal((supporting.match(/data-project-slug=/g) || []).length, 8)
     assert.doesNotMatch(supporting, /Web delivery \/ UX evaluation \/ Internal tools \/ Service design/)
 
     const moduleCss = readFileSync(new URL('../src/portfolio/Portfolio.module.css', import.meta.url), 'utf8')
     const currentCss = moduleCss.slice(moduleCss.indexOf('/* UX Design Engineer portfolio */'))
-    assert.match(currentCss, /\.productWorkGrid\s*{[^}]*grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\)/s)
+    assert.match(currentCss, /\.productWorkGrid\s*{[^}]*grid-template-columns:\s*repeat\(4,\s*minmax\(0,\s*1fr\)\)/s)
     assert.match(currentCss, /\.productWorkMedia \.projectCover\s*{[^}]*aspect-ratio:\s*1\.5/s)
     assert.match(currentCss, /\.productWorkCaption\s*{[^}]*border-bottom:\s*0/s)
   } finally { await server.close() }
@@ -344,7 +346,7 @@ test('the homepage opens with a clean portrait and presents four lead projects t
     assert.doesNotMatch(currentCss, /\.heroPortraitMark\s*{/)
     assert.doesNotMatch(currentCss, /\.projectIndexStrip\s*{|\.heroProjectGrid\s*{/)
     assert.match(currentCss, /\.caseStudyList\s*{[^}]*grid-template-columns:\s*repeat\(4,\s*minmax\(0,\s*1fr\)\)/s)
-    assert.match(currentCss, /\.productWorkGrid\s*{[^}]*grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\)/s)
+    assert.match(currentCss, /\.productWorkGrid\s*{[^}]*grid-template-columns:\s*repeat\(4,\s*minmax\(0,\s*1fr\)\)/s)
     assert.match(currentCss, /@media\s*\(max-width:\s*1024px\)\s+and\s+\(min-width:\s*601px\)[\s\S]*?\.hero\s*{[^}]*grid-template-columns:\s*minmax\(0,\s*1\.15fr\)\s+minmax\(260px,\s*\.85fr\)/s)
     assert.match(currentCss, /@media\s*\(max-width:\s*760px\)\s+and\s+\(min-width:\s*601px\)[\s\S]*?\.caseStudyList\s*{[^}]*grid-template-columns:\s*1fr/s)
     assert.match(currentCss, /@media\s*\(max-width:\s*600px\)[\s\S]*?\.caseStudyList\s*{[^}]*grid-template-columns:\s*1fr/s)
@@ -371,6 +373,8 @@ test('about page presents a branded toolkit, compact profile links and school id
     const moduleCss = readFileSync(new URL('../src/portfolio/Portfolio.module.css', import.meta.url), 'utf8')
     const currentCss = moduleCss.slice(moduleCss.indexOf('/* UX Design Engineer portfolio */'))
     assert.match(currentCss, /\.techTool:is\(:hover, :focus-visible\)\s*{[^}]*color:\s*var\(--tool-color\)/s)
+    assert.match(currentCss, /\.techTools\s*{[^}]*gap:\s*clamp\(/s)
+    assert.match(currentCss, /\.techTool\s*{[^}]*border:\s*0/s)
     assert.match(currentCss, /\.aboutLinkButton\s*{[^}]*display:\s*inline-flex/s)
     assert.match(currentCss, /\.educationLogo\s*{[^}]*display:\s*grid/s)
   } finally { await server.close() }
@@ -432,6 +436,8 @@ test('the homepage removes decorative section framing and prioritizes direct con
     assert.match(currentCss, /\.contactLinks\s*{[^}]*display:\s*grid/s)
     assert.match(currentCss, /\.contactIcon\s*{[^}]*display:\s*grid/s)
     assert.match(currentCss, /\.footerExploreLinks\s*{[^}]*display:\s*grid/s)
+    assert.match(currentCss, /\.contactLink\s*{[^}]*border-radius:\s*0/s)
+    assert.match(currentCss, /\.footerExploreLinks a\s*{[^}]*color:\s*var\(--ink\)[^}]*background:\s*transparent/s)
     assert.doesNotMatch(currentCss, /\.contactLinkPrimary\s*{[^}]*grid-column:/s)
   } finally { await server.close() }
 })

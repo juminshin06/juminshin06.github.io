@@ -26,10 +26,9 @@ const supportingProjects = [
   'ars-pharma',
   'story-authoring',
   'bubbas-daily-target',
-  'ai-3d-product-visualization',
-  'handsign',
+  'learning-mobility',
   'samsung-podcast',
-  'wood-chip',
+  'b4q4-widgets',
 ].map(slug => homepageProjects.get(slug)).filter(Boolean)
 
 const homeSchools = [
@@ -66,7 +65,7 @@ function CaseStudyRow({ project, index }) {
 }
 
 function ProductWorkCard({ project }) {
-  return <a data-reveal data-more-work-project="true" className={s.productWorkCard} href={`/work/${project.slug}/`}>
+  return <a data-reveal data-more-work-project="true" data-project-slug={project.slug} className={s.productWorkCard} href={`/work/${project.slug}/`}>
     <div className={s.productWorkMedia} aria-hidden="true"><ProjectCover project={project} variant="gallery" /></div>
     <span className={s.productWorkCaption}>
       <span className={s.productWorkIdentity}>

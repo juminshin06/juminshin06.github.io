@@ -727,7 +727,13 @@
       "category": "Product",
       "summary": "An internship contribution to Samsung Galaxy widget analysis, interaction flows, and wireframes within a three-person team at Cheil Worldwide.",
       "status": "Internship design contribution",
-      "organization": "Cheil Worldwide"
+      "organization": "Cheil Worldwide",
+      "cover": {
+        "tone": "paper",
+        "layout": "single",
+        "primary": "/assets/projects/Portfolio_B4Q4.png",
+        "primaryFrame": "plain"
+      }
     },
     "proj-005": {
       "slug": "sing-in-sign",
@@ -743,7 +749,13 @@
       "category": "Spatial",
       "summary": "A collaborative mobility concept exploring flexible learning spaces, community facilities, and wearable-key interactions.",
       "status": "Industry-academia design concept",
-      "organization": "Hyundai Motor Company x Hongik University"
+      "organization": "Hyundai Motor Company x Hongik University",
+      "cover": {
+        "tone": "spatial",
+        "layout": "single",
+        "primary": "/assets/projects/Portfolio_Mobility.png",
+        "primaryFrame": "plain"
+      }
     },
     "proj-011": {
       "slug": "cookids",

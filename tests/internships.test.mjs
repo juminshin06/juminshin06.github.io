@@ -21,8 +21,10 @@ test('new work is discoverable from home and original artifact context is preser
   const server = await createServer({server:{middlewareMode:true,ws:false},appType:'custom',logLevel:'error'})
   try {
     const {render} = await server.ssrLoadModule('/src/entry-server.jsx')
-    for (const slug of ['swim-up-hill', 'ai-3d-product-visualization', 'bubbas-daily-target']) {
+    for (const slug of ['swim-up-hill', 'bubbas-daily-target']) {
       assert.match(render('/'), new RegExp(`href="/work/${slug}/"`))
+    }
+    for (const slug of ['swim-up-hill', 'ai-3d-product-visualization', 'bubbas-daily-target']) {
       assert.match(render('/archive/'), new RegExp(`href="/work/${slug}/"`))
     }
     assert.match(render('/work/swim-up-hill/'), /href="https:\/\/swimuphill.org\//)
