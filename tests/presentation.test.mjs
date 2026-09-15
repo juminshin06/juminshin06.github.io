@@ -438,7 +438,8 @@ test('the homepage removes decorative section framing and prioritizes direct con
 
     const moduleCss = readFileSync(new URL('../src/portfolio/Portfolio.module.css', import.meta.url), 'utf8')
     const currentCss = moduleCss.slice(moduleCss.indexOf('/* UX Design Engineer portfolio */'))
-    assert.match(currentCss, /\.researchCallout\s*{[^}]*border:\s*1px solid var\(--ink\)/s)
+    assert.match(currentCss, /\.researchCallout\s*{[^}]*border:\s*1px solid var\(--ink\)[^}]*background:\s*var\(--ink\)[^}]*color:\s*var\(--paper\)/s)
+    assert.match(currentCss, /\.researchCallout:is\(:hover,\s*:focus-visible\)\s*{[^}]*border-color:\s*var\(--accent\)[^}]*background:\s*var\(--accent\)/s)
     assert.match(currentCss, /\.contactLinks\s*{[^}]*display:\s*grid/s)
     assert.match(currentCss, /\.contactIcon\s*{[^}]*display:\s*grid/s)
     assert.match(currentCss, /\.footerExploreLinks\s*{[^}]*display:\s*grid/s)
