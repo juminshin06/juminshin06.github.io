@@ -85,7 +85,7 @@ function EditorialPortrait() {
       <picture>
         <source
           srcSet="/assets/optimized/jumin-editorial-portrait-v2-720.webp 720w, /assets/optimized/jumin-editorial-portrait-v2.webp 1122w"
-          sizes="(max-width: 600px) calc(100vw - 40px), 360px"
+          sizes="(max-width: 600px) 108px, 360px"
           type="image/webp"
         />
         <img
@@ -106,8 +106,10 @@ export default function Home() {
   return <div className={s.homePage} data-home-editorial-type="true">
     <section className={s.hero} aria-label="Jumin Shin, UX Design Engineer">
       <div className={s.heroCopy}>
-        <h1>Jumin Shin</h1>
-        <p className={s.heroRole}>UX Design Engineer</p>
+        <div className={s.heroIdentity}>
+          <h1>Jumin Shin</h1>
+          <p className={s.heroRole}>UX Design Engineer</p>
+        </div>
         <p className={s.heroStatement}>I turn research into working interfaces across AI, spatial computing and digital products.</p>
         <p className={s.heroMeta}>Research · Interaction · Prototyping · AI</p>
         <div className={s.heroAffiliation} aria-label="Graduate student at USC Iovine and Young Academy">

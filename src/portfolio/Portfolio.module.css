@@ -1239,20 +1239,33 @@
   .hero {
     min-height: auto;
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 26px;
+    grid-template-columns: minmax(0, 1fr) clamp(88px, 24vw, 108px);
+    column-gap: 18px;
+    row-gap: 0;
+    align-items: start;
     padding: 32px var(--gutter) 36px;
   }
+  .heroCopy { display: contents; }
+  .heroIdentity { grid-column: 1; grid-row: 1; min-width: 0; align-self: center; }
   .heroCopy h1 { font-size: 46px; line-height: 1; }
   .heroRole { font-size: 25px; margin-top: 12px; }
-  .heroStatement { max-width: 31ch; font-size: 17px; line-height: 1.48; margin-top: 18px; }
-  .heroMeta { font-size: 12px; margin-top: 16px; }
-  .heroAffiliation { margin-top: 18px; }
+  .heroStatement,
+  .heroMeta,
+  .heroAffiliation { grid-column: 1 / -1; }
+  .heroStatement { grid-row: 2; max-width: 31ch; font-size: 17px; line-height: 1.48; margin-top: 22px; }
+  .heroMeta { grid-row: 3; font-size: 12px; margin-top: 16px; }
+  .heroAffiliation { grid-row: 4; margin-top: 18px; }
   .heroAffiliation > img { width: 28px; }
   .heroAffiliation small { max-width: 31ch; }
-  .heroPortrait { width: 100%; max-width: none; justify-self: stretch; }
-  .heroPortraitFrame { aspect-ratio: 1.45; }
-  .heroPortraitFrame img { object-position: 50% 8%; }
+  .heroPortrait {
+    grid-column: 2;
+    grid-row: 1;
+    width: clamp(88px, 24vw, 108px);
+    max-width: none;
+    justify-self: end;
+  }
+  .heroPortraitFrame { aspect-ratio: 4 / 5; }
+  .heroPortraitFrame img { object-position: 50% 18%; }
   .heroFigure { aspect-ratio: 1.48; }
   .heroMediaLabel { left: 8px; right: auto; bottom: 8px; padding: 8px 9px; }
   .caseStudies { padding: 42px var(--gutter) 56px; }
@@ -1410,8 +1423,9 @@
 }
 
 @media (max-width: 370px) {
-  .heroCopy h1 { font-size: 42px; }
-  .heroRole { font-size: 23px; }
+  .hero { grid-template-columns: minmax(0, 1fr) 82px; column-gap: 14px; }
+  .heroCopy h1 { font-size: 40px; }
+  .heroRole { font-size: 21px; }
   .caseStudyCopy h3 { font-size: 28px; }
   .caseHeader h1 { font-size: 32px; }
 }

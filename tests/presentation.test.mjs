@@ -332,6 +332,7 @@ test('the homepage opens with a clean portrait and presents four lead projects t
     assert.match(hero, /Jumin Shin/)
     assert.match(hero, /UX Design Engineer/)
     assert.match(hero, /data-hero-portrait="true"/)
+    assert.match(hero, /class="[^"]*heroIdentity/)
     assert.doesNotMatch(html, /Project index|aria-label="Project shortcuts"/)
     assert.doesNotMatch(hero, /<figcaption>/)
 
@@ -349,6 +350,11 @@ test('the homepage opens with a clean portrait and presents four lead projects t
     assert.match(currentCss, /\.productWorkGrid\s*{[^}]*grid-template-columns:\s*repeat\(4,\s*minmax\(0,\s*1fr\)\)/s)
     assert.match(currentCss, /@media\s*\(max-width:\s*1024px\)\s+and\s+\(min-width:\s*601px\)[\s\S]*?\.hero\s*{[^}]*grid-template-columns:\s*minmax\(0,\s*1\.15fr\)\s+minmax\(260px,\s*\.85fr\)/s)
     assert.match(currentCss, /@media\s*\(max-width:\s*760px\)\s+and\s+\(min-width:\s*601px\)[\s\S]*?\.caseStudyList\s*{[^}]*grid-template-columns:\s*1fr/s)
+    assert.match(currentCss, /@media\s*\(max-width:\s*600px\)[\s\S]*?\.hero\s*{[^}]*grid-template-columns:\s*minmax\(0,\s*1fr\)\s+clamp\(88px,\s*24vw,\s*108px\)/s)
+    assert.match(currentCss, /@media\s*\(max-width:\s*600px\)[\s\S]*?\.heroCopy\s*{[^}]*display:\s*contents/s)
+    assert.match(currentCss, /@media\s*\(max-width:\s*600px\)[\s\S]*?\.heroIdentity\s*{[^}]*grid-column:\s*1[^}]*grid-row:\s*1/s)
+    assert.match(currentCss, /@media\s*\(max-width:\s*600px\)[\s\S]*?\.heroPortrait\s*{[^}]*grid-column:\s*2[^}]*grid-row:\s*1[^}]*width:\s*clamp\(88px,\s*24vw,\s*108px\)/s)
+    assert.match(currentCss, /@media\s*\(max-width:\s*600px\)[\s\S]*?\.heroStatement[\s\S]*?grid-column:\s*1\s*\/\s*-1/s)
     assert.match(currentCss, /@media\s*\(max-width:\s*600px\)[\s\S]*?\.caseStudyList\s*{[^}]*grid-template-columns:\s*1fr/s)
     assert.match(currentCss, /@media\s*\(max-width:\s*600px\)[\s\S]*?\.productWorkGrid\s*{[^}]*grid-template-columns:\s*1fr/s)
   } finally { await server.close() }
