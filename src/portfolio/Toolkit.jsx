@@ -1,11 +1,32 @@
-import { siBlender, siFigma, siJavascript, siPython, siReact, siUnity, siUnrealengine } from 'simple-icons'
+import { Image as ImageIcon, PenTool } from 'lucide-react'
+import {
+  siBlender,
+  siCplusplus,
+  siFfmpeg,
+  siFigma,
+  siGit,
+  siHtml5,
+  siJavascript,
+  siPython,
+  siReact,
+  siTypescript,
+  siUnity,
+  siUnrealengine,
+} from 'simple-icons'
 import s from './Portfolio.module.css'
 
 const tools = [
   { name: 'Figma', icon: siFigma, color: '#f24e1e' },
+  { name: 'Photoshop', lucide: ImageIcon, color: '#31a8ff' },
+  { name: 'Illustrator', lucide: PenTool, color: '#ff9a00' },
   { name: 'React', icon: siReact, color: '#149eca' },
   { name: 'JavaScript', icon: siJavascript, color: '#b89600' },
+  { name: 'TypeScript', icon: siTypescript, color: '#3178c6' },
+  { name: 'HTML / CSS', icon: siHtml5, color: '#e34f26' },
   { name: 'Python', icon: siPython, color: '#3776ab' },
+  { name: 'C++', icon: siCplusplus, color: '#00599c' },
+  { name: 'Git', icon: siGit, color: '#f05032' },
+  { name: 'FFmpeg', icon: siFfmpeg, color: '#007808' },
   { name: 'Blender', icon: siBlender, color: '#e87d0d' },
   { name: 'Unity', icon: siUnity, color: '#111111' },
   { name: 'Unreal Engine', icon: siUnrealengine, color: '#0e1128' },
@@ -20,7 +41,9 @@ export default function TechTools({ home = false }) {
       key={tool.name}
       style={{ '--tool-color': tool.color }}
     >
-      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d={tool.icon.path} /></svg>
+      {tool.lucide
+        ? <tool.lucide aria-hidden="true" focusable="false" />
+        : <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d={tool.icon.path} /></svg>}
       <span>{tool.name}</span>
     </li>)}
   </ul>

@@ -366,8 +366,8 @@ test('about page presents a branded toolkit, compact profile links and school id
     const { render } = await server.ssrLoadModule('/src/entry-server.jsx')
     const html = render('/about/')
 
-    assert.equal((html.match(/data-tech-tool="true"/g) || []).length, 7)
-    for (const tool of ['Figma', 'React', 'JavaScript', 'Python', 'Blender', 'Unity', 'Unreal Engine']) assert.match(html, new RegExp(`>${tool}<`))
+    assert.equal((html.match(/data-tech-tool="true"/g) || []).length, 14)
+    for (const tool of ['Figma', 'React', 'JavaScript', 'Python', 'Blender', 'Unity', 'Unreal Engine', 'TypeScript', 'HTML / CSS', 'C++', 'Git', 'Photoshop', 'Illustrator', 'FFmpeg']) assert.match(html, new RegExp(`>${tool.replace('+', '\\+')}<`))
     assert.doesNotMatch(html, /data-tech-tool="true"[^>]*tabindex=/i)
     assert.match(html, /data-about-links="true"/)
     for (const label of ['Email', 'LinkedIn', 'Resume', 'Scholar']) assert.match(html, new RegExp(`>${label}<`))
@@ -393,8 +393,8 @@ test('homepage about includes the complete toolkit and a compact school list', a
     const html = render('/')
     const about = html.slice(html.indexOf('aria-labelledby="home-about-heading"'), html.indexOf('<footer'))
 
-    assert.equal((about.match(/data-home-tech-tool="true"/g) || []).length, 7)
-    for (const tool of ['Figma', 'React', 'JavaScript', 'Python', 'Blender', 'Unity', 'Unreal Engine']) assert.match(about, new RegExp(`>${tool}<`))
+    assert.equal((about.match(/data-home-tech-tool="true"/g) || []).length, 14)
+    for (const tool of ['Figma', 'React', 'JavaScript', 'Python', 'Blender', 'Unity', 'Unreal Engine', 'TypeScript', 'HTML / CSS', 'C++', 'Git', 'Photoshop', 'Illustrator', 'FFmpeg']) assert.match(about, new RegExp(`>${tool.replace('+', '\\+')}<`))
     assert.equal((about.match(/data-home-education-entry="true"/g) || []).length, 3)
     for (const logo of ['logo-usc.png', 'logo-tu-berlin.png', 'logo-hongik.png']) assert.match(about, new RegExp(logo.replace('.', '\\.')))
     assert.equal((about.match(/loading="lazy"/g) || []).length >= 3, true)
