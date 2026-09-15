@@ -1,4 +1,4 @@
-import { Image as ImageIcon, PenTool } from 'lucide-react'
+import { Bot, Cable, Image as ImageIcon, MessageSquareText, Network, PenTool } from 'lucide-react'
 import {
   siBlender,
   siClaude,
@@ -42,6 +42,10 @@ const tools = [
   { name: 'Claude', icon: siClaude, color: '#d97757' },
   { name: 'Gemini', icon: siGooglegemini, color: '#8e75b2' },
   { name: 'OpenAI API', icon: siOpenai, color: '#412991' },
+  { name: 'Agentic AI', lucide: Bot, color: '#0f766e' },
+  { name: 'MCP', lucide: Cable, color: '#7c3aed' },
+  { name: 'Multi-agent', lucide: Network, color: '#2563eb' },
+  { name: 'Prompt Design', lucide: MessageSquareText, color: '#c2410c' },
 ]
 
 export default function TechTools({ home = false }) {
