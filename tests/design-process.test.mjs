@@ -58,3 +58,13 @@ test('process claims avoid unsupported research proof', () => {
     /stakeholders? praised/i,
   ]) assert.doesNotMatch(narrative, unsupported)
 })
+
+test('every homepage evidence image is assigned to a design-process stage', () => {
+  for (const project of homepageProjects) {
+    const evidenceSectionIds = new Set(project.designProcess.stages.flatMap(stage => stage.evidenceSectionIds || []))
+    const unassigned = (project.content || []).filter(block => (
+      block.type === 'image' && (!block.sectionId || !evidenceSectionIds.has(block.sectionId))
+    ))
+    assert.deepEqual(unassigned.map(block => block.src), [], project.slug)
+  }
+})

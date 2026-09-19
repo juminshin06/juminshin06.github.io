@@ -3,7 +3,19 @@ import editorial from './editorial.json' with { type: 'json' }
 import internships from './internships.json' with { type: 'json' }
 
 export const categoryLabels = { All: 'All', 'Human-AI': 'AI & UX', Research: 'UX research', Spatial: 'Spatial UX', Product: 'Product design', Experiment: 'Prototyping' }
-const withDesignProcess = project => ({ ...project, ...(editorial.designProcesses?.[project.slug] || {}) })
+const withDesignProcess = project => {
+  const processRecord = editorial.designProcesses?.[project.slug]
+  if (!processRecord) return project
+  const { evidenceAssignments = {}, ...process } = processRecord
+  return {
+    ...project,
+    ...process,
+    content: (project.content || []).map(block => {
+      const sectionId = block.sectionId || evidenceAssignments[block.src]
+      return sectionId ? { ...block, sectionId } : block
+    }),
+  }
+}
 
 export const featuredProjects = editorial.featured.map(project => withDesignProcess({
   ...project,

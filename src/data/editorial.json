@@ -317,6 +317,10 @@
     },
     "story-authoring": {
       "processCue": "Authoring complexity → structured co-creation",
+      "evidenceAssignments": {
+        "/assets/projects/StoryAuthoring_1.png": "authoring-question",
+        "/assets/projects/StoryAuthoring_2.png": "research-contribution"
+      },
       "designProcess": {
         "problem": {
           "context": "People without programming knowledge were exploring branching stories with generative language models.",
@@ -368,6 +372,10 @@
     "learning-mobility": {
       "caseStudyMode": "detailed",
       "processCue": "Mobility scenario → tangible concept",
+      "evidenceAssignments": {
+        "/assets/projects/Mobility_1.png": "mobility-concept",
+        "/assets/projects/Mobility_2.png": "mobility-detail"
+      },
       "designProcess": {
         "problem": {
           "context": "An industry-academia team explored how autonomous mobility could support learning experiences.",
@@ -376,11 +384,11 @@
           "statement": "How might we make an autonomous learning-mobility concept understandable through its use scenario and product expression?"
         },
         "stages": [
-          { "id": "empathize", "title": "Begin with the learning scenario", "activity": "The team used the preserved scenario and concept artifacts to frame where learning, movement and presence meet.", "insight": "The mobility object needed to communicate a role in the experience, not only a futuristic form.", "decision": "Anchor the concept in a recognizable learning journey.", "evidenceSectionIds": ["context"] },
-          { "id": "define", "title": "Connect function and meaning", "activity": "We focused the brief on how an autonomous space could support learning while remaining legible in its environment.", "insight": "People needed cues for both what the object does and how they relate to it.", "decision": "Treat spatial behavior and visual identity as one design problem.", "evidenceSectionIds": ["context"] },
-          { "id": "ideate", "title": "Explore how the object signals its role", "activity": "The team considered exterior presence, interior use and interaction cues across the journey.", "insight": "The strongest direction made the learning purpose visible through the whole product concept.", "decision": "Develop one coherent mobility expression instead of unrelated feature ideas.", "evidenceSectionIds": ["context"] },
-          { "id": "prototype", "title": "Make the concept visible in context", "activity": "We developed an industry-academia design concept with product imagery and scenario-based communication.", "insight": "Contextual visualization made the relationship between mobility and learning easier to discuss.", "decision": "Use the artifact as a conversation prototype for the proposed experience.", "evidenceSectionIds": ["context"] },
-          { "id": "test", "title": "Review the concept through presentation", "activity": "The concept was consolidated and reviewed as an industry-academia design presentation.", "insight": "The scenario gave the product form a clearer purpose and narrative.", "decision": "Document the result as a design concept without claiming deployment or user validation.", "evidenceSectionIds": ["context"] }
+          { "id": "empathize", "title": "Begin with the learning scenario", "activity": "The team used the preserved scenario and concept artifacts to frame where learning, movement and presence meet.", "insight": "The mobility object needed to communicate a role in the experience, not only a futuristic form.", "decision": "Anchor the concept in a recognizable learning journey.", "evidenceSectionIds": ["mobility-concept"] },
+          { "id": "define", "title": "Connect function and meaning", "activity": "We focused the brief on how an autonomous space could support learning while remaining legible in its environment.", "insight": "People needed cues for both what the object does and how they relate to it.", "decision": "Treat spatial behavior and visual identity as one design problem.", "evidenceSectionIds": [] },
+          { "id": "ideate", "title": "Explore how the object signals its role", "activity": "The team considered exterior presence, interior use and interaction cues across the journey.", "insight": "The strongest direction made the learning purpose visible through the whole product concept.", "decision": "Develop one coherent mobility expression instead of unrelated feature ideas.", "evidenceSectionIds": [] },
+          { "id": "prototype", "title": "Make the concept visible in context", "activity": "We developed an industry-academia design concept with product imagery and scenario-based communication.", "insight": "Contextual visualization made the relationship between mobility and learning easier to discuss.", "decision": "Use the artifact as a conversation prototype for the proposed experience.", "evidenceSectionIds": ["mobility-detail"] },
+          { "id": "test", "title": "Review the concept through presentation", "activity": "The concept was consolidated and reviewed as an industry-academia design presentation.", "insight": "The scenario gave the product form a clearer purpose and narrative.", "decision": "Document the result as a design concept without claiming deployment or user validation.", "evidenceSectionIds": [] }
         ],
         "resolution": {
           "before": "The mobility idea risked reading as technology without a clear human purpose.",
@@ -394,6 +402,12 @@
     "samsung-podcast": {
       "caseStudyMode": "detailed",
       "processCue": "Listener context → clearer discovery",
+      "evidenceAssignments": {
+        "/assets/projects/Podcast_1.png": "listener-context",
+        "/assets/projects/Podcast_2.png": "service-structure",
+        "/assets/projects/Podcast_3.png": "interface-prototype",
+        "/assets/projects/Podcast_4.png": "interface-prototype"
+      },
       "designProcess": {
         "problem": {
           "context": "Job-seeking listeners were navigating podcast content inside a mobile media environment.",
@@ -402,11 +416,11 @@
           "statement": "How might we make career-oriented podcast discovery easier to scan and evaluate on mobile?"
         },
         "stages": [
-          { "id": "empathize", "title": "Review the listener's discovery context", "activity": "The industry-academia work examined preserved research boards, podcast categories and the mobile listening journey.", "insight": "Career relevance needed to appear before a listener committed to an episode.", "decision": "Prioritize recognizable themes, concise context and easy movement between discovery and listening.", "evidenceSectionIds": ["context"] },
-          { "id": "define", "title": "Reduce uncertainty before playback", "activity": "We framed the experience around identifying relevant content and understanding an episode at a glance.", "insight": "Discovery and episode detail were part of one decision rather than separate destinations.", "decision": "Keep category, recommendation and episode information connected.", "evidenceSectionIds": ["context"] },
-          { "id": "ideate", "title": "Explore several paths into relevant content", "activity": "The concept considered recent listening, category browsing, recommendation and detailed channel views.", "insight": "Different entry points could share a consistent information hierarchy.", "decision": "Use repeatable content patterns across the home, category and detail states.", "evidenceSectionIds": ["context"] },
-          { "id": "prototype", "title": "Build a connected mobile interface", "activity": "The team produced interface states for discovery, categories and podcast detail within the Samsung mobile context.", "insight": "Consistent navigation and content emphasis made the concept easier to follow across screens.", "decision": "Carry the same listening controls and content cues through the main states.", "evidenceSectionIds": ["context"] },
-          { "id": "test", "title": "Review the states as one deliverable", "activity": "The interface states and supporting research artifacts were reviewed together in the industry-academia project deliverable.", "insight": "The connected sequence communicated the discovery concept more clearly than isolated screens.", "decision": "Present the work as a research concept and interface proposal, without assigning a study count to this engagement.", "evidenceSectionIds": ["context"] }
+          { "id": "empathize", "title": "Review the listener's discovery context", "activity": "The industry-academia work examined preserved research boards, podcast categories and the mobile listening journey.", "insight": "Career relevance needed to appear before a listener committed to an episode.", "decision": "Prioritize recognizable themes, concise context and easy movement between discovery and listening.", "evidenceSectionIds": ["listener-context"] },
+          { "id": "define", "title": "Reduce uncertainty before playback", "activity": "We framed the experience around identifying relevant content and understanding an episode at a glance.", "insight": "Discovery and episode detail were part of one decision rather than separate destinations.", "decision": "Keep category, recommendation and episode information connected.", "evidenceSectionIds": ["service-structure"] },
+          { "id": "ideate", "title": "Explore several paths into relevant content", "activity": "The concept considered recent listening, category browsing, recommendation and detailed channel views.", "insight": "Different entry points could share a consistent information hierarchy.", "decision": "Use repeatable content patterns across the home, category and detail states.", "evidenceSectionIds": [] },
+          { "id": "prototype", "title": "Build a connected mobile interface", "activity": "The team produced interface states for discovery, categories and podcast detail within the Samsung mobile context.", "insight": "Consistent navigation and content emphasis made the concept easier to follow across screens.", "decision": "Carry the same listening controls and content cues through the main states.", "evidenceSectionIds": ["interface-prototype"] },
+          { "id": "test", "title": "Review the states as one deliverable", "activity": "The interface states and supporting research artifacts were reviewed together in the industry-academia project deliverable.", "insight": "The connected sequence communicated the discovery concept more clearly than isolated screens.", "decision": "Present the work as a research concept and interface proposal, without assigning a study count to this engagement.", "evidenceSectionIds": [] }
         ],
         "resolution": {
           "before": "Career-oriented podcast content lacked a consistently visible relevance story across discovery states.",
@@ -420,6 +434,11 @@
     "b4q4-widgets": {
       "caseStudyMode": "detailed",
       "processCue": "System constraints → focused widget UX",
+      "evidenceAssignments": {
+        "/assets/projects/Cheilwold.png": "widget-features",
+        "/assets/projects/Cheilwold_2.png": "widget-analysis",
+        "/assets/projects/Cheilwold_3.png": "widget-flow"
+      },
       "designProcess": {
         "problem": {
           "context": "A widget UX contribution had to fit an existing mobile product ecosystem during an internship.",
@@ -428,11 +447,11 @@
           "statement": "How might we introduce a focused widget interaction while respecting an existing mobile system?"
         },
         "stages": [
-          { "id": "empathize", "title": "Read the existing system first", "activity": "I reviewed the preserved product and widget artifacts within the scope of my UX internship contribution.", "insight": "The design had to feel native to an established ecosystem rather than behave like a standalone feature.", "decision": "Use existing patterns and constraints as the starting point.", "evidenceSectionIds": ["context"] },
-          { "id": "define", "title": "Keep the contribution bounded", "activity": "I framed the work around the specific information and action the widget needed to expose.", "insight": "A narrow widget purpose reduced conflict with the broader application flow.", "decision": "Prioritize one focused interaction over feature density.", "evidenceSectionIds": ["context"] },
-          { "id": "ideate", "title": "Explore states within the host product", "activity": "The contribution considered placement, content emphasis and transitions between widget and application contexts.", "insight": "Continuity mattered more than giving the widget a separate visual identity.", "decision": "Align hierarchy and behavior with the surrounding mobile system.", "evidenceSectionIds": ["context"] },
-          { "id": "prototype", "title": "Express the interaction across key states", "activity": "I contributed widget UX screens that documented the focused interaction within the existing ecosystem.", "insight": "Showing connected states made the intended behavior clearer than a single static layout.", "decision": "Use a compact state sequence to communicate the contribution.", "evidenceSectionIds": ["context"] },
-          { "id": "test", "title": "Prepare the design for internal handoff", "activity": "The preserved screens represent the internship design contribution prepared for team review and handoff.", "insight": "A concise, system-aware proposal was appropriate to the ownership and scope of the work.", "decision": "Present the project as an internship contribution without inventing independent research or product outcomes.", "evidenceSectionIds": ["context"] }
+          { "id": "empathize", "title": "Read the existing system first", "activity": "I reviewed the preserved product and widget artifacts within the scope of my UX internship contribution.", "insight": "The design had to feel native to an established ecosystem rather than behave like a standalone feature.", "decision": "Use existing patterns and constraints as the starting point.", "evidenceSectionIds": ["widget-features"] },
+          { "id": "define", "title": "Keep the contribution bounded", "activity": "I framed the work around the specific information and action the widget needed to expose.", "insight": "A narrow widget purpose reduced conflict with the broader application flow.", "decision": "Prioritize one focused interaction over feature density.", "evidenceSectionIds": ["widget-analysis"] },
+          { "id": "ideate", "title": "Explore states within the host product", "activity": "The contribution considered placement, content emphasis and transitions between widget and application contexts.", "insight": "Continuity mattered more than giving the widget a separate visual identity.", "decision": "Align hierarchy and behavior with the surrounding mobile system.", "evidenceSectionIds": [] },
+          { "id": "prototype", "title": "Express the interaction across key states", "activity": "I contributed widget UX screens that documented the focused interaction within the existing ecosystem.", "insight": "Showing connected states made the intended behavior clearer than a single static layout.", "decision": "Use a compact state sequence to communicate the contribution.", "evidenceSectionIds": ["widget-flow"] },
+          { "id": "test", "title": "Prepare the design for internal handoff", "activity": "The preserved screens represent the internship design contribution prepared for team review and handoff.", "insight": "A concise, system-aware proposal was appropriate to the ownership and scope of the work.", "decision": "Present the project as an internship contribution without inventing independent research or product outcomes.", "evidenceSectionIds": [] }
         ],
         "resolution": {
           "before": "The widget needed to add utility without feeling separate from the established mobile product.",
