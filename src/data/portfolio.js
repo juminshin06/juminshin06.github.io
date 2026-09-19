@@ -55,6 +55,22 @@ const unorderedProjects = [...featuredProjects, ...internships, ...editorial.add
 export const allProjects = [...unorderedProjects].sort((a, b) => (
   (projectRank.get(a.slug) ?? Number.MAX_SAFE_INTEGER) - (projectRank.get(b.slug) ?? Number.MAX_SAFE_INTEGER)
 ))
+export const homepageProjectSlugs = [
+  'bubbas-production',
+  'pacepop',
+  'honda-spatial',
+  'ethicon-care',
+  'swim-up-hill',
+  'haily',
+  'ars-pharma',
+  'story-authoring',
+  'bubbas-daily-target',
+  'learning-mobility',
+  'samsung-podcast',
+  'b4q4-widgets',
+]
+const homepageProjectSet = new Set(homepageProjectSlugs)
+export const homepageProjects = allProjects.filter(project => homepageProjectSet.has(project.slug))
 export const researchProjects = allProjects.filter(project => ['story-authoring', 'sing-in-sign', 'samsung-podcast'].includes(project.slug))
 export const legacyProjectAliases = {
   '/work/studio-os-audit/': 'ai-3d-product-visualization',
