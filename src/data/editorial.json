@@ -1,4 +1,449 @@
 {
+  "designProcesses": {
+    "bubbas-production": {
+      "processCue": "Scattered inputs → production system",
+      "designProcess": {
+        "problem": {
+          "context": "Editors prepared rough cuts from footage, scripts, storyboards, voice-over files and production notes.",
+          "friction": "Those materials were organized clip by clip across separate inputs.",
+          "consequence": "The preparation effort grew with every video and made batch production difficult to monitor.",
+          "statement": "How might we preserve the relationship between production inputs while preparing rough cuts at batch scale?"
+        },
+        "stages": [
+          {
+            "id": "empathize",
+            "title": "Understand the work around the edit",
+            "activity": "I reviewed the production inputs, the order in which they were prepared and the decisions editors needed to revisit during a run.",
+            "insight": "The bottleneck was not one editing control. It was the repeated work of keeping related source material aligned and visible.",
+            "decision": "Treat the workflow as one connected preparation system rather than a collection of isolated tools.",
+            "evidenceSectionIds": ["production-context"]
+          },
+          {
+            "id": "define",
+            "title": "Frame scale as an information problem",
+            "activity": "I mapped the minimum information needed before, during and after an automated batch.",
+            "insight": "Automation would only help if people could still see input readiness, current progress and output status.",
+            "decision": "Success meant reducing manual organization without removing editor oversight.",
+            "evidenceSectionIds": ["production-context"]
+          },
+          {
+            "id": "ideate",
+            "title": "Organize the workflow around production states",
+            "activity": "I explored separate utilities, a linear wizard and a shared workspace organized by library, setup, progress and results.",
+            "insight": "A shared workspace kept context available while still giving each production state a clear focus.",
+            "decision": "Use one interface with distinct states instead of sending editors between disconnected tools.",
+            "evidenceSectionIds": ["interface-scope"]
+          },
+          {
+            "id": "prototype",
+            "title": "Make automation inspectable",
+            "activity": "I designed and scaled the interface for media handling, timeline preparation, live progress, sampled frames and export readiness.",
+            "insight": "Editors needed to understand what the system was doing and inspect suggested material before it entered the edit.",
+            "decision": "Keep logs, progress, frame notes and outputs reviewable inside the same production surface.",
+            "evidenceSectionIds": ["interface-scope", "production-adoption"]
+          },
+          {
+            "id": "test",
+            "title": "Validate through increasing production scope",
+            "activity": "The initial 10-video prototype was expanded inside the working production process.",
+            "insight": "The workflow remained useful as batch size and operational responsibility increased.",
+            "decision": "Continue with the unified model and support production-scale monitoring and export.",
+            "evidenceSectionIds": ["production-adoption"]
+          }
+        ],
+        "resolution": {
+          "before": "Editors manually organized related production material clip by clip.",
+          "response": "One interface connected setup, automated preparation, monitoring, review and export.",
+          "after": "The team could prepare and inspect large batches without losing the context behind each run.",
+          "evidence": "The platform grew from a 10-video prototype to more than 300 videos per automated batch and was adopted for production use.",
+          "reflection": "Automation earns trust when its state and outputs remain legible to the people responsible for the work."
+        }
+      }
+    },
+    "pacepop": {
+      "processCue": "Temporary needs → testable run flow",
+      "designProcess": {
+        "problem": {
+          "context": "People meeting for a short run need directions, group awareness and a way to ask for help.",
+          "friction": "Permanent group chats and contact exchange create a longer social and privacy commitment than the activity requires.",
+          "consequence": "A brief real-world encounter leaves another channel, identity connection and retention decision behind.",
+          "statement": "How might we help a temporary running group coordinate safely without creating a permanent social obligation?"
+        },
+        "stages": [
+          {
+            "id": "empathize",
+            "title": "Start with the lifespan of the group",
+            "activity": "We examined temporary-event scenarios, the coordination people need during a run and the social cost of existing communication tools.",
+            "insight": "The group needed shared awareness for one moment, not another social network to maintain.",
+            "decision": "Match the life of the product to the life of the group.",
+            "evidenceSectionIds": ["temporary-social-overhead"]
+          },
+          {
+            "id": "define",
+            "title": "Define safety without permanent identity",
+            "activity": "We separated the group's essential needs into entry, recognition, coordination, support and closure.",
+            "insight": "Temporary identity could reduce social overhead, but location and help states still needed explicit accountability.",
+            "decision": "Use account-free entry and temporary names while keeping role, location and retention states visible.",
+            "evidenceSectionIds": ["ephemeral-principle"]
+          },
+          {
+            "id": "ideate",
+            "title": "Split one room into two decision views",
+            "activity": "We compared a shared group feed with role-specific Host and Runner experiences.",
+            "insight": "Runners need fast personal actions while the Host needs a crew-level view of readiness, distance and alerts.",
+            "decision": "Keep one room state but translate it into distinct Host and Runner interfaces.",
+            "evidenceSectionIds": ["host-runner-flows"]
+          },
+          {
+            "id": "prototype",
+            "title": "Prototype the difficult moments first",
+            "activity": "I built QR entry, live run views, lightweight signals, Help, Water, Rest, Give Up, chat, results and retention states.",
+            "insight": "Large, explicit actions are easier to interpret while moving than subtle notifications or free-form messages.",
+            "decision": "Make safety requests immediate and keep the room's ending as visible as its entry.",
+            "evidenceSectionIds": ["safety-interactions", "social-closure"]
+          },
+          {
+            "id": "test",
+            "title": "Walk through both sides of the same run",
+            "activity": "The interactive prototype was exercised across Host and Runner states to check shared data, alerts and closure behavior.",
+            "insight": "The role split clarified decisions while preserving one understandable group state.",
+            "decision": "Retain the two-role architecture and carry its key flows into future field evaluation.",
+            "evidenceSectionIds": ["prototype-build"]
+          }
+        ],
+        "resolution": {
+          "before": "Temporary groups relied on permanent communication tools before they could coordinate.",
+          "response": "PACEPOP created a purpose-bound room with QR entry, temporary identity, role-specific views and explicit retention.",
+          "after": "Hosts and runners could coordinate the activity, respond to safety moments and close the shared space without exchanging contact information.",
+          "evidence": "A working two-person prototype covers account-free entry, live coordination, support interactions, results and room closure.",
+          "reflection": "Ephemerality is not the absence of features; it is a deliberate interaction rule that must include safety and closure."
+        }
+      }
+    },
+    "honda-spatial": {
+      "processCue": "Platform constraints → spatial toolkit",
+      "designProcess": {
+        "problem": {
+          "context": "Automotive reviewers needed to inspect one vehicle model together in Apple Vision Pro.",
+          "friction": "CloudXR, Omniverse and visionOS split review controls, text input and collaborator presence across incompatible spaces.",
+          "consequence": "A visually shared model still failed to support ordinary shared-review actions such as pointing, measuring and annotating.",
+          "statement": "How might we make a streamed vehicle model support a collaborative spatial review despite platform-level interaction constraints?"
+        },
+        "stages": [
+          {
+            "id": "empathize",
+            "title": "Follow the reviewer's actions, not the platform demo",
+            "activity": "The team mapped the actions reviewers needed around the vehicle and compared them with what the streamed experience actually supported.",
+            "insight": "Screen-bound text, scripted actions, missing spatial input and detached controls interrupted the review conversation.",
+            "decision": "Evaluate the experience through review behaviors rather than visual fidelity alone.",
+            "evidenceSectionIds": ["review-context", "interaction-gaps"]
+          },
+          {
+            "id": "define",
+            "title": "Expose the space-model conflict",
+            "activity": "We documented how CloudXR Full Immersive Space and native shared-presence behavior competed for the same visual field.",
+            "insight": "The desired streamed model and visible native collaborators could not coexist as originally planned.",
+            "decision": "Separate the problem into review interactions, scene control and presence experiments that could be tested independently.",
+            "evidenceSectionIds": ["space-architecture"]
+          },
+          {
+            "id": "ideate",
+            "title": "Explore workarounds at the system boundary",
+            "activity": "The team considered native windows, a local event bridge, tracked avatars, passthrough references and lightweight information panels.",
+            "insight": "No single workaround solved every constraint, but each could make one critical review behavior testable.",
+            "decision": "Use a modular set of native and local prototypes instead of hiding the platform conflict behind a static concept.",
+            "evidenceSectionIds": ["presence-occlusion", "future-directions"]
+          },
+          {
+            "id": "prototype",
+            "title": "Bring review actions back to the vehicle",
+            "activity": "We built spatial notes, a local part-control bridge and presence analogues; I led the toolbar and review-panel direction.",
+            "insight": "Review controls became easier to understand when they stayed near the model and preserved action history.",
+            "decision": "Organize annotation, measurement, inspection, participants and history as one in-session toolkit.",
+            "evidenceSectionIds": ["spatial-notes", "part-interaction", "review-toolkit"]
+          },
+          {
+            "id": "test",
+            "title": "Demonstrate what works and document what does not",
+            "activity": "The sprint team exercised the technical prototypes and presented the interaction evidence and platform directions to Honda R&D.",
+            "insight": "The prototypes clarified both feasible review behaviors and the infrastructure decisions still required.",
+            "decision": "Present working pieces and system boundaries together so future platform choices remain grounded in reviewer needs.",
+            "evidenceSectionIds": ["future-directions"]
+          }
+        ],
+        "resolution": {
+          "before": "Reviewers could see the same streamed vehicle but could not complete a shared review naturally around it.",
+          "response": "A modular spatial toolkit combined native notes, direct part control, presence experiments and in-session review controls.",
+          "after": "The team could demonstrate concrete review interactions while making the platform conflicts and next decisions explicit.",
+          "evidence": "Working interaction prototypes and future platform directions were demonstrated to Honda R&D.",
+          "reflection": "In spatial computing, designing the system boundary is often inseparable from designing the interface."
+        }
+      }
+    },
+    "ethicon-care": {
+      "processCue": "Fragmented context → traceable assessment",
+      "designProcess": {
+        "problem": {
+          "context": "Clinicians in an assessment-training workflow reviewed wound imagery, DISH categories and proposed terminology.",
+          "friction": "The image, category, keyword decision and supporting rationale could become separated across steps.",
+          "consequence": "A reviewer could record an answer without preserving enough context for another person to understand or revisit it.",
+          "statement": "How might we keep wound evidence, terminology and reasoning connected throughout an assessment-training workflow?"
+        },
+        "stages": [
+          {
+            "id": "empathize",
+            "title": "Understand the decision behind the label",
+            "activity": "The cross-functional team incorporated input from clinicians and industry researchers while reviewing the assessment sequence.",
+            "insight": "A category or keyword alone did not explain what evidence the reviewer was judging.",
+            "decision": "Keep the wound image, category, terminology and progress visible around each decision.",
+            "evidenceSectionIds": ["clinical-context"]
+          },
+          {
+            "id": "define",
+            "title": "Make every assessment explainable",
+            "activity": "We reframed the task from simple keyword confirmation to a traceable decision with supporting context.",
+            "insight": "The workflow needed to capture both classification and the reason for disagreement.",
+            "decision": "Design one explicit decision at a time and preserve its evidence for review.",
+            "evidenceSectionIds": ["clinical-context"]
+          },
+          {
+            "id": "ideate",
+            "title": "Move from confirmation to active classification",
+            "activity": "The team compared binary validation with direct primary and secondary keyword selection.",
+            "insight": "A yes-or-no answer could check a suggestion but could not capture the clinician's own terminology choice.",
+            "decision": "Pair the image with primary and optional secondary terms, then ask for rationale when needed.",
+            "evidenceSectionIds": ["guided-classification"]
+          },
+          {
+            "id": "prototype",
+            "title": "Connect classification, rationale and review",
+            "activity": "I designed guided training, keyword selection, disagreement feedback and completed-assessment review states.",
+            "insight": "The review view needed to reassemble the evidence and decisions that had been collected across the flow.",
+            "decision": "Bring image, DISH category, selected terms and supporting context into one traceable record.",
+            "evidenceSectionIds": ["feedback-rationale", "review-handoff"]
+          },
+          {
+            "id": "test",
+            "title": "Review the workflow with clinical and industry context",
+            "activity": "The cross-functional team reviewed the prototype states against the assessment sequence and available domain input.",
+            "insight": "The connected record made the relationship between evidence, terminology and rationale more explicit.",
+            "decision": "Carry the traceable workflow forward as a design exploration without presenting it as a deployed clinical system.",
+            "evidenceSectionIds": ["review-handoff"]
+          }
+        ],
+        "resolution": {
+          "before": "Assessment evidence and terminology decisions were difficult to interpret when separated across steps.",
+          "response": "The prototype connected guided classification, optional rationale and a complete review record.",
+          "after": "Reviewers could revisit the image, category, terminology and supporting context as one decision trail.",
+          "evidence": "The collaboration produced a clinician-facing assessment-training prototype; it was not clinically validated or deployed.",
+          "reflection": "In high-context workflows, clarity comes from preserving the reason behind a decision, not only the selected value."
+        }
+      }
+    },
+    "swim-up-hill": {
+      "processCue": "Many audiences → clear web journeys",
+      "designProcess": {
+        "problem": {
+          "context": "A swim-education nonprofit needed one website to serve families, schools, volunteers, donors and partners.",
+          "friction": "Each audience arrived with a different question, but the mission and available actions had to remain coherent.",
+          "consequence": "A site organized around the nonprofit rather than its audiences could hide the next meaningful action.",
+          "statement": "How might we turn one nonprofit mission into clear, credible paths for several audiences?"
+        },
+        "stages": [
+          { "id": "empathize", "title": "Identify why each audience arrives", "activity": "I reviewed the mission, stakeholder needs and the questions different visitors bring to the site.", "insight": "Families, schools, volunteers, donors and partners shared the mission but needed different evidence and actions.", "decision": "Start with audience intent rather than an internal organization chart.", "evidenceSectionIds": ["different-audiences"] },
+          { "id": "define", "title": "Make the next step visible", "activity": "I translated audience needs into a small set of journeys and content priorities.", "insight": "The site needed to explain impact and provide a clear next action without fragmenting the story.", "decision": "Use mission, programs, impact and participation as the primary information structure.", "evidenceSectionIds": ["audience-paths"] },
+          { "id": "ideate", "title": "Balance a global story with local action", "activity": "The team explored ways to show reach, active locations, program proof and direct calls to action in one flow.", "insight": "A visual overview could establish scale, but audience-specific routes still needed to remain immediate.", "decision": "Pair the global impact story with clear program and participation paths.", "evidenceSectionIds": ["audience-paths"] },
+          { "id": "prototype", "title": "Build the real responsive experience", "activity": "I led UX/UI design, front-end implementation and publishing across desktop and mobile breakpoints.", "insight": "Content hierarchy had to survive smaller screens and real publishing constraints.", "decision": "Prototype in the production environment and resolve design and delivery together.", "evidenceSectionIds": ["responsive-delivery"] },
+          { "id": "test", "title": "Review the published paths", "activity": "The live site was reviewed across key audience routes and responsive layouts before launch.", "insight": "The same mission could remain consistent while each audience received a distinct next step.", "decision": "Publish the shared structure and continue using the live site as the source of truth.", "evidenceSectionIds": ["launch-scope"] }
+        ],
+        "resolution": {
+          "before": "Several audiences needed different information from one nonprofit website.",
+          "response": "The site organized the mission around audience journeys, proof of impact and direct actions.",
+          "after": "Visitors could understand the organization and move toward the path relevant to them on desktop or mobile.",
+          "evidence": "The responsive website was published at swimuphill.org.",
+          "reflection": "Information architecture becomes more useful when it begins with why people arrive rather than how an organization is structured."
+        }
+      }
+    },
+    "haily": {
+      "processCue": "Missed charge → traceable human decision",
+      "designProcess": {
+        "problem": {
+          "context": "Hospital billing teams recover charges that are missed during care delivery while physicians hold the clinical context needed to confirm them.",
+          "friction": "The recovery process can require repeated investigation and communication across roles.",
+          "consequence": "Revenue is delayed while clinicians and administrators absorb additional coordination work.",
+          "statement": "How might we surface a likely missed charge as one clear, traceable decision without removing human validation?"
+        },
+        "stages": [
+          { "id": "empathize", "title": "Map the recovery work across roles", "activity": "The team examined the missed-charge workflow, the information available to physicians and the follow-up work handled by administrators.", "insight": "The product needed to reduce coordination without asking either role to understand the other's full workflow.", "decision": "Design one shared service with role-specific decisions and visibility.", "evidenceSectionIds": ["missed-charge-workflow", "administrative-friction"] },
+          { "id": "define", "title": "Keep a human validation point", "activity": "We defined the intervention around a pending encounter, supporting context and one physician decision.", "insight": "An autonomous billing action would be difficult to trust when clinical context remained ambiguous.", "decision": "Let the agent detect and prepare the case, but keep confirmation with the physician.", "evidenceSectionIds": ["product-intervention"] },
+          { "id": "ideate", "title": "Connect detection, confirmation and follow-up", "activity": "We explored separate alerts, an administrator queue and a two-sided workflow connected through interoperable health data.", "insight": "A single alert did not solve the downstream need to track status and recovery.", "decision": "Create a closed loop from detection to physician validation and administrator resolution.", "evidenceSectionIds": ["service-architecture", "product-phases"] },
+          { "id": "prototype", "title": "Give each role one focused surface", "activity": "We designed a mobile confirmation flow for physicians and a traceable queue for billing administrators.", "insight": "Role-specific interfaces reduced the amount of system detail each person had to interpret.", "decision": "Show clinical context at the decision point and operational status in the administrator view.", "evidenceSectionIds": ["two-sided-interface"] },
+          { "id": "test", "title": "Pressure-test the service through a live pitch", "activity": "The concept, workflow and interfaces were reviewed through USC and Techstars Startup Weekend judging.", "insight": "The strongest story connected a concrete workflow problem to a bounded agent role and human accountability.", "decision": "Present the opportunity as phased product development rather than claiming a completed hospital pilot.", "evidenceSectionIds": ["pitch-and-result"] }
+        ],
+        "resolution": {
+          "before": "Missed charges created investigative and coordination work across clinical and billing roles.",
+          "response": "HAiLY connected agent-assisted detection to one physician decision and a traceable administrator workflow.",
+          "after": "Each role received the context and action needed to move the same case forward.",
+          "evidence": "The two-sided service concept received second place at USC and Techstars Startup Weekend.",
+          "reflection": "Agentic products are more credible when autonomy is bounded by a clear human decision and visible handoff."
+        }
+      }
+    },
+    "ars-pharma": {
+      "processCue": "Emergency gaps → connected response",
+      "designProcess": {
+        "problem": {
+          "context": "A campus anaphylaxis response depends on recognition, medication access and bystander action under time pressure.",
+          "friction": "Awareness, device location and instructions can live in separate systems or remain unknown until an emergency.",
+          "consequence": "A usable medication product alone cannot ensure that a nearby person can find and act with it quickly.",
+          "statement": "How might we connect campus awareness, medication access and confident bystander action into one response system?"
+        },
+        "stages": [
+          { "id": "empathize", "title": "Study the emergency as a campus journey", "activity": "The team reviewed preparedness scenarios, access points and the information a bystander would need before and during an event.", "insight": "The response began long before device use: people had to recognize the risk, know where help was and feel able to act.", "decision": "Treat awareness, location and administration as one service journey.", "evidenceSectionIds": ["preparedness-research"] },
+          { "id": "define", "title": "Reduce uncertainty at every handoff", "activity": "We framed the core gaps around finding medication, understanding availability and following a simple action sequence.", "insight": "A delay at any handoff weakened the whole response.", "decision": "Design a system that keeps location, status and instructions explicit.", "evidenceSectionIds": ["campus-service"] },
+          { "id": "ideate", "title": "Combine service, interface and package", "activity": "The team explored a campus map, access stations, directional guidance, awareness material and one-handed package concepts.", "insight": "No single touchpoint could carry the entire response.", "decision": "Use a connected service ecosystem with consistent guidance across digital and physical moments.", "evidenceSectionIds": ["campus-service", "awareness-system"] },
+          { "id": "prototype", "title": "Make the nearest useful action visible", "activity": "I contributed service, package and interface design, including nearby-device status, directions and an accessible physical package direction.", "insight": "The interface and package needed to reduce decisions rather than add instructional depth during an emergency.", "decision": "Prioritize nearest-location guidance and direct, one-handed action cues.", "evidenceSectionIds": ["location-interface", "one-handed-package"] },
+          { "id": "test", "title": "Review the system as one sprint proposal", "activity": "The integrated service was reviewed in the USC industry challenge sprint with ARS Pharma.", "insight": "The proposal was strongest when each touchpoint reinforced the same response sequence.", "decision": "Present the design as a connected preparedness proposal, not a deployed emergency service.", "evidenceSectionIds": ["awareness-system"] }
+        ],
+        "resolution": {
+          "before": "Campus response depended on disconnected awareness, access and action moments.",
+          "response": "The proposal connected a location interface, access system, package and awareness language.",
+          "after": "A bystander-facing journey could move from recognizing the need to finding and using the nearest available medication.",
+          "evidence": "The integrated service, package and interface concept was delivered as an Industry Challenge Sprint proposal.",
+          "reflection": "Emergency design is a chain: every handoff must reduce uncertainty for the next one to work."
+        }
+      }
+    },
+    "story-authoring": {
+      "processCue": "Authoring complexity → structured co-creation",
+      "designProcess": {
+        "problem": {
+          "context": "People without programming knowledge were exploring branching stories with generative language models.",
+          "friction": "Open-ended generation did not provide enough structure for characters, plot choices and narrative arcs.",
+          "consequence": "Creators could generate text without gaining a clear way to shape or revisit the story system.",
+          "statement": "How might we help non-programmers direct generative storytelling through understandable narrative structures?"
+        },
+        "stages": [
+          { "id": "empathize", "title": "Look at the creator's control problem", "activity": "The research reviewed related authoring tools and the knowledge a creator needs to shape branching narrative.", "insight": "The barrier was not only code; it was turning narrative concepts into editable, visible structures.", "decision": "Make story elements manipulable instead of relying on an undirected prompt alone.", "evidenceSectionIds": ["authoring-question"] },
+          { "id": "define", "title": "Balance generation with authorship", "activity": "The team framed the system around branching choices, character models, plot archetypes and narrative progression.", "insight": "Generative assistance needed constraints that creators could understand and intentionally change.", "decision": "Use narrative primitives as the shared language between creator and model.", "evidenceSectionIds": ["authoring-question"] },
+          { "id": "ideate", "title": "Translate theory into interface objects", "activity": "We explored how characters, plots, attributes and branches could become visible authoring elements.", "insight": "A structured workspace could support both AI suggestions and deliberate human editing.", "decision": "Organize the experience around editable narrative elements and branching relationships.", "evidenceSectionIds": ["narrative-elements"] },
+          { "id": "prototype", "title": "Build a creator-facing authoring environment", "activity": "I designed and prototyped the interface that connected branching choices with AI-generated story elements.", "insight": "The prototype made abstract narrative concepts concrete enough to inspect and discuss.", "decision": "Keep the creator in control of structure while using the model to expand possibilities.", "evidenceSectionIds": ["narrative-elements", "research-contribution"] },
+          { "id": "test", "title": "Evaluate through research publication", "activity": "The prototype and research framing were developed collaboratively for ICIDS and KIISE publication.", "insight": "The work established a research contribution at the intersection of interaction design and generative storytelling.", "decision": "Document the system as a research prototype rather than a finished commercial authoring product.", "evidenceSectionIds": ["research-contribution"] }
+        ],
+        "resolution": {
+          "before": "Non-programmers lacked a clear structure for directing branching stories with generative models.",
+          "response": "The prototype translated characters, plots, attributes and branches into creator-facing interface elements.",
+          "after": "Creators could shape generated possibilities through a visible narrative structure rather than a single open prompt.",
+          "evidence": "The collaborative work produced a creator-facing research prototype and publications at ICIDS 2023 and the KIISE Conference.",
+          "reflection": "Human-AI tools become more authorable when domain concepts are visible, editable and shared between person and model."
+        }
+      }
+    },
+    "bubbas-daily-target": {
+      "processCue": "Network overload → one daily priority",
+      "designProcess": {
+        "problem": {
+          "context": "Business-development work drew on a large professional network, current opportunities and the team's capabilities.",
+          "friction": "The available information did not naturally reveal which relationship deserved attention today.",
+          "consequence": "People could spend time reviewing connections without reaching a clear next action.",
+          "statement": "How might we turn a large contact network into one explainable daily business-development priority?"
+        },
+        "stages": [
+          { "id": "empathize", "title": "Follow the daily decision", "activity": "I reviewed how connection data, capabilities and introduction routes informed business-development choices.", "insight": "The useful output was not another contact list; it was a reasoned next action.", "decision": "Center the workflow on one daily target and the context needed to act.", "evidenceSectionIds": ["daily-decision"] },
+          { "id": "define", "title": "Bound the dashboard to a decision", "activity": "I separated essential ranking signals from broader network information.", "insight": "More data reduced clarity unless each signal explained why the contact mattered now.", "decision": "Define success as a focused target with capability fit and a plausible introduction path.", "evidenceSectionIds": ["workflow-boundary"] },
+          { "id": "ideate", "title": "Compare feed, search and daily-priority models", "activity": "I explored broad browsing and search before focusing the interface on a ranked daily recommendation.", "insight": "A priority model reduced scanning while still allowing the reasoning to remain visible.", "decision": "Lead with one target and reveal supporting signals progressively.", "evidenceSectionIds": ["workflow-boundary"] },
+          { "id": "prototype", "title": "Connect the recommendation to action", "activity": "I implemented a mobile-oriented dashboard with target context, capability relevance and warm-introduction routes.", "insight": "The recommendation became more credible when users could see why it appeared and how to proceed.", "decision": "Pair ranking with explanation and a concrete next step.", "evidenceSectionIds": ["feedback-iteration"] },
+          { "id": "test", "title": "Refine through working-dashboard review", "activity": "The dashboard was reviewed during the internship and documented for handoff.", "insight": "The focused workflow clarified daily action while exposing tradeoffs in ranking and available source data.", "decision": "Keep the interface narrow and document the assumptions behind its recommendations.", "evidenceSectionIds": ["handoff-tradeoffs"] }
+        ],
+        "resolution": {
+          "before": "A large network offered many possible relationships but no clear daily priority.",
+          "response": "The dashboard ranked one target and connected it to capability fit and introduction context.",
+          "after": "Business-development work could begin from an explainable next action rather than an undifferentiated contact list.",
+          "evidence": "A working mobile dashboard and documented internship handoff captured the end-to-end decision workflow.",
+          "reflection": "Decision-support interfaces should explain why an item matters and what action follows, not only rank it."
+        }
+      }
+    },
+    "learning-mobility": {
+      "caseStudyMode": "detailed",
+      "processCue": "Mobility scenario → tangible concept",
+      "designProcess": {
+        "problem": {
+          "context": "An industry-academia team explored how autonomous mobility could support learning experiences.",
+          "friction": "The concept had to communicate both a new vehicle behavior and a believable human use context.",
+          "consequence": "A technology-led form alone could leave the purpose and experience of the mobility system unclear.",
+          "statement": "How might we make an autonomous learning-mobility concept understandable through its use scenario and product expression?"
+        },
+        "stages": [
+          { "id": "empathize", "title": "Begin with the learning scenario", "activity": "The team used the preserved scenario and concept artifacts to frame where learning, movement and presence meet.", "insight": "The mobility object needed to communicate a role in the experience, not only a futuristic form.", "decision": "Anchor the concept in a recognizable learning journey.", "evidenceSectionIds": ["context"] },
+          { "id": "define", "title": "Connect function and meaning", "activity": "We focused the brief on how an autonomous space could support learning while remaining legible in its environment.", "insight": "People needed cues for both what the object does and how they relate to it.", "decision": "Treat spatial behavior and visual identity as one design problem.", "evidenceSectionIds": ["context"] },
+          { "id": "ideate", "title": "Explore how the object signals its role", "activity": "The team considered exterior presence, interior use and interaction cues across the journey.", "insight": "The strongest direction made the learning purpose visible through the whole product concept.", "decision": "Develop one coherent mobility expression instead of unrelated feature ideas.", "evidenceSectionIds": ["context"] },
+          { "id": "prototype", "title": "Make the concept visible in context", "activity": "We developed an industry-academia design concept with product imagery and scenario-based communication.", "insight": "Contextual visualization made the relationship between mobility and learning easier to discuss.", "decision": "Use the artifact as a conversation prototype for the proposed experience.", "evidenceSectionIds": ["context"] },
+          { "id": "test", "title": "Review the concept through presentation", "activity": "The concept was consolidated and reviewed as an industry-academia design presentation.", "insight": "The scenario gave the product form a clearer purpose and narrative.", "decision": "Document the result as a design concept without claiming deployment or user validation.", "evidenceSectionIds": ["context"] }
+        ],
+        "resolution": {
+          "before": "The mobility idea risked reading as technology without a clear human purpose.",
+          "response": "The concept connected autonomous form, learning context and scenario communication.",
+          "after": "The proposed experience could be understood as a coherent learning-mobility system.",
+          "evidence": "The work was completed as a Hyundai Motor Company and Hongik University industry-academia design concept.",
+          "reflection": "A future-facing product becomes more credible when its human scenario is as developed as its form."
+        }
+      }
+    },
+    "samsung-podcast": {
+      "caseStudyMode": "detailed",
+      "processCue": "Listener context → clearer discovery",
+      "designProcess": {
+        "problem": {
+          "context": "Job-seeking listeners were navigating podcast content inside a mobile media environment.",
+          "friction": "General discovery patterns did not always make professional relevance, categories or episode context easy to scan.",
+          "consequence": "Listeners could encounter content without quickly understanding why it fit their current goal.",
+          "statement": "How might we make career-oriented podcast discovery easier to scan and evaluate on mobile?"
+        },
+        "stages": [
+          { "id": "empathize", "title": "Review the listener's discovery context", "activity": "The industry-academia work examined preserved research boards, podcast categories and the mobile listening journey.", "insight": "Career relevance needed to appear before a listener committed to an episode.", "decision": "Prioritize recognizable themes, concise context and easy movement between discovery and listening.", "evidenceSectionIds": ["context"] },
+          { "id": "define", "title": "Reduce uncertainty before playback", "activity": "We framed the experience around identifying relevant content and understanding an episode at a glance.", "insight": "Discovery and episode detail were part of one decision rather than separate destinations.", "decision": "Keep category, recommendation and episode information connected.", "evidenceSectionIds": ["context"] },
+          { "id": "ideate", "title": "Explore several paths into relevant content", "activity": "The concept considered recent listening, category browsing, recommendation and detailed channel views.", "insight": "Different entry points could share a consistent information hierarchy.", "decision": "Use repeatable content patterns across the home, category and detail states.", "evidenceSectionIds": ["context"] },
+          { "id": "prototype", "title": "Build a connected mobile interface", "activity": "The team produced interface states for discovery, categories and podcast detail within the Samsung mobile context.", "insight": "Consistent navigation and content emphasis made the concept easier to follow across screens.", "decision": "Carry the same listening controls and content cues through the main states.", "evidenceSectionIds": ["context"] },
+          { "id": "test", "title": "Review the states as one deliverable", "activity": "The interface states and supporting research artifacts were reviewed together in the industry-academia project deliverable.", "insight": "The connected sequence communicated the discovery concept more clearly than isolated screens.", "decision": "Present the work as a research concept and interface proposal, without assigning a study count to this engagement.", "evidenceSectionIds": ["context"] }
+        ],
+        "resolution": {
+          "before": "Career-oriented podcast content lacked a consistently visible relevance story across discovery states.",
+          "response": "The concept connected recent listening, categories, recommendations and detailed channel information.",
+          "after": "Listeners could compare content and move toward playback through a clearer mobile information hierarchy.",
+          "evidence": "The work produced an industry-academia research concept and a preserved set of mobile interface states.",
+          "reflection": "Discovery improves when relevance is visible before commitment and remains consistent across the journey."
+        }
+      }
+    },
+    "b4q4-widgets": {
+      "caseStudyMode": "detailed",
+      "processCue": "System constraints → focused widget UX",
+      "designProcess": {
+        "problem": {
+          "context": "A widget UX contribution had to fit an existing mobile product ecosystem during an internship.",
+          "friction": "The interaction needed to add useful access without competing with established navigation and visual patterns.",
+          "consequence": "A disconnected widget could create another surface to learn instead of making the product easier to use.",
+          "statement": "How might we introduce a focused widget interaction while respecting an existing mobile system?"
+        },
+        "stages": [
+          { "id": "empathize", "title": "Read the existing system first", "activity": "I reviewed the preserved product and widget artifacts within the scope of my UX internship contribution.", "insight": "The design had to feel native to an established ecosystem rather than behave like a standalone feature.", "decision": "Use existing patterns and constraints as the starting point.", "evidenceSectionIds": ["context"] },
+          { "id": "define", "title": "Keep the contribution bounded", "activity": "I framed the work around the specific information and action the widget needed to expose.", "insight": "A narrow widget purpose reduced conflict with the broader application flow.", "decision": "Prioritize one focused interaction over feature density.", "evidenceSectionIds": ["context"] },
+          { "id": "ideate", "title": "Explore states within the host product", "activity": "The contribution considered placement, content emphasis and transitions between widget and application contexts.", "insight": "Continuity mattered more than giving the widget a separate visual identity.", "decision": "Align hierarchy and behavior with the surrounding mobile system.", "evidenceSectionIds": ["context"] },
+          { "id": "prototype", "title": "Express the interaction across key states", "activity": "I contributed widget UX screens that documented the focused interaction within the existing ecosystem.", "insight": "Showing connected states made the intended behavior clearer than a single static layout.", "decision": "Use a compact state sequence to communicate the contribution.", "evidenceSectionIds": ["context"] },
+          { "id": "test", "title": "Prepare the design for internal handoff", "activity": "The preserved screens represent the internship design contribution prepared for team review and handoff.", "insight": "A concise, system-aware proposal was appropriate to the ownership and scope of the work.", "decision": "Present the project as an internship contribution without inventing independent research or product outcomes.", "evidenceSectionIds": ["context"] }
+        ],
+        "resolution": {
+          "before": "The widget needed to add utility without feeling separate from the established mobile product.",
+          "response": "The UX direction used a focused interaction and system-consistent states.",
+          "after": "The contribution communicated how the widget could fit the host experience without unnecessary feature depth.",
+          "evidence": "The preserved interface states document the UX contribution completed during the Cheil Worldwide internship.",
+          "reflection": "In a mature system, good design often means narrowing the idea until it belongs."
+        }
+      }
+    }
+  },
   "featured": [
     {
       "id": "bubbas-production",

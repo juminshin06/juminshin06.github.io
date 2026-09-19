@@ -3,15 +3,16 @@ import editorial from './editorial.json' with { type: 'json' }
 import internships from './internships.json' with { type: 'json' }
 
 export const categoryLabels = { All: 'All', 'Human-AI': 'AI & UX', Research: 'UX research', Spatial: 'Spatial UX', Product: 'Product design', Experiment: 'Prototyping' }
+const withDesignProcess = project => ({ ...project, ...(editorial.designProcesses?.[project.slug] || {}) })
 
-export const featuredProjects = editorial.featured.map(project => ({
+export const featuredProjects = editorial.featured.map(project => withDesignProcess({
   ...project,
   content: project.content || legacy.find(item => item.id === project.id)?.content.filter(block => block.type === 'image') || [],
 }))
 const featuredIds = new Set(featuredProjects.map(project => project.id))
 const archived = legacy.filter(project => !featuredIds.has(project.id)).map(project => {
   const edit = editorial.archiveOverrides[project.id]
-  return {
+  return withDesignProcess({
     ...project, ...edit,
     image: project.thumbnail,
     imageAlt: `${edit.title}: original project artifact`,
@@ -22,9 +23,9 @@ const archived = legacy.filter(project => !featuredIds.has(project.id)).map(proj
     sections: [{ id: 'context', phase: 'Project overview', title: 'The project in context', body: edit.summary }],
     facts: [], resources: [],
     content: project.content.filter(block => ['image', 'pdf', 'iframe'].includes(block.type)),
-  }
+  })
 })
-export const practiceProjects = [...internships, ...editorial.additional.filter(project => project.slug === 'ars-pharma')]
+export const practiceProjects = [...internships.map(withDesignProcess), ...editorial.additional.filter(project => project.slug === 'ars-pharma').map(withDesignProcess)]
 export const projectPriority = [
   'bubbas-production',
   'pacepop',
@@ -51,7 +52,7 @@ export const projectPriority = [
   'cookids',
 ]
 const projectRank = new Map(projectPriority.map((slug, index) => [slug, index]))
-const unorderedProjects = [...featuredProjects, ...internships, ...editorial.additional, ...archived]
+const unorderedProjects = [...featuredProjects, ...internships.map(withDesignProcess), ...editorial.additional.map(withDesignProcess), ...archived]
 export const allProjects = [...unorderedProjects].sort((a, b) => (
   (projectRank.get(a.slug) ?? Number.MAX_SAFE_INTEGER) - (projectRank.get(b.slug) ?? Number.MAX_SAFE_INTEGER)
 ))

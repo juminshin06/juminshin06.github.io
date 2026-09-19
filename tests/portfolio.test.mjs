@@ -97,10 +97,16 @@ test('responsive image dimensions describe existing files', () => {
   }
 })
 
-test('archive projects keep the concise editorial reading mode', () => {
+test('non-home archive projects keep the concise editorial reading mode', () => {
+  for (const slug of ['learning-mobility', 'samsung-podcast', 'b4q4-widgets']) {
+    const project = allProjects.find(item => item.slug === slug)
+    assert.equal(getCaseStudyMode(project), 'detailed', slug)
+    assert.equal(project.designProcess.stages.length, 5, slug)
+  }
+
   const conciseProjects = allProjects.filter(project => getCaseStudyMode(project) === 'concise')
 
-  assert.equal(conciseProjects.length, 13)
+  assert.equal(conciseProjects.length, 10)
   for (const project of conciseProjects) {
     assert.equal(project.sections.length, 1, project.slug)
     assert.equal(getSectionPhase(project.sections[0], 'concise'), 'Project overview', project.slug)
