@@ -1,61 +1,61 @@
 {
   "designProcesses": {
     "bubbas-production": {
-      "processCue": "Scattered inputs → production system",
+      "processCue": "Internal editor friction → unified workspace",
       "designProcess": {
         "problem": {
-          "context": "Editors prepared rough cuts from footage, scripts, storyboards, voice-over files and production notes.",
-          "friction": "Those materials were organized clip by clip across separate inputs.",
-          "consequence": "The preparation effort grew with every video and made batch production difficult to monitor.",
-          "statement": "How might we preserve the relationship between production inputs while preparing rough cuts at batch scale?"
+          "context": "Bubba's internal editors prepared rough cuts from footage, scripts, storyboards, voice-over files and production notes.",
+          "friction": "They repeatedly gathered those materials from separate tools and folders, then organized them manually clip by clip.",
+          "consequence": "Time spent preparing and reconciling inputs grew with every video, making larger batches difficult to manage and monitor.",
+          "statement": "How might we help Bubba's internal editors prepare and monitor large video batches without repeating the same manual setup across disconnected tools?"
         },
         "stages": [
           {
             "id": "empathize",
             "title": "Understand the work around the edit",
-            "activity": "I reviewed the production inputs, the order in which they were prepared and the decisions editors needed to revisit during a run.",
-            "insight": "The bottleneck was not one editing control. It was the repeated work of keeping related source material aligned and visible.",
-            "decision": "Treat the workflow as one connected preparation system rather than a collection of isolated tools.",
+            "activity": "I reviewed the existing internal editing workflow, the production inputs editors handled and the decisions they needed to revisit during each run.",
+            "insight": "The bottleneck was not one editing control. It was the repeated work of gathering, aligning and checking related source material before editing could begin.",
+            "decision": "Treat the editors' preparation workflow as one connected internal system rather than a collection of isolated tools.",
             "evidenceSectionIds": ["production-context"]
           },
           {
             "id": "define",
-            "title": "Frame scale as an information problem",
-            "activity": "I mapped the minimum information needed before, during and after an automated batch.",
-            "insight": "Automation would only help if people could still see input readiness, current progress and output status.",
-            "decision": "Success meant reducing manual organization without removing editor oversight.",
+            "title": "Define the repeated work behind every batch",
+            "activity": "I mapped where internal editors had to collect inputs, confirm readiness, monitor a run and inspect its outputs.",
+            "insight": "Automation would only reduce the burden if editors could still see input readiness, current progress and output status.",
+            "decision": "Define success as reducing repetitive setup without removing editor oversight.",
             "evidenceSectionIds": ["production-context"]
           },
           {
             "id": "ideate",
             "title": "Organize the workflow around production states",
-            "activity": "I explored separate utilities, a linear wizard and a shared workspace organized by library, setup, progress and results.",
-            "insight": "A shared workspace kept context available while still giving each production state a clear focus.",
+            "activity": "I compared automating individual utilities, using a linear wizard and creating an internal workspace organized by library, setup, progress and results.",
+            "insight": "A shared internal workspace kept production context available while still giving each state a clear focus.",
             "decision": "Use one interface with distinct states instead of sending editors between disconnected tools.",
             "evidenceSectionIds": ["interface-scope"]
           },
           {
             "id": "prototype",
             "title": "Make automation inspectable",
-            "activity": "I designed and scaled the interface for media handling, timeline preparation, live progress, sampled frames and export readiness.",
-            "insight": "Editors needed to understand what the system was doing and inspect suggested material before it entered the edit.",
-            "decision": "Keep logs, progress, frame notes and outputs reviewable inside the same production surface.",
+            "activity": "I designed the internal editor workspace for media handling, timeline preparation, live progress, sampled frames and export readiness.",
+            "insight": "Editors needed to understand what the automation was doing and inspect suggested material before it entered the edit.",
+            "decision": "Keep logs, progress, frame notes and outputs reviewable inside the same internal production tool.",
             "evidenceSectionIds": ["interface-scope", "production-adoption"]
           },
           {
             "id": "test",
             "title": "Validate through increasing production scope",
-            "activity": "The initial 10-video prototype was expanded inside the working production process.",
-            "insight": "The workflow remained useful as batch size and operational responsibility increased.",
-            "decision": "Continue with the unified model and support production-scale monitoring and export.",
+            "activity": "The initial 10-video prototype was expanded inside Bubba's working internal production process.",
+            "insight": "The unified workflow continued to support editors as batch size and operational responsibility increased.",
+            "decision": "Keep the unified model and extend it for production-scale monitoring, review and export.",
             "evidenceSectionIds": ["production-adoption"]
           }
         ],
         "resolution": {
-          "before": "Editors manually organized related production material clip by clip.",
-          "response": "One interface connected setup, automated preparation, monitoring, review and export.",
-          "after": "The team could prepare and inspect large batches without losing the context behind each run.",
-          "evidence": "The platform grew from a 10-video prototype to more than 300 videos per automated batch and was adopted for production use.",
+          "before": "Internal editors gathered scattered production inputs and organized them manually clip by clip before each run.",
+          "response": "One internal production workspace connected setup, automated preparation, monitoring, review and export.",
+          "after": "Internal editors could prepare and inspect large batches without losing the source context behind each run.",
+          "evidence": "The tool grew from a 10-video prototype to more than 300 videos per automated batch and was adopted for internal production use.",
           "reflection": "Automation earns trust when its state and outputs remain legible to the people responsible for the work."
         }
       }
@@ -474,14 +474,14 @@
       "duration": "May - Jul 2026",
       "role": "AI Research Intern",
       "team": "1-person internship project",
-      "status": "Adopted for production use",
+      "status": "Adopted for internal production use",
       "caseStudyMode": "detailed",
-      "introLead": "I helped turn a manual video-preparation workflow into one production interface.",
-      "introSupport": "The platform brought production tools into one automated workflow, then scaled from a 10-video prototype to more than 300 videos per automated batch.",
-      "descriptors": ["AI & UX", "Production workflow", "Interface design"],
-      "summary": "UX for an AI-assisted video preparation workflow, bringing production tools into one interface and scaling from a 10-video prototype to 300+ videos per automated batch.",
-      "contribution": "I designed and scaled the platform and centralized real-time monitoring and control in a single production interface.",
-      "outcome": "The platform was adopted for production use, replacing manual clip-by-clip organization with automated batch preparation.",
+      "introLead": "I designed an internal tool around the problems Bubba's editors faced while preparing videos for production.",
+      "introSupport": "The workspace replaced scattered, manual setup with one inspectable workflow, then scaled from a 10-video prototype to more than 300 videos per automated batch.",
+      "descriptors": ["AI & UX", "Internal tools", "Production workflow"],
+      "summary": "An internal tool for Bubba's editors that unified scattered video-preparation tasks and scaled from a 10-video prototype to 300+ videos per automated batch.",
+      "contribution": "I designed and scaled the internal editor workspace, centralizing media setup, real-time monitoring, review and control in one production interface.",
+      "outcome": "The tool was adopted for internal production use, replacing the editors' manual clip-by-clip organization with automated batch preparation.",
       "accent": "#b93624",
       "art": "production",
       "image": "/assets/projects/bubbas-assist-media.png",
@@ -498,22 +498,22 @@
         {
           "id": "production-context",
           "phase": "Problem",
-          "title": "Production context was scattered across too many inputs",
-          "lead": "Rough-cut preparation depended on footage, scripts, storyboards, voice-over files, and production notes.",
-          "body": "Organizing those materials clip by clip made the workflow difficult to scale. The interface needed to preserve their relationships while moving preparation into an automated batch process."
+          "title": "Internal editors were assembling each run by hand",
+          "lead": "Rough-cut preparation required editors to gather footage, scripts, storyboards, voice-over files and production notes from separate sources.",
+          "body": "Repeating that setup clip by clip took time away from editing and became harder to track as batches grew. The internal tool needed to preserve the relationship between each input while reducing manual preparation."
         },
         {
           "id": "interface-scope",
           "phase": "Design response",
           "title": "Bringing key tasks into",
           "titleAccent": "one interface",
-          "body": "My work centralized real-time monitoring and control of automated timeline assembly, media handling, 3D scene creation, lighting, cameras, and animation. The interface brought these production functions into a single place."
+          "body": "I centralized media setup, automated timeline assembly, real-time monitoring and review alongside 3D scene creation, lighting, cameras and animation. The internal workspace kept those production functions visible in one place for Bubba's editors."
         },
         {
           "id": "production-adoption",
           "phase": "Outcome",
           "title": "From prototype to production use",
-          "body": "The platform grew from a 10-video prototype to handling more than 300 videos per automated batch and was adopted for production use. The change was in operational scope: from a small prototype to batch preparation inside a production workflow."
+          "body": "The internal tool grew from a 10-video prototype to handling more than 300 videos per automated batch and was adopted by the company's production workflow. The change was in operational scope: from a small prototype to batch preparation used by internal editors."
         }
       ],
       "facts": [

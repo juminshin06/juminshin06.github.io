@@ -617,7 +617,7 @@ test('homepage cards expose one concise process transition', async () => {
     const { render } = await server.ssrLoadModule('/src/entry-server.jsx')
     const html = render('/')
     assert.equal((html.match(/data-project-process-cue="true"/g) || []).length, 12)
-    assert.match(html, /Scattered inputs → production system/)
+    assert.match(html, /Internal editor friction → unified workspace/)
     assert.match(html, /Platform constraints → spatial toolkit/)
   } finally { await server.close() }
 })

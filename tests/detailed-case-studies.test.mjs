@@ -186,6 +186,27 @@ test('the detailed projects have authored editorial narrative fields', () => {
   }
 })
 
+test("Bubba's production case is framed as an internal editor workflow", () => {
+  const project = allProjects.find(item => item.slug === 'bubbas-production')
+  assert.ok(project)
+
+  const narrative = JSON.stringify({
+    summary: project.summary,
+    introLead: project.introLead,
+    introSupport: project.introSupport,
+    contribution: project.contribution,
+    outcome: project.outcome,
+    sections: project.sections,
+    designProcess: project.designProcess,
+  })
+
+  assert.match(narrative, /internal editors/i)
+  assert.match(narrative, /internal (?:production )?(?:tool|workspace)/i)
+  assert.match(project.designProcess.problem.friction, /manual|repetitive/i)
+  assert.match(project.designProcess.problem.statement, /internal editors/i)
+  assert.match(project.designProcess.resolution.evidence, /internal production/i)
+})
+
 test('PACEPOP frames temporary group coordination as a two-person design engineering project', () => {
   const project = allProjects.find(item => item.slug === 'pacepop')
   assert.ok(project)
