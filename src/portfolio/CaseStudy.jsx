@@ -2,8 +2,8 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { ArrowLeft, ArrowRight, ArrowUpRight, Play, X } from 'lucide-react'
 import { allProjects } from '../data/portfolio'
 import { ProjectImage, TextLink } from './Shell'
-import { DesignDecision, NarrativeCopy, NarrativeHeading, SectionDetails, SectionFlow } from './CaseStudyBlocks'
-import { buildPhaseNavigation, findActiveSectionId, getCaseStudyMode, getHashSectionId, getProjectFacts, getSectionPhase } from './caseStudyNarrative'
+import { DesignDecision, NarrativeCopy, NarrativeHeading, ProblemStatement, SectionDetails, SectionFlow } from './CaseStudyBlocks'
+import { buildDesignProcessNavigation, buildPhaseNavigation, findActiveSectionId, getCaseStudyMode, getHashSectionId, getProjectFacts, getSectionPhase } from './caseStudyNarrative'
 import ProjectArt from './ProjectArt'
 import s from './Portfolio.module.css'
 
@@ -60,17 +60,22 @@ export default function CaseStudy({ project }) {
   const article = useRef(null)
   const [activeSection, setActiveSection] = useState('overview')
   const mode = getCaseStudyMode(project)
+  const hasDesignProcess = Boolean(project.designProcess)
   const projectFacts = getProjectFacts(project)
   const next = allProjects[(allProjects.findIndex(item => item.id === project.id) + 1) % allProjects.length]
   const primaryResources = project.resources.filter(resource => resource.primary)
   const secondaryResources = project.resources.filter(resource => !resource.primary)
   const assignments = useMemo(() => assignArtifacts(project), [project])
-  const phaseNavigation = useMemo(() => buildPhaseNavigation(project.sections, mode), [project.sections, mode])
+  const phaseNavigation = useMemo(() => (
+    hasDesignProcess ? buildDesignProcessNavigation(project) : buildPhaseNavigation(project.sections, mode)
+  ), [hasDesignProcess, mode, project])
   const activePhase = phaseNavigation.find(item => item.sectionIds.includes(activeSection))
   let artifactNumber = 1
 
   useEffect(() => {
-    const ids = ['overview', ...project.sections.map(section => section.id), 'outcome']
+    const ids = hasDesignProcess
+      ? ['overview', 'problem', ...project.designProcess.stages.map(stage => stage.id), 'resolution']
+      : ['overview', ...project.sections.map(section => section.id), 'outcome']
     const sections = ids.map(id => document.getElementById(id)).filter(Boolean)
     let frame
     const update = () => {
@@ -90,7 +95,7 @@ export default function CaseStudy({ project }) {
       resize.disconnect()
       if (frame !== undefined) cancelAnimationFrame(frame)
     }
-  }, [project])
+  }, [hasDesignProcess, project])
 
   useEffect(() => {
     const sectionId = getHashSectionId(window.location.hash)
@@ -149,16 +154,23 @@ export default function CaseStudy({ project }) {
       </div>
     </header>
 
-    {phaseNavigation.length > 0 && <nav className={s.caseToc} aria-label="Case study sections" data-phase-navigation="true">
-      <span className={s.caseTocLabel}>In this project</span>
-      {phaseNavigation.map(item => <a key={item.id} href={`#${item.id}`} aria-current={activePhase?.id === item.id ? 'location' : undefined}>{item.label}</a>)}
-      <a href="#outcome" aria-current={activeSection === 'outcome' ? 'location' : undefined}>Outcome</a>
-    </nav>}
-
     <section className={s.caseContributionPanel} aria-label="My contribution">
       <span className={s.label}>My contribution</span>
       <p>{project.contribution}</p>
     </section>
+
+    {hasDesignProcess ? <ProblemStatement problem={project.designProcess.problem} /> : null}
+
+    {phaseNavigation.length > 0 && <nav
+      className={s.caseToc}
+      aria-label="Case study sections"
+      data-phase-navigation="true"
+      data-process-navigation={hasDesignProcess ? 'true' : undefined}
+    >
+      <span className={s.caseTocLabel}>{hasDesignProcess ? 'Design process' : 'In this project'}</span>
+      {phaseNavigation.map(item => <a key={item.id} href={`#${item.id}`} aria-current={activePhase?.id === item.id ? 'location' : undefined}>{item.label}</a>)}
+      {!hasDesignProcess ? <a href="#outcome" aria-current={activeSection === 'outcome' ? 'location' : undefined}>Outcome</a> : null}
+    </nav>}
 
     <div className={s.caseBody}>
       {project.sections.map(section => {

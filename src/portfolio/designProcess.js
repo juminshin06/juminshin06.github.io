@@ -28,8 +28,9 @@ export const buildDesignProcessNavigation = project => [
   ...(project.designProcess?.stages || []).map(stage => ({
     id: stage.id,
     label: DESIGN_STAGE_LABELS[stage.id],
+    sectionIds: [stage.id],
   })),
-  { id: 'resolution', label: 'Resolution' },
+  { id: 'resolution', label: 'Resolution', sectionIds: ['resolution'] },
 ]
 
 export const collectStageEvidence = (project, stage) => {

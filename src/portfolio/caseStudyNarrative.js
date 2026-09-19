@@ -1,3 +1,5 @@
+export { buildDesignProcessNavigation } from './designProcess.js'
+
 export const getCaseStudyMode = project => project.caseStudyMode === 'detailed' ? 'detailed' : 'concise'
 
 export const getProjectFacts = project => [

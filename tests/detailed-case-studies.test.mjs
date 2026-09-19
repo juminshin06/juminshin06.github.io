@@ -38,6 +38,23 @@ test('case-study detail and flow blocks preserve semantic reading order', async 
   }
 })
 
+test('a homepage case study renders the problem and fixed process navigation', async () => {
+  const server = await createServer({ server: { middlewareMode: true, ws: false }, appType: 'custom', logLevel: 'error' })
+  try {
+    const { render } = await server.ssrLoadModule('/src/entry-server.jsx')
+    const html = render('/work/honda-spatial/')
+    assert.match(html, /data-existing-problem="true"/)
+    assert.match(html, /How might we/)
+    const start = html.indexOf('data-process-navigation="true"')
+    const nav = html.slice(start, html.indexOf('</nav>', start))
+    assert.deepEqual([...nav.matchAll(/<a[^>]*>([^<]+)<\/a>/g)].map(match => match[1]), [
+      'Empathize', 'Define', 'Ideate', 'Prototype', 'Test', 'Resolution',
+    ])
+  } finally {
+    await server.close()
+  }
+})
+
 test('Honda explains platform constraints, workarounds, presence experiments and team scope', () => {
   const project = allProjects.find(item => item.slug === 'honda-spatial')
   assert.equal(project.sections.length, 8)
