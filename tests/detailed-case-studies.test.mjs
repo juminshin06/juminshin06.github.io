@@ -217,11 +217,17 @@ test('PACEPOP frames temporary group coordination as a two-person design enginee
   assert.equal(project.sections[0]?.phase, 'Problem')
   assert.equal(project.image, '/assets/projects/pacepop-cover-v2.png')
   assert.equal(project.cover?.primary, '/assets/projects/pacepop-cover-v2.png')
+  assert.match(project.introLead, /Luma|event/i)
+  assert.match(project.introSupport, /permanent group chat/i)
+  assert.match(project.designProcess.problem.context, /Luma/i)
+  assert.match(project.designProcess.stages[0].activity, /event journey|scenario/i)
+  assert.match(project.sections[0].lead, /Luma/i)
 
   const narrative = JSON.stringify(project)
   for (const idea of ['permanent group chat', 'contact information', 'QR', 'temporary', 'retention', 'Host', 'Runner']) {
     assert.match(narrative, new RegExp(idea, 'i'))
   }
+  assert.doesNotMatch(narrative, /interviewed|surveyed/i)
   assert.doesNotMatch(narrative, /localhost|127\.0\.0\.1/i)
 
   const evidence = project.content.filter(block => block.type === 'image')

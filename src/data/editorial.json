@@ -61,29 +61,29 @@
       }
     },
     "pacepop": {
-      "processCue": "Temporary needs → testable run flow",
+      "processCue": "Event coordination → temporary room",
       "designProcess": {
         "problem": {
-          "context": "People meeting for a short run need directions, group awareness and a way to ask for help.",
-          "friction": "Permanent group chats and contact exchange create a longer social and privacy commitment than the activity requires.",
-          "consequence": "A brief real-world encounter leaves another channel, identity connection and retention decision behind.",
-          "statement": "How might we help a temporary running group coordinate safely without creating a permanent social obligation?"
+          "context": "People who discover a one-time run through platforms such as Luma still need directions, live updates, group awareness and a way to ask for help during the activity.",
+          "friction": "The usual workaround is to exchange contact information or create a permanent group chat for people who may only meet once.",
+          "consequence": "A short event leaves participants with another inbox, an ongoing identity connection and no clear agreement about when shared messages or location context should disappear.",
+          "statement": "How might we give a temporary running group the coordination of a group chat without creating a permanent social obligation?"
         },
         "stages": [
           {
             "id": "empathize",
-            "title": "Start with the lifespan of the group",
-            "activity": "We examined temporary-event scenarios, the coordination people need during a run and the social cost of existing communication tools.",
-            "insight": "The group needed shared awareness for one moment, not another social network to maintain.",
-            "decision": "Match the life of the product to the life of the group.",
+            "title": "Follow the group from event page to the run",
+            "activity": "We examined Luma-style event journeys, the coordination moments that happen after sign-up and the social cost of moving a temporary group into permanent communication tools.",
+            "insight": "An event page could bring people together, but it did not provide the live, safety-aware coordination they needed once the activity began.",
+            "decision": "Create a communication layer whose lifespan matches the event rather than the participants' broader social identities.",
             "evidenceSectionIds": ["temporary-social-overhead"]
           },
           {
             "id": "define",
-            "title": "Define safety without permanent identity",
-            "activity": "We separated the group's essential needs into entry, recognition, coordination, support and closure.",
-            "insight": "Temporary identity could reduce social overhead, but location and help states still needed explicit accountability.",
-            "decision": "Use account-free entry and temporary names while keeping role, location and retention states visible.",
+            "title": "Define the mismatch between the group and its channel",
+            "activity": "We separated what the group needed during the event—entry, recognition, coordination and support—from what conventional chat tools kept afterward.",
+            "insight": "Participants needed enough identity and location context to stay safe, but not a permanent account connection or open-ended inbox.",
+            "decision": "Use account-free entry and temporary names while keeping role, location, help and retention states explicit.",
             "evidenceSectionIds": ["ephemeral-principle"]
           },
           {
@@ -112,7 +112,7 @@
           }
         ],
         "resolution": {
-          "before": "Temporary groups relied on permanent communication tools before they could coordinate.",
+          "before": "Groups formed through event platforms still had to exchange contact information or create permanent chats for short-lived coordination.",
           "response": "PACEPOP created a purpose-bound room with QR entry, temporary identity, role-specific views and explicit retention.",
           "after": "Hosts and runners could coordinate the activity, respond to safety moments and close the shared space without exchanging contact information.",
           "evidence": "A working two-person prototype covers account-free entry, live coordination, support interactions, results and room closure.",
