@@ -55,6 +55,37 @@ test('a homepage case study renders the problem and fixed process navigation', a
   }
 })
 
+test('design evidence follows the stage claim and the case closes the loop', async () => {
+  const server = await createServer({ server: { middlewareMode: true, ws: false }, appType: 'custom', logLevel: 'error' })
+  try {
+    const { render } = await server.ssrLoadModule('/src/entry-server.jsx')
+    const html = render('/work/honda-spatial/')
+    for (const id of ['empathize', 'define', 'ideate', 'prototype', 'test']) {
+      assert.match(html, new RegExp(`id="${id}"[^>]*data-design-stage="${id}"`))
+    }
+    assert.match(html, /data-process-evidence="prototype"/)
+    assert.match(html, /id="resolution"/)
+    assert.match(html, /How the design addressed the problem/)
+    for (const label of ['Before', 'Design response', 'After', 'Evidence', 'Reflection']) {
+      assert.match(html, new RegExp(`>${label}<`))
+    }
+  } finally {
+    await server.close()
+  }
+})
+
+test('a concise-source homepage project renders five stages without empty content', async () => {
+  const server = await createServer({ server: { middlewareMode: true, ws: false }, appType: 'custom', logLevel: 'error' })
+  try {
+    const { render } = await server.ssrLoadModule('/src/entry-server.jsx')
+    const html = render('/work/b4q4-widgets/')
+    assert.equal((html.match(/data-design-stage=/g) || []).length, 5)
+    assert.doesNotMatch(html, /undefined|null|>\s*<\/dd>/)
+  } finally {
+    await server.close()
+  }
+})
+
 test('Honda explains platform constraints, workarounds, presence experiments and team scope', () => {
   const project = allProjects.find(item => item.slug === 'honda-spatial')
   assert.equal(project.sections.length, 8)

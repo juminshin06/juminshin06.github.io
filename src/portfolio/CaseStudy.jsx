@@ -2,8 +2,9 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { ArrowLeft, ArrowRight, ArrowUpRight, Play, X } from 'lucide-react'
 import { allProjects } from '../data/portfolio'
 import { ProjectImage, TextLink } from './Shell'
-import { DesignDecision, NarrativeCopy, NarrativeHeading, ProblemStatement, SectionDetails, SectionFlow } from './CaseStudyBlocks'
+import { DesignDecision, NarrativeCopy, NarrativeHeading, ProblemStatement, ProcessStage, Resolution, SectionDetails, SectionFlow } from './CaseStudyBlocks'
 import { buildDesignProcessNavigation, buildPhaseNavigation, findActiveSectionId, getCaseStudyMode, getHashSectionId, getProjectFacts, getSectionPhase } from './caseStudyNarrative'
+import { collectStageEvidence, DESIGN_STAGE_LABELS } from './designProcess.js'
 import ProjectArt from './ProjectArt'
 import s from './Portfolio.module.css'
 
@@ -53,6 +54,19 @@ function assignArtifacts(project) {
   return {
     bySection,
     resources: (project.content || []).filter(block => block.type !== 'image'),
+  }
+}
+
+function getEvidenceLayout(evidence) {
+  const isPhoneSet = evidence.length > 1 && evidence.every(block => block.presentation === 'phone')
+  const isPhonePair = isPhoneSet && evidence.length === 2
+  const isPhoneQuad = isPhoneSet && evidence.length === 4
+  const isPhoneGallery = isPhoneSet && evidence.length > 2 && !isPhoneQuad
+  return {
+    isPhonePair,
+    isPhoneQuad,
+    isPhoneGallery,
+    name: isPhonePair ? 'phone-pair' : (isPhoneQuad ? 'phone-quad' : (isPhoneGallery ? 'phone-gallery' : 'standard')),
   }
 }
 
@@ -173,13 +187,26 @@ export default function CaseStudy({ project }) {
     </nav>}
 
     <div className={s.caseBody}>
-      {project.sections.map(section => {
+      {hasDesignProcess ? project.designProcess.stages.map((stage, index) => {
+        const evidence = collectStageEvidence(project, stage)
+        const layout = getEvidenceLayout(evidence)
+        return <ProcessStage
+          stage={{ ...stage, label: DESIGN_STAGE_LABELS[stage.id] }}
+          index={index}
+          key={stage.id}
+        >
+          {evidence.length > 0 ? <div
+            className={`${s.storyEvidenceGrid} ${evidence.length === 1 ? s.storyEvidenceGridSingle : ''} ${layout.isPhonePair ? s.storyEvidenceGridPhonePair : ''} ${layout.isPhoneQuad ? s.storyEvidenceGridPhoneQuad : ''} ${layout.isPhoneGallery ? s.storyEvidenceGridPhoneGallery : ''}`}
+            data-evidence-grid="true"
+            data-evidence-layout={layout.name}
+            data-process-evidence={stage.id}
+          >
+            {evidence.map(block => <EvidenceFigure key={block.src} block={block} sectionId={block.sectionId || stage.id} number={artifactNumber++} />)}
+          </div> : null}
+        </ProcessStage>
+      }) : project.sections.map(section => {
         const evidence = assignments.bySection.get(section.id) || []
-        const isPhoneSet = evidence.length > 1 && evidence.every(block => block.presentation === 'phone')
-        const isPhonePair = isPhoneSet && evidence.length === 2
-        const isPhoneQuad = isPhoneSet && evidence.length === 4
-        const isPhoneGallery = isPhoneSet && evidence.length > 2 && !isPhoneQuad
-        const evidenceLayout = isPhonePair ? 'phone-pair' : (isPhoneQuad ? 'phone-quad' : (isPhoneGallery ? 'phone-gallery' : 'standard'))
+        const layout = getEvidenceLayout(evidence)
         const phase = getSectionPhase(section, mode)
         return <section data-reveal data-story-phase={phase} className={s.storySection} id={section.id} key={section.id}>
           <div className={s.storyLabel}>{phase}</div>
@@ -190,13 +217,13 @@ export default function CaseStudy({ project }) {
             <SectionFlow flow={section.flow} />
             <DesignDecision comparison={section.comparison} />
           </div>
-          {evidence.length > 0 ? <div className={`${s.storyEvidenceGrid} ${evidence.length === 1 ? s.storyEvidenceGridSingle : ''} ${isPhonePair ? s.storyEvidenceGridPhonePair : ''} ${isPhoneQuad ? s.storyEvidenceGridPhoneQuad : ''} ${isPhoneGallery ? s.storyEvidenceGridPhoneGallery : ''}`} data-evidence-grid="true" data-evidence-layout={evidenceLayout}>
+          {evidence.length > 0 ? <div className={`${s.storyEvidenceGrid} ${evidence.length === 1 ? s.storyEvidenceGridSingle : ''} ${layout.isPhonePair ? s.storyEvidenceGridPhonePair : ''} ${layout.isPhoneQuad ? s.storyEvidenceGridPhoneQuad : ''} ${layout.isPhoneGallery ? s.storyEvidenceGridPhoneGallery : ''}`} data-evidence-grid="true" data-evidence-layout={layout.name}>
             {evidence.map(block => <EvidenceFigure key={block.src} block={block} sectionId={section.id} number={artifactNumber++} />)}
           </div> : null}
         </section>
       })}
 
-      {project.diagram && <figure className={s.workflow}><div className={s.storyHeading}><span>Process</span><h2>{project.diagram.title}</h2></div>
+      {!hasDesignProcess && project.diagram && <figure className={s.workflow}><div className={s.storyHeading}><span>Process</span><h2>{project.diagram.title}</h2></div>
         <div className={s.processNarrative}>{project.diagram.steps.map(step => <p key={step.label}><strong>{step.label}.</strong> <span>{step.detail}</span></p>)}</div>
         <figcaption>{project.diagram.caption}</figcaption>
       </figure>}
@@ -205,11 +232,13 @@ export default function CaseStudy({ project }) {
 
       {assignments.resources.length > 0 && <div className={s.caseResources}>{assignments.resources.map((block, index) => <Resource key={`${block.src}-${index}`} block={block} />)}</div>}
 
-      <section className={s.outcome} id="outcome" data-outcome-section="true">
-        <span className={s.label}>Outcome</span>
-        <h2>{project.status}</h2>
-        <p>{project.outcome}</p>
-      </section>
+      {hasDesignProcess
+        ? <Resolution resolution={project.designProcess.resolution} status={project.status} />
+        : <section className={s.outcome} id="outcome" data-outcome-section="true">
+          <span className={s.label}>Outcome</span>
+          <h2>{project.status}</h2>
+          <p>{project.outcome}</p>
+        </section>}
 
       {secondaryResources.length > 0 && <div className={s.resources}>{secondaryResources.map(resource => <TextLink key={resource.href} href={resource.href} external>{resource.label}</TextLink>)}</div>}
     </div>
