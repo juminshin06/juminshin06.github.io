@@ -85,6 +85,7 @@ export default function CaseStudy({ project }) {
   ), [hasDesignProcess, mode, project])
   const activePhase = phaseNavigation.find(item => item.sectionIds.includes(activeSection))
   let artifactNumber = 1
+  const renderedEvidence = new Set()
 
   useEffect(() => {
     const ids = hasDesignProcess
@@ -188,21 +189,28 @@ export default function CaseStudy({ project }) {
 
     <div className={s.caseBody}>
       {hasDesignProcess ? project.designProcess.stages.map((stage, index) => {
-        const evidence = collectStageEvidence(project, stage)
-        const layout = getEvidenceLayout(evidence)
+        const evidenceGroups = (stage.evidenceSectionIds || []).map(sectionId => {
+          const evidence = collectStageEvidence(project, { evidenceSectionIds: [sectionId] }).filter(block => {
+            if (renderedEvidence.has(block.src)) return false
+            renderedEvidence.add(block.src)
+            return true
+          })
+          return { sectionId, evidence, layout: getEvidenceLayout(evidence) }
+        }).filter(group => group.evidence.length > 0)
         return <ProcessStage
           stage={{ ...stage, label: DESIGN_STAGE_LABELS[stage.id] }}
           index={index}
           key={stage.id}
         >
-          {evidence.length > 0 ? <div
+          {evidenceGroups.map(({ sectionId, evidence, layout }) => <div
+            key={sectionId}
             className={`${s.storyEvidenceGrid} ${evidence.length === 1 ? s.storyEvidenceGridSingle : ''} ${layout.isPhonePair ? s.storyEvidenceGridPhonePair : ''} ${layout.isPhoneQuad ? s.storyEvidenceGridPhoneQuad : ''} ${layout.isPhoneGallery ? s.storyEvidenceGridPhoneGallery : ''}`}
             data-evidence-grid="true"
             data-evidence-layout={layout.name}
             data-process-evidence={stage.id}
           >
-            {evidence.map(block => <EvidenceFigure key={block.src} block={block} sectionId={block.sectionId || stage.id} number={artifactNumber++} />)}
-          </div> : null}
+            {evidence.map(block => <EvidenceFigure key={block.src} block={block} sectionId={block.sectionId || sectionId} number={artifactNumber++} />)}
+          </div>)}
         </ProcessStage>
       }) : project.sections.map(section => {
         const evidence = assignments.bySection.get(section.id) || []

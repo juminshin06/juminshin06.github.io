@@ -70,8 +70,7 @@ export const homepageProjectSlugs = [
   'samsung-podcast',
   'b4q4-widgets',
 ]
-const homepageProjectSet = new Set(homepageProjectSlugs)
-export const homepageProjects = allProjects.filter(project => homepageProjectSet.has(project.slug))
+export const homepageProjects = homepageProjectSlugs.map(slug => allProjects.find(project => project.slug === slug)).filter(Boolean)
 export const researchProjects = allProjects.filter(project => ['story-authoring', 'sing-in-sign', 'samsung-podcast'].includes(project.slug))
 export const legacyProjectAliases = {
   '/work/studio-os-audit/': 'ai-3d-product-visualization',

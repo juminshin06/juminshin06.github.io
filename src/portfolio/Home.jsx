@@ -1,5 +1,5 @@
 import { ArrowRight, ArrowUpRight } from 'lucide-react'
-import { allProjects } from '../data/portfolio'
+import { homepageProjects } from '../data/portfolio'
 import profile from '../data/profile.json'
 import { ProjectImage, SectionHeading, TextLink } from './Shell'
 import ProjectCover from './ProjectCover'
@@ -18,18 +18,8 @@ const caseStudyTitles = {
   pacepop: 'PACEPOP',
 }
 
-const homepageProjects = new Map(allProjects.map(project => [project.slug, project]))
-const leadProjects = ['bubbas-production', 'pacepop', 'honda-spatial', 'ethicon-care'].map(slug => homepageProjects.get(slug))
-const supportingProjects = [
-  'swim-up-hill',
-  'haily',
-  'ars-pharma',
-  'story-authoring',
-  'bubbas-daily-target',
-  'learning-mobility',
-  'samsung-podcast',
-  'b4q4-widgets',
-].map(slug => homepageProjects.get(slug)).filter(Boolean)
+const leadProjects = homepageProjects.slice(0, 4)
+const supportingProjects = homepageProjects.slice(4)
 
 const homeSchools = [
   { name: 'USC Iovine and Young Academy', degree: 'M.S. Integrated Design, Business & Technology', logo: '/assets/logo-usc.png' },
@@ -52,6 +42,7 @@ function CaseStudyRow({ project, index }) {
       <div className={s.caseStudyCopy}>
         <h3><a href={`/work/${project.slug}/`}>{caseStudyTitles[project.slug] || project.title}</a></h3>
         <p className={s.caseStudySummary}>{project.summary}</p>
+        <span className={s.projectProcessCue} data-project-process-cue="true">{project.processCue}</span>
       </div>
       <div className={s.caseStudyDetails}>
         <dl>
@@ -74,6 +65,7 @@ function ProductWorkCard({ project }) {
       </span>
       <strong>{caseStudyTitles[project.slug] || project.title}</strong>
       <span className={s.productWorkRole} data-project-role="true">{project.role}</span>
+      <span className={s.projectProcessCue} data-project-process-cue="true">{project.processCue}</span>
       <ArrowUpRight size={22} aria-hidden="true" />
     </span>
   </a>

@@ -809,6 +809,7 @@
 .caseStudyCopy h3 a { transition: color 180ms ease; }
 .caseStudyCopy h3 a:hover { color: var(--accent); }
 .caseStudySummary { max-width: 59ch; font-size: 14px; line-height: 1.58; color: var(--muted); margin-top: 12px; }
+.projectProcessCue { display: block; margin-top: 13px; color: var(--accent); font-size: 11px; line-height: 1.45; font-weight: 600; }
 .caseStudyDetails { display: grid; grid-template-rows: 1fr auto; margin-top: 14px; }
 .caseStudyDetails dl { display: grid; grid-template-columns: 1fr; grid-template-rows: minmax(48px, auto) minmax(38px, auto); gap: 6px; }
 .caseStudyDetails dl > div:first-child { min-height: 48px; }
@@ -846,6 +847,7 @@
 .productWorkIdentity .caseStudyOrg { margin: 0; color: var(--ink); font-size: inherit; font-weight: 620; }
 .productWorkCaption > strong { font-size: 18px; line-height: 1.18; font-weight: 590; transition: color 180ms ease; }
 .productWorkRole { grid-column: 1; color: var(--muted); font-size: 11px; line-height: 1.45; }
+.productWorkCaption .projectProcessCue { grid-column: 1 / -1; margin-top: 4px; }
 .productWorkCaption > svg { grid-column: 2; grid-row: 2 / span 2; align-self: start; width: 18px; height: 18px; color: var(--muted); opacity: .72; transition: color 180ms ease, transform 180ms ease; }
 .productWorkCard:is(:hover, :focus-visible) .productWorkCaption > strong { color: var(--accent); }
 .productWorkCard:is(:hover, :focus-visible) .productWorkCaption > svg { color: var(--accent); opacity: 1; transform: translate(3px, -3px); }
@@ -1000,6 +1002,7 @@
   align-items: baseline;
   gap: 6px 22px;
   width: auto;
+  max-width: 100%;
   margin: 26px 0 8px;
   padding: 10px 0;
   overflow-x: auto;
@@ -1032,7 +1035,66 @@
 .caseVisual figcaption, .storyArtifact figcaption, .workflow figcaption { margin-top: 12px; font-family: inherit; font-size: 12px; line-height: 1.55; }
 .caseContributionPanel { display: grid; grid-template-columns: minmax(120px, 2fr) minmax(0, 8fr) 2fr; gap: 24px; padding: 34px 0; border-bottom: 1px solid var(--line); }
 .caseContributionPanel > p { grid-column: 2; max-width: 760px; font-size: 16px; line-height: 1.65; color: var(--muted); }
+.problemStatement {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 32px 24px;
+  padding: 88px 0 82px;
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--line);
+  scroll-margin-top: 140px;
+}
+.problemHeading { grid-column: 1 / span 7; }
+.problemHeading .label { color: var(--accent); }
+.problemHeading h2 { max-width: 760px; margin-top: 22px; font-size: 48px; line-height: 1.08; font-weight: 630; text-wrap: balance; }
+.problemContext { grid-column: 9 / -1; align-self: end; border-top: 1px solid var(--ink); }
+.problemContext > div { padding: 16px 0; border-bottom: 1px solid var(--line); }
+.problemContext dt { color: var(--accent); font-size: 11px; line-height: 1.4; font-weight: 600; }
+.problemContext dd { margin-top: 7px; color: var(--muted); font-size: 14px; line-height: 1.58; }
 .caseBody { width: 100%; }
+.processStage {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 38px 24px;
+  margin: 0;
+  padding: 96px 0;
+  border-top: 1px solid var(--line);
+  scroll-margin-top: 140px;
+}
+.processStage:first-child { margin-top: 68px; border-top-color: var(--ink); }
+.processStageIndex { grid-column: 1 / span 2; color: #c5c6c2; font-size: 64px; line-height: .9; font-weight: 430; font-variant-numeric: tabular-nums; }
+.processStageNarrative { grid-column: 3 / span 8; max-width: 820px; }
+.processStageLabel { display: block; color: var(--accent); font-size: 12px; line-height: 1.5; font-weight: 650; }
+.processStageNarrative h2 { max-width: 760px; margin-top: 16px; font-size: 44px; line-height: 1.08; font-weight: 630; text-wrap: balance; }
+.processStageNarrative > dl { margin-top: 34px; border-top: 1px solid var(--ink); }
+.processStageNarrative > dl > div { display: grid; grid-template-columns: minmax(120px, 1fr) minmax(0, 3fr); gap: 24px; padding: 18px 0; border-bottom: 1px solid var(--line); }
+.processStageNarrative dt { color: var(--accent); font-size: 11px; line-height: 1.45; font-weight: 600; }
+.processStageNarrative dd { color: var(--muted); font-size: 16px; line-height: 1.64; }
+.processResolution {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 28px 24px;
+  margin-top: 48px;
+  padding: 92px 0 84px;
+  border-top: 1px solid var(--ink);
+  scroll-margin-top: 140px;
+}
+.processResolution > .label { grid-column: 1 / span 2; color: var(--accent); }
+.processResolution > h2 { grid-column: 3 / span 8; max-width: 820px; font-size: 48px; line-height: 1.08; font-weight: 630; text-wrap: balance; }
+.processComparison {
+  grid-column: 3 / -1;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 20px;
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--line);
+}
+.processComparison > div { min-width: 0; padding: 22px 24px 24px 0; }
+.processComparison > div + div { padding-left: 24px; border-left: 1px solid var(--line); }
+.processComparison dt, .resolutionEvidence dt { color: var(--accent); font-size: 11px; line-height: 1.45; font-weight: 650; }
+.processComparison dd { margin-top: 12px; font-size: 16px; line-height: 1.62; }
+.resolutionEvidence { grid-column: 3 / span 8; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 30px; margin-top: 18px; }
+.resolutionEvidence dd { margin-top: 8px; color: var(--muted); font-size: 15px; line-height: 1.62; }
 .storySection {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
@@ -1364,6 +1426,25 @@
   .caseContributionPanel { display: block; padding: 26px 0 8px; }
   .caseContributionPanel .label { color: var(--accent); font-weight: 600; }
   .caseContributionPanel p { font-size: 16px; line-height: 1.65; color: var(--muted); margin-top: 12px; }
+  .problemStatement { grid-template-columns: 1fr; gap: 32px; padding: 54px 0 50px; }
+  .problemHeading, .problemContext { grid-column: 1; }
+  .problemHeading h2 { margin-top: 16px; font-size: 31px; line-height: 1.12; }
+  .problemContext { align-self: auto; }
+  .processStage { grid-template-columns: 1fr; gap: 24px; padding: 56px 0; }
+  .processStage:first-child { margin-top: 44px; }
+  .processStageIndex, .processStageNarrative, .processStage > .storyEvidenceGrid { grid-column: 1; }
+  .processStageIndex { font-size: 48px; }
+  .processStageNarrative h2 { margin-top: 12px; font-size: 31px; line-height: 1.12; }
+  .processStageNarrative > dl { margin-top: 26px; }
+  .processStageNarrative > dl > div { grid-template-columns: 1fr; gap: 7px; padding: 15px 0; }
+  .processStageNarrative dd { font-size: 15px; }
+  .processResolution { grid-template-columns: 1fr; gap: 22px; margin-top: 28px; padding: 56px 0 50px; }
+  .processResolution > .label, .processResolution > h2, .processComparison, .resolutionEvidence { grid-column: 1; }
+  .processResolution > h2 { font-size: 32px; line-height: 1.1; }
+  .processComparison { grid-template-columns: 1fr; margin-top: 6px; }
+  .processComparison > div { padding: 18px 0; }
+  .processComparison > div + div { padding-left: 0; border-top: 1px solid var(--line); border-left: 0; }
+  .resolutionEvidence { grid-template-columns: 1fr; gap: 22px; margin-top: 8px; }
   .storySection { grid-template-columns: 1fr; padding: 52px 0; }
   .storySection:first-child { margin-top: 46px; }
   [data-case-study-mode='concise'] .storySection { padding: 44px 0; }

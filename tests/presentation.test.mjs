@@ -527,18 +527,12 @@ test('case studies use quiet editorial navigation and process prose', async () =
   const server = await createServer({ server: { middlewareMode: true, ws: false }, appType: 'custom', logLevel: 'error' })
   try {
     const { render } = await server.ssrLoadModule('/src/entry-server.jsx')
-    const html = render('/work/bubbas-production/')
     const honda = render('/work/honda-spatial/')
     const navigation = honda.slice(honda.indexOf('aria-label="Case study sections"'), honda.indexOf('</nav>', honda.indexOf('aria-label="Case study sections"')))
-    const process = html.slice(html.indexOf('>Process</span>'), html.indexOf('</figure>', html.indexOf('>Process</span>')))
 
-    assert.match(navigation, /In this project/)
-    assert.match(navigation, /System constraint/)
+    assert.match(navigation, /Design process/)
+    for (const label of ['Empathize', 'Define', 'Ideate', 'Prototype', 'Test', 'Resolution']) assert.match(navigation, new RegExp(`>${label}<`))
     assert.doesNotMatch(navigation, /<span>0\d<\/span>/)
-    assert.match(process, /Production materials/)
-    assert.match(process, /Automated preparation/)
-    assert.match(process, /Monitoring and control/)
-    assert.doesNotMatch(process, /<ol>|<li|lucide-arrow-right/)
 
     const moduleCss = readFileSync(new URL('../src/portfolio/Portfolio.module.css', import.meta.url), 'utf8')
     const currentCss = moduleCss.slice(moduleCss.indexOf('/* UX Design Engineer portfolio */'))
@@ -582,7 +576,7 @@ test('detailed case studies use an editorial introduction and ordered facts', as
   } finally { await server.close() }
 })
 
-test('case study navigation exposes authored phases without numeric section headings', async () => {
+test('case study navigation exposes the fixed design process while archive work keeps concise framing', async () => {
   const server = await createServer({ server: { middlewareMode: true, ws: false }, appType: 'custom', logLevel: 'error' })
   try {
     const { render } = await server.ssrLoadModule('/src/entry-server.jsx')
@@ -592,10 +586,9 @@ test('case study navigation exposes authored phases without numeric section head
     const navigation = detailed.slice(navigationStart, detailed.indexOf('</nav>', navigationStart))
     const navigationLabels = [...navigation.matchAll(/<a[^>]*>([^<]+)<\/a>/g)].map(match => match[1])
     assert.doesNotMatch(navigation, />Overview</)
-    assert.equal(navigationLabels[0], 'Problem')
-    assert.match(detailed, /data-story-phase="Problem"/)
-    assert.match(detailed, /data-story-phase="Design response"/)
-    assert.doesNotMatch(detailed, /class="[^"]*storyHeading[^"]*">\s*<span>0[1-9]<\/span>/)
+    assert.deepEqual(navigationLabels, ['Empathize', 'Define', 'Ideate', 'Prototype', 'Test', 'Resolution'])
+    assert.equal((detailed.match(/data-design-stage=/g) || []).length, 5)
+    assert.match(detailed, /data-process-resolution="true"/)
     const concise = render('/work/newegg/')
     assert.match(concise, /data-case-study-mode="concise"/)
     assert.doesNotMatch(concise, /data-phase-navigation="true"/)
@@ -603,19 +596,37 @@ test('case study navigation exposes authored phases without numeric section head
   } finally { await server.close() }
 })
 
-test('case study evidence and decisions use the open editorial treatment', async () => {
+test('case study evidence and resolution use the open editorial treatment', async () => {
   const server = await createServer({ server: { middlewareMode: true, ws: false }, appType: 'custom', logLevel: 'error' })
   try {
     const { render } = await server.ssrLoadModule('/src/entry-server.jsx')
     const honda = render('/work/honda-spatial/')
-    assert.match(honda, /data-design-decision="true"/)
-    assert.match(honda, />Problem</)
-    assert.match(honda, />Design response</)
+    assert.match(honda, /data-design-stage="prototype"/)
+    assert.match(honda, /data-process-evidence="prototype"/)
     assert.match(honda, /data-image-presentation="slide"/)
-    assert.match(honda, /data-outcome-section="true"/)
+    assert.match(honda, /data-process-resolution="true"/)
     const css = readFileSync(new URL('../src/portfolio/Portfolio.module.css', import.meta.url), 'utf8')
     assert.match(css, /\.storyArtifactSlide img\s*{[^}]*object-fit:\s*contain/s)
-    assert.match(css, /\.outcome\s*{[^}]*background:\s*var\(--paper\)/s)
-    assert.doesNotMatch(css, /\.designDecision > div\s*{[^}]*border:\s*1px solid/s)
+    assert.doesNotMatch(css, /\.processStage\s*{[^}]*border-radius:/s)
   } finally { await server.close() }
+})
+
+test('homepage cards expose one concise process transition', async () => {
+  const server = await createServer({ server: { middlewareMode: true, ws: false }, appType: 'custom', logLevel: 'error' })
+  try {
+    const { render } = await server.ssrLoadModule('/src/entry-server.jsx')
+    const html = render('/')
+    assert.equal((html.match(/data-project-process-cue="true"/g) || []).length, 12)
+    assert.match(html, /Scattered inputs → production system/)
+    assert.match(html, /Platform constraints → spatial toolkit/)
+  } finally { await server.close() }
+})
+
+test('process layouts use open editorial grids at desktop and mobile', () => {
+  const css = readFileSync(new URL('../src/portfolio/Portfolio.module.css', import.meta.url), 'utf8')
+  assert.match(css, /\.problemStatement\s*{[^}]*display:\s*grid/s)
+  assert.match(css, /\.processStage\s*{[^}]*grid-template-columns:\s*repeat\(12,/s)
+  assert.match(css, /\.processComparison\s*{[^}]*border-top:/s)
+  assert.doesNotMatch(css, /\.processStage\s*{[^}]*border-radius:/s)
+  assert.match(css, /@media\s*\(max-width:\s*600px\)[\s\S]*?\.processStage\s*{[^}]*grid-template-columns:\s*1fr/s)
 })
