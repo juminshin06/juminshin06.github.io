@@ -3,6 +3,7 @@ import { homepageProjects } from '../data/portfolio'
 import profile from '../data/profile.json'
 import { ProjectImage, SectionHeading, TextLink } from './Shell'
 import ProjectCover from './ProjectCover'
+import AgentHero from './AgentHero'
 import TechTools from './Toolkit'
 import s from './Portfolio.module.css'
 
@@ -98,6 +99,9 @@ export default function Home() {
           <p className={s.heroRole}>UX Design Engineer</p>
         </div>
         <p className={s.heroStatement}>I turn research into working interfaces across AI, spatial computing and digital products.</p>
+      </div>
+      <AgentHero />
+      <div className={s.heroFootRow}>
         <p className={s.heroMeta}>Research · Interaction · Prototyping · AI</p>
         <div className={s.heroAffiliation} aria-label="Graduate student at USC Iovine and Young Academy">
           <img src="/assets/logo-usc.png" width="30" height="31" alt="" aria-hidden="true" />

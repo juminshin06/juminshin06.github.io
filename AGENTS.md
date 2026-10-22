@@ -92,6 +92,14 @@ Optimized WebP derivatives live in `public/assets/optimized`, with dimensions an
 
 The `src/components/Figma_Image` folder appears to contain source or backup images and is not currently imported by the app.
 
+## Chatbot
+
+The homepage hero (`src/portfolio/AgentHero.jsx`) and the floating chat (`src/portfolio/ChatBot.jsx`) answer questions about the portfolio. Typed questions go to a Vercel Edge Function in `chatbot-api/` that streams a Claude answer; when `VITE_CHAT_API_URL` (in `.env.production`) is empty or the function fails, `src/portfolio/agentIntents.js` answers from a keyword index of the same data.
+
+- The model only knows `chatbot-api/knowledge.js`, generated from `src/data/*.json` by `node scripts/build-chat-knowledge.mjs`. Regenerate it and redeploy the function whenever project or profile data changes.
+- `ANTHROPIC_API_KEY` lives only in Vercel environment variables, never in this repository. Deploy steps are in `chatbot-api/README.md`.
+- The hero's auto-typed demo uses the local intents (no API cost); only visitor-typed questions call the function.
+
 ## HandSign Demo
 
 `public/handsign` is a standalone app embedded by the HandSign project iframe at `/handsign/index.html`.

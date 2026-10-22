@@ -1,0 +1,13 @@
+{
+  "name": "jumin-chatbot-api",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Edge function that answers questions about Jumin Shin's portfolio with Claude.",
+  "scripts": {
+    "knowledge": "node ../scripts/build-chat-knowledge.mjs"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^1.1.0"
+  }
+}

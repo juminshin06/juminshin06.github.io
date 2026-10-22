@@ -3,6 +3,7 @@ import { ArrowUpRight, ArrowRight, Menu, X, Download, Mail, Link2, FileText, Boo
 import profile from '../data/profile.json'
 import imageManifest from '../../public/assets/optimized/manifest.json'
 import LogoCharacter from './LogoCharacter'
+import Critters from './Critters'
 import s from './Portfolio.module.css'
 
 export const resumeUrl = '/assets/JuminShin_Resume.pdf'
@@ -54,6 +55,7 @@ export function Header({ active }) {
 }
 export function Footer() {
   return <footer className={s.footer} id="contact">
+    <Critters />
     <div className={s.footerTop}>
       <div className={s.footerHeading}>
         <p className={s.label}>Contact</p>

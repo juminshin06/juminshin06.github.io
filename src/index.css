@@ -6,7 +6,8 @@
   font-display: swap;
 }
 :root {
-  font-family: 'Geist', 'Helvetica Neue', Arial, sans-serif;
+  /* System-first like iOS: SF on Apple devices, with Geist as the self-hosted fallback elsewhere. */
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Geist', 'Helvetica Neue', Arial, sans-serif;
   color: #181916;
   background: #fff;
   font-synthesis: none;

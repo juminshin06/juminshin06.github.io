@@ -339,8 +339,11 @@ test('the homepage opens with a clean portrait and presents four lead projects t
     assert.doesNotMatch(hero, /data-hero-character|data-hero-portrait/)
     assert.match(hero, /class="[^"]*heroIdentity/)
     assert.match(html, /data-critter-layer="true"/)
-    assert.equal((html.match(/data-critter="ant"/g) || []).length, 2)
+    assert.equal((html.match(/data-critter="ant"/g) || []).length, 1)
     assert.equal((html.match(/data-critter="snail"/g) || []).length, 1)
+    assert.ok(html.indexOf('data-critter-layer="true"') > html.indexOf('<footer'), 'critters live in the footer')
+    assert.match(html, /data-chat-launcher="true"/)
+    assert.doesNotMatch(html, /data-chat-panel="true"/)
     assert.doesNotMatch(html, /Project index|aria-label="Project shortcuts"/)
     assert.doesNotMatch(hero, /<figcaption>/)
 
