@@ -1,9 +1,8 @@
-import { ArrowRight, ArrowUpRight } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { homepageProjects } from '../data/portfolio'
 import profile from '../data/profile.json'
-import { ProjectImage, SectionHeading, TextLink } from './Shell'
+import { TextLink } from './Shell'
 import ProjectCover from './ProjectCover'
-import HeroCharacter from './HeroCharacter'
 import TechTools from './Toolkit'
 import s from './Portfolio.module.css'
 
@@ -19,8 +18,8 @@ const caseStudyTitles = {
   pacepop: 'PACEPOP',
 }
 
-const leadProjects = homepageProjects.slice(0, 4)
-const supportingProjects = homepageProjects.slice(4)
+// The first few projects get the composed lead covers; the rest use the lighter gallery cover.
+const leadCount = 4
 
 const homeSchools = [
   { name: 'USC Iovine and Young Academy', degree: 'M.S. Integrated Design, Business & Technology', logo: '/assets/logo-usc.png' },
@@ -28,48 +27,25 @@ const homeSchools = [
   { name: 'Hongik University', degree: 'BFA Design Convergence · B.Eng. Game Software', logo: '/assets/logo-hongik.png' },
 ]
 
-function CaseStudyRow({ project, index }) {
-  const primaryFact = project.facts?.[0]
-  return <article data-reveal data-case-study-entry="true" className={s.caseStudyRow}>
-    <a href={`/work/${project.slug}/`} className={s.caseStudyMedia} data-project-slug={project.slug} aria-label={`View case study: ${project.title}`}>
-      <ProjectCover project={project} variant="lead" eager={index === 0} />
-      <span className={s.projectAction} aria-hidden="true">View case study<ArrowUpRight size={18} /></span>
+function FeedCard({ project, index }) {
+  const lead = index < leadCount
+  const title = caseStudyTitles[project.slug] || project.title
+  const href = `/work/${project.slug}/`
+  const marker = lead ? { 'data-case-study-entry': 'true' } : { 'data-more-work-project': 'true' }
+  return <li data-reveal {...marker} className={`${s.feedCard} ${lead ? '' : s.productWorkCard}`} data-project-slug={project.slug}>
+    <a href={href} className={`${s.feedMedia} ${lead ? s.caseStudyMedia : s.productWorkMedia}`} data-project-slug={project.slug} data-cursor="Open" aria-label={`View case study: ${title}`}>
+      <ProjectCover project={project} variant={lead ? 'lead' : 'gallery'} eager={index === 0} />
     </a>
-    <div className={s.caseStudyCaption} data-project-caption="true">
-      <div className={s.caseStudyIdentity}>
+    <div className={s.feedMeta} data-project-caption="true">
+      <h3><a href={href}>{title}</a></h3>
+      <span className={s.feedYear}>{project.year}</span>
+      <p className={s.feedLine}>
         <span className={s.caseStudyCompany} data-project-company="true">{project.organization}</span>
-        <span className={s.caseStudyNumber}>{String(index + 1).padStart(2, '0')}</span>
-      </div>
-      <div className={s.caseStudyCopy}>
-        <h3><a href={`/work/${project.slug}/`}>{caseStudyTitles[project.slug] || project.title}</a></h3>
-        <p className={s.caseStudySummary}>{project.summary}</p>
-        <span className={s.projectProcessCue} data-project-process-cue="true">{project.processCue}</span>
-      </div>
-      <div className={s.caseStudyDetails}>
-        <dl>
-          <div><dt>My role</dt><dd>{project.role}</dd></div>
-          {primaryFact && <div><dt>{primaryFact.label}</dt><dd>{primaryFact.value}</dd></div>}
-        </dl>
-        <TextLink href={`/work/${project.slug}/`}>Read project</TextLink>
-      </div>
-    </div>
-  </article>
-}
-
-function ProductWorkCard({ project }) {
-  return <a data-reveal data-more-work-project="true" data-project-slug={project.slug} className={s.productWorkCard} href={`/work/${project.slug}/`}>
-    <div className={s.productWorkMedia} aria-hidden="true"><ProjectCover project={project} variant="gallery" /></div>
-    <span className={s.productWorkCaption}>
-      <span className={s.productWorkIdentity}>
-        <span className={s.caseStudyOrg} data-project-company="true">{project.organization}</span>
-        <span>{project.year}</span>
-      </span>
-      <strong>{caseStudyTitles[project.slug] || project.title}</strong>
-      <span className={s.productWorkRole} data-project-role="true">{project.role}</span>
+        <span className={s.feedRole} data-project-role="true">{project.role}</span>
+      </p>
       <span className={s.projectProcessCue} data-project-process-cue="true">{project.processCue}</span>
-      <ArrowUpRight size={22} aria-hidden="true" />
-    </span>
-  </a>
+    </div>
+  </li>
 }
 
 function EditorialPortrait() {
@@ -108,20 +84,12 @@ export default function Home() {
           </span>
         </div>
       </div>
-      <HeroCharacter />
     </section>
 
-    <section className={s.caseStudies} id="work" aria-label="Selected work">
-      <div className={s.caseStudyList}>
-        {leadProjects.map((project, index) => <CaseStudyRow key={project.id} project={project} index={index} />)}
-      </div>
-    </section>
-
-    <section className={s.moreWork} aria-labelledby="more-work-heading">
-      <SectionHeading id="more-work-heading" title="More product work" />
-      <div className={s.productWorkGrid}>
-        {supportingProjects.map(project => <ProductWorkCard key={project.id} project={project} />)}
-      </div>
+    <section className={s.feed} id="work" aria-label="Selected work">
+      <ol className={s.feedList} data-work-feed="true">
+        {homepageProjects.map((project, index) => <FeedCard key={project.id} project={project} index={index} />)}
+      </ol>
       <a className={s.researchCallout} href="/research/" data-research-cta="true">
         <span>Research notes and publications</span>
         <strong>Human-AI collaboration, accessibility and product direction.</strong>

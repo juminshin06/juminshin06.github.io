@@ -1,6 +1,8 @@
 import { useEffect, useRef } from 'react'
 import { pageMetadata, resolvePage } from './data/portfolio'
 import { Header, Footer } from './portfolio/Shell'
+import Cursor from './portfolio/Cursor'
+import Critters from './portfolio/Critters'
 import Home from './portfolio/Home'
 import CaseStudy from './portfolio/CaseStudy'
 import { About, Research, Archive, Life, NotFound } from './portfolio/Pages'
@@ -24,5 +26,7 @@ export default function App({ path = '/' }) {
       {page.type === 'project' ? <CaseStudy project={page.project} /> : <View />}
     </main>
     <Footer />
+    <Critters />
+    <Cursor />
   </>
 }

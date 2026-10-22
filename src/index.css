@@ -38,6 +38,10 @@ main:focus { outline: none; }
 @media (min-width: 1600px) { :root { --gutter: 64px; } }
 @media (max-width: 900px) { :root { --gutter: 32px; } }
 @media (max-width: 600px) { :root { --gutter: 20px; } }
+html[data-custom-cursor],
+html[data-custom-cursor] a,
+html[data-custom-cursor] button,
+html[data-custom-cursor] model-viewer { cursor: url('/assets/cursor.svg') 12 12, auto; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; }

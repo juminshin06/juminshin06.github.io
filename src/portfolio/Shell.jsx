@@ -1,10 +1,24 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { ArrowUpRight, ArrowRight, Menu, X, Download, Mail, Link2, FileText, BookOpen, Archive as ArchiveIcon, Sparkles } from 'lucide-react'
 import profile from '../data/profile.json'
 import imageManifest from '../../public/assets/optimized/manifest.json'
+import LogoCharacter from './LogoCharacter'
 import s from './Portfolio.module.css'
 
 export const resumeUrl = '/assets/JuminShin_Resume.pdf'
+
+// Where Jumin is right now; the time fills in on the client so prerendered pages never go stale.
+function LiveClock() {
+  const [time, setTime] = useState('')
+  useEffect(() => {
+    const format = new Intl.DateTimeFormat('en-US', { timeZone: 'America/Los_Angeles', hour: 'numeric', minute: '2-digit', second: '2-digit' })
+    const update = () => setTime(format.format(new Date()))
+    update()
+    const timer = window.setInterval(update, 1000)
+    return () => window.clearInterval(timer)
+  }, [])
+  return <p className={s.localTime} data-local-time="true"><span>Los Angeles</span>{time && <>, <time>{time}</time></>}</p>
+}
 export function TextLink({ href, children, external = false, className = '' }) {
   return <a className={`${s.textLink} ${className}`} href={href} {...(external ? { target: '_blank', rel: 'noreferrer' } : {})}>
     {children}<ArrowUpRight size={17} aria-hidden="true" />
@@ -17,13 +31,16 @@ export function Header({ active }) {
     if (event.key === 'Escape') { setOpen(false); toggle.current?.focus() }
   }
   return <header className={s.header} onKeyDown={closeMenu}>
-    <a className={s.brand} href="/" aria-label="Jumin Shin, home">Jumin Shin</a>
-    <nav className={s.desktopNav} aria-label="Primary">
-      <a href="/#work" aria-current={active === 'home' ? 'page' : undefined}>Work</a>
-      <a href="/research/" aria-current={active === 'research' ? 'page' : undefined}>Research</a>
-      <a href="/about/" aria-current={active === 'about' ? 'page' : undefined}>About</a>
-      <a href={resumeUrl} target="_blank" rel="noreferrer">Resume<ArrowUpRight size={16} aria-hidden="true" /></a>
-    </nav>
+    <a className={s.brand} href="/" aria-label="Jumin Shin, home"><LogoCharacter /><span>Jumin Shin</span></a>
+    <div className={s.headerRight}>
+      <nav className={s.desktopNav} aria-label="Primary">
+        <a href="/#work" aria-current={active === 'home' ? 'page' : undefined}>Work</a>
+        <a href="/research/" aria-current={active === 'research' ? 'page' : undefined}>Research</a>
+        <a href="/about/" aria-current={active === 'about' ? 'page' : undefined}>About</a>
+        <a href={resumeUrl} target="_blank" rel="noreferrer">Resume<ArrowUpRight size={16} aria-hidden="true" /></a>
+      </nav>
+      <LiveClock />
+    </div>
     <div className={s.mobileTools}>
       <a href={resumeUrl} target="_blank" rel="noreferrer" aria-label="Open resume PDF" title="Resume PDF"><Download size={21} /></a>
       <button ref={toggle} aria-label={open ? 'Close menu' : 'Open menu'} aria-expanded={open} aria-controls="mobile-navigation" onClick={() => setOpen(!open)} title={open ? 'Close menu' : 'Open menu'}>{open ? <X size={23} /> : <Menu size={23} />}</button>
