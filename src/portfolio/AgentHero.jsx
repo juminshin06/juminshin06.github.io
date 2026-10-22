@@ -44,6 +44,12 @@ export default function AgentHero() {
   }
 
   const takeOver = () => { if (!auto && !controller.current) return; cancel(); setAuto(false); if (phase === 'typing') setPhase('idle') }
+  // Focusing the box clears a demo or suggested question, so the visitor starts typing at once.
+  const onFocus = () => {
+    const fromDemo = auto || intents.some(item => item.prompt === query)
+    takeOver()
+    if (fromDemo) setQuery('')
+  }
 
   const ask = async (next, text = next.prompt) => {
     cancel()
@@ -118,7 +124,7 @@ export default function AgentHero() {
           ref={inputRef}
           value={query}
           onChange={event => { takeOver(); setQuery(event.target.value) }}
-          onFocus={takeOver}
+          onFocus={onFocus}
           placeholder="Ask anything about Jumin’s work…"
           autoComplete="off"
           spellCheck={false}

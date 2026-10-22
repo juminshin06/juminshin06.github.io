@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react'
 import { ArrowRight, ArrowUpRight } from 'lucide-react'
 import { homepageProjects } from '../data/portfolio'
 import profile from '../data/profile.json'
-import { ProjectImage, SectionHeading, TextLink } from './Shell'
+import { EditorialPortrait, ProjectImage, SectionHeading, TextLink } from './Shell'
 import ProjectCover from './ProjectCover'
 import IntroScreen from './IntroScreen'
 import TechTools from './Toolkit'
@@ -76,23 +76,6 @@ function ProductWorkCard({ project }) {
   </a>
 }
 
-function EditorialPortrait() {
-  return <picture>
-    <source
-      srcSet="/assets/optimized/jumin-editorial-portrait-v2-720.webp 720w, /assets/optimized/jumin-editorial-portrait-v2.webp 1122w"
-      sizes="(max-width: 600px) calc(100vw - 40px), (max-width: 1200px) 40vw, 480px"
-      type="image/webp"
-    />
-    <img
-      src="/assets/jumin-editorial-portrait-v2.png"
-      width="1122"
-      height="1402"
-      alt="Editorial portrait of Jumin Shin"
-      loading="lazy"
-      decoding="async"
-    />
-  </picture>
-}
 
 // Shown while recruiter mode is on: what is active, and the way back to the full portfolio.
 function ModeBar({ role, onExit }) {
@@ -163,7 +146,7 @@ export default function Home() {
           <a href="/about/" aria-label="About Jumin Shin" title="About Jumin Shin">
             <EditorialPortrait />
           </a>
-          <figcaption><span>Jumin Shin</span><span>UX Design Engineer · Los Angeles</span></figcaption>
+          <figcaption><span>Jumin Shin</span><span>UX Design Engineer</span></figcaption>
         </figure>
         <div data-reveal className={`${s.homeAboutCopy} ${s.bentoTile} ${s.bentoIntro}`}>
           <div className={s.bentoIntroHead}>

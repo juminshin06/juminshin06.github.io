@@ -1,13 +1,30 @@
 import { useEffect, useRef, useState } from 'react'
 import s from './Portfolio.module.css'
 
-// Two quiet pixel critters that live on the footer's top rule rather than following the
-// visitor around: they mostly rest, amble a little, think only when hovered, and say hi on click.
+// Quiet pixel critters that live on the footer's top rule rather than following the visitor
+// around: a little line of three ants that travels together, and a snail. They mostly rest,
+// amble a little, think when hovered, and say something about how Jumin works when clicked.
 const CRITTERS = [
-  { id: 'ant', kind: 'ant', speed: 16, start: 0.22 },
-  { id: 'snail', kind: 'snail', speed: 5, start: 0.7 },
+  { id: 'ant-1', kind: 'ant', index: 0 },
+  { id: 'ant-2', kind: 'ant', index: 1 },
+  { id: 'ant-3', kind: 'ant', index: 2 },
+  { id: 'snail', kind: 'snail', index: 0 },
 ]
-const GREETINGS = ['hi!', 'hello', 'hey', ':)']
+const GROUPS = [
+  { kind: 'ant', speed: 16, start: 0.2 },
+  { kind: 'snail', speed: 5, start: 0.7 },
+]
+const ANT_GAP = 6
+const LINES = {
+  snail: ['I may be slow, but I never stop moving toward my goal.'],
+  ant: [
+    'I adapt fast and blend right into the team.',
+    'New crew, new trail? I find my place quickly.',
+    'Alone I’m small. Together we carry a lot.',
+    'I listen first, then pull my weight.',
+  ],
+}
+const SAY_MS = 3600
 
 function AntSprite() {
   return <svg viewBox="0 0 18 10" width="30" height="17" fill="currentColor" aria-hidden="true">
@@ -29,40 +46,51 @@ function SnailSprite() {
 
 export default function Critters() {
   const layerRef = useRef(null)
-  const [greeting, setGreeting] = useState({})
+  const [said, setSaid] = useState({})
+  const turn = useRef({ ant: 0, snail: 0 })
+  const timers = useRef({})
 
   useEffect(() => {
     const layer = layerRef.current
     const motion = window.matchMedia('(prefers-reduced-motion: reduce)')
     if (!layer || motion.matches) return
-    const nodes = [...layer.querySelectorAll('[data-critter]')]
-    const state = nodes.map((node, index) => {
-      const spec = CRITTERS[index]
-      return { node, spec, x: layer.offsetWidth * spec.start, dir: index % 2 ? -1 : 1, mode: 'pause', until: 0, width: node.offsetWidth }
+    // Each group walks as one unit; the ants keep their places in line.
+    const groups = GROUPS.map((spec, index) => {
+      const nodes = [...layer.querySelectorAll(`[data-critter='${spec.kind}']`)]
+      const width = nodes.reduce((sum, node) => sum + node.offsetWidth, 0) + ANT_GAP * (nodes.length - 1)
+      return { spec, nodes, width, x: layer.offsetWidth * spec.start, dir: index % 2 ? -1 : 1, mode: 'pause', until: 0 }
     })
     let frame = 0
     let last = performance.now()
-    const schedule = (critter, now) => {
+    const mark = group => group.nodes.forEach(node => {
+      node.dataset.mode = group.mode
+      node.dataset.dir = group.dir > 0 ? 'right' : 'left'
+    })
+    const schedule = (group, now) => {
       const walking = Math.random() < 0.35
-      critter.mode = walking ? 'walk' : 'pause'
-      critter.until = now + (walking ? 1500 + Math.random() * 2500 : 2500 + Math.random() * 5000)
-      if (walking && Math.random() < 0.4) critter.dir *= -1
-      critter.node.dataset.mode = critter.mode
-      critter.node.dataset.dir = critter.dir > 0 ? 'right' : 'left'
+      group.mode = walking ? 'walk' : 'pause'
+      group.until = now + (walking ? 1500 + Math.random() * 2500 : 2500 + Math.random() * 5000)
+      if (walking && Math.random() < 0.4) group.dir *= -1
+      mark(group)
     }
     const tick = now => {
       frame = requestAnimationFrame(tick)
       const dt = Math.min(now - last, 64)
       last = now
       const max = layer.offsetWidth - 12
-      for (const critter of state) {
-        if (now >= critter.until) schedule(critter, now)
-        if (critter.mode === 'walk' && !critter.node.matches(':hover')) {
-          critter.x += critter.dir * critter.spec.speed * dt / 1000
-          if (critter.x < 12) { critter.x = 12; critter.dir = 1; critter.node.dataset.dir = 'right' }
-          if (critter.x + critter.width > max) { critter.x = max - critter.width; critter.dir = -1; critter.node.dataset.dir = 'left' }
+      for (const group of groups) {
+        if (now >= group.until) schedule(group, now)
+        const hovered = group.nodes.some(node => node.matches(':hover'))
+        if (group.mode === 'walk' && !hovered) {
+          group.x += group.dir * group.spec.speed * dt / 1000
+          if (group.x < 12) { group.x = 12; group.dir = 1; mark(group) }
+          if (group.x + group.width > max) { group.x = max - group.width; group.dir = -1; mark(group) }
         }
-        critter.node.style.transform = `translateX(${critter.x.toFixed(1)}px)`
+        let offset = group.x
+        for (const node of group.nodes) {
+          node.style.transform = `translateX(${offset.toFixed(1)}px)`
+          offset += node.offsetWidth + ANT_GAP
+        }
       }
     }
     const onVisibility = () => {
@@ -74,27 +102,47 @@ export default function Critters() {
     return () => { cancelAnimationFrame(frame); document.removeEventListener('visibilitychange', onVisibility) }
   }, [])
 
-  const greet = id => {
-    const word = GREETINGS[Math.floor(Math.random() * GREETINGS.length)]
-    setGreeting(current => ({ ...current, [id]: word }))
-    window.setTimeout(() => setGreeting(current => ({ ...current, [id]: '' })), 1400)
+  // Each click shows the next line for that kind of critter, kept inside the footer edges.
+  const speak = (critter, event) => {
+    const lines = LINES[critter.kind]
+    const text = lines[turn.current[critter.kind] % lines.length]
+    turn.current[critter.kind] += 1
+    const layer = layerRef.current.getBoundingClientRect()
+    const box = event.currentTarget.getBoundingClientRect()
+    const center = box.left + box.width / 2
+    const align = center - layer.left < 130 ? 'start' : layer.right - center < 130 ? 'end' : 'center'
+    // Only one ant talks at a time: a new bubble closes the others in the line.
+    const siblings = CRITTERS.filter(item => item.kind === critter.kind)
+    siblings.forEach(item => window.clearTimeout(timers.current[item.id]))
+    setSaid(current => ({
+      ...current,
+      ...Object.fromEntries(siblings.map(item => [item.id, null])),
+      [critter.id]: { text, align, key: Date.now() },
+    }))
+    timers.current[critter.id] = window.setTimeout(() => setSaid(current => ({ ...current, [critter.id]: null })), SAY_MS)
   }
 
   return <div ref={layerRef} className={s.critterLayer} data-critter-layer="true">
-    {CRITTERS.map(critter => <button
-      key={critter.id}
-      type="button"
-      className={s.critter}
-      data-critter={critter.kind}
-      data-mode="pause"
-      data-dir={critter.kind === 'ant' ? 'right' : 'left'}
-      style={{ transform: `translateX(${critter.start * 100}%)` }}
-      aria-label={`Say hi to the ${critter.kind}`}
-      onClick={() => greet(critter.id)}
-    >
-      <span className={s.critterThink} aria-hidden="true"><i /><i /><i /></span>
-      {greeting[critter.id] && <span className={s.critterSay} aria-hidden="true">{greeting[critter.id]}</span>}
-      {critter.kind === 'snail' ? <SnailSprite /> : <AntSprite />}
-    </button>)}
+    {CRITTERS.map(critter => {
+      const group = GROUPS.find(item => item.kind === critter.kind)
+      const line = said[critter.id]
+      return <button
+        key={critter.id}
+        type="button"
+        className={s.critter}
+        data-critter={critter.kind}
+        data-index={critter.index}
+        data-mode="pause"
+        data-dir={critter.kind === 'ant' ? 'right' : 'left'}
+        data-say-align={line?.align}
+        style={{ transform: `translateX(calc(${group.start * 100}% + ${critter.index * 36}px))` }}
+        aria-label={critter.kind === 'snail' ? 'Hear from the snail' : `Hear from ant ${critter.index + 1}`}
+        onClick={event => speak(critter, event)}
+      >
+        <span className={s.critterThink} aria-hidden="true"><i /><i /><i /></span>
+        {line && <span key={line.key} className={s.critterSay} role="status">{line.text}</span>}
+        {critter.kind === 'snail' ? <SnailSprite /> : <AntSprite />}
+      </button>
+    })}
   </div>
 }

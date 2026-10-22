@@ -2211,3 +2211,36 @@
 .chatAvatar, .agentAvatar, .chatLauncher .chatAvatar { background: linear-gradient(180deg, #f6f1ea, #ece4d9); }
 .chatAvatar img, .agentAvatar img { width: 100%; height: 100%; margin: 0; object-fit: cover; transform: translateY(6%) scale(1.04); }
 @keyframes npc-thought { from { opacity: 0; transform: translateY(3px); } to { opacity: 1; transform: none; } }
+
+/* Recruiter core skills: room under the heading, even rows, labels on one line. */
+.recruiterSection .techTools { grid-template-columns: repeat(auto-fill, minmax(92px, 1fr)); gap: 26px 16px; margin-top: 24px; }
+.recruiterSection .techTool { min-height: 0; gap: 10px; }
+.recruiterSection .techTool svg { width: 28px; height: 28px; }
+.recruiterSection .techTool span { white-space: nowrap; }
+
+/* Critter speech: a short sentence that wraps, stays inside the footer edges, and the three
+   ants step slightly out of sync. */
+.critterSay { width: max-content; max-width: 230px; padding: 7px 10px; border-radius: 12px; white-space: normal; text-align: left; font: 500 12px/1.4 -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Geist', sans-serif; letter-spacing: -0.005em; transform: none; translate: -50% 0; animation: critter-speak 3.6s ease-out forwards; }
+.critter[data-say-align='start'] .critterSay { left: 0; translate: 0 0; }
+.critter[data-say-align='end'] .critterSay { left: auto; right: 0; translate: 0 0; }
+.critter:has(.critterSay) .critterThink { display: none; }
+@keyframes critter-speak { 0% { opacity: 0; transform: translateY(4px); } 8%, 88% { opacity: 1; transform: none; } 100% { opacity: 0; transform: translateY(-4px); } }
+.critter[data-index='1'] :is(.critterLegA, .critterLegB) { animation-delay: 140ms; }
+.critter[data-index='1'] .critterLegB { animation-delay: 350ms; }
+.critter[data-index='2'] :is(.critterLegA, .critterLegB) { animation-delay: 70ms; }
+.critter[data-index='2'] .critterLegB { animation-delay: 280ms; }
+
+/* Picked up: she hangs from the pointer by her head, swings with its motion and kicks. */
+.npc[data-state='grab'] { z-index: 60; cursor: grabbing; }
+.npc[data-state='grab'] .npcShadow { opacity: 0; }
+.npc[data-state='grab'] .npcBody { transform-origin: 50% 12%; transform: rotate(var(--swing, 0deg)); transition: transform 120ms ease-out; animation: none; }
+.npc[data-state='grab'] model-viewer { transform-origin: 50% 15%; animation: npc-kick 260ms ease-in-out infinite alternate; }
+@keyframes npc-kick { 0% { transform: rotate(-7deg) translateY(0); } 50% { transform: rotate(0) translateY(3px) scale(1.02, .98); } 100% { transform: rotate(7deg) translateY(0); } }
+
+/* About page: the editorial portrait in a soft rounded frame, framed on her face. */
+.aboutIntroPortrait picture { display: block; overflow: hidden; border-radius: 24px; background: #f2f2f0; }
+.aboutIntro .aboutIntroPortrait img { object-position: 50% 20%; }
+@media (width <= 600px) { .aboutIntroPortrait picture { border-radius: 20px; } }
+
+/* About: the toolkit now closes the page, so give it room before the Life link. */
+.toolkit + .archiveCta { margin-top: 72px; }

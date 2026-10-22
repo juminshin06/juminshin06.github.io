@@ -8,7 +8,7 @@ import s from './Portfolio.module.css'
 
 export const resumeUrl = '/assets/JuminShin_Resume.pdf'
 
-// Where Jumin is right now; the time fills in on the client so prerendered pages never go stale.
+// Jumin's local time (Los Angeles); it fills in on the client so prerendered pages never go stale.
 function LiveClock() {
   const [time, setTime] = useState('')
   useEffect(() => {
@@ -18,7 +18,7 @@ function LiveClock() {
     const timer = window.setInterval(update, 1000)
     return () => window.clearInterval(timer)
   }, [])
-  return <p className={s.localTime} data-local-time="true"><span>Los Angeles</span>{time && <>, <time>{time}</time></>}</p>
+  return <p className={s.localTime} data-local-time="true">{time && <time>{time}</time>}</p>
 }
 export function TextLink({ href, children, external = false, className = '' }) {
   return <a className={`${s.textLink} ${className}`} href={href} {...(external ? { target: '_blank', rel: 'noreferrer' } : {})}>
@@ -50,8 +50,8 @@ export function Header({ active }) {
     <div className={s.headerRight}>
       <nav className={s.desktopNav} aria-label="Primary">
         <a href="/#work" aria-current={active === 'home' ? 'page' : undefined}>Work</a>
+        <a href="/about/" aria-current={active === 'about' ? 'page' : undefined}>About me</a>
         <a href="/research/" aria-current={active === 'research' ? 'page' : undefined}>Research</a>
-        <a href="/about/" aria-current={active === 'about' ? 'page' : undefined}>About</a>
         <a href={resumeUrl} target="_blank" rel="noreferrer">Resume<ArrowUpRight size={16} aria-hidden="true" /></a>
       </nav>
       <LiveClock />
@@ -61,7 +61,7 @@ export function Header({ active }) {
       <button ref={toggle} aria-label={open ? 'Close menu' : 'Open menu'} aria-expanded={open} aria-controls="mobile-navigation" onClick={() => setOpen(!open)} title={open ? 'Close menu' : 'Open menu'}>{open ? <X size={23} /> : <Menu size={23} />}</button>
     </div>
     {open && <nav id="mobile-navigation" className={s.mobileNav} aria-label="Mobile navigation">
-      {[['Work', '/#work'], ['Research', '/research/'], ['About', '/about/'], ['Archive', '/archive/']].map(([label, href]) => <a key={label} href={href} onClick={() => setOpen(false)}>{label}<ArrowRight size={24} /></a>)}
+      {[['Work', '/#work'], ['About me', '/about/'], ['Research', '/research/'], ['Archive', '/archive/']].map(([label, href]) => <a key={label} href={href} onClick={() => setOpen(false)}>{label}<ArrowRight size={24} /></a>)}
       <a href={`mailto:${profile.email}`}>Email<ArrowUpRight size={22} /></a>
       <a href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn<ArrowUpRight size={22} /></a>
     </nav>}
@@ -114,4 +114,24 @@ export function ProjectImage({ src, alt, eager = false, className = '', sizes = 
     srcSet={variants?.map(image => `${image.path} ${image.width}w`).join(', ')}
     sizes={sizes}
     alt={alt || ''} loading={eager ? 'eager' : 'lazy'} fetchpriority={eager ? 'high' : undefined} decoding="async" />
+}
+
+// The black-and-white editorial portrait, used on the homepage About and the About page.
+export function EditorialPortrait({ eager = false }) {
+  return <picture>
+    <source
+      srcSet="/assets/optimized/jumin-editorial-portrait-v2-720.webp 720w, /assets/optimized/jumin-editorial-portrait-v2.webp 1122w"
+      sizes="(max-width: 600px) calc(100vw - 40px), (max-width: 1200px) 40vw, 480px"
+      type="image/webp"
+    />
+    <img
+      src="/assets/jumin-editorial-portrait-v2.png"
+      width="1122"
+      height="1402"
+      alt="Editorial portrait of Jumin Shin"
+      loading={eager ? 'eager' : 'lazy'}
+      fetchpriority={eager ? 'high' : undefined}
+      decoding="async"
+    />
+  </picture>
 }

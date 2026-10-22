@@ -3,7 +3,7 @@ import { ArrowUpRight, ArrowRight, BookOpen, Code2, FileText, Link2, Mail } from
 import { allProjects, researchProjects, categoryLabels } from '../data/portfolio'
 import profile from '../data/profile.json'
 import events from '../data/events.json'
-import { ProjectImage, SectionHeading, TextLink, resumeUrl } from './Shell'
+import { EditorialPortrait, ProjectImage, SectionHeading, TextLink, resumeUrl } from './Shell'
 import TechTools from './Toolkit'
 import s from './Portfolio.module.css'
 
@@ -44,7 +44,7 @@ export function About() {
       <h1>A people-first approach to UX.</h1>
     </header>
     <section className={s.aboutIntro} aria-label="About Jumin Shin">
-      <figure><ProjectImage src="/assets/optimized/profile_hover2.webp" alt="Jumin Shin working at a laptop" eager sizes="(max-width: 600px) calc(100vw - 40px), 40vw" /><figcaption>Jumin Shin / {profile.role}</figcaption></figure>
+      <figure className={s.aboutIntroPortrait}><EditorialPortrait eager /><figcaption>Jumin Shin / {profile.role}</figcaption></figure>
       <div>
         <h2>{profile.tagline}</h2>
         {profile.bio.slice(0, 2).map(paragraph => <p className={s.bodyText} key={paragraph}>{paragraph}</p>)}
@@ -56,10 +56,6 @@ export function About() {
           {profile.github && <AboutLink href={profile.github} label="GitHub" icon={Code2} />}
         </div>
       </div>
-    </section>
-    <section className={s.toolkit} aria-labelledby="toolkit-heading">
-      <SectionHeading id="toolkit-heading" title="Tools I work with" note="From research flows to working prototypes" />
-      <TechTools />
     </section>
     <section className={s.capabilities} aria-labelledby="capabilities-heading">
       <SectionHeading id="capabilities-heading" title="UX skills & capabilities" />
@@ -95,6 +91,10 @@ export function About() {
         <span className={s.label}>{recognition.year}</span>
         <p>{recognition.title}</p>
       </div>)}
+    </section>
+    <section className={s.toolkit} aria-labelledby="toolkit-heading">
+      <SectionHeading id="toolkit-heading" title="Tools I work with" note="From research flows to working prototypes" />
+      <TechTools />
     </section>
     <div className={s.archiveCta}>
       <p>Community, workshops and moments along the way.</p>

@@ -43,6 +43,8 @@ const THOUGHTS = [
   'A design system is a promise of consistency.',
 ]
 const THOUGHT_MS = 3200
+const HOLD_MS = 280      // a press this long picks her up instead of clicking
+const GRIP = 18          // the pointer holds her by the head, this far below its tip
 
 // The empty space in the current viewport as a grid of cells where her feet may stand.
 function scan(self) {
@@ -123,6 +125,7 @@ export default function RoamingNpc() {
   const rootRef = useRef(null)
   const viewerRef = useRef(null)
   const bubbleRef = useRef(null)
+  const clickGuard = useRef(() => false)
 
   useEffect(() => {
     const fine = window.matchMedia('(hover: hover) and (pointer: fine)')
@@ -296,8 +299,13 @@ export default function RoamingNpc() {
       // A cached model can finish loading before the listener is attached.
       if (!npc.ready && viewer.loaded) onLoad()
       if (document.hidden || !npc.ready) return
+      // She steps aside while the recruiter view is open and comes back when it closes.
+      if (recruiting()) {
+        if (el.dataset.state !== 'hidden') { window.clearInterval(musing); setLine(''); hide() }
+        return
+      }
       const state = el.dataset.state
-      if (state === 'talk' || state === 'drop' || state === 'hop' || state === 'poof') return
+      if (state === 'talk' || state === 'drop' || state === 'hop' || state === 'poof' || state === 'grab') return
       const grid = scan(el)
       const here = grid.cellAt(npc.x, npc.y)
       if (state === 'hidden' || here < 0) {
@@ -313,7 +321,8 @@ export default function RoamingNpc() {
     const start = () => { if (!frame) { last = 0; frame = requestAnimationFrame(tick) } }
     const stop = () => { cancelAnimationFrame(frame); frame = 0 }
     const onVisibility = () => (document.hidden ? stop() : start())
-    const onLoad = () => { npc.ready = true; spawn(scan(el)) }
+    const recruiting = () => new URLSearchParams(window.location.search).get('mode') === 'recruiter'
+    const onLoad = () => { npc.ready = true; if (!recruiting()) spawn(scan(el)) }
 
     const onPointerMove = event => {
       if (event.pointerType !== 'mouse') return
@@ -350,7 +359,86 @@ export default function RoamingNpc() {
       start()
     }
 
+    // Press and hold to pick her up: she hangs from the pointer, swings with its motion and
+    // kicks her legs, then drops onto the nearest empty spot when let go.
+    const grab = { press: 0, active: false, settle: 0, id: 0, lastX: 0, lastAt: 0, tilt: 0, kick: 0, startX: 0, startY: 0 }
+    const hang = (x, y) => {
+      npc.x = x + window.scrollX
+      npc.y = y + window.scrollY + H - GRIP
+      place()
+    }
+    const pickUp = event => {
+      window.clearTimeout(grab.press)
+      grab.active = true
+      grab.lastX = event.clientX
+      grab.lastAt = performance.now()
+      grab.tilt = 0
+      window.clearInterval(musing)
+      setLine('')
+      stop()
+      npc.path = []
+      try { el.setPointerCapture(grab.id) } catch { /* pointer already released */ }
+      setState('grab')
+      hang(event.clientX, event.clientY)
+      // Struggle: her body twists left and right while she dangles.
+      let side = 1
+      face(30)
+      grab.kick = window.setInterval(() => { side *= -1; face(side * (24 + Math.random() * 14)) }, 230)
+      // The swing settles back to hanging straight when the pointer stops moving.
+      grab.settle = window.setInterval(() => {
+        grab.tilt *= 0.8
+        el.style.setProperty('--swing', `${grab.tilt.toFixed(1)}deg`)
+      }, 50)
+    }
+    const onPointerDown = event => {
+      if (event.button !== 0 || el.dataset.state === 'hidden') return
+      grab.id = event.pointerId
+      grab.startX = event.clientX
+      grab.startY = event.clientY
+      grab.press = window.setTimeout(() => pickUp(event), HOLD_MS)
+    }
+    const onGrabMove = event => {
+      if (!grab.active) {
+        // Dragging before the hold time also picks her up.
+        if (grab.press && Math.hypot(event.clientX - grab.startX, event.clientY - grab.startY) > 6) pickUp(event)
+        return
+      }
+      const now = performance.now()
+      const velocity = (event.clientX - grab.lastX) / Math.max(16, now - grab.lastAt)
+      grab.lastX = event.clientX
+      grab.lastAt = now
+      // She swings opposite to the pointer's motion, like a pendulum.
+      grab.tilt = Math.max(-32, Math.min(32, grab.tilt * 0.6 - velocity * 22))
+      el.style.setProperty('--swing', `${grab.tilt.toFixed(1)}deg`)
+      hang(event.clientX, event.clientY)
+    }
+    const letGo = () => {
+      window.clearTimeout(grab.press)
+      grab.press = 0
+      if (!grab.active) return
+      grab.active = false
+      grab.dropped = true
+      window.setTimeout(() => { grab.dropped = false }, 0)
+      window.clearInterval(grab.kick)
+      window.clearInterval(grab.settle)
+      el.style.setProperty('--swing', '0deg')
+      try { el.releasePointerCapture(grab.id) } catch { /* already released */ }
+      const grid = scan(el)
+      const here = grid.cellAt(npc.x, npc.y)
+      start()
+      if (here >= 0 && grid.free[here]) {
+        face(0)
+        setState('drop')
+        later(() => { if (el.dataset.state === 'drop') rest(600, 1200) }, 700)
+      } else relocate(grid)
+    }
+    clickGuard.current = () => grab.dropped
+
     viewer.addEventListener('load', onLoad)
+    el.addEventListener('pointerdown', onPointerDown)
+    el.addEventListener('pointermove', onGrabMove)
+    el.addEventListener('pointerup', letGo)
+    el.addEventListener('pointercancel', letGo)
     window.addEventListener('pointermove', onPointerMove, { passive: true })
     document.addEventListener('pointerout', onPointerOut)
     if (viewer.loaded) onLoad()
@@ -365,6 +453,13 @@ export default function RoamingNpc() {
       window.clearInterval(musing)
       timers.forEach(id => window.clearTimeout(id))
       viewer.removeEventListener('load', onLoad)
+      window.clearTimeout(grab.press)
+      window.clearInterval(grab.kick)
+      window.clearInterval(grab.settle)
+      el.removeEventListener('pointerdown', onPointerDown)
+      el.removeEventListener('pointermove', onGrabMove)
+      el.removeEventListener('pointerup', letGo)
+      el.removeEventListener('pointercancel', letGo)
       window.removeEventListener('pointermove', onPointerMove)
       document.removeEventListener('pointerout', onPointerOut)
       el.removeEventListener('pointerenter', onEnter)
@@ -389,7 +484,7 @@ export default function RoamingNpc() {
   }, [line])
 
   if (!enabled) return null
-  return <div ref={rootRef} className={s.npc} data-state="hidden" data-cursor="Chat" aria-hidden="true" onClick={() => askJumin('')}>
+  return <div ref={rootRef} className={s.npc} data-state="hidden" data-cursor="Chat" aria-hidden="true" onClick={() => { if (!clickGuard.current()) askJumin('') }}>
     <div ref={bubbleRef} className={s.npcBubble} data-open={line ? 'true' : 'false'}>
       <p key={line}>{line}</p>
       <span>Click me to ask about Jumin</span>
