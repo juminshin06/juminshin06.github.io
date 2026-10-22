@@ -47,14 +47,12 @@ function CaseStudyRow({ project, index }) {
       <div className={s.caseStudyCopy}>
         <h3><a href={`/work/${project.slug}/`}>{caseStudyTitles[project.slug] || project.title}</a></h3>
         <p className={s.caseStudySummary}>{project.summary}</p>
-        <span className={s.projectProcessCue} data-project-process-cue="true">{project.processCue}</span>
       </div>
       <div className={s.caseStudyDetails}>
         <dl>
           <div><dt>My role</dt><dd>{project.role}</dd></div>
           {primaryFact && <div><dt>{primaryFact.label}</dt><dd>{primaryFact.value}</dd></div>}
         </dl>
-        <TextLink href={`/work/${project.slug}/`}>Read project</TextLink>
       </div>
     </div>
   </article>
@@ -70,7 +68,6 @@ function ProductWorkCard({ project }) {
       </span>
       <strong>{caseStudyTitles[project.slug] || project.title}</strong>
       <span className={s.productWorkRole} data-project-role="true">{project.role}</span>
-      <span className={s.projectProcessCue} data-project-process-cue="true">{project.processCue}</span>
       <ArrowUpRight size={22} aria-hidden="true" />
     </span>
   </a>

@@ -1,5 +1,14 @@
 [
   {
+    "id": "life-007",
+    "category": "Teaching",
+    "title": "Program TA — USC Summer Computer Science Program",
+    "description": "Taught as a Program Teaching Assistant with the USC Thomas Lord Department of Computer Science. Co-developed a Vibe Coding curriculum on prompt engineering, multi-agent workflows and AI automation for 70 students across three sections, then advised final-hackathon teams on UX, interface design, build and debugging.",
+    "year": 2026,
+    "emoji": "🧑‍🏫",
+    "image": "/assets/life/life-007.jpg"
+  },
+  {
     "id": "life-001",
     "category": "Company Tour",
     "title": "LA Galaxy × USC Career Trek",

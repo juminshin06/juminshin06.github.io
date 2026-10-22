@@ -315,7 +315,7 @@ test('homepage projects preserve their original media sizing with editorial text
     assert.equal((featured.match(/data-project-caption="true"/g) || []).length, 4)
     assert.doesNotMatch(featured, /caseStudyTopline|caseStudyEvidence/)
     assert.match(featured, /My role/)
-    assert.match(featured, /Read project/)
+    assert.doesNotMatch(featured, /Read project/)
 
     const moduleCss = readFileSync(new URL('../src/portfolio/Portfolio.module.css', import.meta.url), 'utf8')
     const currentCss = moduleCss.slice(moduleCss.indexOf('/* UX Design Engineer portfolio */'))
@@ -627,14 +627,13 @@ test('case study evidence and resolution use the open editorial treatment', asyn
   } finally { await server.close() }
 })
 
-test('homepage cards expose one concise process transition', async () => {
+test('homepage cards stay quiet: no red process cue or read-more link', async () => {
   const server = await createServer({ server: { middlewareMode: true, ws: false }, appType: 'custom', logLevel: 'error' })
   try {
     const { render } = await server.ssrLoadModule('/src/entry-server.jsx')
     const html = render('/')
-    assert.equal((html.match(/data-project-process-cue="true"/g) || []).length, 12)
-    assert.match(html, /Internal editor friction → unified workspace/)
-    assert.match(html, /Platform constraints → spatial toolkit/)
+    assert.equal((html.match(/data-project-process-cue="true"/g) || []).length, 0)
+    assert.doesNotMatch(html, /Internal editor friction → unified workspace/)
   } finally { await server.close() }
 })
 
