@@ -12,8 +12,9 @@ const sleep = (ms, signal) => new Promise(resolve => {
   signal?.addEventListener('abort', () => { clearTimeout(timer); resolve() }, { once: true })
 })
 
-// The hero as the chat's front door: suggested questions type themselves in and get answered
-// from the portfolio data as a demo; a question the visitor types goes to the live chat.
+// The hero as the chat's front door: the first suggested question types itself in once and is
+// answered from the portfolio data as a demo; the other topics answer on a chip click, and a
+// question the visitor types goes to the live chat.
 export default function AgentHero() {
   const [query, setQuery] = useState('')
   const [phase, setPhase] = useState('idle') // idle | typing | thinking | answering | done
@@ -80,31 +81,24 @@ export default function AgentHero() {
     controller.current = current
     const { signal } = current
     setAuto(true)
+    // Demo just the first question once; the other topics wait for a chip click.
     const run = async () => {
       await sleep(900, signal)
-      for (let index = 0; !signal.aborted; index = (index + 1) % intents.length) {
-        const next = intents[index]
-        setPhase('typing')
-        setIntent(null)
-        setAnswer('')
-        for (let length = 1; length <= next.prompt.length; length += 1) {
-          if (signal.aborted) return
-          setQuery(next.prompt.slice(0, length))
-          await sleep(26 + Math.random() * 40, signal)
-        }
-        await sleep(700, signal)
+      const next = intents[0]
+      setPhase('typing')
+      setIntent(null)
+      setAnswer('')
+      for (let length = 1; length <= next.prompt.length; length += 1) {
         if (signal.aborted) return
-        await respond(next, signal)
-        await sleep(6500, signal)
-        if (signal.aborted) return
-        for (let length = next.prompt.length - 1; length >= 0; length -= 4) {
-          if (signal.aborted) return
-          setQuery(next.prompt.slice(0, Math.max(length, 0)))
-          await sleep(12, signal)
-        }
-        setQuery('')
-        await sleep(500, signal)
+        setQuery(next.prompt.slice(0, length))
+        await sleep(26 + Math.random() * 40, signal)
       }
+      await sleep(700, signal)
+      if (signal.aborted) return
+      await respond(next, signal)
+      if (signal.aborted) return
+      controller.current = null
+      setAuto(false)
     }
     run()
     return () => current.abort()
