@@ -2306,3 +2306,31 @@ html:not([data-guide]) [data-chat-launcher], html[data-guide='hero'] [data-chat-
 
 /* Key phrases in the hero answer stand out without changing color. */
 .agentText strong { font-weight: 650; color: var(--ink); }
+
+/* Tools on smaller screens: an app-style grid of centered icons with short labels, instead of
+   long two-column rows. Applies to the homepage, About and recruiter toolkits. */
+@media (width <= 900px) {
+  .techTools, .recruiterSection .techTools { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 24px 10px; }
+  .techTool, .homeToolkit .techTool, .recruiterSection .techTool { min-height: 0; align-items: center; gap: 10px; text-align: center; }
+  .techTool svg, .recruiterSection .techTool svg { width: 30px; height: 30px; }
+  .techTool span, .recruiterSection .techTool span { font-size: 12px; line-height: 1.25; white-space: normal; }
+}
+@media (width <= 600px) {
+  .techTools, .recruiterSection .techTools { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px 6px; }
+  .techTool svg, .recruiterSection .techTool svg { width: 28px; height: 28px; }
+  .techTool span, .recruiterSection .techTool span { font-size: 11.5px; }
+}
+
+/* Phones: no text smaller than 11px, and the About experience list stacks role, company and dates
+   so nothing gets cut off. */
+@media (width <= 600px) {
+  .copyright, .coverAnnotation, .artTop, .artBottom, .projectCategory, .researchMetric span,
+  .archiveRow p, .archiveStatus, .caseHeader > .label, .caseMetadata dt, .heroAffiliation small,
+  .designDecision dt, .productWorkIdentity, .homeEducation small, .heroCaption, .heroCaption .textLink,
+  .sectionHeading .label, .researchProject > div > .label, .publication .label { font-size: 11px; }
+  .bentoExperience .miniExperience > article { grid-template-columns: 1fr; gap: 2px; }
+  .bentoExperience .miniExperience strong { grid-column: 1; grid-row: 1; }
+  .bentoExperience .miniExperience span { grid-column: 1; grid-row: 2; white-space: normal; overflow: visible; }
+  .bentoExperience .miniExperience small { grid-column: 1; grid-row: 3; font-size: 12px; }
+}
+@media (width <= 900px) { .copyright, .coverAnnotation { font-size: 11px; } }
