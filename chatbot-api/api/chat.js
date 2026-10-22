@@ -108,11 +108,11 @@ const sendToGemini = (contents, thinking, signal) => fetch(ENDPOINT, {
   body: JSON.stringify({
     system_instruction: { parts: [{ text: SYSTEM }] },
     contents,
-    generationConfig: { maxOutputTokens: 1200, temperature: 0.4, ...(thinking ? { thinkingConfig: { thinkingLevel: 'low' } } : {}) },
+    generationConfig: { maxOutputTokens: 1200, temperature: 0.4, ...(thinking ? { thinkingConfig: { thinkingLevel: 'minimal' } } : {}) },
   }),
 })
 
-// Low thinking keeps answers quick; if the model rejects that setting, ask again without it.
+// Minimal thinking keeps answers quick; if the model rejects that setting, ask again without it.
 // A busy free tier (429/503) gets one short retry before the site falls back to its index.
 async function callGemini(contents, signal) {
   let thinking = true

@@ -48,10 +48,18 @@ export const intents = [
     projects: ['swim-up-hill', 'pacepop'],
   },
   {
+    id: 'strengths',
+    chip: 'My strengths',
+    prompt: 'What are her strengths?',
+    keywords: ['strength', 'stren', 'strong', 'skill', 'good at', 'best at', 'expertise', 'specialt', 'capabilit', 'why hire', 'what can', '강점', '장점', '잘하', '역량', '스킬'],
+    lead: 'My strength is connecting research, design and code in one practice: UX for AI experiences, user research and synthesis, UI design and front-end implementation, spatial interaction design, and rapid prototyping. I take an idea from user research to something people can try.',
+    projects: ['bubbas-production', 'honda-spatial', 'swim-up-hill'],
+  },
+  {
     id: 'about',
     chip: 'About me',
     prompt: 'Who is Jumin Shin?',
-    keywords: ['who', 'about', 'background', 'education', 'usc', 'resume', 'contact', 'email', 'hire', 'experience', 'bio', 'jumin'],
+    keywords: ['who', 'about you', 'about her', 'about jumin', 'yourself', 'background', 'education', 'usc', 'resume', 'contact', 'email', 'hire', 'experience', 'bio', 'jumin', '소개', '경력', '학력', '연락'],
     lead: profile.bio[0],
     projects: [],
     links: [
@@ -64,7 +72,7 @@ export const intents = [
 
 export const fallbackIntent = {
   id: 'fallback',
-  lead: 'I could not match that exactly, so here are the four lead projects. For anything else, email me.',
+  lead: 'I can’t answer that one right now, but these four projects show my work best. For anything specific, email me and I’ll reply directly.',
   projects: ['bubbas-production', 'pacepop', 'honda-spatial', 'ethicon-care'],
   links: [{ href: `mailto:${profile.email}`, label: 'Email me' }],
 }
