@@ -141,7 +141,7 @@ export default function Home() {
 
     <section className={s.homeAbout} aria-labelledby="home-about-heading">
       {/* One screen, four tiles: who, what she does, where she has worked, where she studied. */}
-      <div className={s.aboutBento}>
+      <div className={s.aboutBento} data-npc-avoid="true">
         <figure data-reveal className={`${s.aboutPortrait} ${s.aboutPortraitEditorial} ${s.bentoPortrait}`} data-hero-portrait="true">
           <a href="/about/" aria-label="About Jumin Shin" title="About Jumin Shin">
             <EditorialPortrait />

@@ -13,12 +13,13 @@ const CHASE = 104       // px per second while following the pointer
 const NEAR = 64         // how close she comes to the pointer without standing under it
 const PITCH = '78deg'
 
-// Everything she must never stand on: text, links, controls and media.
+// Everything she must never stand on: links, controls, media, cards and the footer. Every
+// visible line of text is avoided too (see scan), whatever element it sits in.
 const AVOID = [
   'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'li', 'dt', 'dd', 'blockquote', 'figcaption', 'label', 'small', 'time',
   'a', 'button', 'input', 'textarea', 'select', 'form', 'table',
   'img', 'picture', 'video', 'svg', 'model-viewer', 'iframe', 'canvas:not([data-npc-floor])',
-  '[data-chat-panel]', '[data-npc-avoid]',
+  'footer', '[data-chat-panel]', '[data-npc-avoid]',
 ].join(',')
 
 // Small UX design engineering beliefs she muses on while hovered, one at a time.
@@ -59,16 +60,29 @@ function scan(self) {
     const y = r * CELL + CELL / 2
     free[r * cols + c] = x > W / 2 + EDGE && x < vw - W / 2 - EDGE && y - H > top + EDGE && y < vh - EDGE ? 1 : 0
   }
-  for (const node of document.querySelectorAll(AVOID)) {
-    if (self.contains(node)) continue
-    const box = node.getBoundingClientRect()
-    if (box.width < 2 || box.height < 2 || box.bottom < 0 || box.top > vh + H || box.right < 0 || box.left > vw) continue
-    // Feet positions whose body box would touch this element.
+  const visible = box => box.width >= 2 && box.height >= 2 && box.bottom >= 0 && box.top <= vh + H && box.right >= 0 && box.left <= vw
+  // Close the feet positions whose body box would touch this rectangle.
+  const block = box => {
     const c0 = Math.max(0, Math.floor((box.left - W / 2 - PAD) / CELL))
     const c1 = Math.min(cols - 1, Math.floor((box.right + W / 2 + PAD) / CELL))
     const r0 = Math.max(0, Math.floor((box.top - PAD) / CELL))
     const r1 = Math.min(rows - 1, Math.floor((box.bottom + H + PAD) / CELL))
     for (let r = r0; r <= r1; r++) free.fill(0, r * cols + c0, r * cols + c1 + 1)
+  }
+  for (const node of document.querySelectorAll(AVOID)) {
+    if (self.contains(node)) continue
+    const box = node.getBoundingClientRect()
+    if (visible(box)) block(box)
+  }
+  // Every visible line of text, line by line, wherever it lives.
+  const range = document.createRange()
+  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+    acceptNode: node => (/\S/.test(node.data) && !self.contains(node) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT),
+  })
+  for (let node = walker.nextNode(); node; node = walker.nextNode()) {
+    range.selectNodeContents(node)
+    if (!visible(range.getBoundingClientRect())) continue
+    for (const line of range.getClientRects()) if (visible(line)) block(line)
   }
   const cellAt = (x, y) => {
     const c = Math.floor((x - window.scrollX) / CELL)

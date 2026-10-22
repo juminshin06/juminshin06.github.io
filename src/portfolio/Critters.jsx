@@ -2,8 +2,8 @@ import { useEffect, useRef, useState } from 'react'
 import s from './Portfolio.module.css'
 
 // Quiet pixel critters that live on the footer's top rule rather than following the visitor
-// around: a little line of three ants that travels together, and a snail. They mostly rest,
-// amble a little, think when hovered, and say something about how Jumin works when clicked.
+// around: a little line of three ants that travels together, and a snail. They keep ambling
+// with short pauses, think when hovered, and say something about how Jumin works when clicked.
 const CRITTERS = [
   { id: 'ant-1', kind: 'ant', index: 0 },
   { id: 'ant-2', kind: 'ant', index: 1 },
@@ -11,8 +11,8 @@ const CRITTERS = [
   { id: 'snail', kind: 'snail', index: 0 },
 ]
 const GROUPS = [
-  { kind: 'ant', speed: 16, start: 0.2 },
-  { kind: 'snail', speed: 5, start: 0.7 },
+  { kind: 'ant', speed: 30, start: 0.2 },
+  { kind: 'snail', speed: 9, start: 0.7 },
 ]
 const ANT_GAP = 6
 const LINES = {
@@ -67,9 +67,10 @@ export default function Critters() {
       node.dataset.dir = group.dir > 0 ? 'right' : 'left'
     })
     const schedule = (group, now) => {
-      const walking = Math.random() < 0.35
+      // Mostly on the move, with short breathers in between.
+      const walking = Math.random() < 0.7
       group.mode = walking ? 'walk' : 'pause'
-      group.until = now + (walking ? 1500 + Math.random() * 2500 : 2500 + Math.random() * 5000)
+      group.until = now + (walking ? 3000 + Math.random() * 4000 : 1000 + Math.random() * 2000)
       if (walking && Math.random() < 0.4) group.dir *= -1
       mark(group)
     }

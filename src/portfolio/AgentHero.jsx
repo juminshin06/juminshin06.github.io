@@ -137,7 +137,7 @@ export default function AgentHero() {
     <div className={s.agentChips} aria-label="Suggested questions">
       {intents.map(item => <button key={item.id} type="button" className={s.agentChip} aria-pressed={intent?.id === item.id} onClick={() => ask(item)}>{item.chip}</button>)}
     </div>
-    <div className={s.agentAnswer} aria-live="polite" hidden={!showAnswer}>
+    <div className={s.agentAnswer} aria-live="polite" hidden={!showAnswer} data-npc-avoid="true">
       <span className={s.agentAvatar} aria-hidden="true"><img src={AVATAR_SRC} alt="" width="36" height="36" decoding="async" /></span>
       <div className={s.agentBody}>
         <span className={s.agentLabel}>Portfolio assistant · {phase === 'thinking' ? 'thinking' : 'answer'}</span>
