@@ -2241,3 +2241,7 @@
 
 /* About: the toolkit now closes the page, so give it room before the Life link. */
 .toolkit + .archiveCta { margin-top: 72px; }
+
+/* A little more air between the answer card and the intro links. */
+.introLinks { margin-top: 28px; }
+@media (width <= 600px) { .introLinks { margin-top: 24px; } }
