@@ -3,7 +3,8 @@ import { askJumin } from './ChatBot'
 import { designThoughts as THOUGHTS } from './designThoughts'
 import s from './Portfolio.module.css'
 
-const FIGURE_SRC = '/assets/character/jumin-figure.png'
+const MODEL_SRC = '/assets/3d/jumin-npc.glb'
+const PITCH = '78deg'
 const W = 64            // character box, with her feet at the bottom center
 const H = 96
 const CELL = 16         // walkable grid resolution
@@ -13,10 +14,10 @@ const SPEED = 64        // px per second while wandering
 const CHASE = 104       // px per second while following the pointer
 const NEAR = 64         // how close she comes to the pointer without standing under it
 
-// Everything she must never stand on: links, controls, media, cards and the footer. Every
-// visible line of text is avoided too (see scan), whatever element it sits in.
+// Everything she must never stand on besides text: links, controls, media, cards and the footer.
+// Text is avoided line by line in scan(), so paragraphs and labels don't block the white space
+// beside their short last lines.
 const AVOID = [
-  'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'li', 'dt', 'dd', 'blockquote', 'figcaption', 'label', 'small', 'time',
   'a', 'button', 'input', 'textarea', 'select', 'form', 'table',
   'img', 'picture', 'video', 'svg', 'model-viewer', 'iframe', 'canvas:not([data-npc-floor])',
   'footer', '[data-chat-panel]', '[data-npc-avoid]',
@@ -111,29 +112,32 @@ function clearLine(grid, a, b) {
   return true
 }
 
-// A small Jumin who walks the empty parts of the page like a game NPC. She follows the
+// A small 3D Jumin who walks the empty parts of the page like a game NPC. She follows the
 // pointer around text and pictures, wanders when it rests, drops back into view after a
 // scroll, and shares UX design engineering thoughts on hover.
 export default function RoamingNpc() {
   const [enabled, setEnabled] = useState(false)
   const [line, setLine] = useState('')
   const rootRef = useRef(null)
-  const figureRef = useRef(null)
+  const viewerRef = useRef(null)
   const bubbleRef = useRef(null)
   const clickGuard = useRef(() => false)
+  const flyRef = useRef(null)
 
   useEffect(() => {
     const fine = window.matchMedia('(hover: hover) and (pointer: fine)')
     const motion = window.matchMedia('(prefers-reduced-motion: reduce)')
     if (!fine.matches || motion.matches || window.innerWidth < 768) return
-    const timer = window.setTimeout(() => setEnabled(true), 900)
-    return () => window.clearTimeout(timer)
+    // The model turns, so walking sideways shows her profile rather than a front-facing drawing.
+    let disposed = false
+    const timer = window.setTimeout(() => import('@google/model-viewer').then(() => { if (!disposed) setEnabled(true) }), 900)
+    return () => { disposed = true; window.clearTimeout(timer) }
   }, [])
 
   useEffect(() => {
     const el = rootRef.current
-    const figure = figureRef.current
-    if (!enabled || !el || !figure) return
+    const viewer = viewerRef.current
+    if (!enabled || !el || !viewer) return
     const npc = { x: 0, y: 0, path: [], theta: 0, until: 0, away: 0, ready: false, planned: 0, goalFor: null, poofed: 0 }
     // The pointer in viewport coordinates; she follows it while it has moved in the last few seconds.
     const mouse = { x: 0, y: 0, at: 0 }
@@ -151,9 +155,7 @@ export default function RoamingNpc() {
       while (next - npc.theta > 180) next -= 360
       while (next - npc.theta < -180) next += 360
       npc.theta = next
-      // The drawing faces front, so turning reads as a lean toward where she is heading or looking.
-      const side = Math.abs(next) < 12 || Math.abs(next) > 160 ? 0 : next < 0 ? 1 : -1
-      el.style.setProperty('--lean', `${side * Math.min(8, Math.abs(next) / 7)}deg`)
+      viewer.cameraOrbit = `${next.toFixed(1)}deg ${PITCH} auto`
     }
     // Front when walking down the page, back when walking up, profile when walking sideways.
     const faceToward = target => face(-Math.atan2(target.x - npc.x, target.y - npc.y) * 180 / Math.PI)
@@ -292,16 +294,18 @@ export default function RoamingNpc() {
 
     // Once a second: come back into view after a scroll, and step off anything that moved under her.
     const watch = () => {
-      // A cached image can finish loading before the listener is attached.
-      if (!npc.ready && figure.complete) onLoad()
+      // A cached model can finish loading before the listener is attached.
+      if (!npc.ready && viewer.loaded) onLoad()
       if (document.hidden || !npc.ready) return
       // She steps aside while the recruiter view is open and comes back when it closes.
       if (recruiting()) {
         if (el.dataset.state !== 'hidden') { window.clearInterval(musing); setLine(''); hide() }
         return
       }
+      // While the chat is open she waits inside it; she drops back in after it closes.
+      if (document.documentElement.dataset.guide === 'chat') return
       const state = el.dataset.state
-      if (state === 'talk' || state === 'drop' || state === 'hop' || state === 'poof' || state === 'grab') return
+      if (state === 'talk' || state === 'drop' || state === 'hop' || state === 'poof' || state === 'grab' || state === 'fly') return
       const grid = scan(el)
       const here = grid.cellAt(npc.x, npc.y)
       if (state === 'hidden' || here < 0) {
@@ -451,14 +455,64 @@ export default function RoamingNpc() {
     }
     clickGuard.current = () => grab.dropped
 
-    figure.addEventListener('load', onLoad)
+    // Click: one little hop, then she turns into a star and gets pulled into the "Ask about Jumin"
+    // corner, which opens the chat right away. The corner is the button's spot even while hidden.
+    const fly = () => {
+      if (el.dataset.state === 'fly' || el.dataset.state === 'hidden') return askJumin('')
+      stop()
+      window.clearInterval(musing)
+      setLine('')
+      const launcher = document.querySelector('[data-chat-launcher]')
+      const box = launcher?.getBoundingClientRect()
+      const open = box && box.width > 0 && getComputedStyle(launcher).visibility !== 'hidden'
+      const target = {
+        x: (open ? box.left + 24 : document.documentElement.clientWidth - 52) + window.scrollX,
+        y: (open ? box.top + box.height / 2 + 30 : window.innerHeight - 22) + window.scrollY,
+      }
+      const from = { x: npc.x, y: npc.y }
+      const at = (x, y, sx, sy = sx) => `translate3d(${x.toFixed(1)}px, ${y.toFixed(1)}px, 0) scale(${sx.toFixed(3)}, ${sy.toFixed(3)})`
+      const HOP = 0.36
+      const frames = [
+        { offset: 0, transform: at(from.x, from.y, 1) },
+        { offset: 0.07, transform: at(from.x, from.y, 1.06, 0.92) },
+        { offset: 0.2, transform: at(from.x, from.y - 34, 0.96, 1.05) },
+        { offset: HOP, transform: at(from.x, from.y, 1.04, 0.95) },
+      ]
+      // The pull: slow at first, then faster and faster, curving slightly as it shrinks to a point.
+      for (let i = 1; i <= 16; i++) {
+        const k = i / 16
+        const e = k * k * k
+        const x = from.x + (target.x - from.x) * e
+        const y = from.y + (target.y - from.y) * e - Math.sin(Math.PI * e) * 40
+        frames.push({ offset: HOP + (1 - HOP) * k, transform: at(x, y, Math.max(0.12, 1 - 0.88 * e)) })
+      }
+      setState('fly')
+      const animation = el.animate(frames, { duration: 760, easing: 'linear', fill: 'forwards' })
+      animation.onfinish = () => {
+        animation.cancel()
+        Object.assign(npc, target)
+        place()
+        face(0)
+        hide()
+        if (open) {
+          launcher.dataset.pop = 'true'
+          later(() => { delete launcher.dataset.pop }, 420)
+        }
+        askJumin('')
+      }
+    }
+    flyRef.current = fly
+
+    const onError = () => { npc.ready = false; hide(); stop() }
+    viewer.addEventListener('load', onLoad)
+    viewer.addEventListener('error', onError)
     el.addEventListener('pointerdown', onPointerDown)
     el.addEventListener('pointermove', onGrabMove)
     el.addEventListener('pointerup', letGo)
     el.addEventListener('pointercancel', letGo)
     window.addEventListener('pointermove', onPointerMove, { passive: true })
     document.addEventListener('pointerout', onPointerOut)
-    if (figure.complete) onLoad()
+    if (viewer.loaded) onLoad()
     el.addEventListener('pointerenter', onEnter)
     el.addEventListener('pointerleave', onLeave)
     document.addEventListener('visibilitychange', onVisibility)
@@ -469,7 +523,9 @@ export default function RoamingNpc() {
       window.clearInterval(watcher)
       window.clearInterval(musing)
       timers.forEach(id => window.clearTimeout(id))
-      figure.removeEventListener('load', onLoad)
+      viewer.removeEventListener('load', onLoad)
+      viewer.removeEventListener('error', onError)
+      flyRef.current = null
       window.clearTimeout(grab.press)
       window.clearInterval(grab.kick)
       window.clearInterval(grab.settle)
@@ -501,14 +557,26 @@ export default function RoamingNpc() {
   }, [line])
 
   if (!enabled) return null
-  return <div ref={rootRef} className={s.npc} data-state="hidden" data-cursor="Chat" aria-hidden="true" onClick={() => { if (!clickGuard.current()) askJumin('') }}>
+  return <div ref={rootRef} className={s.npc} data-state="hidden" data-cursor="Chat" aria-hidden="true" onClick={() => { if (!clickGuard.current()) (flyRef.current || (() => askJumin('')))() }}>
     <div ref={bubbleRef} className={s.npcBubble} data-open={line ? 'true' : 'false'}>
       <p key={line}>{line}</p>
       <span>Click me to ask about Jumin</span>
     </div>
     <span className={s.npcShadow} />
+    <span className={s.npcStar} aria-hidden="true">✦</span>
     <div className={s.npcBody}>
-      <img ref={figureRef} src={FIGURE_SRC} width="50" height="88" alt="" decoding="async" draggable={false} />
+      <model-viewer
+        ref={viewerRef}
+        src={MODEL_SRC}
+        alt=""
+        camera-orbit={`0deg ${PITCH} auto`}
+        field-of-view="30deg"
+        interpolation-decay="90"
+        interaction-prompt="none"
+        shadow-intensity="0"
+        exposure="1.05"
+        loading="eager"
+      />
     </div>
   </div>
 }
