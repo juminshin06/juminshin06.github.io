@@ -61,7 +61,7 @@ export default function LogoCharacter() {
           src={MODEL_SRC}
           poster={POSTER_SRC}
           alt=""
-          camera-target="0m 0.46m 0m"
+          camera-target="0m 0.38m 0m"
           camera-orbit="0deg 86deg 0.82m"
           field-of-view="30deg"
           interaction-prompt="none"

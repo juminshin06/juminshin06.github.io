@@ -25,13 +25,27 @@ export function TextLink({ href, children, external = false, className = '' }) {
     {children}<ArrowUpRight size={17} aria-hidden="true" />
   </a>
 }
+// The header stays clear over the top of the page and frosts once content scrolls under it
+// (or while the mobile menu is open), so the first screen reads as one surface.
+function useScrolled(offset = 8) {
+  const [scrolled, setScrolled] = useState(false)
+  useEffect(() => {
+    const update = () => setScrolled(window.scrollY > offset)
+    update()
+    window.addEventListener('scroll', update, { passive: true })
+    return () => window.removeEventListener('scroll', update)
+  }, [offset])
+  return scrolled
+}
+
 export function Header({ active }) {
   const [open, setOpen] = useState(false)
+  const scrolled = useScrolled()
   const toggle = useRef(null)
   const closeMenu = event => {
     if (event.key === 'Escape') { setOpen(false); toggle.current?.focus() }
   }
-  return <header className={s.header} onKeyDown={closeMenu}>
+  return <header className={s.header} data-solid={scrolled || open ? 'true' : 'false'} onKeyDown={closeMenu}>
     <a className={s.brand} href="/" aria-label="Jumin Shin, home"><LogoCharacter /><span>Jumin Shin</span></a>
     <div className={s.headerRight}>
       <nav className={s.desktopNav} aria-label="Primary">

@@ -107,6 +107,5 @@ export default function IntroScreen({ onRecruiter, recruiterRef }) {
       </p>
     </div>
 
-    <a className={s.introScroll} href="#work"><span>Scroll to explore</span><ArrowDown size={16} aria-hidden="true" /></a>
   </section>
 }

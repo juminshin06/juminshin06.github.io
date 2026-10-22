@@ -270,5 +270,5 @@ export const suggestedQuestions = [
   'How does she approach research?',
   'How does she work with developers?',
   'How can I contact her?',
-  'Jumin의 강점이 뭐야?',
+  'What roles is she looking for?',
 ]
