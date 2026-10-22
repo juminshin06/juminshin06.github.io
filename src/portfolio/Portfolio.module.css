@@ -1608,41 +1608,8 @@
   .critterLayer, .cursorRing { display: none; }
 }
 
-/* Tidy single-column home: compact intro, then one feed of project covers */
-.hero { display: block; min-height: 0; max-width: 860px; margin: 0 auto; padding: 52px var(--gutter) 10px; }
-.heroCopy { display: block; max-width: none; }
-.heroCopy h1 { font-size: 44px; line-height: 1.05; font-weight: 600; }
-.heroRole { font-size: 20px; line-height: 1.2; font-weight: 500; margin-top: 8px; }
-.heroStatement { max-width: 560px; font-size: 19px; line-height: 1.45; margin-top: 18px; }
-.heroMeta { margin-top: 14px; font-size: 12px; }
-.heroAffiliation { margin-top: 18px; }
-.feed { padding: 40px var(--gutter) 96px; }
-.feedList { list-style: none; margin: 0 auto; padding: 0; max-width: 860px; display: grid; gap: 76px; }
-.feedCard { min-width: 0; display: block; }
-.feedCard.productWorkCard { display: block; }
-.feedCard:is(:hover, :focus-within) .productWorkMedia { transform: none; box-shadow: none; }
-.feedMedia { display: block; }
-.feedCard .productWorkMedia { border-radius: 0; }
-.feedCard .productWorkMedia .projectCover { aspect-ratio: 1.55; border-radius: 0; }
-.feedCard .projectCover { transition: transform 600ms cubic-bezier(.2, .7, .2, 1); }
-.feedMedia:is(:hover, :focus-visible) .projectCover { transform: scale(1.01); }
-.feedMeta { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 6px 24px; align-items: baseline; padding-top: 14px; }
-.feedMeta h3 { font-size: 19px; line-height: 1.3; font-weight: 560; }
-.feedMeta h3 a { transition: color 180ms ease; }
-.feedMeta h3 a:hover { color: var(--accent); }
-.feedYear { font: 13px/1.4 var(--mono); color: var(--muted); font-variant-numeric: tabular-nums; }
-.feedLine { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 13px; line-height: 1.5; color: var(--muted); }
-.feedLine .caseStudyCompany { margin: 0; font-size: inherit; color: var(--ink); font-weight: 560; }
-.feedMeta .projectProcessCue { grid-column: 1 / -1; margin-top: 2px; }
-.feed .researchCallout { max-width: 860px; margin: 96px auto 0; }
-.feed .archiveCta { max-width: 860px; margin-left: auto; margin-right: auto; }
+/* Hero without a figure: the character lives in the header, so the intro stands alone */
+.hero { min-height: 0; grid-template-columns: minmax(0, 760px); justify-content: start; padding-bottom: 28px; }
 @media (width <= 600px) {
-  .hero { padding-top: 30px; }
-  .heroCopy h1 { font-size: 36px; }
-  .heroRole { font-size: 18px; }
-  .heroStatement { font-size: 17px; margin-top: 14px; }
-  .feed { padding-top: 28px; padding-bottom: 72px; }
-  .feedList { gap: 52px; }
-  .feedMeta h3 { font-size: 17px; }
-  .feed .researchCallout { margin-top: 64px; }
+  .hero { grid-template-columns: minmax(0, 1fr); }
 }

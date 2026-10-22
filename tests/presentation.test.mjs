@@ -90,7 +90,7 @@ test('the homepage prioritizes projects by UX Design Engineer relevance and stat
     ]
     assert.doesNotMatch(html, /Project index|aria-label="Project shortcuts"/)
 
-    const moreWorkPosition = html.indexOf('data-more-work-project="true"')
+    const moreWorkPosition = html.indexOf('aria-labelledby="more-work-heading"')
     const featured = html.slice(html.indexOf('id="work"'), moreWorkPosition)
     const featuredOrder = expectedLeadOrder.map(slug => featured.indexOf(`/work/${slug}/`))
     assert.ok(featuredOrder.every((position, index) => position >= 0 && (index === 0 || position > featuredOrder[index - 1])))
@@ -106,8 +106,8 @@ test('homepage project covers use four lead and eight gallery presentations', as
   try {
     const { render } = await server.ssrLoadModule('/src/entry-server.jsx')
     const html = render('/')
-    const featured = html.slice(html.indexOf('id="work"'), html.indexOf('data-more-work-project="true"'))
-    const supporting = html.slice(html.indexOf('data-more-work-project="true"'), html.indexOf('aria-labelledby="home-about-heading"'))
+    const featured = html.slice(html.indexOf('id="work"'), html.indexOf('aria-labelledby="capability-heading"'))
+    const supporting = html.slice(html.indexOf('aria-labelledby="more-work-heading"'), html.indexOf('aria-labelledby="home-about-heading"'))
 
     assert.equal((html.match(/data-project-cover="micro"/g) || []).length, 0)
     assert.equal((featured.match(/data-project-cover="lead"/g) || []).length, 4)
@@ -119,7 +119,7 @@ test('homepage project covers use four lead and eight gallery presentations', as
     assert.doesNotMatch(featured, /alt="Bubba(?:'|&#x27;)s Rough Cut Prep/)
     assert.doesNotMatch(html, /class="[^"]*\bundefined\b/)
 
-    const bubbasRow = featured.split('data-case-study-entry="true"')[1].split('</li>')[0]
+    const bubbasRow = featured.split('data-case-study-entry="true"')[1].split('</article>')[0]
     assert.equal((bubbasRow.match(/Bubba(?:'|&#x27;)s LA/g) || []).length, 1)
   } finally { await server.close() }
 })
@@ -180,8 +180,8 @@ test('homepage project framing keeps company names concise and roles visible', a
   try {
     const { render } = await server.ssrLoadModule('/src/entry-server.jsx')
     const html = render('/')
-    const featured = html.slice(html.indexOf('id="work"'), html.indexOf('data-more-work-project="true"'))
-    const supporting = html.slice(html.indexOf('data-more-work-project="true"'), html.indexOf('aria-labelledby="home-about-heading"'))
+    const featured = html.slice(html.indexOf('id="work"'), html.indexOf('aria-labelledby="capability-heading"'))
+    const supporting = html.slice(html.indexOf('aria-labelledby="more-work-heading"'), html.indexOf('aria-labelledby="home-about-heading"'))
 
     assert.match(featured, /data-project-company="true"/)
     assert.doesNotMatch(featured, /Two roles \/ one temporary room|12-assessment review flow/)
@@ -282,20 +282,21 @@ test('more product work uses a balanced four-column gallery with the requested f
   try {
     const { render } = await server.ssrLoadModule('/src/entry-server.jsx')
     const html = render('/')
-    const supporting = html.slice(html.indexOf('data-more-work-project="true"'), html.indexOf('aria-labelledby="home-about-heading"'))
+    const supporting = html.slice(html.indexOf('aria-labelledby="more-work-heading"'), html.indexOf('aria-labelledby="home-about-heading"'))
 
     assert.equal((supporting.match(/data-more-work-project="true"/g) || []).length, 8)
     assert.equal((supporting.match(/data-project-cover="gallery"/g) || []).length, 8)
     for (const slug of ['learning-mobility', 'samsung-podcast', 'b4q4-widgets']) assert.match(supporting, new RegExp(`/work/${slug}/`))
     for (const removedSlug of ['handsign', 'wood-chip']) assert.doesNotMatch(supporting, new RegExp(`/work/${removedSlug}/`))
     for (const image of ['Portfolio_Mobility.webp', 'Portfolio_Podcast.webp', 'Portfolio_B4Q4.webp']) assert.match(supporting, new RegExp(image.replace('.', '\\.')))
-    assert.equal((supporting.match(/data-more-work-project="true"[^>]*data-project-slug=/g) || []).length, 8)
+    assert.equal((supporting.match(/data-project-slug=/g) || []).length, 8)
     assert.doesNotMatch(supporting, /Web delivery \/ UX evaluation \/ Internal tools \/ Service design/)
 
     const moduleCss = readFileSync(new URL('../src/portfolio/Portfolio.module.css', import.meta.url), 'utf8')
     const currentCss = moduleCss.slice(moduleCss.indexOf('/* UX Design Engineer portfolio */'))
-    assert.match(currentCss, /\.feedList\s*{[^}]*max-width:\s*860px[^}]*display:\s*grid/s)
-    assert.match(currentCss, /\.feedCard \.productWorkMedia \.projectCover\s*{[^}]*aspect-ratio:\s*1\.55/s)
+    assert.match(currentCss, /\.productWorkGrid\s*{[^}]*grid-template-columns:\s*repeat\(4,\s*minmax\(0,\s*1fr\)\)/s)
+    assert.match(currentCss, /\.productWorkMedia \.projectCover\s*{[^}]*aspect-ratio:\s*1\.5/s)
+    assert.match(currentCss, /\.productWorkCaption\s*{[^}]*border-bottom:\s*0/s)
   } finally { await server.close() }
 })
 
@@ -304,19 +305,22 @@ test('homepage projects preserve their original media sizing with editorial text
   try {
     const { render } = await server.ssrLoadModule('/src/entry-server.jsx')
     const html = render('/')
-    const featured = html.slice(html.indexOf('id="work"'), html.indexOf('data-more-work-project="true"'))
+    const featured = html.slice(html.indexOf('id="work"'), html.indexOf('aria-labelledby="capability-heading"'))
 
     assert.equal((featured.match(/data-case-study-entry="true"/g) || []).length, 4)
     assert.equal((featured.match(/data-project-caption="true"/g) || []).length, 4)
     assert.doesNotMatch(featured, /caseStudyTopline|caseStudyEvidence/)
-    assert.equal((featured.match(/data-project-role="true"/g) || []).length, 4)
-    assert.equal((featured.match(/data-cursor="Open"/g) || []).length, 4)
-    assert.equal((html.match(/data-cursor="Open"/g) || []).length, 12)
+    assert.match(featured, /My role/)
+    assert.match(featured, /Read project/)
 
     const moduleCss = readFileSync(new URL('../src/portfolio/Portfolio.module.css', import.meta.url), 'utf8')
     const currentCss = moduleCss.slice(moduleCss.indexOf('/* UX Design Engineer portfolio */'))
-    assert.match(currentCss, /\.feedMeta\s*{[^}]*display:\s*grid[^}]*grid-template-columns:\s*minmax\(0,\s*1fr\)\s+auto/s)
-    assert.match(currentCss, /\.feedMeta h3\s*{[^}]*font-size:\s*19px/s)
+    assert.match(currentCss, /\.caseStudyList\s*{[^}]*display:\s*grid[^}]*grid-template-columns:\s*repeat\(4,\s*minmax\(0,\s*1fr\)\)/s)
+    assert.match(currentCss, /\.caseStudyRow\s*{[^}]*display:\s*grid[^}]*grid-template-rows:\s*auto\s+1fr/s)
+    assert.match(currentCss, /\.caseStudyCaption\s*{[^}]*display:\s*grid[^}]*grid-template-rows:\s*auto\s+1fr\s+auto/s)
+    assert.match(currentCss, /\.caseStudyDetails\s*{[^}]*display:\s*grid[^}]*grid-template-rows:\s*1fr\s+auto/s)
+    assert.match(currentCss, /\.caseStudyDetails dl > div:first-child\s*{[^}]*min-height:/s)
+    assert.doesNotMatch(currentCss, /\.caseStudyRow:nth-child\(even\)\s+\.caseStudyMedia/)
     assert.match(currentCss, /\.caseStudyMedia \.projectArt\s*{[^}]*aspect-ratio:\s*1\.55/s)
     assert.doesNotMatch(currentCss, /\.caseStudyTopline\b|\.caseStudyEvidence\b/)
     assert.match(currentCss, /\.caseStudyMedia\[data-project-slug='pacepop'\] \.coverPrimary\s*{[^}]*inset:\s*0/s)
@@ -332,22 +336,35 @@ test('the homepage opens with a clean portrait and presents four lead projects t
     const hero = html.slice(html.indexOf('<section'), html.indexOf('</section>'))
     assert.match(hero, /Jumin Shin/)
     assert.match(hero, /UX Design Engineer/)
+    assert.doesNotMatch(hero, /data-hero-character|data-hero-portrait/)
     assert.match(hero, /class="[^"]*heroIdentity/)
+    assert.match(html, /data-critter-layer="true"/)
+    assert.equal((html.match(/data-critter="ant"/g) || []).length, 2)
+    assert.equal((html.match(/data-critter="snail"/g) || []).length, 1)
     assert.doesNotMatch(html, /Project index|aria-label="Project shortcuts"/)
     assert.doesNotMatch(hero, /<figcaption>/)
-    assert.equal((html.match(/data-case-study-entry="true"/g) || []).length, 4)
 
     const moduleCss = readFileSync(new URL('../src/portfolio/Portfolio.module.css', import.meta.url), 'utf8')
-    const feedCss = moduleCss.slice(moduleCss.indexOf('/* Tidy single-column home'))
-    assert.match(feedCss, /\.hero\s*{[^}]*display:\s*block[^}]*max-width:\s*860px[^}]*margin:\s*0 auto/s)
-    assert.match(feedCss, /\.heroCopy h1\s*{[^}]*font-size:\s*44px/s)
-    assert.match(feedCss, /\.feedList\s*{[^}]*max-width:\s*860px/s)
-    assert.doesNotMatch(moduleCss, /\.heroPortraitMark\s*{|\.projectIndexStrip\s*{|\.heroProjectGrid\s*{/)
-    const playfulCss = moduleCss.slice(moduleCss.indexOf('/* Playful layer'))
-    assert.match(playfulCss, /\.logoCharacter\s*{[^}]*width:\s*34px[^}]*height:\s*42px/s)
-    assert.match(playfulCss, /\.cursorRing\s*{[^}]*position:\s*fixed[^}]*pointer-events:\s*none/s)
-    assert.match(playfulCss, /\.critterLayer\s*{[^}]*position:\s*fixed/s)
-    assert.match(playfulCss, /@media \(prefers-reduced-motion: reduce\)\s*{\s*\.critterLayer, \.cursorRing\s*{[^}]*display:\s*none/s)
+    const currentCss = moduleCss.slice(moduleCss.indexOf('/* UX Design Engineer portfolio */'))
+    assert.match(currentCss, /\.hero\s*{[^}]*grid-template-columns:\s*minmax\(0,\s*650px\)\s+minmax\(360px,\s*460px\)/s)
+    assert.match(currentCss, /\.hero\s*{[^}]*justify-content:\s*center/s)
+    assert.match(currentCss, /\.hero\s*{[^}]*gap:\s*clamp\(72px,\s*8vw,\s*160px\)/s)
+    assert.match(currentCss, /\.heroCopy\s*{[^}]*text-align:\s*left/s)
+    assert.match(currentCss, /\.heroPortrait\s*{[^}]*max-width:\s*400px/s)
+    assert.match(currentCss, /\.heroPortraitFrame\s*{[^}]*background:\s*(?:transparent|#fff(?:fff)?)[^}]*border:\s*0/s)
+    assert.doesNotMatch(currentCss, /\.heroPortraitMark\s*{/)
+    assert.doesNotMatch(currentCss, /\.projectIndexStrip\s*{|\.heroProjectGrid\s*{/)
+    assert.match(currentCss, /\.caseStudyList\s*{[^}]*grid-template-columns:\s*repeat\(4,\s*minmax\(0,\s*1fr\)\)/s)
+    assert.match(currentCss, /\.productWorkGrid\s*{[^}]*grid-template-columns:\s*repeat\(4,\s*minmax\(0,\s*1fr\)\)/s)
+    assert.match(currentCss, /@media\s*\(max-width:\s*1024px\)\s+and\s+\(min-width:\s*601px\)[\s\S]*?\.hero\s*{[^}]*grid-template-columns:\s*minmax\(0,\s*1\.15fr\)\s+minmax\(260px,\s*\.85fr\)/s)
+    assert.match(currentCss, /@media\s*\(max-width:\s*760px\)\s+and\s+\(min-width:\s*601px\)[\s\S]*?\.caseStudyList\s*{[^}]*grid-template-columns:\s*1fr/s)
+    assert.match(currentCss, /@media\s*\(max-width:\s*600px\)[\s\S]*?\.hero\s*{[^}]*grid-template-columns:\s*minmax\(0,\s*1fr\)\s+clamp\(88px,\s*24vw,\s*108px\)/s)
+    assert.match(currentCss, /@media\s*\(max-width:\s*600px\)[\s\S]*?\.heroCopy\s*{[^}]*display:\s*contents/s)
+    assert.match(currentCss, /@media\s*\(max-width:\s*600px\)[\s\S]*?\.heroIdentity\s*{[^}]*grid-column:\s*1[^}]*grid-row:\s*1/s)
+    assert.match(currentCss, /@media\s*\(max-width:\s*600px\)[\s\S]*?\.heroPortrait\s*{[^}]*grid-column:\s*2[^}]*grid-row:\s*1[^}]*width:\s*clamp\(88px,\s*24vw,\s*108px\)/s)
+    assert.match(currentCss, /@media\s*\(max-width:\s*600px\)[\s\S]*?\.heroStatement[\s\S]*?grid-column:\s*1\s*\/\s*-1/s)
+    assert.match(currentCss, /@media\s*\(max-width:\s*600px\)[\s\S]*?\.caseStudyList\s*{[^}]*grid-template-columns:\s*1fr/s)
+    assert.match(currentCss, /@media\s*\(max-width:\s*600px\)[\s\S]*?\.productWorkGrid\s*{[^}]*grid-template-columns:\s*1fr/s)
   } finally { await server.close() }
 })
 
@@ -415,8 +432,8 @@ test('the homepage removes decorative section framing and prioritizes direct con
     const { render } = await server.ssrLoadModule('/src/entry-server.jsx')
     const html = render('/')
 
-    const featured = html.slice(html.indexOf('id="work"'), html.indexOf('data-more-work-project="true"'))
-    const moreWork = html.slice(html.indexOf('data-more-work-project="true"'), html.indexOf('aria-labelledby="home-about-heading"'))
+    const featured = html.slice(html.indexOf('id="work"'), html.indexOf('aria-labelledby="more-work-heading"'))
+    const moreWork = html.slice(html.indexOf('aria-labelledby="more-work-heading"'), html.indexOf('aria-labelledby="home-about-heading"'))
     const footer = html.slice(html.indexOf('<footer'))
     assert.doesNotMatch(featured, /Case studies|01(?:–|&ndash;)04|How I work|I like to get close to the problem/)
     assert.match(moreWork, /data-research-cta="true"/)
@@ -436,7 +453,7 @@ test('the homepage removes decorative section framing and prioritizes direct con
     assert.match(currentCss, /\.contactIcon\s*{[^}]*display:\s*grid/s)
     assert.match(currentCss, /\.footerExploreLinks\s*{[^}]*display:\s*grid/s)
     assert.match(currentCss, /\.contactLink\s*{[^}]*border-radius:\s*0/s)
-    assert.match(currentCss, /\.feed \.researchCallout\s*{[^}]*max-width:\s*860px/s)
+    assert.match(currentCss, /\.moreWork\s*{[^}]*border-top:\s*0/s)
     assert.match(currentCss, /\.homeAbout\s*{[^}]*background:\s*#f7f7f5/s)
     assert.match(currentCss, /\.footer\s*{[^}]*background:\s*#ececea/s)
     assert.match(currentCss, /\.contactLinks\s*{[^}]*border-top:\s*0/s)
@@ -479,11 +496,12 @@ test('contact links use familiar icons in an open editorial list', async () => {
 test('lead project cards use one consistent team-size fact', async () => {
   const server = await createServer({ server: { middlewareMode: true, ws: false }, appType: 'custom', logLevel: 'error' })
   try {
-    const { homepageProjects } = await server.ssrLoadModule('/src/data/portfolio.js')
-    const leadFacts = homepageProjects.slice(0, 4).map(project => project.facts?.[0])
-    assert.deepEqual(leadFacts.map(fact => fact?.label), ['Team size', 'Team size', 'Team size', 'Team size'])
-    assert.deepEqual(leadFacts.map(fact => fact?.value).sort(), ['1 person', '2 people', '8 people', '9 people'])
-    assert.doesNotMatch(JSON.stringify(leadFacts), /Role-specific flows|People in the sprint|People on the cross-functional team|Videos in the initial prototype/)
+    const { render } = await server.ssrLoadModule('/src/entry-server.jsx')
+    const html = render('/')
+    const featured = html.slice(html.indexOf('id="work"'), html.indexOf('aria-labelledby="more-work-heading"'))
+    assert.equal((featured.match(/<dt>Team size<\/dt>/g) || []).length, 4)
+    for (const value of ['1 person', '2 people', '8 people', '9 people']) assert.match(featured, new RegExp(`>${value}<`))
+    assert.doesNotMatch(featured, /Role-specific flows|People in the sprint|People on the cross-functional team|Videos in the initial prototype/)
   } finally { await server.close() }
 })
 
