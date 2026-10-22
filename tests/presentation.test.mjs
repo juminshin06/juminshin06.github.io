@@ -382,7 +382,7 @@ test('about page presents a branded toolkit, compact profile links and school id
     const html = render('/about/')
 
     assert.equal((html.match(/data-tech-tool="true"/g) || []).length, 24)
-    for (const tool of ['Figma', 'Photoshop', 'Illustrator', 'Miro', 'Framer', 'React', 'JavaScript', 'TypeScript', 'HTML / CSS', 'Python', 'Node.js', 'C++', 'Git', 'FFmpeg', 'Blender', 'Unity', 'Unreal Engine', 'Claude', 'Gemini', 'OpenAI API', 'Agentic AI', 'MCP', 'Multi-agent', 'Prompt Design']) assert.match(html, new RegExp(`>${tool.replace('+', '\\+')}<`))
+    for (const tool of ['Figma', 'Photoshop', 'Illustrator', 'Miro', 'Framer', 'React', 'JavaScript', 'TypeScript', 'HTML / CSS', 'Python', 'Node.js', 'C++', 'Git', 'FFmpeg', 'Blender', 'Unity', 'Unreal Engine', 'Claude', 'Gemini', 'OpenAI', 'Agentic AI', 'MCP', 'Multi-agent', 'Prompt Design']) assert.match(html, new RegExp(`>${tool.replace('+', '\\+')}<`))
     assert.doesNotMatch(html, /data-tech-tool="true"[^>]*tabindex=/i)
     assert.match(html, /data-about-links="true"/)
     for (const label of ['Email', 'LinkedIn', 'Resume', 'Scholar']) assert.match(html, new RegExp(`>${label}<`))
@@ -410,7 +410,7 @@ test('homepage about includes the complete toolkit and a compact school list', a
     const about = html.slice(html.indexOf('aria-labelledby="home-about-heading"'), html.indexOf('<footer'))
 
     assert.equal((about.match(/data-home-tech-tool="true"/g) || []).length, 24)
-    for (const tool of ['Figma', 'Photoshop', 'Illustrator', 'Miro', 'Framer', 'React', 'JavaScript', 'TypeScript', 'HTML / CSS', 'Python', 'Node.js', 'C++', 'Git', 'FFmpeg', 'Blender', 'Unity', 'Unreal Engine', 'Claude', 'Gemini', 'OpenAI API', 'Agentic AI', 'MCP', 'Multi-agent', 'Prompt Design']) assert.match(about, new RegExp(`>${tool.replace('+', '\\+')}<`))
+    for (const tool of ['Figma', 'Photoshop', 'Illustrator', 'Miro', 'Framer', 'React', 'JavaScript', 'TypeScript', 'HTML / CSS', 'Python', 'Node.js', 'C++', 'Git', 'FFmpeg', 'Blender', 'Unity', 'Unreal Engine', 'Claude', 'Gemini', 'OpenAI', 'Agentic AI', 'MCP', 'Multi-agent', 'Prompt Design']) assert.match(about, new RegExp(`>${tool.replace('+', '\\+')}<`))
     assert.equal((about.match(/data-home-education-entry="true"/g) || []).length, 3)
     for (const logo of ['logo-usc.png', 'logo-tu-berlin.png', 'logo-hongik.png']) assert.match(about, new RegExp(logo.replace('.', '\\.')))
     assert.equal((about.match(/loading="lazy"/g) || []).length >= 3, true)

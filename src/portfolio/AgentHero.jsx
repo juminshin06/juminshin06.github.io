@@ -7,6 +7,20 @@ import s from './Portfolio.module.css'
 
 const AVATAR_SRC = '/assets/character/jumin-avatar.png'
 
+// An answer as words and spaces, each knowing whether it sits inside a **bold** phrase, so the
+// typing effect can reveal it word by word without ever showing the asterisks.
+const tokenize = lead => lead.split(/(\*\*[^*]+\*\*)/).filter(Boolean).flatMap(part => {
+  const bold = part.startsWith('**') && part.endsWith('**')
+  return (bold ? part.slice(2, -2) : part).split(/(\s+)/).filter(Boolean).map(text => ({ text, bold }))
+})
+// Consecutive bold tokens render as one <strong>.
+const renderTokens = tokens => tokens.reduce((nodes, token, index) => {
+  const last = nodes[nodes.length - 1]
+  if (last && last.bold === token.bold) last.text += token.text
+  else nodes.push({ text: token.text, bold: token.bold, key: index })
+  return nodes
+}, []).map(run => (run.bold ? <strong key={run.key}>{run.text}</strong> : <span key={run.key}>{run.text}</span>))
+
 const sleep = (ms, signal) => new Promise(resolve => {
   const timer = setTimeout(resolve, ms)
   signal?.addEventListener('abort', () => { clearTimeout(timer); resolve() }, { once: true })
@@ -21,7 +35,7 @@ export default function AgentHero() {
   const [auto, setAuto] = useState(false)
   const [intent, setIntent] = useState(null)
   const [activeChip, setActiveChip] = useState(null)
-  const [answer, setAnswer] = useState('')
+  const [answer, setAnswer] = useState([])
   const inputRef = useRef(null)
   const controller = useRef(null)
   const reduced = useRef(false)
@@ -30,16 +44,17 @@ export default function AgentHero() {
 
   const respond = async (next, signal) => {
     setIntent(next)
-    setAnswer('')
+    setAnswer([])
     setPhase('thinking')
     await sleep(reduced.current ? 0 : 650, signal)
     if (signal?.aborted) return
     setPhase('answering')
-    if (reduced.current) { setAnswer(next.lead); setPhase('done'); return }
-    const words = next.lead.split(' ')
-    for (let index = 1; index <= words.length; index += 1) {
+    const tokens = tokenize(next.lead)
+    if (reduced.current) { setAnswer(tokens); setPhase('done'); return }
+    for (let index = 1; index <= tokens.length; index += 1) {
       if (signal?.aborted) return
-      setAnswer(words.slice(0, index).join(' '))
+      if (!tokens[index - 1].text.trim()) continue
+      setAnswer(tokens.slice(0, index))
       await sleep(34, signal)
     }
     if (!signal?.aborted) setPhase('done')
@@ -91,7 +106,7 @@ export default function AgentHero() {
       setActiveChip(next.id)
       setPhase('typing')
       setIntent(null)
-      setAnswer('')
+      setAnswer([])
       for (let length = 1; length <= next.prompt.length; length += 1) {
         if (signal.aborted) return
         setQuery(next.prompt.slice(0, length))
@@ -141,7 +156,7 @@ export default function AgentHero() {
         <span className={s.agentLabel}>Portfolio assistant · {phase === 'thinking' ? 'thinking' : 'answer'}</span>
         {phase === 'thinking'
           ? <span className={s.agentThinking}><i /><i /><i /></span>
-          : <p className={s.agentText}>{answer}{phase === 'answering' && <i className={s.agentCaret} aria-hidden="true" />}</p>}
+          : <p className={s.agentText}>{renderTokens(answer)}{phase === 'answering' && <i className={s.agentCaret} aria-hidden="true" />}</p>}
         {phase === 'done' && results.length > 0 && <ul className={s.agentResults}>
           {results.map(project => <li key={project.slug}>
             <a href={`/work/${project.slug}/`} data-cursor="Open">

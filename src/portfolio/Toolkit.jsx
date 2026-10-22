@@ -41,7 +41,7 @@ const tools = [
   { name: 'Unreal Engine', icon: siUnrealengine, color: '#0e1128' },
   { name: 'Claude', icon: siClaude, color: '#d97757' },
   { name: 'Gemini', icon: siGooglegemini, color: '#8e75b2' },
-  { name: 'OpenAI API', icon: siOpenai, color: '#412991' },
+  { name: 'OpenAI', icon: siOpenai, color: '#412991' },
   { name: 'Agentic AI', lucide: Bot, color: '#0f766e' },
   { name: 'MCP', lucide: Cable, color: '#7c3aed' },
   { name: 'Multi-agent', lucide: Network, color: '#2563eb' },

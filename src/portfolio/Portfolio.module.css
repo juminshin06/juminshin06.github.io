@@ -2303,3 +2303,6 @@ html:not([data-guide]) [data-chat-launcher], html[data-guide='hero'] [data-chat-
 /* Logo: eyes closed while hovered or focused. Both images are loaded up front so the swap is instant. */
 .logoCharacter .logoClosed { position: absolute; inset: 0; opacity: 0; transition: opacity 90ms ease; }
 .brand:is(:hover, :focus-visible) .logoClosed { opacity: 1; }
+
+/* Key phrases in the hero answer stand out without changing color. */
+.agentText strong { font-weight: 650; color: var(--ink); }

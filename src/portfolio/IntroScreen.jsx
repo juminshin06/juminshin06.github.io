@@ -10,6 +10,8 @@ import s from './Portfolio.module.css'
 // Four lead covers float around the edges, each with a small organization tag.
 const floating = homepageProjects.slice(0, 4)
 const shortTag = organization => organization.split(/ \/ |, /)[0]
+// A brighter, more legible picture for cards whose cover reads poorly at this small size.
+const cardImage = { 'honda-spatial': '/assets/projects/honda-spatial-ui.png' }
 
 // Each card can be picked up and dropped anywhere in the intro; the one in hand comes to the
 // front. A click that never moved still opens the project.
@@ -62,7 +64,7 @@ function FloatingCard({ project, index }) {
     onClick={onClick}
     onDragStart={event => event.preventDefault()}
   >
-    <span className={s.introCardImage}><ProjectImage src={project.cover?.primary || project.image} alt="" sizes="220px" /></span>
+    <span className={s.introCardImage}><ProjectImage src={cardImage[project.slug] || project.cover?.primary || project.image} alt="" sizes="220px" /></span>
     <span className={s.introCardTag}>{shortTag(project.organization)}</span>
   </a>
 }
