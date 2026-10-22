@@ -119,7 +119,9 @@ export function pageMetadata(path) {
     title: `${page.project?.title || names[page.type]} | Jumin Shin`,
     description: page.project?.summary || descriptions[page.type],
     path: page.type === 'not-found' ? '/404.html' : page.type === 'project' ? `/work/${page.project.slug}/` : normalizePath(path),
-    image: `/assets/optimized/${thumbnail || (page.type === 'home' ? 'jj-medtech' : 'profile')}.webp`,
+    // Project pages share their own cover; every other page shares the name card.
+    image: thumbnail ? `/assets/optimized/${thumbnail}.webp` : '/assets/og/jumin-share.jpg',
+    imageSize: thumbnail ? null : { width: 1200, height: 630 },
     notFound: page.type === 'not-found',
   }
 }

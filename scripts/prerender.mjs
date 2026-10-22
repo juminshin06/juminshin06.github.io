@@ -23,7 +23,9 @@ try {
       `<meta property="og:description" content="${escape(meta.description)}" />`,
       `<meta property="og:url" content="${canonical}" />`,
       `<meta property="og:image" content="${origin}${meta.image}" />`,
+      meta.imageSize ? `<meta property="og:image:width" content="${meta.imageSize.width}" />\n    <meta property="og:image:height" content="${meta.imageSize.height}" />\n    <meta property="og:image:alt" content="Jumin Shin, UX Design Engineer" />` : '',
       '<meta name="twitter:card" content="summary_large_image" />',
+      `<meta name="twitter:image" content="${origin}${meta.image}" />`,
       meta.notFound ? '<meta name="robots" content="noindex" />' : '',
       `<script type="application/ld+json">${JSON.stringify(schema).replace(/</g, '\\u003c')}</script>`,
     ].join('\n    ')
