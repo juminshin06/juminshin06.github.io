@@ -3,6 +3,7 @@ import { homepageProjects } from '../data/portfolio'
 import profile from '../data/profile.json'
 import { ProjectImage, SectionHeading, TextLink } from './Shell'
 import ProjectCover from './ProjectCover'
+import HeroCharacter from './HeroCharacter'
 import TechTools from './Toolkit'
 import s from './Portfolio.module.css'
 
@@ -72,26 +73,21 @@ function ProductWorkCard({ project }) {
 }
 
 function EditorialPortrait() {
-  return <figure className={s.heroPortrait} data-hero-portrait="true">
-    <div className={s.heroPortraitFrame}>
-      <picture>
-        <source
-          srcSet="/assets/optimized/jumin-editorial-portrait-v2-720.webp 720w, /assets/optimized/jumin-editorial-portrait-v2.webp 1122w"
-          sizes="(max-width: 600px) 108px, 360px"
-          type="image/webp"
-        />
-        <img
-          src="/assets/jumin-editorial-portrait-v2.png"
-          width="1122"
-          height="1402"
-          alt="Editorial portrait of Jumin Shin"
-          loading="eager"
-          fetchpriority="high"
-          decoding="async"
-        />
-      </picture>
-    </div>
-  </figure>
+  return <picture>
+    <source
+      srcSet="/assets/optimized/jumin-editorial-portrait-v2-720.webp 720w, /assets/optimized/jumin-editorial-portrait-v2.webp 1122w"
+      sizes="(max-width: 600px) calc(100vw - 40px), (max-width: 1200px) 40vw, 480px"
+      type="image/webp"
+    />
+    <img
+      src="/assets/jumin-editorial-portrait-v2.png"
+      width="1122"
+      height="1402"
+      alt="Editorial portrait of Jumin Shin"
+      loading="lazy"
+      decoding="async"
+    />
+  </picture>
 }
 
 export default function Home() {
@@ -112,7 +108,7 @@ export default function Home() {
           </span>
         </div>
       </div>
-      <EditorialPortrait />
+      <HeroCharacter />
     </section>
 
     <section className={s.caseStudies} id="work" aria-label="Selected work">
@@ -135,9 +131,9 @@ export default function Home() {
     </section>
 
     <section className={s.homeAbout} aria-labelledby="home-about-heading">
-      <figure data-reveal className={s.aboutPortrait}>
+      <figure data-reveal className={`${s.aboutPortrait} ${s.aboutPortraitEditorial}`} data-hero-portrait="true">
         <a href="/about/" aria-label="About Jumin Shin" title="About Jumin Shin">
-          <ProjectImage src="/assets/optimized/profile_hover2.webp" alt="Jumin Shin working at a laptop" sizes="(max-width: 600px) calc(100vw - 40px), (max-width: 1200px) 40vw, 480px" />
+          <EditorialPortrait />
         </a>
         <figcaption><span>Jumin Shin</span><span>UX Design Engineer</span></figcaption>
       </figure>

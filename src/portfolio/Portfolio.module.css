@@ -588,6 +588,12 @@
 .heroPortraitFrame picture, .heroPortraitFrame img { display: block; width: 100%; height: 100%; }
 .heroPortraitFrame img { object-fit: cover; object-position: 50% 20%; transition: transform 420ms cubic-bezier(.2, .7, .2, 1); }
 .heroPortrait:hover .heroPortraitFrame img { transform: scale(1.012); }
+.heroCharacterFrame { position: relative; aspect-ratio: 4 / 5; overflow: hidden; background: #fff; touch-action: pan-y; }
+.heroCharacterFrame model-viewer { display: block; width: 100%; height: 100%; background: transparent; --poster-color: transparent; cursor: grab; }
+.heroCharacterFrame model-viewer:active { cursor: grabbing; }
+.heroCharacterHint { margin-top: 12px; font: 11px/1.6 var(--mono); color: var(--muted); text-align: right; }
+.aboutPortraitEditorial picture { display: block; width: 100%; height: 100%; }
+.aboutPortraitEditorial img { object-position: 50% 20%; }
 .heroFigure {
   position: relative;
   height: auto;
@@ -1333,6 +1339,7 @@
   }
   .heroPortraitFrame { aspect-ratio: 4 / 5; }
   .heroPortraitFrame img { object-position: 50% 18%; }
+  .heroCharacterHint { display: none; }
   .heroFigure { aspect-ratio: 1.48; }
   .heroMediaLabel { left: 8px; right: auto; bottom: 8px; padding: 8px 9px; }
   .caseStudies { padding: 42px var(--gutter) 56px; }

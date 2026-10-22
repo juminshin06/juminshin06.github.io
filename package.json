@@ -12,6 +12,7 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
+    "@google/model-viewer": "^4.1.0",
     "@paper-design/shaders-react": "^0.0.72",
     "canvas-confetti": "^1.9.4",
     "lucide-react": "^1.41.0",
