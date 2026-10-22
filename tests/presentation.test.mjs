@@ -18,7 +18,11 @@ test('the work-led homepage uses the natural hero portrait without editorial lab
     assert.match(header, /Los Angeles/)
     const hero = html.slice(html.indexOf('<section'), html.indexOf('</section>'))
     assert.doesNotMatch(hero, /jumin-editorial-portrait-v2|model-viewer/)
-    assert.match(hero, /Research · Interaction · Prototyping · AI/)
+    assert.match(hero, /data-intro="true"/)
+    assert.match(hero, /data-agent-hero="true"/)
+    assert.match(hero, /View my work/)
+    assert.match(hero, />60-sec recruiter view</)
+    assert.doesNotMatch(hero, /Research · Interaction · Prototyping · AI|USC Iovine and Young Academy/)
     assert.doesNotMatch(hero, /Los Angeles/)
     assert.doesNotMatch(hero, /J\.S\. \/ 26/)
     assert.doesNotMatch(hero, /<figcaption>|Portrait \/ 2026/)
@@ -233,16 +237,15 @@ test('the about portrait uses correctly sized responsive sources', async () => {
   } finally { await server.close() }
 })
 
-test('the homepage hero presents USC as a quiet academic affiliation', async () => {
+test('the homepage presents USC as a quiet academic affiliation in About', async () => {
   const server = await createServer({ server: { middlewareMode: true, ws: false }, appType: 'custom', logLevel: 'error' })
   try {
     const { render } = await server.ssrLoadModule('/src/entry-server.jsx')
     const html = render('/')
-    const hero = html.slice(html.indexOf('<section'), html.indexOf('</section>'))
-    assert.match(hero, /logo-usc\.png/)
-    assert.match(hero, /USC Iovine and Young Academy/)
-    assert.match(hero, /M\.S\. Student/)
-    assert.match(hero, /Integrated Design, Business and Technology/)
+    const about = html.slice(html.indexOf('aria-labelledby="home-about-heading"'))
+    assert.match(about, /logo-usc\.png/)
+    assert.match(about, /USC Iovine and Young Academy/)
+    assert.match(about, /M\.S\. Integrated Design, Business &amp; Technology/)
     assert.equal(existsSync(new URL('../public/assets/logo-usc.png', import.meta.url)), true)
 
     const moduleCss = readFileSync(new URL('../src/portfolio/Portfolio.module.css', import.meta.url), 'utf8')
@@ -513,7 +516,8 @@ test('the Jumin Shin wordmark has no decorative red dot', async () => {
   try {
     const { render } = await server.ssrLoadModule('/src/entry-server.jsx')
     const html = render('/')
-    assert.match(html, /<h1>Jumin Shin<\/h1>/)
+    assert.match(html, /<h1[^>]*>Jumin Shin<\/h1>/)
+    assert.equal((html.match(/<h1[\s>]/g) || []).length, 1)
     assert.doesNotMatch(html, /Jumin Shin<span/)
     const moduleCss = readFileSync(new URL('../src/portfolio/Portfolio.module.css', import.meta.url), 'utf8')
     assert.doesNotMatch(moduleCss, /\.brand\s*>\s*span/)

@@ -1,10 +1,15 @@
+import { useEffect, useRef } from 'react'
 import { ArrowRight, ArrowUpRight } from 'lucide-react'
 import { homepageProjects } from '../data/portfolio'
 import profile from '../data/profile.json'
 import { ProjectImage, SectionHeading, TextLink } from './Shell'
 import ProjectCover from './ProjectCover'
-import AgentHero from './AgentHero'
+import IntroScreen from './IntroScreen'
 import TechTools from './Toolkit'
+import RoleFilter from './RoleFilter'
+import RecruiterView from './RecruiterView'
+import useHiringView from './useHiringView'
+import { rankForRole, roleLabel } from './hiring'
 import s from './Portfolio.module.css'
 
 const caseStudyTitles = {
@@ -19,8 +24,7 @@ const caseStudyTitles = {
   pacepop: 'PACEPOP',
 }
 
-const leadProjects = homepageProjects.slice(0, 4)
-const supportingProjects = homepageProjects.slice(4)
+const LEAD_COUNT = 4
 
 const homeSchools = [
   { name: 'USC Iovine and Young Academy', degree: 'M.S. Integrated Design, Business & Technology', logo: '/assets/logo-usc.png' },
@@ -90,38 +94,58 @@ function EditorialPortrait() {
   </picture>
 }
 
-export default function Home() {
-  return <div className={s.homePage} data-home-editorial-type="true">
-    <section className={s.hero} aria-label="Jumin Shin, UX Design Engineer">
-      <div className={s.heroCopy}>
-        <div className={s.heroIdentity}>
-          <h1>Jumin Shin</h1>
-          <p className={s.heroRole}>UX Design Engineer</p>
-        </div>
-        <p className={s.heroStatement}>I turn research into working interfaces across AI, spatial computing and digital products.</p>
-      </div>
-      <AgentHero />
-      <div className={s.heroFootRow}>
-        <p className={s.heroMeta}>Research · Interaction · Prototyping · AI</p>
-        <div className={s.heroAffiliation} aria-label="Graduate student at USC Iovine and Young Academy">
-          <img src="/assets/logo-usc.png" width="30" height="31" alt="" aria-hidden="true" />
-          <span>
-            <strong>USC Iovine and Young Academy</strong>
-            <small>M.S. Student · Integrated Design, Business and Technology</small>
-          </span>
-        </div>
-      </div>
-    </section>
+// Shown while recruiter mode is on: what is active, and the way back to the full portfolio.
+function ModeBar({ role, onExit }) {
+  return <div className={s.modeBar} data-mode-bar="true">
+    <p className={s.modeBarStatus}>
+      <span className={s.modePill} aria-hidden="true">Recruiter mode on</span>
+      <span className="sr-only">Recruiter mode is on.</span>
+      {role !== 'all' && <span className={s.modeBarRole}>Focused on {roleLabel(role)}</span>}
+    </p>
+    <button type="button" className={s.modeBarExit} onClick={onExit}>View full portfolio</button>
+  </div>
+}
 
-    <section className={s.caseStudies} id="work" aria-label="Selected work">
-      <div className={s.caseStudyList}>
+export default function Home() {
+  const { role, recruiter, setRole, setRecruiter } = useHiringView()
+  const ranked = rankForRole(homepageProjects, role)
+  const leadProjects = ranked.slice(0, LEAD_COUNT)
+  const supportingProjects = ranked.slice(LEAD_COUNT)
+  const entryRef = useRef(null)
+  const wasRecruiter = useRef(recruiter)
+
+  // Entering or leaving recruiter mode swaps the page body, so start at the top and move focus
+  // to where the reader is: the recruiter intro, or back to the control that opened it.
+  useEffect(() => {
+    if (wasRecruiter.current === recruiter) return
+    wasRecruiter.current = recruiter
+    window.scrollTo({ top: 0, behavior: 'instant' })
+    if (recruiter) document.getElementById('recruiter-heading')?.focus({ preventScroll: true })
+    else entryRef.current?.focus({ preventScroll: true })
+  }, [recruiter])
+
+  if (recruiter) return <div className={s.homePage} data-home-editorial-type="true" data-recruiter-mode="true">
+    <ModeBar role={role} onExit={() => setRecruiter(false)} />
+    <RecruiterView projects={leadProjects} role={role} onRoleChange={setRole} />
+  </div>
+
+  return <div className={s.homePage} data-home-editorial-type="true">
+    <IntroScreen onRecruiter={() => setRecruiter(true)} recruiterRef={entryRef} />
+
+    <section className={s.caseStudies} id="work" aria-label="Selected work" data-work-start="true">
+      <div className={s.workToolbar}>
+        <h2 className={s.workHeading}>Selected work</h2>
+        <RoleFilter role={role} onChange={setRole} />
+        <p className="sr-only" aria-live="polite">{role === 'all' ? 'Showing all work in curated order.' : `Showing ${roleLabel(role)} work first.`}</p>
+      </div>
+      <div className={s.caseStudyList} key={role} data-role-ranked={role}>
         {leadProjects.map((project, index) => <CaseStudyRow key={project.id} project={project} index={index} />)}
       </div>
     </section>
 
     <section className={s.moreWork} aria-labelledby="more-work-heading">
       <SectionHeading id="more-work-heading" title="More product work" />
-      <div className={s.productWorkGrid}>
+      <div className={s.productWorkGrid} key={role}>
         {supportingProjects.map(project => <ProductWorkCard key={project.id} project={project} />)}
       </div>
       <a className={s.researchCallout} href="/research/" data-research-cta="true">
@@ -145,6 +169,7 @@ export default function Home() {
         <p className={s.aboutStatement}>I connect user research, interaction design and hands-on prototyping.</p>
         <p className={s.bodyText}>From UX research with Samsung and Hyundai to AI-assisted production workflows, I turn complex requirements into interfaces and prototypes. I’m pursuing an M.S. in Integrated Design, Business and Technology at USC.</p>
         <TextLink href="/about/">Experience and background</TextLink>
+        <h3 className={s.aboutSubhead}>Experience</h3>
         <div className={s.miniExperience}>{profile.experience.map(p => <article key={`${p.organization}-${p.period}`} data-home-experience="true"><strong>{p.organization}</strong><span>{p.title}</span><small>{p.period}</small></article>)}</div>
         <section className={s.homeEducation} aria-labelledby="home-education-heading">
           <h3 id="home-education-heading">Education</h3>

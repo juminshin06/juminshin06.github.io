@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { ArrowUp, ArrowUpRight, MessageCircle } from 'lucide-react'
-import { fallbackIntent, intents, matchIntent, projectBySlug } from './agentIntents'
+import { intents, projectBySlug } from './agentIntents'
 import { askJumin } from './ChatBot'
 import { ProjectImage } from './Shell'
 import s from './Portfolio.module.css'
@@ -106,7 +106,7 @@ export default function AgentHero() {
 
   const showAnswer = phase === 'thinking' || phase === 'answering' || phase === 'done'
   const results = intent?.projects.map(projectBySlug).filter(Boolean) || []
-  const followUp = intent && intent !== fallbackIntent ? intent.prompt : ''
+  const followUp = intent?.prompt || ''
 
   return <div className={s.agent} data-agent-hero="true" data-phase={phase} data-auto={auto ? 'true' : 'false'}>
     <form className={s.agentForm} onSubmit={submit} role="search" aria-label="Ask about Jumin’s work">
@@ -119,7 +119,7 @@ export default function AgentHero() {
           value={query}
           onChange={event => { takeOver(); setQuery(event.target.value) }}
           onFocus={takeOver}
-          placeholder="Ask me anything about my work…"
+          placeholder="Ask anything about Jumin’s work…"
           autoComplete="off"
           spellCheck={false}
           enterKeyHint="send"
@@ -134,7 +134,7 @@ export default function AgentHero() {
     <div className={s.agentAnswer} aria-live="polite" hidden={!showAnswer}>
       <span className={s.agentAvatar} aria-hidden="true"><img src={AVATAR_SRC} alt="" width="36" height="45" decoding="async" /></span>
       <div className={s.agentBody}>
-        <span className={s.agentLabel}>Jumin · {phase === 'thinking' ? 'thinking' : 'answer'}</span>
+        <span className={s.agentLabel}>Portfolio assistant · {phase === 'thinking' ? 'thinking' : 'answer'}</span>
         {phase === 'thinking'
           ? <span className={s.agentThinking}><i /><i /><i /></span>
           : <p className={s.agentText}>{answer}{phase === 'answering' && <i className={s.agentCaret} aria-hidden="true" />}</p>}
@@ -151,7 +151,7 @@ export default function AgentHero() {
           {intent.links.map(link => <a key={link.href} href={link.href} {...(link.external ? { target: '_blank', rel: 'noreferrer' } : {})}><ArrowUpRight size={14} aria-hidden="true" />{link.label}</a>)}
         </div>}
         {phase === 'done' && !auto && followUp && <button type="button" className={s.agentMore} onClick={() => askJumin(followUp)}>
-          <MessageCircle size={15} aria-hidden="true" />Ask me more in chat
+          <MessageCircle size={15} aria-hidden="true" />Ask more in chat
         </button>}
       </div>
     </div>

@@ -47,3 +47,5 @@ html[data-custom-cursor] model-viewer { cursor: url('/assets/cursor.svg') 12 12,
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
+/* The intro's "Ask AI" choice stands in for the floating chat button while the intro is on screen. */
+html[data-intro-visible] [data-chat-launcher] { opacity: 0; transform: translateY(10px); pointer-events: none; }

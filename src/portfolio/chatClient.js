@@ -1,4 +1,4 @@
-import { localAnswer } from './agentIntents'
+import { localBrainAnswer as localAnswer } from './localBrain'
 
 export const chatApiUrl = import.meta.env.VITE_CHAT_API_URL || ''
 // The function sends one zero-width "ready" character first so headers arrive at once.

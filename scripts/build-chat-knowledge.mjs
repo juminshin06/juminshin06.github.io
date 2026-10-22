@@ -1,9 +1,11 @@
-// Builds the chatbot's knowledge file from the same data the site renders, so the
-// assistant can only say what the portfolio says. Output: chatbot-api/knowledge.js
-import { writeFileSync } from 'node:fs'
+// Builds the chatbot's knowledge file: Jumin's knowledge base and resume (src/data/chat/)
+// first, then the same project data the site renders, so the assistant can only say what
+// the portfolio says. Output: chatbot-api/knowledge.js
+import { readFileSync, writeFileSync } from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import profile from '../src/data/profile.json' with { type: 'json' }
+import resume from '../src/data/chat/resume.json' with { type: 'json' }
 import { allProjects, homepageProjectSlugs } from '../src/data/portfolio.js'
 
 const here = path.dirname(fileURLToPath(import.meta.url))
@@ -42,8 +44,36 @@ function describeProject(project) {
 const featured = homepageProjectSlugs.map(slug => allProjects.find(project => project.slug === slug)).filter(Boolean)
 const others = allProjects.filter(project => !homepageProjectSlugs.includes(project.slug))
 
+const knowledgeBase = readFileSync(path.join(here, '..', 'src', 'data', 'chat', 'knowledge-base.md'), 'utf8').trim()
+const entries = (items, link = false) => items.flatMap(item => [
+  `### ${item.title ? `${item.title} — ${item.organization}` : `${item.organization} — ${item.title}`} (${item.period})${link && item.slug ? ` · ${site}/work/${item.slug}/` : ''}`,
+  ...item.highlights.map(highlight => `- ${highlight}`),
+])
+const resumeText = [
+  '# Current resume (2026) — the most up-to-date source for titles, dates and numbers',
+  '',
+  '## Education',
+  ...resume.education.map(item => `- ${item.school} — ${item.degree} (${item.period})`),
+  '',
+  '## Skills',
+  ...Object.entries(resume.skills).map(([group, list]) => `- ${group}: ${list.join(', ')}`),
+  '',
+  '## Experience',
+  ...resume.experience.flatMap(item => [`### ${item.organization} — ${item.title}${item.location ? `, ${item.location}` : ''} (${item.period})`, ...item.highlights.map(highlight => `- ${highlight}`)]),
+  '',
+  '## Selected projects',
+  ...entries(resume.projects, true),
+  '',
+  '## Research & publications',
+  ...entries(resume.research, true),
+].join('\n')
+
 const knowledge = [
-  '# Jumin Shin — portfolio knowledge',
+  knowledgeBase,
+  '',
+  resumeText,
+  '',
+  '# Portfolio site data — project pages (use these URLs when linking)',
   '',
   '## Profile',
   line('Name', profile.name),

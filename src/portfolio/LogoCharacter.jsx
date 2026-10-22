@@ -32,7 +32,7 @@ export default function LogoCharacter() {
       frame = 0
       current.theta += (target.theta - current.theta) * 0.1
       current.phi += (target.phi - current.phi) * 0.1
-      viewer.cameraOrbit = `${current.theta.toFixed(2)}deg ${current.phi.toFixed(2)}deg 1.15m`
+      viewer.cameraOrbit = `${current.theta.toFixed(2)}deg ${current.phi.toFixed(2)}deg 0.82m`
       if (Math.abs(target.theta - current.theta) > 0.05 || Math.abs(target.phi - current.phi) > 0.05) frame = requestAnimationFrame(tick)
     }
     const onPointerMove = event => {
@@ -61,8 +61,8 @@ export default function LogoCharacter() {
           src={MODEL_SRC}
           poster={POSTER_SRC}
           alt=""
-          camera-target="0m 0.52m 0m"
-          camera-orbit="0deg 86deg 1.15m"
+          camera-target="0m 0.46m 0m"
+          camera-orbit="0deg 86deg 0.82m"
           field-of-view="30deg"
           interaction-prompt="none"
           shadow-intensity="0"
@@ -70,6 +70,6 @@ export default function LogoCharacter() {
           loading="eager"
           reveal="auto"
         />
-      : <img src={POSTER_SRC} width="34" height="42" alt="" decoding="async" />}
+      : <img src={POSTER_SRC} width="48" height="60" alt="" decoding="async" />}
   </span>
 }

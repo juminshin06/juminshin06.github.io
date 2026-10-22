@@ -1,13 +1,13 @@
 import { useEffect, useRef, useState } from 'react'
 import { ArrowUp, RotateCcw, X } from 'lucide-react'
 import { chatApiUrl, streamAnswer } from './chatClient'
-import { suggestedQuestions } from './agentIntents'
+import { suggestedQuestions } from './localBrain'
 import s from './Portfolio.module.css'
 
 const AVATAR_SRC = '/assets/3d/jumin-character-poster.webp'
 const STORAGE_KEY = 'jumin-chat-v1'
 const OPEN_EVENT = 'jumin-chat:ask'
-const GREETING = 'Hi, I’m Jumin’s portfolio assistant. Ask about my projects, process or background and I’ll answer from the work itself.'
+const GREETING = 'Hi, I’m Jumin’s portfolio assistant. Ask about her projects, process, skills or background, or tell me the role you’re hiring for and I’ll point you to the most relevant work.'
 
 // Anything on the page can hand the chat a question; the hero's prompt box does.
 export function askJumin(question) {
@@ -84,7 +84,7 @@ export default function ChatBot() {
       })
       update({ content: answer, source, pending: false })
     } catch {
-      update({ content: 'Something interrupted that answer. Try again in a moment, or email me at juminshi@usc.edu.', source: 'local', pending: false })
+      update({ content: 'Something interrupted that answer. Try again in a moment, or email Jumin at juminshi@usc.edu.', source: 'local', pending: false })
     } finally {
       if (abortRef.current === controller) { abortRef.current = null; setBusy(false) }
       setSuggestions(pickSuggestions([...messagesRef.current.map(message => message.content), question]))
@@ -133,15 +133,15 @@ export default function ChatBot() {
       onClick={() => setOpen(current => !current)}
     >
       <span className={s.chatAvatar} aria-hidden="true"><img src={AVATAR_SRC} alt="" width="36" height="45" decoding="async" /></span>
-      <span className={s.chatLauncherLabel}>Ask Jumin</span>
+      <span className={s.chatLauncherLabel}>Ask about Jumin</span>
     </button>
 
-    {open && <section className={s.chatPanel} role="dialog" aria-label="Chat with Jumin" data-chat-panel="true">
+    {open && <section className={s.chatPanel} role="dialog" aria-label="Jumin’s portfolio assistant" data-chat-panel="true">
       <header className={s.chatHead}>
         <span className={s.chatAvatar} aria-hidden="true"><img src={AVATAR_SRC} alt="" width="36" height="45" decoding="async" /></span>
         <div className={s.chatTitle}>
-          <strong>Jumin</strong>
-          <span className={s.chatStatus}><i aria-hidden="true" />{chatApiUrl ? 'Online · answers from my portfolio' : 'Always on · answers from my portfolio'}</span>
+          <strong>Jumin’s portfolio assistant</strong>
+          <span className={s.chatStatus}><i aria-hidden="true" />{chatApiUrl ? 'Online · answers from her portfolio' : 'Always on · answers from her portfolio'}</span>
         </div>
         <button type="button" className={s.chatIconButton} onClick={reset} disabled={!messages.length} aria-label="Start over" title="Start over"><RotateCcw size={16} aria-hidden="true" /></button>
         <button type="button" className={s.chatIconButton} onClick={() => { setOpen(false); launcherRef.current?.focus() }} aria-label="Close chat" title="Close"><X size={18} aria-hidden="true" /></button>
@@ -151,7 +151,7 @@ export default function ChatBot() {
         <div className={`${s.chatMsg} ${s.chatMsgBot}`}><p>{GREETING}</p></div>
         {messages.map(message => <div key={message.id} className={`${s.chatMsg} ${message.role === 'user' ? s.chatMsgUser : s.chatMsgBot}`} data-source={message.source}>
           {message.pending && !message.content
-            ? <span className={s.chatTyping} aria-label="Jumin is typing"><i /><i /><i /></span>
+            ? <span className={s.chatTyping} aria-label="The assistant is typing"><i /><i /><i /></span>
             : message.role === 'user' ? <p>{message.content}</p> : renderMarkdown(message.content)}
           {message.source === 'local' && !message.pending && chatApiUrl && <small className={s.chatNote}>Answered from the portfolio index</small>}
         </div>)}
@@ -162,7 +162,7 @@ export default function ChatBot() {
       </div>}
 
       <form className={s.chatCompose} onSubmit={event => { event.preventDefault(); send(draft) }}>
-        <label className="sr-only" htmlFor="chat-input">Message Jumin</label>
+        <label className="sr-only" htmlFor="chat-input">Message the portfolio assistant</label>
         <textarea
           id="chat-input"
           ref={inputRef}
