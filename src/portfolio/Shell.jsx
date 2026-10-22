@@ -34,7 +34,7 @@ export function Header({ active }) {
     if (event.key === 'Escape') { setOpen(false); toggle.current?.focus() }
   }
   return <header className={s.header} data-solid={scrolled || open ? 'true' : 'false'} onKeyDown={closeMenu}>
-    <a className={s.brand} href="/" aria-label="Jumin Shin, home"><LogoCharacter /><span>Jumin Shin</span></a>
+    <a className={s.brand} href="/" aria-label="Jumin Shin, home" title="Home"><LogoCharacter /></a>
     <div className={s.headerRight}>
       <nav className={s.desktopNav} aria-label="Primary">
         <a href="/#work" aria-current={active === 'home' ? 'page' : undefined}>Work</a>

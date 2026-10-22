@@ -1527,7 +1527,6 @@
 /* A square frame with the face at its vertical center, so it lines up with the wordmark's x-height. */
 .logoCharacter { position: relative; display: block; width: 48px; height: 48px; flex: 0 0 auto; overflow: hidden; margin: -2px 0; }
 .logoCharacter img { width: 150%; max-width: none; height: auto; margin: -8% 0 0 -25%; }
-.logoCharacter model-viewer { display: block; width: 100%; height: 100%; background: transparent; --poster-color: transparent; --progress-bar-height: 0; --progress-mask: none; }
 .headerRight { display: flex; align-items: center; gap: 40px; }
 .critterLayer { position: absolute; left: var(--gutter); right: var(--gutter); top: 0; height: 0; z-index: 2; pointer-events: none; }
 .critter {
@@ -2175,12 +2174,89 @@
   .aboutFacts dd { margin: 0; }
 }
 
-/* Mini Jumin: a 3D NPC who walks the page's empty space. Her box is anchored at her feet. */
+
+/* The assistant avatar shows her whole head, centered in the circle on a soft warm ground. */
+.chatAvatar, .agentAvatar, .chatLauncher .chatAvatar { background: linear-gradient(180deg, #f6f1ea, #ece4d9); }
+.chatAvatar img, .agentAvatar img { width: 100%; height: 100%; margin: 0; object-fit: cover; transform: translateY(6%) scale(1.04); }
+
+/* Recruiter core skills: room under the heading, even rows, labels on one line. */
+.recruiterSection .techTools { grid-template-columns: repeat(auto-fill, minmax(92px, 1fr)); gap: 26px 16px; margin-top: 24px; }
+.recruiterSection .techTool { min-height: 0; gap: 10px; }
+.recruiterSection .techTool svg { width: 28px; height: 28px; }
+.recruiterSection .techTool span { white-space: nowrap; }
+
+/* Critter speech: a short sentence that wraps, stays inside the footer edges, and the three
+   ants step slightly out of sync. */
+.critterSay { width: max-content; max-width: 230px; padding: 7px 10px; border-radius: 12px; white-space: normal; text-align: left; font: 500 12px/1.4 -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Geist', sans-serif; letter-spacing: -0.005em; transform: none; translate: -50% 0; animation: critter-speak 3.6s ease-out forwards; }
+.critter[data-say-align='start'] .critterSay { left: 0; translate: 0 0; }
+.critter[data-say-align='end'] .critterSay { left: auto; right: 0; translate: 0 0; }
+.critter:has(.critterSay) .critterThink { display: none; }
+@keyframes critter-speak { 0% { opacity: 0; transform: translateY(4px); } 8%, 88% { opacity: 1; transform: none; } 100% { opacity: 0; transform: translateY(-4px); } }
+.critter[data-index='1'] :is(.critterLegA, .critterLegB) { animation-delay: 140ms; }
+.critter[data-index='1'] .critterLegB { animation-delay: 350ms; }
+.critter[data-index='2'] :is(.critterLegA, .critterLegB) { animation-delay: 70ms; }
+.critter[data-index='2'] .critterLegB { animation-delay: 280ms; }
+
+
+/* About page: the editorial portrait in a soft rounded frame, framed on her face. */
+.aboutIntroPortrait picture { display: block; overflow: hidden; border-radius: 24px; background: #f2f2f0; }
+.aboutIntro .aboutIntroPortrait img { object-position: 50% 20%; }
+@media (width <= 600px) { .aboutIntroPortrait picture { border-radius: 20px; } }
+
+/* About: the toolkit now closes the page, so give it room before the Life link. */
+.toolkit + .archiveCta { margin-top: 72px; }
+
+/* A little more air between the answer card and the intro links. */
+.introLinks { margin-top: 28px; }
+@media (width <= 600px) { .introLinks { margin-top: 24px; } }
+
+/* Hero name: Boska Bold Italic in the bright rose pink from the reference. */
+.introContent h1 { font-family: 'Boska', 'Times New Roman', serif; font-style: italic; font-weight: 700; font-size: 112px; line-height: 1; letter-spacing: -0.015em; color: #e285a3; padding: 0 0.06em; }
+.introContent .introRole { margin-top: 22px; }
+@media (width <= 900px) { .introContent h1 { font-size: 84px; } .introContent .introRole { margin-top: 18px; } }
+@media (width <= 600px) { .introContent h1 { font-size: 60px; } .introContent .introRole { margin-top: 14px; } }
+
+/* Corner chat button: her face and "Ask about Jumin" as one quiet control, no extra glow or sparkle.
+   It shows only while the hero prompt is off screen and the chat is closed. */
+.chatLauncher { right: 24px; bottom: calc(24px + env(safe-area-inset-bottom)); height: 46px; gap: 6px; padding: 0 18px 0 6px; border: 1px solid rgba(24, 25, 22, .08); background: rgba(255, 255, 255, .94); font-size: 15px; font-weight: 600; box-shadow: 0 1px 2px rgba(0, 0, 0, .05), 0 8px 22px rgba(24, 25, 22, .1); transition: opacity 200ms ease, transform 220ms ease, box-shadow 220ms ease, visibility 0s; }
+.chatLauncher::before, .chatLauncher::after { content: none; display: none; }
+.chatLauncher:is(:hover, :focus-visible) { transform: translateY(-2px); box-shadow: 0 1px 2px rgba(0, 0, 0, .05), 0 12px 28px rgba(24, 25, 22, .14); }
+.chatLauncher:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.chatLauncherLabel { order: 0; }
+html:not([data-guide]) [data-chat-launcher], html[data-guide='hero'] [data-chat-launcher], html[data-guide='chat'] [data-chat-launcher] { opacity: 0; visibility: hidden; transform: translateY(8px); pointer-events: none; transition: opacity 180ms ease, transform 180ms ease, visibility 0s linear 180ms; }
+@media (width <= 600px) {
+  .chatLauncher { right: 16px; bottom: calc(16px + env(safe-area-inset-bottom)); height: 44px; padding: 0 16px 0 4px; font-size: 14px; }
+  .chatLauncherLabel { position: static; width: auto; height: auto; overflow: visible; clip-path: none; }
+}
+
+/* The chat's first screen carries one design belief, so touch visitors see them too. */
+.chatValue { margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(24, 25, 22, .08); font-size: 13px; color: var(--text-2, var(--muted)); }
+.chatValue span { display: block; margin-bottom: 2px; font-size: 11px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--ink); }
+
+/* Suggested-question chips: one size, one shape, clear hover, focus and active states. */
+.agentChip { display: inline-flex; align-items: center; height: 36px; padding: 0 16px; border: 1px solid transparent; border-radius: 999px; background: #f5f5f7; color: var(--ink); font-size: 14px; font-weight: 500; line-height: 1; letter-spacing: -0.005em; text-transform: none; white-space: nowrap; }
+.agentChip:hover { background: #e8e8ed; }
+.agentChip:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.agentChip[aria-pressed='true'], .agentChip[aria-pressed='true']:hover { border-color: var(--ink); background: var(--ink); color: var(--paper); }
+@media (width <= 600px) { .agentChip { height: 34px; padding: 0 14px; font-size: 13px; } }
+
+/* The intro links sit lower, nearer the hills; a relative offset so the section and its
+   backdrop keep their size. */
+.introLinks { position: relative; top: 56px; }
+@media (width <= 600px) { .introLinks { top: 32px; } }
+
+/* Character images from the transparent PNG render: the header logo, the chat avatars and the
+   corner figure show her as drawn, with no extra crop or zoom. */
+.logoCharacter { border-radius: 50%; overflow: hidden; background: linear-gradient(180deg, #f6f1ea, #ece4d9); }
+.logoCharacter img { width: 100%; height: 100%; margin: 0; object-fit: cover; object-position: 50% 20%; }
+.chatAvatar img, .agentAvatar img { transform: none; object-fit: cover; object-position: 50% 20%; }
+
+/* Mini Jumin: the roaming guide, drawn from the transparent PNG. Her box is anchored at her feet. */
 .npc { position: absolute; left: 0; top: 0; z-index: 25; width: 64px; height: 96px; margin: -96px 0 0 -32px; cursor: pointer; transition: opacity 260ms ease; will-change: transform; }
 .npc[data-state='hidden'] { opacity: 0; pointer-events: none; }
 .npc[data-state='hop'] { transition: transform 440ms cubic-bezier(.3, .7, .4, 1), opacity 260ms ease; }
 .npcBody { position: absolute; inset: 0; transform-origin: 50% 100%; }
-.npcBody model-viewer { width: 100%; height: 100%; --poster-color: transparent; background: transparent; pointer-events: none; }
+.npcBody img { position: absolute; left: 50%; bottom: 3px; width: auto; max-width: none; height: 92%; transform: translateX(-50%) rotate(var(--lean, 0deg)); transform-origin: 50% 100%; transition: transform 240ms ease; pointer-events: none; user-select: none; }
 .npcShadow { position: absolute; left: 50%; bottom: 1px; width: 34px; height: 8px; margin-left: -17px; border-radius: 50%; background: radial-gradient(closest-side, rgba(24, 25, 22, .2), transparent); transition: transform 200ms ease; }
 .npc[data-state='walk'] .npcBody { animation: npc-step 300ms ease-in-out infinite alternate; }
 .npc[data-state='walk'] .npcShadow { animation: npc-shadow 300ms ease-in-out infinite alternate; }
@@ -2203,45 +2279,9 @@
 .npcBubble::after { content: ''; position: absolute; left: calc(50% - var(--shift, 0px)); bottom: -5px; width: 12px; height: 12px; margin-left: -6px; border-radius: 2px; background: #fff; transform: rotate(45deg); }
 .npcBubble p { animation: npc-thought 260ms ease both; position: relative; z-index: 1; font-size: 14px; line-height: 1.35; font-weight: 560; letter-spacing: -0.01em; }
 .npcBubble span { position: relative; z-index: 1; display: block; margin-top: 4px; font-size: 12px; line-height: 1.3; color: var(--accent); }
-
-/* The assistant avatar shows her whole head, centered in the circle on a soft warm ground. */
-.chatAvatar, .agentAvatar, .chatLauncher .chatAvatar { background: linear-gradient(180deg, #f6f1ea, #ece4d9); }
-.chatAvatar img, .agentAvatar img { width: 100%; height: 100%; margin: 0; object-fit: cover; transform: translateY(6%) scale(1.04); }
 @keyframes npc-thought { from { opacity: 0; transform: translateY(3px); } to { opacity: 1; transform: none; } }
-
-/* Recruiter core skills: room under the heading, even rows, labels on one line. */
-.recruiterSection .techTools { grid-template-columns: repeat(auto-fill, minmax(92px, 1fr)); gap: 26px 16px; margin-top: 24px; }
-.recruiterSection .techTool { min-height: 0; gap: 10px; }
-.recruiterSection .techTool svg { width: 28px; height: 28px; }
-.recruiterSection .techTool span { white-space: nowrap; }
-
-/* Critter speech: a short sentence that wraps, stays inside the footer edges, and the three
-   ants step slightly out of sync. */
-.critterSay { width: max-content; max-width: 230px; padding: 7px 10px; border-radius: 12px; white-space: normal; text-align: left; font: 500 12px/1.4 -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Geist', sans-serif; letter-spacing: -0.005em; transform: none; translate: -50% 0; animation: critter-speak 3.6s ease-out forwards; }
-.critter[data-say-align='start'] .critterSay { left: 0; translate: 0 0; }
-.critter[data-say-align='end'] .critterSay { left: auto; right: 0; translate: 0 0; }
-.critter:has(.critterSay) .critterThink { display: none; }
-@keyframes critter-speak { 0% { opacity: 0; transform: translateY(4px); } 8%, 88% { opacity: 1; transform: none; } 100% { opacity: 0; transform: translateY(-4px); } }
-.critter[data-index='1'] :is(.critterLegA, .critterLegB) { animation-delay: 140ms; }
-.critter[data-index='1'] .critterLegB { animation-delay: 350ms; }
-.critter[data-index='2'] :is(.critterLegA, .critterLegB) { animation-delay: 70ms; }
-.critter[data-index='2'] .critterLegB { animation-delay: 280ms; }
-
-/* Picked up: she hangs from the pointer by her head, swings with its motion and kicks. */
 .npc[data-state='grab'] { z-index: 60; cursor: grabbing; }
 .npc[data-state='grab'] .npcShadow { opacity: 0; }
 .npc[data-state='grab'] .npcBody { transform-origin: 50% 12%; transform: rotate(var(--swing, 0deg)); transition: transform 120ms ease-out; animation: none; }
-.npc[data-state='grab'] model-viewer { transform-origin: 50% 15%; animation: npc-kick 260ms ease-in-out infinite alternate; }
-@keyframes npc-kick { 0% { transform: rotate(-7deg) translateY(0); } 50% { transform: rotate(0) translateY(3px) scale(1.02, .98); } 100% { transform: rotate(7deg) translateY(0); } }
-
-/* About page: the editorial portrait in a soft rounded frame, framed on her face. */
-.aboutIntroPortrait picture { display: block; overflow: hidden; border-radius: 24px; background: #f2f2f0; }
-.aboutIntro .aboutIntroPortrait img { object-position: 50% 20%; }
-@media (width <= 600px) { .aboutIntroPortrait picture { border-radius: 20px; } }
-
-/* About: the toolkit now closes the page, so give it room before the Life link. */
-.toolkit + .archiveCta { margin-top: 72px; }
-
-/* A little more air between the answer card and the intro links. */
-.introLinks { margin-top: 28px; }
-@media (width <= 600px) { .introLinks { margin-top: 24px; } }
+.npc[data-state='grab'] .npcBody img { transform-origin: 50% 15%; animation: npc-kick 260ms ease-in-out infinite alternate; }
+@keyframes npc-kick { 0% { transform: translateX(-50%) rotate(-8deg); } 50% { transform: translateX(-50%) translateY(3px) scale(1.02, .98); } 100% { transform: translateX(-50%) rotate(8deg); } }

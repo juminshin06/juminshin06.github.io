@@ -5,7 +5,7 @@ import { askJumin } from './ChatBot'
 import { ProjectImage } from './Shell'
 import s from './Portfolio.module.css'
 
-const AVATAR_SRC = '/assets/3d/jumin-avatar.png'
+const AVATAR_SRC = '/assets/character/jumin-avatar.png'
 
 const sleep = (ms, signal) => new Promise(resolve => {
   const timer = setTimeout(resolve, ms)
@@ -20,6 +20,7 @@ export default function AgentHero() {
   const [phase, setPhase] = useState('idle') // idle | typing | thinking | answering | done
   const [auto, setAuto] = useState(false)
   const [intent, setIntent] = useState(null)
+  const [activeChip, setActiveChip] = useState(null)
   const [answer, setAnswer] = useState('')
   const inputRef = useRef(null)
   const controller = useRef(null)
@@ -58,6 +59,7 @@ export default function AgentHero() {
     const current = new AbortController()
     controller.current = current
     setQuery(text)
+    setActiveChip(next.id)
     await respond(next, current.signal)
   }
 
@@ -69,6 +71,7 @@ export default function AgentHero() {
     setAuto(false)
     setPhase('idle')
     setIntent(null)
+    setActiveChip(null)
     askJumin(text)
     setQuery('')
   }
@@ -85,6 +88,7 @@ export default function AgentHero() {
     const run = async () => {
       await sleep(900, signal)
       const next = intents[0]
+      setActiveChip(next.id)
       setPhase('typing')
       setIntent(null)
       setAnswer('')
@@ -117,7 +121,7 @@ export default function AgentHero() {
           id="agent-input"
           ref={inputRef}
           value={query}
-          onChange={event => { takeOver(); setQuery(event.target.value) }}
+          onChange={event => { takeOver(); setQuery(event.target.value); if (event.target.value.trim()) setActiveChip(null) }}
           onFocus={onFocus}
           placeholder="Ask anything about Jumin’s work…"
           autoComplete="off"
@@ -129,7 +133,7 @@ export default function AgentHero() {
       <button type="submit" className={s.agentSend} aria-label="Ask"><ArrowUp size={18} aria-hidden="true" /></button>
     </form>
     <div className={s.agentChips} aria-label="Suggested questions">
-      {intents.map(item => <button key={item.id} type="button" className={s.agentChip} aria-pressed={intent?.id === item.id} onClick={() => ask(item)}>{item.chip}</button>)}
+      {intents.map(item => <button key={item.id} type="button" className={s.agentChip} aria-pressed={activeChip === item.id} title={item.prompt} onClick={() => ask(item)}>{item.label}</button>)}
     </div>
     <div className={s.agentAnswer} aria-live="polite" hidden={!showAnswer} data-npc-avoid="true">
       <span className={s.agentAvatar} aria-hidden="true"><img src={AVATAR_SRC} alt="" width="36" height="36" decoding="async" /></span>

@@ -27,7 +27,7 @@ export default function App({ path = '/' }) {
     </main>
     <Footer />
     <ChatBot />
-    {/* Mini Jumin lives on the homepage only, not on case studies or inner pages. */}
+    {/* Mini Jumin roams the homepage only, not case studies or inner pages. */}
     {page.type === 'home' && <RoamingNpc />}
   </>
 }

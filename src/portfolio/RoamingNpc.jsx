@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 import { askJumin } from './ChatBot'
+import { designThoughts as THOUGHTS } from './designThoughts'
 import s from './Portfolio.module.css'
 
-const MODEL_SRC = '/assets/3d/jumin-npc.glb'
+const FIGURE_SRC = '/assets/character/jumin-figure.png'
 const W = 64            // character box, with her feet at the bottom center
 const H = 96
 const CELL = 16         // walkable grid resolution
@@ -11,7 +12,6 @@ const EDGE = 12         // room she keeps from the viewport edges
 const SPEED = 64        // px per second while wandering
 const CHASE = 104       // px per second while following the pointer
 const NEAR = 64         // how close she comes to the pointer without standing under it
-const PITCH = '78deg'
 
 // Everything she must never stand on: links, controls, media, cards and the footer. Every
 // visible line of text is avoided too (see scan), whatever element it sits in.
@@ -22,28 +22,9 @@ const AVOID = [
   'footer', '[data-chat-panel]', '[data-npc-avoid]',
 ].join(',')
 
-// Small UX design engineering beliefs she muses on while hovered, one at a time.
-const THOUGHTS = [
-  'Prototype the question, not just the answer.',
-  'If nobody has tested it, it’s still a guess.',
-  'Good UX is often just one fewer step.',
-  'Design the empty state first.',
-  'Accessibility is a feature, not a checklist.',
-  'Ship the smallest thing that teaches you something.',
-  'Every loading spinner is a design decision.',
-  'Talk to five users before writing five hundred lines.',
-  'Make the right action the easy action.',
-  'Real content breaks pretty mockups. Use it early.',
-  'Errors are part of the flow. Design them too.',
-  'Motion should explain, not decorate.',
-  'Code is the most honest prototype.',
-  'AI should feel like a collaborator, not a black box.',
-  'Trust lives in the details: copy, timing, feedback.',
-  'Watch what people do, then ask why.',
-  'Clarity beats cleverness.',
-  'A design system is a promise of consistency.',
-]
 const THOUGHT_MS = 3200
+const GREETED = 'jumin-npc-greeted'
+const HELLO = 'Hi! I’m mini Jumin, your guide to this portfolio 👋'
 const HOLD_MS = 280      // a press this long picks her up instead of clicking
 const GRIP = 18          // the pointer holds her by the head, this far below its tip
 
@@ -130,14 +111,14 @@ function clearLine(grid, a, b) {
   return true
 }
 
-// A small 3D Jumin who walks the empty parts of the page like a game NPC. She follows the
+// A small Jumin who walks the empty parts of the page like a game NPC. She follows the
 // pointer around text and pictures, wanders when it rests, drops back into view after a
 // scroll, and shares UX design engineering thoughts on hover.
 export default function RoamingNpc() {
   const [enabled, setEnabled] = useState(false)
   const [line, setLine] = useState('')
   const rootRef = useRef(null)
-  const viewerRef = useRef(null)
+  const figureRef = useRef(null)
   const bubbleRef = useRef(null)
   const clickGuard = useRef(() => false)
 
@@ -145,15 +126,14 @@ export default function RoamingNpc() {
     const fine = window.matchMedia('(hover: hover) and (pointer: fine)')
     const motion = window.matchMedia('(prefers-reduced-motion: reduce)')
     if (!fine.matches || motion.matches || window.innerWidth < 768) return
-    let disposed = false
-    const timer = window.setTimeout(() => import('@google/model-viewer').then(() => { if (!disposed) setEnabled(true) }), 1600)
-    return () => { disposed = true; window.clearTimeout(timer) }
+    const timer = window.setTimeout(() => setEnabled(true), 900)
+    return () => window.clearTimeout(timer)
   }, [])
 
   useEffect(() => {
     const el = rootRef.current
-    const viewer = viewerRef.current
-    if (!enabled || !el || !viewer) return
+    const figure = figureRef.current
+    if (!enabled || !el || !figure) return
     const npc = { x: 0, y: 0, path: [], theta: 0, until: 0, away: 0, ready: false, planned: 0, goalFor: null, poofed: 0 }
     // The pointer in viewport coordinates; she follows it while it has moved in the last few seconds.
     const mouse = { x: 0, y: 0, at: 0 }
@@ -171,7 +151,9 @@ export default function RoamingNpc() {
       while (next - npc.theta > 180) next -= 360
       while (next - npc.theta < -180) next += 360
       npc.theta = next
-      viewer.cameraOrbit = `${next.toFixed(1)}deg ${PITCH} auto`
+      // The drawing faces front, so turning reads as a lean toward where she is heading or looking.
+      const side = Math.abs(next) < 12 || Math.abs(next) > 160 ? 0 : next < 0 ? 1 : -1
+      el.style.setProperty('--lean', `${side * Math.min(8, Math.abs(next) / 7)}deg`)
     }
     // Front when walking down the page, back when walking up, profile when walking sideways.
     const faceToward = target => face(-Math.atan2(target.x - npc.x, target.y - npc.y) * 180 / Math.PI)
@@ -310,8 +292,8 @@ export default function RoamingNpc() {
 
     // Once a second: come back into view after a scroll, and step off anything that moved under her.
     const watch = () => {
-      // A cached model can finish loading before the listener is attached.
-      if (!npc.ready && viewer.loaded) onLoad()
+      // A cached image can finish loading before the listener is attached.
+      if (!npc.ready && figure.complete) onLoad()
       if (document.hidden || !npc.ready) return
       // She steps aside while the recruiter view is open and comes back when it closes.
       if (recruiting()) {
@@ -336,7 +318,28 @@ export default function RoamingNpc() {
     const stop = () => { cancelAnimationFrame(frame); frame = 0 }
     const onVisibility = () => (document.hidden ? stop() : start())
     const recruiting = () => new URLSearchParams(window.location.search).get('mode') === 'recruiter'
-    const onLoad = () => { npc.ready = true; if (!recruiting()) spawn(scan(el)) }
+    // On the first visit of a session she says hello right after dropping in.
+    const greet = () => {
+      try { if (window.sessionStorage.getItem(GREETED)) return; window.sessionStorage.setItem(GREETED, '1') } catch { /* storage may be unavailable */ }
+      later(() => {
+        if (el.dataset.state === 'hidden' || el.dataset.state === 'grab') return
+        stop()
+        setState('talk')
+        face(0)
+        setLine(HELLO)
+        later(() => {
+          if (el.dataset.state !== 'talk' || el.matches(':hover')) return
+          setLine('')
+          rest(600, 1200)
+          start()
+        }, 4200)
+      }, 900)
+    }
+    const onLoad = () => {
+      if (npc.ready) return
+      npc.ready = true
+      if (!recruiting()) { spawn(scan(el)); greet() }
+    }
 
     const onPointerMove = event => {
       if (event.pointerType !== 'mouse') return
@@ -448,14 +451,14 @@ export default function RoamingNpc() {
     }
     clickGuard.current = () => grab.dropped
 
-    viewer.addEventListener('load', onLoad)
+    figure.addEventListener('load', onLoad)
     el.addEventListener('pointerdown', onPointerDown)
     el.addEventListener('pointermove', onGrabMove)
     el.addEventListener('pointerup', letGo)
     el.addEventListener('pointercancel', letGo)
     window.addEventListener('pointermove', onPointerMove, { passive: true })
     document.addEventListener('pointerout', onPointerOut)
-    if (viewer.loaded) onLoad()
+    if (figure.complete) onLoad()
     el.addEventListener('pointerenter', onEnter)
     el.addEventListener('pointerleave', onLeave)
     document.addEventListener('visibilitychange', onVisibility)
@@ -466,7 +469,7 @@ export default function RoamingNpc() {
       window.clearInterval(watcher)
       window.clearInterval(musing)
       timers.forEach(id => window.clearTimeout(id))
-      viewer.removeEventListener('load', onLoad)
+      figure.removeEventListener('load', onLoad)
       window.clearTimeout(grab.press)
       window.clearInterval(grab.kick)
       window.clearInterval(grab.settle)
@@ -505,18 +508,7 @@ export default function RoamingNpc() {
     </div>
     <span className={s.npcShadow} />
     <div className={s.npcBody}>
-      <model-viewer
-        ref={viewerRef}
-        src={MODEL_SRC}
-        alt=""
-        camera-orbit={`0deg ${PITCH} auto`}
-        field-of-view="30deg"
-        interpolation-decay="90"
-        interaction-prompt="none"
-        shadow-intensity="0"
-        exposure="1.05"
-        loading="eager"
-      />
+      <img ref={figureRef} src={FIGURE_SRC} width="50" height="88" alt="" decoding="async" draggable={false} />
     </div>
   </div>
 }

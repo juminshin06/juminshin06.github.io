@@ -5,6 +5,13 @@
   font-weight: 100 900;
   font-display: swap;
 }
+@font-face {
+  font-family: 'Boska';
+  src: url('/fonts/Boska-BoldItalic.woff2') format('woff2');
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+}
 :root {
   /* System-first like iOS: SF on Apple devices, with Geist as the self-hosted fallback elsewhere. */
   font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Geist', 'Helvetica Neue', Arial, sans-serif;
@@ -47,5 +54,3 @@ main:focus { outline: none; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
-/* The intro's "Ask AI" choice stands in for the floating chat button while the intro is on screen. */
-html[data-intro-visible] [data-chat-launcher] { opacity: 0; transform: translateY(10px); pointer-events: none; }

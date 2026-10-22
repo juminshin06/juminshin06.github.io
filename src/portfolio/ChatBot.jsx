@@ -2,9 +2,11 @@ import { useEffect, useRef, useState } from 'react'
 import { ArrowUp, RotateCcw, X } from 'lucide-react'
 import { chatApiUrl, streamAnswer } from './chatClient'
 import { suggestedQuestions } from './localBrain'
+import { pickThought } from './designThoughts'
+import { setGuide, syncGuide } from './guide'
 import s from './Portfolio.module.css'
 
-const AVATAR_SRC = '/assets/3d/jumin-avatar.png'
+const AVATAR_SRC = '/assets/character/jumin-avatar.png'
 const STORAGE_KEY = 'jumin-chat-v1'
 const OPEN_EVENT = 'jumin-chat:ask'
 const GREETING = 'Hi, I’m Jumin’s portfolio assistant. Ask about her projects, process, skills or background, or tell me the role you’re hiring for and I’ll point you to the most relevant work.'
@@ -12,6 +14,16 @@ const GREETING = 'Hi, I’m Jumin’s portfolio assistant. Ask about her project
 // Anything on the page can hand the chat a question; the hero's prompt box does.
 export function askJumin(question) {
   window.dispatchEvent(new CustomEvent(OPEN_EVENT, { detail: { question } }))
+}
+// Open the panel where the visitor is, keeping the conversation and any unsent draft.
+export const openJuminChat = () => askJumin('')
+
+// After the panel closes, focus returns to whatever opened it if that is still on screen,
+// otherwise to the guide entry point that is showing now (the hero NPC or the corner button).
+function focusEntry(opener) {
+  const visible = element => element?.isConnected && element !== document.body && element.getClientRects().length > 0 && getComputedStyle(element).visibility !== 'hidden'
+  const target = [opener, ...document.querySelectorAll('[data-guide-entry]'), document.getElementById('agent-input')].find(visible)
+  target?.focus({ preventScroll: true })
 }
 
 const pickSuggestions = (asked, count = 3) => {
@@ -56,12 +68,14 @@ export default function ChatBot() {
   const [messages, setMessages] = useState([])
   const [draft, setDraft] = useState('')
   const [busy, setBusy] = useState(false)
+  const [note, setNote] = useState('')
   const [suggestions, setSuggestions] = useState(() => suggestedQuestions.slice(0, 3))
   const launcherRef = useRef(null)
   const inputRef = useRef(null)
   const logRef = useRef(null)
   const suggestRef = useRef(null)
   const abortRef = useRef(null)
+  const openerRef = useRef(null)
   const messagesRef = useRef(messages)
   messagesRef.current = messages
 
@@ -97,7 +111,12 @@ export default function ChatBot() {
       const saved = JSON.parse(window.sessionStorage.getItem(STORAGE_KEY) || '[]')
       if (Array.isArray(saved) && saved.length) setMessages(saved.filter(message => !message.pending))
     } catch { /* ignore a bad cache */ }
-    const onAsk = event => { setOpen(true); window.setTimeout(() => send(event.detail?.question || ''), 60) }
+    const onAsk = event => {
+      const question = event.detail?.question || ''
+      if (!openerRef.current) openerRef.current = document.activeElement
+      setOpen(true)
+      if (question) window.setTimeout(() => send(question), 60)
+    }
     window.addEventListener(OPEN_EVENT, onAsk)
     return () => window.removeEventListener(OPEN_EVENT, onAsk)
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
@@ -108,14 +127,25 @@ export default function ChatBot() {
     if (log) log.scrollTop = log.scrollHeight
   }, [messages])
 
+  useEffect(() => { syncGuide() }, [])
   useEffect(() => {
+    setGuide({ chatOpen: open })
     if (!open) return
+    setNote(current => pickThought(current))
     // Keyboards pop up on touch devices, so only pointer devices get the field focused for them.
-    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) inputRef.current?.focus()
-    const onKey = event => { if (event.key === 'Escape') { setOpen(false); launcherRef.current?.focus() } }
+    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) inputRef.current?.focus({ preventScroll: true })
+    const onKey = event => { if (event.key === 'Escape') close() }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
-  }, [open])
+  }, [open]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  const close = () => {
+    const opener = openerRef.current
+    openerRef.current = null
+    setOpen(false)
+    // Wait a frame so the guide entry for this scroll position is back before focusing it.
+    window.requestAnimationFrame(() => focusEntry(opener))
+  }
 
   // A vertical mouse wheel over the suggestion row scrolls it sideways, so every question is reachable.
   useEffect(() => {
@@ -142,9 +172,10 @@ export default function ChatBot() {
       type="button"
       className={s.chatLauncher}
       data-chat-launcher="true"
+      data-guide-entry="dock"
       aria-haspopup="dialog"
       aria-expanded={open}
-      onClick={() => setOpen(current => !current)}
+      onClick={() => { openerRef.current = launcherRef.current; setOpen(true) }}
     >
       <span className={s.chatAvatar} aria-hidden="true"><img src={AVATAR_SRC} alt="" width="36" height="36" decoding="async" /></span>
       <span className={s.chatLauncherLabel}>Ask about Jumin</span>
@@ -158,11 +189,11 @@ export default function ChatBot() {
           <span className={s.chatStatus}><i aria-hidden="true" />{chatApiUrl ? 'Online · answers from her portfolio' : 'Always on · answers from her portfolio'}</span>
         </div>
         <button type="button" className={s.chatIconButton} onClick={reset} disabled={!messages.length} aria-label="Start over" title="Start over"><RotateCcw size={16} aria-hidden="true" /></button>
-        <button type="button" className={s.chatIconButton} onClick={() => { setOpen(false); launcherRef.current?.focus() }} aria-label="Close chat" title="Close"><X size={18} aria-hidden="true" /></button>
+        <button type="button" className={s.chatIconButton} onClick={close} aria-label="Close chat" title="Close"><X size={18} aria-hidden="true" /></button>
       </header>
 
       <div ref={logRef} className={s.chatLog} aria-live="polite">
-        <div className={`${s.chatMsg} ${s.chatMsgBot}`}><p>{GREETING}</p></div>
+        <div className={`${s.chatMsg} ${s.chatMsgBot}`}><p>{GREETING}</p>{note && <p className={s.chatValue}><span>Design note</span>{note}</p>}</div>
         {messages.map(message => <div key={message.id} className={`${s.chatMsg} ${message.role === 'user' ? s.chatMsgUser : s.chatMsgBot}`} data-source={message.source}>
           {message.pending && !message.content
             ? <span className={s.chatTyping} aria-label="The assistant is typing"><i /><i /><i /></span>

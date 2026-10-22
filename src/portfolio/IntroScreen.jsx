@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react'
 import { ArrowDown } from 'lucide-react'
 import { homepageProjects } from '../data/portfolio'
 import AgentHero from './AgentHero'
+import { setGuide } from './guide'
 import IntroBackdrop from './IntroBackdrop'
 import { ProjectImage } from './Shell'
 import s from './Portfolio.module.css'
@@ -71,18 +72,23 @@ function FloatingCard({ project, index }) {
 export default function IntroScreen({ onRecruiter, recruiterRef }) {
   const sectionRef = useRef(null)
 
-  // While the prompt box is on screen it stands in for the floating chat button; once the
-  // visitor scrolls past it, "Ask about Jumin" appears.
+  // The guide follows the prompt field itself, not the whole hero, so a long answer can't hide the
+  // way in. Two thresholds give it hysteresis: it counts as visible once 70% shows and as gone
+  // only below 20%, so scrolling at the edge never makes the NPC and the chat button flicker.
   useEffect(() => {
     const prompt = sectionRef.current?.querySelector('[data-agent-hero] form')
     if (!prompt || !window.IntersectionObserver) return
-    const root = document.documentElement
+    // Decide right away from where the prompt sits, so the corner button never flashes on load.
+    const box = prompt.getBoundingClientRect()
+    const shown = Math.min(box.bottom, window.innerHeight) - Math.max(box.top, 72)
+    setGuide({ promptVisible: shown / box.height >= 0.7 })
     const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) root.dataset.introVisible = 'true'
-      else delete root.dataset.introVisible
-    }, { threshold: 0.6, rootMargin: '-72px 0px 0px 0px' })
+      const ratio = entry.isIntersecting ? entry.intersectionRatio : 0
+      if (ratio >= 0.7) setGuide({ promptVisible: true })
+      else if (ratio <= 0.2) setGuide({ promptVisible: false })
+    }, { threshold: [0, 0.2, 0.7, 1], rootMargin: '-72px 0px 0px 0px' })
     observer.observe(prompt)
-    return () => { observer.disconnect(); delete root.dataset.introVisible }
+    return () => { observer.disconnect(); setGuide({ promptVisible: false }) }
   }, [])
 
   return <section ref={sectionRef} className={s.intro} aria-labelledby="intro-heading" data-intro="true">

@@ -13,7 +13,7 @@ test('the work-led homepage uses the natural hero portrait without editorial lab
     assert.match(html, /aria-label="About Jumin Shin"/)
     const header = html.slice(html.indexOf('<header'), html.indexOf('</header>'))
     assert.match(header, /data-logo-character="still"/)
-    assert.match(header, /jumin-character-poster\.webp/)
+    assert.match(header, /character\/jumin-avatar\.png/)
     assert.doesNotMatch(header, /data-local-time/)
     assert.doesNotMatch(header, /Los Angeles/)
     const hero = html.slice(html.indexOf('<section'), html.indexOf('</section>'))
