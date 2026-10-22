@@ -5,7 +5,7 @@
   "bio": [
     "I'm a UX Design Engineer based in Los Angeles. I connect user research, interaction design, prototyping and front-end implementation to shape digital experiences, from AI-assisted creative tools to spatial interfaces and healthcare workflows.",
     "I study Integrated Design, Business and Technology at USC's Iovine and Young Academy, following a double degree in Design Convergence and Game Software at Hongik University. That background brings design, research, and implementation into the same practice.",
-    "My experience includes an AI production platform at Bubba's LA, mixed-method UX research at Macromill Embrain, and USC industry collaborations with American Honda, Johnson & Johnson MedTech, and ARS Pharma. I have also co-authored research on interactive storytelling, music expression, and electric-vehicle charging interfaces."
+    "My experience includes an AI production platform at Bubba's LA, the Swim Up Hill Foundation website I design and build end to end, mixed-method UX research at Macromill Embrain, and USC industry collaborations with American Honda, Johnson & Johnson MedTech, and ARS Pharma. I also contribute to pair-programming research at USC's ACE Lab and have co-authored research on interactive storytelling, music expression, and electric-vehicle charging interfaces."
   ],
   "email": "juminshi@usc.edu",
   "linkedin": "https://www.linkedin.com/in/juminshin",
@@ -14,22 +14,22 @@
   "location": "Los Angeles, CA",
   "experience": [
     {
+      "organization": "Swim Up Hill Foundation",
+      "title": "Web Development & Internal Systems Intern",
+      "period": "Jun - Aug 2026, Oct 2026 - Present",
+      "description": "Designed and built the foundation's website end to end, owning UX, visual design and development; six user journeys now run live, from a 4-step enrollment to donations, shop, webinar, newsletter and school inquiry. Building My Portal with email-verified and Google/Apple sign-in and six role-based dashboards, and running usability tests with parents and swimmers that set the accessibility fixes."
+    },
+    {
       "organization": "USC Thomas Lord Department of Computer Science",
-      "title": "Program Teaching Assistant, Summer Computer Science Program",
+      "title": "Program Teaching Assistant, Summer CS Program",
       "period": "Jul 2026",
-      "description": "Coached 22 students from seven Korean universities in machine learning, data science, and AI-assisted software development. Co-developed course materials and hands-on exercises, and mentored final-hackathon teams through ideation, implementation, and debugging."
+      "description": "Co-developed a Vibe Coding curriculum on prompt engineering, multi-agent workflows and AI automation for 70 students across three sections, and advised final-hackathon teams on UX, interface design, build and debugging."
     },
     {
       "organization": "Bubba's LA",
       "title": "AI Research Intern",
       "period": "May - Jul 2026",
-      "description": "Designed and scaled an AI rough-cut preparation platform from a 10-video prototype to 300+ videos per automated batch, adopted for production use. Centralized real-time production monitoring and control, led AI SEO and business-development initiatives, and integrated 11,500+ professional connections into a mobile lead-prioritization dashboard."
-    },
-    {
-      "organization": "Swim Up Hill",
-      "title": "Operations & User Experience Intern",
-      "period": "Jun - Aug 2026",
-      "description": "Led internal-systems and workflow optimization for a swim-education nonprofit. Led the website team and owned UX/UI design, HTML frontend implementation and publishing at swimuphill.org, collaborating with a backend developer on program, outreach and reporting workflows."
+      "description": "Scaled an AI rough-cut platform 30×, from a 10-video prototype to 300+ videos per batch in production, owning its UX/UI design and front-end build. Designed and built a real-time monitoring dashboard for timeline, media, 3D scene and lighting status, put 11,500+ contacts into a mobile lead dashboard, and led an AI SEO / JSON-LD audit that became the site-growth roadmap."
     },
     {
       "organization": "USC Iovine and Young Academy",
@@ -41,7 +41,7 @@
       "organization": "Macromill Embrain",
       "title": "Researcher & Designer Intern",
       "period": "Nov 2023 - Jun 2024",
-      "description": "Contributed to mixed-method UX research with approximately 100 participants across engagements for Samsung Electronics, Hyundai Motor Company, and SK. Translated findings into strategies, concepts, and UI prototypes, and presented outcomes at a generative AI workshop."
+      "description": "Conducted mixed-method UX research with about 100 participants (interviews, surveys, usability tests) for Samsung, Hyundai and SK, then translated the insights into UI prototypes for Galaxy personalization, Hyundai SUV camping and an SK employee platform."
     },
     {
       "organization": "Zephframe",
@@ -53,7 +53,7 @@
       "organization": "Cheil Worldwide",
       "title": "UX Designer Intern",
       "period": "Mar - Jun 2022",
-      "description": "Shipped localized campaign websites and promotional UI for Samsung Galaxy Z Fold4 and Flip4 across approximately 10 international markets, including the UK, Germany, and France, adapting global launch concepts for local audiences."
+      "description": "Shipped localized campaign websites and promotional UI for Samsung Galaxy Z Fold4 and Flip4 across about 10 international markets, including the UK, Germany and France, adapting each global launch concept to local audiences."
     }
   ],
   "education": [
@@ -71,6 +71,32 @@
       "school": "Technical University of Berlin",
       "degree": "Exchange Student, Summer University: Gaming for Virtual and Augmented Reality",
       "period": "Jul - Aug 2022"
+    }
+  ],
+  "researchExperience": [
+    {
+      "title": "Research Team Member",
+      "organization": "USC ACE Lab, with Dr. Souti Chattopadhyay",
+      "period": "2026 - Present",
+      "description": "Contributing to study design and a manuscript on collaborative reasoning in pair programming (in preparation)."
+    },
+    {
+      "title": "Research Assistant",
+      "organization": "Hongik University, Game Software",
+      "period": "Mar - Dec 2023",
+      "description": "Prototyped a generative-AI authoring tool for interactive storytelling; co-authored papers at ICIDS 2023 and KIISE 2023."
+    },
+    {
+      "title": "Research Assistant",
+      "organization": "Hyundai Motor Company collaboration",
+      "period": "Jan - Mar 2022",
+      "description": "Prototyped and user-tested EV charging-port interactions in C++ and Figma; published at KSDS 2023."
+    },
+    {
+      "title": "Researcher & Interaction Designer",
+      "organization": "Sing In Sign",
+      "period": "Feb 2022",
+      "description": "Co-designed an accessible interactive music interface for children with hearing impairments; published at HCI Korea."
     }
   ],
   "publications": [
@@ -107,13 +133,34 @@
     }
   ],
   "recognition": [
-    { "title": "HAiLY: 2nd Place, USC & Techstars Startup Weekend", "year": 2026 },
-    { "title": "Future Gaming Service Design: 1st Place, Newegg Gamer Zone (WD & UGREEN)", "year": 2026 },
-    { "title": "AI Native MVP: Team Award, USC IYA Vibe Coding Hackathon", "year": 2026 },
-    { "title": "Lotte Scholarship Foundation", "year": 2023 },
-    { "title": "Hongik University Internal Scholarship", "year": "2019 - 2023" },
-    { "title": "Korea Student Aid Foundation Arts and Sports Vision Scholarship", "year": "2021 - 2022" },
-    { "title": "CLOZUMIN: Social Problem Solving Award, Human City Design University Student Workshop (Seoul Mayor's Award)", "year": 2021 }
+    {
+      "title": "HAiLY: 2nd Place, USC & Techstars Startup Weekend",
+      "year": 2026
+    },
+    {
+      "title": "Future Gaming Service Design: 1st Place, Newegg Gamer Zone (WD & UGREEN)",
+      "year": 2026
+    },
+    {
+      "title": "AI Native MVP: Team Award, USC IYA Vibe Coding Hackathon",
+      "year": 2026
+    },
+    {
+      "title": "Lotte Scholarship Foundation",
+      "year": 2023
+    },
+    {
+      "title": "Hongik University Internal Scholarship",
+      "year": "2019 - 2023"
+    },
+    {
+      "title": "Korea Student Aid Foundation Arts and Sports Vision Scholarship",
+      "year": "2021 - 2022"
+    },
+    {
+      "title": "CLOZUMIN: Social Problem Solving Award, Human City Design University Student Workshop (Seoul Mayor's Award)",
+      "year": 2021
+    }
   ],
   "capabilities": [
     {

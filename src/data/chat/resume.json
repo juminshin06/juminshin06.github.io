@@ -1,32 +1,86 @@
 {
-  "source": "JuminShin_Resume(Design).pdf and JuminShin_Resume(engineer).pdf, 2026. Phone number intentionally omitted.",
+  "source": "JuminShin_Resume.pdf, JuminShin_Resume(Design).pdf and JuminShin_Resume(engineer).pdf, October 2026. The engineer version is the PDF linked on the site. Phone number intentionally omitted.",
   "contact": {
     "email": "juminshi@usc.edu",
     "linkedin": "https://www.linkedin.com/in/juminshin",
     "portfolio": "https://juminshin06.github.io"
   },
   "education": [
-    { "school": "University of Southern California", "degree": "M.S. Integrated Design, Business & Technology", "period": "Aug 2025 - May 2027" },
-    { "school": "Hongik University", "degree": "BFA Design Convergence · B.Eng. Game Software (Double Degree)", "period": "Mar 2019 - Aug 2024" }
+    {
+      "school": "University of Southern California",
+      "degree": "M.S. Integrated Design, Business & Technology",
+      "period": "Aug 2025 - May 2027"
+    },
+    {
+      "school": "Hongik University",
+      "degree": "BFA Design Convergence · B.Eng. Game Software (Double Degree)",
+      "period": "Mar 2019 - Aug 2024"
+    }
   ],
   "skills": {
-    "research": ["User interviews", "Survey design", "Usability testing", "Mixed-method research", "Data analysis", "Journey mapping"],
-    "design": ["Figma", "UI/GUI design", "Interaction design", "Design systems", "Prototyping", "Information architecture", "Dashboards", "Data visualization", "Accessibility (WCAG)", "Web localization", "Service & package design", "Photoshop/Illustrator", "Unity PolySpatial (visionOS)"],
-    "web": ["JavaScript", "TypeScript (foundational)", "React", "HTML/CSS", "Responsive & real-time UI", "Component architecture", "Server-side form handling", "Authentication (OAuth, email verification)", "Payment integration", "Web performance", "Git"],
-    "ai": ["Agentic workflows", "Human-AI interaction", "Model Context Protocol (MCP)", "Prompt design", "AI SEO / JSON-LD", "Python"]
+    "research": [
+      "User interviews",
+      "Survey design",
+      "Usability testing",
+      "Mixed-method research",
+      "Data analysis",
+      "Journey mapping"
+    ],
+    "design": [
+      "Figma",
+      "UI/GUI design",
+      "Interaction design",
+      "Design systems",
+      "Prototyping",
+      "Information architecture",
+      "Dashboards",
+      "Data visualization",
+      "Accessibility (WCAG)",
+      "Web localization",
+      "Service & package design",
+      "Photoshop/Illustrator",
+      "Unity PolySpatial (visionOS)"
+    ],
+    "web": [
+      "JavaScript",
+      "TypeScript (foundational)",
+      "React",
+      "HTML/CSS",
+      "Responsive & real-time UI",
+      "Component architecture",
+      "Server-side form handling",
+      "Authentication (OAuth, email verification)",
+      "Payment integration",
+      "Web performance",
+      "Git"
+    ],
+    "ai": [
+      "Agentic workflows",
+      "Human-AI interaction",
+      "Model Context Protocol (MCP)",
+      "Prompt design",
+      "AI SEO / JSON-LD",
+      "Python"
+    ],
+    "other_tools": [
+      "C++",
+      "Unreal Engine",
+      "Adobe Photoshop/Illustrator"
+    ]
   },
   "experience": [
     {
       "organization": "Swim Up Hill Foundation",
-      "title": "Web Development & Internal Systems Intern",
+      "title": "Web Development & Internal Systems Intern (also listed as Web Development & UX Intern)",
       "location": "Los Angeles",
-      "period": "Jun - Aug 2026; Oct - Dec 2026",
+      "period": "Jun - Aug 2026; Oct 2026 - Present",
       "highlights": [
         "Designed and built the foundation's website end to end, owning UX, visual design, and full-stack development; turned five audience paths into its information architecture.",
         "Six user journeys run live: 4-step enrollment, donations, shop, webinar, newsletter, and school inquiry.",
         "Built in HTML/CSS/JavaScript with server-side form handling and email delivery; replaced false-success forms with verified delivery and staff notifications, and integrated Donorbox with separate donation and merchandise routing.",
         "Building My Portal: email-verified and Google/Apple sign-in, role permissions, and six role-based dashboards for parents, students, schools, staff, donors, and corporate partners.",
-        "Runs usability tests with parents and swimmers; findings set the accessibility fixes and the repair order for forms."
+        "Runs usability tests with parents and swimmers; findings set the accessibility fixes and the repair order for forms.",
+        "Leads UX/UI and HTML development for the foundation's websites and the SwimSuite enrollment flows, applying user research to usability, accessibility and performance updates."
       ]
     },
     {
@@ -95,21 +149,37 @@
       "organization": "Johnson & Johnson MedTech × USC IYA",
       "period": "Jan - May 2026",
       "slug": "ethicon-care",
-      "highlights": ["Designed UI/UX for an AI assistant that helps post-op teams document and predict surgical-site outcomes (9-person team, clinician input)."]
+      "highlights": [
+        "Designed UI/UX for an AI assistant that helps post-op teams document and predict surgical-site outcomes (9-person team, clinician input)."
+      ]
     },
     {
       "title": "Honda Product Visualization Sprint",
       "organization": "American Honda × USC IYA",
       "period": "Feb - May 2026",
       "slug": "honda-spatial",
-      "highlights": ["Led UI for a multi-user Apple Vision Pro design-review prototype in Unity PolySpatial with Logitech Muse Pen 3D annotation, letting an 8-person team mark up one model together; live demos to Honda R&D."]
+      "highlights": [
+        "Led UI for a multi-user Apple Vision Pro design-review prototype in Unity PolySpatial with Logitech Muse Pen 3D annotation, letting an 8-person team mark up one model together; live demos to Honda R&D."
+      ]
+    },
+    {
+      "title": "Anaphylaxis Care",
+      "organization": "ARS Pharma × USC IYA",
+      "period": "Jan - May 2026",
+      "slug": "ars-pharma",
+      "highlights": [
+        "Owned package, service and UI design in a two-person sprint to improve campus medication access and care delivery."
+      ]
     },
     {
       "title": "Professional Practices Residentials",
       "organization": "America On Tech LA · Lemonlight × USC IYA",
       "period": "Sep 2025; Sep 2026",
       "slug": "lemonlight",
-      "highlights": ["America On Tech: Instagram platform proposal and 12–16-week pilot in 5 days, with accessibility guidelines and recruitment metrics.", "Lemonlight: mixed-method research on AI in video production; pitched AI-localized Reels campaigns."]
+      "highlights": [
+        "America On Tech: Instagram platform proposal and 12–16-week pilot in 5 days, with accessibility guidelines and recruitment metrics.",
+        "Lemonlight: mixed-method research on AI in video production; pitched AI-localized Reels campaigns."
+      ]
     },
     {
       "title": "Hackathons",
@@ -127,20 +197,27 @@
       "title": "Research Team Member",
       "organization": "USC ACE Lab (Dr. Souti Chattopadhyay)",
       "period": "2026 - Present",
-      "highlights": ["Contributes to study design and a manuscript on collaborative reasoning in pair programming (in preparation)."]
+      "highlights": [
+        "Contributes to study design and a manuscript on collaborative reasoning in pair programming (in preparation)."
+      ]
     },
     {
       "title": "Research Assistant",
       "organization": "Hongik University, Game Software",
       "period": "Mar - Dec 2023",
       "slug": "story-authoring",
-      "highlights": ["Prototyped a generative-AI authoring tool for interactive storytelling; co-authored papers at ICIDS 2023 and KIISE 2023."]
+      "highlights": [
+        "Prototyped a generative-AI authoring tool for interactive storytelling; co-authored papers at ICIDS 2023 and KIISE 2023."
+      ]
     },
     {
       "title": "Research Assistant / Interaction Designer",
       "organization": "Hyundai Motor Co. · Sing In Sign · Samsung Electronics MX",
       "period": "2020 - 2022",
-      "highlights": ["User-tested EV charging-port interactions in C++ and Figma (KSDS 2023).", "Co-designed an accessible music interface for children with hearing impairments (HCI Korea)."]
+      "highlights": [
+        "Prototyped and user-tested EV charging-port interactions in C++ and Figma with Hyundai Motor Company (Jan - Mar 2022; KSDS 2023).",
+        "Co-designed an accessible interactive music interface for children with hearing impairments with Sing In Sign (Feb 2022; HCI Korea)."
+      ]
     }
   ]
 }

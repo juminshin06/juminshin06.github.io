@@ -121,5 +121,5 @@ export default function IntroBackdrop() {
     }
   }, [])
 
-  return <canvas ref={canvasRef} className={s.introBackdrop} aria-hidden="true" />
+  return <canvas ref={canvasRef} className={s.introBackdrop} aria-hidden="true" data-npc-floor="true" />
 }

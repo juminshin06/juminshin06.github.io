@@ -157,21 +157,27 @@ export default function Home() {
     </section>
 
     <section className={s.homeAbout} aria-labelledby="home-about-heading">
-      <figure data-reveal className={`${s.aboutPortrait} ${s.aboutPortraitEditorial}`} data-hero-portrait="true">
-        <a href="/about/" aria-label="About Jumin Shin" title="About Jumin Shin">
-          <EditorialPortrait />
-        </a>
-        <figcaption><span>Jumin Shin</span><span>UX Design Engineer</span></figcaption>
-      </figure>
-      <div data-reveal className={s.homeAboutCopy}>
-        <span className={s.label}>About</span>
-        <h2 id="home-about-heading">A designer who makes ideas testable.</h2>
-        <p className={s.aboutStatement}>I connect user research, interaction design and hands-on prototyping.</p>
-        <p className={s.bodyText}>From UX research with Samsung and Hyundai to AI-assisted production workflows, I turn complex requirements into interfaces and prototypes. I’m pursuing an M.S. in Integrated Design, Business and Technology at USC.</p>
-        <TextLink href="/about/">Experience and background</TextLink>
-        <h3 className={s.aboutSubhead}>Experience</h3>
-        <div className={s.miniExperience}>{profile.experience.map(p => <article key={`${p.organization}-${p.period}`} data-home-experience="true"><strong>{p.organization}</strong><span>{p.title}</span><small>{p.period}</small></article>)}</div>
-        <section className={s.homeEducation} aria-labelledby="home-education-heading">
+      {/* One screen, four tiles: who, what she does, where she has worked, where she studied. */}
+      <div className={s.aboutBento}>
+        <figure data-reveal className={`${s.aboutPortrait} ${s.aboutPortraitEditorial} ${s.bentoPortrait}`} data-hero-portrait="true">
+          <a href="/about/" aria-label="About Jumin Shin" title="About Jumin Shin">
+            <EditorialPortrait />
+          </a>
+          <figcaption><span>Jumin Shin</span><span>UX Design Engineer · Los Angeles</span></figcaption>
+        </figure>
+        <div data-reveal className={`${s.homeAboutCopy} ${s.bentoTile} ${s.bentoIntro}`}>
+          <div className={s.bentoIntroHead}>
+            <span className={s.label}>About</span>
+            <TextLink href="/about/">Experience and background</TextLink>
+          </div>
+          <h2 id="home-about-heading">A designer who makes ideas testable.</h2>
+          <p className={s.aboutStatement}>I connect user research, interaction design and hands-on prototyping, from UX research with Samsung and Hyundai to AI-assisted production workflows.</p>
+        </div>
+        <section data-reveal className={`${s.bentoTile} ${s.bentoExperience}`} aria-labelledby="home-experience-heading">
+          <h3 id="home-experience-heading" className={s.aboutSubhead}>Experience</h3>
+          <div className={s.miniExperience}>{profile.experience.map(p => <article key={`${p.organization}-${p.period}`} data-home-experience="true"><strong>{p.title}</strong><span>{p.organization}</span><small>{p.period}</small></article>)}</div>
+        </section>
+        <section data-reveal className={`${s.homeEducation} ${s.bentoTile} ${s.bentoEducation}`} aria-labelledby="home-education-heading">
           <h3 id="home-education-heading">Education</h3>
           <ul>{homeSchools.map(school => <li data-home-education-entry="true" key={school.name}>
             <img src={school.logo} alt="" aria-hidden="true" loading="lazy" decoding="async" />

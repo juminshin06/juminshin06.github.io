@@ -188,3 +188,9 @@ npm test
 ```
 
 If changing only documentation, no build is required; check `git diff --check` instead.
+
+## Mini Jumin NPC
+
+- `src/portfolio/RoamingNpc.jsx` renders `public/assets/3d/jumin-npc.glb` (compressed with `@gltf-transform/cli optimize --texture-compress webp --texture-size 512 --compress quantize`) as a small character that walks the empty space of the page on mouse/trackpad devices. It is skipped on touch, narrow viewports and reduced motion.
+- She never stands on text, links, controls or media: every plan scans the selectors in `AVOID` into a free-space grid. Mark decorative full-bleed layers she may walk over with `data-npc-floor`, and extra no-go areas with `data-npc-avoid`.
+- She follows the pointer to the nearest reachable empty spot, pops beside it when text walls it off, wanders when the pointer rests, and drops back into view after a scroll. Hover shows a speech bubble that cycles random UX design engineering beliefs from `THOUGHTS`; keep them general principles, not claims about Jumin. Clicking opens the chat.

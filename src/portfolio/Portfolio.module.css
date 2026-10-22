@@ -1531,30 +1531,6 @@
 .headerRight { display: flex; align-items: center; gap: 40px; }
 .localTime { font: 12px/1.4 var(--mono); color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
 .localTime time { color: var(--ink); }
-.cursorRing {
-  position: fixed;
-  left: 0;
-  top: 0;
-  z-index: 90;
-  width: 30px;
-  height: 30px;
-  margin: -15px 0 0 -15px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1.5px solid var(--ink);
-  border-radius: 50%;
-  color: var(--paper);
-  opacity: 0;
-  pointer-events: none;
-  transition: width 240ms cubic-bezier(.2, .7, .2, 1), height 240ms cubic-bezier(.2, .7, .2, 1), margin 240ms cubic-bezier(.2, .7, .2, 1), opacity 200ms ease, background-color 240ms ease;
-}
-.cursorRing[data-visible='true'] { opacity: .85; }
-.cursorRing[data-state='link'] { width: 44px; height: 44px; margin: -22px 0 0 -22px; background: rgba(24, 25, 22, .06); }
-.cursorRing[data-state='word'] { width: 68px; height: 68px; margin: -34px 0 0 -34px; background: var(--ink); opacity: .96; }
-.cursorRing[data-pressed='true'][data-state='idle'] { width: 22px; height: 22px; margin: -11px 0 0 -11px; }
-.cursorRing span { font: 11px/1 var(--mono); letter-spacing: .02em; opacity: 0; transition: opacity 160ms ease; }
-.cursorRing[data-state='word'] span { opacity: 1; }
 .critterLayer { position: absolute; left: var(--gutter); right: var(--gutter); top: 0; height: 0; z-index: 2; pointer-events: none; }
 .critter {
   position: absolute;
@@ -1606,7 +1582,7 @@
   .critterLayer { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .critterLayer, .cursorRing { display: none; }
+  .critterLayer { display: none; }
 }
 
 /* Agent hero: a full-width prompt that answers from the portfolio data */
@@ -1722,8 +1698,13 @@
 .chatTyping i { width: 7px; height: 7px; border-radius: 50%; background: rgba(24, 25, 22, .45); animation: agent-dot 1s ease-in-out infinite; }
 .chatTyping i:nth-child(2) { animation-delay: 160ms; }
 .chatTyping i:nth-child(3) { animation-delay: 320ms; }
-.chatSuggest { display: flex; gap: 8px; padding: 6px 16px 10px; overflow-x: auto; scrollbar-width: none; }
-.chatSuggest::-webkit-scrollbar { display: none; }
+/* The panel's header, suggestions and composer keep their size; only the message log flexes. */
+.chatHead, .chatSuggest, .chatCompose { flex: 0 0 auto; }
+.chatSuggest { display: flex; gap: 8px; padding: 6px 16px 8px; overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: thin; scrollbar-color: rgba(24, 25, 22, .22) transparent; }
+.chatSuggest::-webkit-scrollbar { height: 6px; }
+.chatSuggest::-webkit-scrollbar-track { background: transparent; margin: 0 16px; }
+.chatSuggest::-webkit-scrollbar-thumb { border-radius: 999px; background: rgba(24, 25, 22, .2); }
+.chatSuggest::-webkit-scrollbar-thumb:hover { background: rgba(24, 25, 22, .36); }
 .chatSuggest button { flex: 0 0 auto; padding: 8px 13px; border: 1px solid rgba(24, 25, 22, .12); border-radius: 999px; background: var(--paper); color: var(--ink); font-size: 13px; line-height: 1.3; white-space: nowrap; transition: border-color 160ms ease, background-color 160ms ease; }
 .chatSuggest button:is(:hover, :focus-visible) { border-color: var(--ink); }
 .chatCompose { display: flex; align-items: flex-end; gap: 8px; padding: 8px 12px 14px 16px; border-top: 1px solid rgba(24, 25, 22, .08); background: rgba(255, 255, 255, .6); }
@@ -2144,3 +2125,89 @@
 @media (width <= 600px) {
   .intro { margin-top: -64px; padding-top: calc(40px + 64px); min-height: 100svh; }
 }
+
+/* About at a glance: a bento of four tiles that fits one screen. */
+.homeAbout { display: block; padding-top: 96px; padding-bottom: 96px; }
+.aboutBento { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); grid-template-areas: 'portrait intro' 'portrait experience' 'education education'; gap: 14px; max-width: 1240px; margin: 0 auto; }
+.bentoTile { min-width: 0; padding: 24px 28px; border-radius: 24px; background: #fff; box-shadow: 0 1px 2px rgba(24, 25, 22, .04); }
+.bentoPortrait { grid-area: portrait; position: relative; max-width: none; height: 100%; }
+.bentoPortrait > a { height: 100%; aspect-ratio: auto; border-radius: 24px; }
+.bentoPortrait img { object-position: 50% 18%; }
+.bentoPortrait figcaption { position: absolute; inset: auto 0 0; display: flex; flex-direction: column; gap: 2px; padding: 48px 22px 20px; border-radius: 0 0 24px 24px; background: linear-gradient(transparent, rgba(0, 0, 0, .55)); color: rgba(255, 255, 255, .78); font-size: 13px; pointer-events: none; }
+.bentoPortrait figcaption > :first-child { color: #fff; font-size: 17px; font-weight: 600; letter-spacing: -0.01em; }
+.bentoIntro { grid-area: intro; display: flex; flex-direction: column; align-items: flex-start; }
+.homeAbout .bentoIntro h2 { max-width: none; margin: 4px 0 8px; font-size: 38px; line-height: 1.08; }
+.bentoIntro .aboutStatement { max-width: 640px; margin: 0; font-size: 18px; line-height: 1.45; font-weight: 450; letter-spacing: -0.01em; color: var(--text-2); }
+.aboutFacts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; width: 100%; margin: 16px 0 0; padding-top: 14px; border-top: 1px solid rgba(24, 25, 22, .08); }
+.aboutFacts dt { font-size: 30px; line-height: 1; font-weight: 650; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+.aboutFacts dd { margin: 6px 0 0; font-size: 13px; line-height: 1.35; color: var(--text-2); }
+.bentoIntroHead { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; width: 100%; }
+.bentoIntroHead > .label { font-size: 14px; font-weight: 600; letter-spacing: -0.005em; color: var(--accent); }
+.homeAboutCopy .bentoIntroHead > .textLink { margin: 0; color: var(--accent); font-size: 14px; font-weight: 560; }
+.bentoExperience { grid-area: experience; }
+.bentoTile .aboutSubhead, .bentoTile.homeEducation > h3 { margin: 0 0 6px; font-size: 13px; }
+.bentoExperience .miniExperience { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(4, auto); grid-auto-flow: column; gap: 0 32px; margin-top: 0; }
+.bentoExperience .miniExperience > article { grid-template-columns: minmax(0, 1fr) auto; gap: 2px 12px; padding: 10px 0; border-top: 1px solid rgba(24, 25, 22, .07); }
+/* The role leads each entry; the organization and dates sit quietly underneath. */
+.bentoExperience .miniExperience strong { grid-column: 1 / -1; grid-row: 1; font-size: 16px; line-height: 1.3; font-weight: 650; letter-spacing: -0.015em; }
+.bentoExperience .miniExperience span { grid-column: 1; grid-row: 2; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.bentoExperience .miniExperience small { grid-column: 2; grid-row: 2; }
+.bentoExperience .miniExperience span { font-size: 13px; line-height: 1.35; }
+.bentoExperience .miniExperience small { font-size: 12px; line-height: 1.5; }
+.bentoEducation { grid-area: education; display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 32px; padding-top: 18px; padding-bottom: 18px; }
+.bentoTile.homeEducation > h3 { margin: 0; }
+.bentoEducation ul { margin: 0; padding: 0; border: 0; gap: 24px; }
+.homeAbout > .homeToolkit { max-width: 1240px; margin: 72px auto 0; }
+@media (width <= 1100px) {
+  .homeAbout .bentoIntro h2 { font-size: 34px; }
+  .bentoExperience .miniExperience { grid-template-columns: 1fr; grid-template-rows: none; grid-auto-flow: row; }
+}
+@media (width <= 900px) {
+  .aboutBento { grid-template-columns: 1fr; grid-template-areas: 'portrait' 'intro' 'experience' 'education'; }
+  .bentoPortrait > a { aspect-ratio: 4 / 3; height: auto; }
+  .bentoEducation { grid-template-columns: 1fr; gap: 14px; }
+}
+@media (width <= 600px) {
+  .homeAbout { padding-top: 56px; padding-bottom: 56px; }
+  .bentoTile { padding: 22px 20px; border-radius: 20px; }
+  .bentoPortrait > a { aspect-ratio: 4 / 5; border-radius: 20px; }
+  .homeAbout .bentoIntro h2 { font-size: 30px; }
+  .aboutFacts { grid-template-columns: 1fr; gap: 14px; }
+  .aboutFacts > div { display: grid; grid-template-columns: 72px minmax(0, 1fr); align-items: baseline; gap: 12px; }
+  .aboutFacts dt { font-size: 24px; }
+  .aboutFacts dd { margin: 0; }
+}
+
+/* Mini Jumin: a 3D NPC who walks the page's empty space. Her box is anchored at her feet. */
+.npc { position: absolute; left: 0; top: 0; z-index: 25; width: 64px; height: 96px; margin: -96px 0 0 -32px; cursor: pointer; transition: opacity 260ms ease; will-change: transform; }
+.npc[data-state='hidden'] { opacity: 0; pointer-events: none; }
+.npc[data-state='hop'] { transition: transform 440ms cubic-bezier(.3, .7, .4, 1), opacity 260ms ease; }
+.npcBody { position: absolute; inset: 0; transform-origin: 50% 100%; }
+.npcBody model-viewer { width: 100%; height: 100%; --poster-color: transparent; background: transparent; pointer-events: none; }
+.npcShadow { position: absolute; left: 50%; bottom: 1px; width: 34px; height: 8px; margin-left: -17px; border-radius: 50%; background: radial-gradient(closest-side, rgba(24, 25, 22, .2), transparent); transition: transform 200ms ease; }
+.npc[data-state='walk'] .npcBody { animation: npc-step 300ms ease-in-out infinite alternate; }
+.npc[data-state='walk'] .npcShadow { animation: npc-shadow 300ms ease-in-out infinite alternate; }
+.npc[data-state='idle'] .npcBody { animation: npc-breathe 2400ms ease-in-out infinite; }
+.npc[data-state='drop'] .npcBody { animation: npc-drop 680ms cubic-bezier(.3, .8, .4, 1) both; }
+.npc[data-state='drop'] .npcShadow { animation: npc-drop-shadow 680ms ease-out both; }
+.npc[data-state='hop'] .npcBody { animation: npc-hop 440ms ease-out; }
+.npc[data-state='poof'] .npcBody, .npc[data-state='poof'] .npcShadow { animation: npc-poof 240ms ease-in forwards; }
+@keyframes npc-poof { to { opacity: 0; transform: translateY(-8px) scale(.3); } }
+.npc[data-state='talk'] .npcBody { animation: npc-hello 520ms cubic-bezier(.3, .8, .4, 1); }
+@keyframes npc-step { 0% { transform: translateY(0) rotate(-5deg); } 50% { transform: translateY(-6px) rotate(0); } 100% { transform: translateY(0) rotate(5deg); } }
+@keyframes npc-shadow { 0%, 100% { transform: scale(1); } 50% { transform: scale(.8); } }
+@keyframes npc-breathe { 0%, 100% { transform: scale(1, 1); } 50% { transform: scale(1.015, .985); } }
+@keyframes npc-drop { 0% { opacity: 0; transform: translateY(-140px); } 55% { opacity: 1; transform: translateY(0) scale(1.08, .9); } 75% { transform: translateY(-10px) scale(.97, 1.03); } 100% { transform: none; } }
+@keyframes npc-drop-shadow { 0% { opacity: 0; transform: scale(.3); } 55%, 100% { opacity: 1; transform: scale(1); } }
+@keyframes npc-hop { 0% { transform: none; } 45% { transform: translateY(-22px) scale(.96, 1.05); } 85% { transform: translateY(0) scale(1.06, .94); } 100% { transform: none; } }
+@keyframes npc-hello { 0% { transform: none; } 40% { transform: translateY(-10px); } 70% { transform: translateY(0) scale(1.05, .95); } 100% { transform: none; } }
+.npcBubble { position: absolute; left: 50%; bottom: calc(100% + 4px); width: max-content; max-width: 230px; padding: 11px 14px 10px; border-radius: 16px; background: #fff; box-shadow: 0 10px 30px rgba(24, 25, 22, .14), 0 1px 3px rgba(24, 25, 22, .08); color: var(--ink); text-align: left; opacity: 0; transform: translateX(calc(-50% + var(--shift, 0px))) translateY(6px) scale(.92); transform-origin: 50% 100%; pointer-events: none; transition: opacity 180ms ease, transform 240ms cubic-bezier(.3, .8, .4, 1.2); }
+.npcBubble[data-open='true'] { opacity: 1; transform: translateX(calc(-50% + var(--shift, 0px))) translateY(0) scale(1); }
+.npcBubble::after { content: ''; position: absolute; left: calc(50% - var(--shift, 0px)); bottom: -5px; width: 12px; height: 12px; margin-left: -6px; border-radius: 2px; background: #fff; transform: rotate(45deg); }
+.npcBubble p { animation: npc-thought 260ms ease both; position: relative; z-index: 1; font-size: 14px; line-height: 1.35; font-weight: 560; letter-spacing: -0.01em; }
+.npcBubble span { position: relative; z-index: 1; display: block; margin-top: 4px; font-size: 12px; line-height: 1.3; color: var(--accent); }
+
+/* The assistant avatar shows her whole head, centered in the circle on a soft warm ground. */
+.chatAvatar, .agentAvatar, .chatLauncher .chatAvatar { background: linear-gradient(180deg, #f6f1ea, #ece4d9); }
+.chatAvatar img, .agentAvatar img { width: 100%; height: 100%; margin: 0; object-fit: cover; transform: translateY(6%) scale(1.04); }
+@keyframes npc-thought { from { opacity: 0; transform: translateY(3px); } to { opacity: 1; transform: none; } }

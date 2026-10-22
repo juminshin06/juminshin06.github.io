@@ -5,7 +5,7 @@ import { askJumin } from './ChatBot'
 import { ProjectImage } from './Shell'
 import s from './Portfolio.module.css'
 
-const AVATAR_SRC = '/assets/3d/jumin-character-poster.webp'
+const AVATAR_SRC = '/assets/3d/jumin-avatar.png'
 
 const sleep = (ms, signal) => new Promise(resolve => {
   const timer = setTimeout(resolve, ms)
@@ -132,7 +132,7 @@ export default function AgentHero() {
       {intents.map(item => <button key={item.id} type="button" className={s.agentChip} aria-pressed={intent?.id === item.id} onClick={() => ask(item)}>{item.chip}</button>)}
     </div>
     <div className={s.agentAnswer} aria-live="polite" hidden={!showAnswer}>
-      <span className={s.agentAvatar} aria-hidden="true"><img src={AVATAR_SRC} alt="" width="36" height="45" decoding="async" /></span>
+      <span className={s.agentAvatar} aria-hidden="true"><img src={AVATAR_SRC} alt="" width="36" height="36" decoding="async" /></span>
       <div className={s.agentBody}>
         <span className={s.agentLabel}>Portfolio assistant · {phase === 'thinking' ? 'thinking' : 'answer'}</span>
         {phase === 'thinking'

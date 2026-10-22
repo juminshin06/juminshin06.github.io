@@ -4,7 +4,7 @@ import { chatApiUrl, streamAnswer } from './chatClient'
 import { suggestedQuestions } from './localBrain'
 import s from './Portfolio.module.css'
 
-const AVATAR_SRC = '/assets/3d/jumin-character-poster.webp'
+const AVATAR_SRC = '/assets/3d/jumin-avatar.png'
 const STORAGE_KEY = 'jumin-chat-v1'
 const OPEN_EVENT = 'jumin-chat:ask'
 const GREETING = 'Hi, I’m Jumin’s portfolio assistant. Ask about her projects, process, skills or background, or tell me the role you’re hiring for and I’ll point you to the most relevant work.'
@@ -60,6 +60,7 @@ export default function ChatBot() {
   const launcherRef = useRef(null)
   const inputRef = useRef(null)
   const logRef = useRef(null)
+  const suggestRef = useRef(null)
   const abortRef = useRef(null)
   const messagesRef = useRef(messages)
   messagesRef.current = messages
@@ -116,6 +117,19 @@ export default function ChatBot() {
     return () => window.removeEventListener('keydown', onKey)
   }, [open])
 
+  // A vertical mouse wheel over the suggestion row scrolls it sideways, so every question is reachable.
+  useEffect(() => {
+    const row = suggestRef.current
+    if (!row) return
+    const onWheel = event => {
+      if (Math.abs(event.deltaY) <= Math.abs(event.deltaX) || row.scrollWidth <= row.clientWidth) return
+      event.preventDefault()
+      row.scrollLeft += event.deltaY
+    }
+    row.addEventListener('wheel', onWheel, { passive: false })
+    return () => row.removeEventListener('wheel', onWheel)
+  }, [open, busy])
+
   const grow = element => {
     element.style.height = 'auto'
     element.style.height = `${Math.min(element.scrollHeight, 132)}px`
@@ -132,13 +146,13 @@ export default function ChatBot() {
       aria-expanded={open}
       onClick={() => setOpen(current => !current)}
     >
-      <span className={s.chatAvatar} aria-hidden="true"><img src={AVATAR_SRC} alt="" width="36" height="45" decoding="async" /></span>
+      <span className={s.chatAvatar} aria-hidden="true"><img src={AVATAR_SRC} alt="" width="36" height="36" decoding="async" /></span>
       <span className={s.chatLauncherLabel}>Ask about Jumin</span>
     </button>
 
     {open && <section className={s.chatPanel} role="dialog" aria-label="Jumin’s portfolio assistant" data-chat-panel="true">
       <header className={s.chatHead}>
-        <span className={s.chatAvatar} aria-hidden="true"><img src={AVATAR_SRC} alt="" width="36" height="45" decoding="async" /></span>
+        <span className={s.chatAvatar} aria-hidden="true"><img src={AVATAR_SRC} alt="" width="36" height="36" decoding="async" /></span>
         <div className={s.chatTitle}>
           <strong>Jumin’s portfolio assistant</strong>
           <span className={s.chatStatus}><i aria-hidden="true" />{chatApiUrl ? 'Online · answers from her portfolio' : 'Always on · answers from her portfolio'}</span>
@@ -157,7 +171,7 @@ export default function ChatBot() {
         </div>)}
       </div>
 
-      {!busy && <div className={s.chatSuggest} aria-label="Suggested questions">
+      {!busy && <div ref={suggestRef} className={s.chatSuggest} aria-label="Suggested questions">
         {suggestions.map(question => <button key={question} type="button" onClick={() => send(question)}>{question}</button>)}
       </div>}
 

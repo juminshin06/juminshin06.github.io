@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react'
 import { pageMetadata, resolvePage } from './data/portfolio'
 import { Header, Footer } from './portfolio/Shell'
-import Cursor from './portfolio/Cursor'
 import ChatBot from './portfolio/ChatBot'
+import RoamingNpc from './portfolio/RoamingNpc'
 import Home from './portfolio/Home'
 import CaseStudy from './portfolio/CaseStudy'
 import { About, Research, Archive, Life, NotFound } from './portfolio/Pages'
@@ -27,6 +27,6 @@ export default function App({ path = '/' }) {
     </main>
     <Footer />
     <ChatBot />
-    <Cursor />
+    <RoamingNpc />
   </>
 }

@@ -136,6 +136,19 @@ export function Research() {
         </a>
       })}
     </section>
+    <section className={s.publicationSection} aria-labelledby="research-experience-heading">
+      <SectionHeading id="research-experience-heading" title="Research experience" />
+      <div className={s.publications}>
+        {profile.researchExperience.map(role => <article className={s.publication} data-research-role="true" key={`${role.organization}-${role.period}`}>
+          <span className={s.label}>{role.period}</span>
+          <div>
+            <h3>{role.title}</h3>
+            <p className={s.venue}>{role.organization}</p>
+            <p className={s.bodyText}>{role.description}</p>
+          </div>
+        </article>)}
+      </div>
+    </section>
     <section className={s.publicationSection} aria-labelledby="publications-heading">
       <SectionHeading id="publications-heading" title="Publications" />
       <div className={s.publications}>
