@@ -1794,3 +1794,96 @@
 @media (prefers-reduced-motion: reduce) {
   .chatPanel, .chatMsg { animation: none; }
 }
+
+/* Apple Intelligence prompt: a slow conic glow around the field that quickens while it answers */
+@property --ai-angle { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
+.agentForm {
+  position: relative;
+  border-color: transparent;
+  background: var(--paper);
+  /* The soft multicolor halo is a stack of tinted shadows, so the field itself stays white. */
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .04), 0 18px 48px rgba(0, 0, 0, .06), -18px 0 48px -12px rgba(10, 132, 255, .22), 0 14px 48px -10px rgba(191, 90, 242, .24), 18px 0 48px -12px rgba(255, 55, 95, .18);
+  transition: box-shadow 400ms ease;
+}
+.agentForm::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  padding: 2px;
+  background: conic-gradient(from var(--ai-angle), #0a84ff, #bf5af2, #ff375f, #ff9f0a, #30d158, #0a84ff);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: .85;
+  animation: ai-spin 7s linear infinite;
+  pointer-events: none;
+}
+.agentForm:focus-within, .agent[data-phase='thinking'] .agentForm, .agent[data-phase='answering'] .agentForm {
+  border-color: transparent;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .04), 0 18px 48px rgba(0, 0, 0, .06), -22px 0 56px -10px rgba(10, 132, 255, .36), 0 16px 56px -8px rgba(191, 90, 242, .38), 22px 0 56px -10px rgba(255, 55, 95, .3);
+}
+.agent[data-phase='thinking'] .agentForm::before, .agent[data-phase='answering'] .agentForm::before { animation-duration: 1.6s; }
+.agentSpark { background: linear-gradient(135deg, #0a84ff 0%, #bf5af2 50%, #ff375f 100%); -webkit-background-clip: text; background-clip: text; color: transparent; animation: agent-spark 3.2s ease-in-out infinite; }
+.agentChip { border-color: transparent; background: #f5f5f7; }
+.agentChip:is(:hover, :focus-visible) { border-color: transparent; background: #e8e8ed; }
+.agentAnswer { background: var(--paper); border-color: rgba(0, 0, 0, .06); border-radius: 24px; box-shadow: 0 1px 2px rgba(0, 0, 0, .03), 0 10px 30px rgba(0, 0, 0, .05); }
+.agentResults a { border-color: transparent; background: #f5f5f7; border-radius: 16px; }
+.agentResults a:is(:hover, :focus-visible) { border-color: transparent; background: #e8e8ed; }
+.agentResults img { border-radius: 10px; }
+.chatLauncher { border-color: transparent; padding-left: 5px; }
+.chatLauncher .chatAvatar, .chatHead .chatAvatar { box-shadow: 0 0 0 2px var(--paper), 0 0 0 3.5px #bf5af2; background-image: conic-gradient(#0a84ff, #bf5af2, #ff375f, #ff9f0a, #0a84ff); }
+.chatStatus i { background: #30d158; box-shadow: 0 0 0 3px rgba(48, 209, 88, .18); }
+.chatMsgBot { background: #f2f2f7; }
+.chatSuggest button { border-color: transparent; background: #f2f2f7; }
+.chatSuggest button:is(:hover, :focus-visible) { border-color: transparent; background: #e5e5ea; }
+.chatCompose textarea { border-color: transparent; background: #f2f2f7; }
+.chatCompose textarea:focus { border-color: transparent; background: #ebebf0; }
+@keyframes ai-spin { to { --ai-angle: 360deg; } }
+
+/* iOS-style tiles for the work: soft gray plates, 22px corners, lift on hover, muted meta */
+:root { --tile: #f5f5f7; --tile-hover: #ededf2; --text-2: #6e6e73; --radius-tile: 22px; }
+.caseStudyMedia, .productWorkMedia {
+  border-radius: var(--radius-tile);
+  overflow: hidden;
+  background: var(--tile);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .02);
+  transition: transform 420ms cubic-bezier(.2, .7, .2, 1), box-shadow 420ms cubic-bezier(.2, .7, .2, 1), background-color 300ms ease;
+}
+.caseStudyMedia::after { display: none; }
+.caseStudyMedia .projectCover, .caseStudyMedia .projectArt, .productWorkMedia .projectCover { border-radius: var(--radius-tile); }
+.caseStudyMedia:is(:hover, :focus-visible), .productWorkCard:is(:hover, :focus-visible) .productWorkMedia { transform: translateY(-4px); box-shadow: 0 2px 4px rgba(0, 0, 0, .03), 0 22px 44px rgba(0, 0, 0, .10); }
+.productWorkCard:is(:hover, :focus-visible) .productWorkMedia .projectCover { transform: none; }
+.projectAction { top: auto; right: 14px; bottom: 14px; border-radius: 999px; padding: 10px 14px; font-weight: 560; background: rgba(28, 28, 30, .86); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); }
+.caseStudyRow { border-bottom: 0; padding-bottom: 8px; }
+.caseStudyCaption { padding-top: 16px; }
+.caseStudyIdentity { font-size: 12px; color: var(--text-2); }
+.caseStudyCompany { font-weight: 600; letter-spacing: -0.005em; }
+.caseStudyNumber { color: #aeaeb2; }
+.caseStudyCopy h3 { font-size: 24px; line-height: 1.15; font-weight: 640; letter-spacing: -0.022em; }
+.caseStudySummary { color: var(--text-2); }
+.productWorkMedia .projectCover { aspect-ratio: 1.5; }
+.productWorkCaption { padding-top: 14px; }
+.productWorkIdentity { font-size: 12px; color: var(--text-2); }
+.productWorkIdentity .caseStudyOrg { font-weight: 600; }
+.productWorkCaption > strong { font-size: 20px; letter-spacing: -0.02em; font-weight: 640; }
+.productWorkRole { color: var(--text-2); font-size: 12px; }
+.projectProcessCue { font-size: 12.5px; font-weight: 560; letter-spacing: -0.004em; }
+.moreWork .sectionHeading h2 { font-size: 44px; font-weight: 660; letter-spacing: -0.03em; }
+.moreWork { padding-top: 72px; }
+.researchCallout { border-radius: 24px; }
+.aboutPortrait > a { border-radius: 24px; overflow: hidden; }
+.aboutPortrait figcaption { color: var(--text-2); }
+.miniExperience strong { font-weight: 600; letter-spacing: -0.005em; }
+.miniExperience span, .miniExperience small { color: var(--text-2); }
+.homeAbout h2 { letter-spacing: -0.028em; font-weight: 640; }
+.homeToolkitHeading h2 { letter-spacing: -0.025em; font-weight: 640; }
+@media (width <= 600px) {
+  :root { --radius-tile: 18px; }
+  .aboutPortrait > a { border-radius: 18px; }
+  .caseStudyCopy h3 { font-size: 22px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .agentForm::before { animation: none; }
+}

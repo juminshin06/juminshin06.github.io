@@ -1,11 +1,12 @@
-// Vercel Edge Function: streams a Claude answer about Jumin's portfolio.
-// Deployed separately from the GitHub Pages site (see chatbot-api/README.md).
-import Anthropic from '@anthropic-ai/sdk'
+// Vercel Edge Function: streams a Gemini Flash answer about Jumin's portfolio.
+// Runs on the Gemini API free tier; deployed separately from the GitHub Pages site
+// (see chatbot-api/README.md).
 import { knowledge } from '../knowledge.js'
 
 export const config = { runtime: 'edge' }
 
-const MODEL = process.env.CHAT_MODEL || 'claude-opus-5-5'
+const MODEL = process.env.GEMINI_MODEL || 'gemini-3.8-flash'
+const ENDPOINT = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:streamGenerateContent?alt=sse`
 const MAX_TURNS = 12
 const MAX_CHARS = 1500
 const WINDOW_MS = 10 * 60 * 1000
@@ -69,13 +70,71 @@ function sanitize(input) {
   return messages
 }
 
+// Gemini streams server-sent events; each `data:` line carries a partial response whose text we forward.
+async function* geminiText(body) {
+  const reader = body.getReader()
+  const decoder = new TextDecoder()
+  let buffer = ''
+  while (true) {
+    const { value, done } = await reader.read()
+    if (done) break
+    buffer += decoder.decode(value, { stream: true })
+    const lines = buffer.split('\n')
+    buffer = lines.pop() || ''
+    for (const line of lines) {
+      if (!line.startsWith('data:')) continue
+      const payload = line.slice(5).trim()
+      if (!payload || payload === '[DONE]') continue
+      let event
+      try { event = JSON.parse(payload) } catch { continue }
+      const candidate = event.candidates?.[0]
+      const text = candidate?.content?.parts?.map(part => part.text || '').join('') || ''
+      if (text) yield { text }
+      if (candidate?.finishReason && candidate.finishReason !== 'STOP') yield { finish: candidate.finishReason }
+      if (event.promptFeedback?.blockReason) yield { finish: event.promptFeedback.blockReason }
+    }
+  }
+}
+
+// How long a visitor waits for Gemini's first words before the site answers from its own index.
+const FIRST_TEXT_MS = Number(process.env.FIRST_TEXT_MS || 15000)
+// Sent first so the response (and its headers) reach the browser at once; the site strips it.
+const READY = '​'
+
+const sendToGemini = (contents, thinking, signal) => fetch(ENDPOINT, {
+  method: 'POST',
+  signal,
+  headers: { 'Content-Type': 'application/json', 'x-goog-api-key': process.env.GEMINI_API_KEY },
+  body: JSON.stringify({
+    system_instruction: { parts: [{ text: SYSTEM }] },
+    contents,
+    generationConfig: { maxOutputTokens: 1200, temperature: 0.4, ...(thinking ? { thinkingConfig: { thinkingLevel: 'low' } } : {}) },
+  }),
+})
+
+// Low thinking keeps answers quick; if the model rejects that setting, ask again without it.
+// A busy free tier (429/503) gets one short retry before the site falls back to its index.
+async function callGemini(contents, signal) {
+  let thinking = true
+  let response = await sendToGemini(contents, thinking, signal)
+  if (response.status === 400) {
+    const detail = await response.clone().text().catch(() => '')
+    if (/thinking/i.test(detail)) { thinking = false; response = await sendToGemini(contents, thinking, signal) }
+  }
+  if (response.status === 429 || response.status === 503) {
+    await new Promise(resolve => setTimeout(resolve, 1500))
+    response = await sendToGemini(contents, thinking, signal)
+  }
+  return response
+}
+
 export default async function handler(request) {
   const origin = request.headers.get('origin') || ''
   const cors = corsHeaders(origin)
   if (request.method === 'OPTIONS') return new Response(null, { status: 204, headers: cors })
   if (request.method !== 'POST') return json({ error: 'Method not allowed' }, 405, cors)
   if (!ALLOWED_ORIGINS.includes(origin)) return json({ error: 'Origin not allowed' }, 403, cors)
-  if (!process.env.ANTHROPIC_API_KEY) return json({ error: 'Chat is not configured' }, 503, cors)
+  if (!process.env.GEMINI_API_KEY) return json({ error: 'Chat is not configured' }, 503, cors)
 
   const ip = request.headers.get('x-forwarded-for')?.split(',')[0].trim() || 'unknown'
   const limit = limited(ip)
@@ -86,30 +145,34 @@ export default async function handler(request) {
   const messages = sanitize(body?.messages)
   if (!messages) return json({ error: 'Invalid messages' }, 400, cors)
 
-  const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY })
-  const stream = client.beta.messages.stream({
-    model: MODEL,
-    max_tokens: 4000,
-    betas: ['server-side-fallback-2026-07-01'],
-    fallbacks: 'default',
-    output_config: { effort: 'low' },
-    system: [{ type: 'text', text: SYSTEM, cache_control: { type: 'ephemeral' } }],
-    messages,
-  })
-
+  const contents = messages.map(message => ({ role: message.role === 'assistant' ? 'model' : 'user', parts: [{ text: message.content }] }))
   const encoder = new TextEncoder()
+
+  // Respond at once and stream as Gemini answers: Vercel holds the headers until the first byte,
+  // so a READY byte goes out immediately, and a free tier that stays silent past FIRST_TEXT_MS is
+  // cut off. Failures are written as a [chat-error] marker, which makes the site fall back to its index.
   const readable = new ReadableStream({
     async start(controller) {
+      const fail = detail => controller.enqueue(encoder.encode(`\n\n[chat-error] ${detail}`))
+      const upstreamAbort = new AbortController()
+      let started = false
+      const deadline = setTimeout(() => { if (!started) upstreamAbort.abort() }, FIRST_TEXT_MS)
+      controller.enqueue(encoder.encode(READY))
       try {
-        for await (const event of stream) {
-          if (event.type === 'content_block_delta' && event.delta.type === 'text_delta') controller.enqueue(encoder.encode(event.delta.text))
+        const upstream = await callGemini(contents, upstreamAbort.signal)
+        if (!upstream.ok || !upstream.body) {
+          const detail = await upstream.text().catch(() => '')
+          fail(`${upstream.status} ${detail.replace(/\s+/g, ' ').slice(0, 200)}`)
+          return
         }
-        const final = await stream.finalMessage()
-        if (final.stop_reason === 'refusal') controller.enqueue(encoder.encode('\n\nI can only talk about my portfolio here, but happy to help with that.'))
-      } catch (error) {
-        const detail = error instanceof Anthropic.APIError ? `API ${error.status}` : 'stream failed'
-        controller.enqueue(encoder.encode(`\n\n[chat-error] ${detail}`))
+        for await (const chunk of geminiText(upstream.body)) {
+          if (chunk.text) { started = true; controller.enqueue(encoder.encode(chunk.text)) }
+          if (chunk.finish === 'SAFETY' || chunk.finish === 'PROHIBITED_CONTENT') controller.enqueue(encoder.encode('\n\nI can only talk about my portfolio here, but happy to help with that.'))
+        }
+      } catch {
+        fail(upstreamAbort.signal.aborted ? 'timed out waiting for Gemini' : 'stream failed')
       } finally {
+        clearTimeout(deadline)
         controller.close()
       }
     },
