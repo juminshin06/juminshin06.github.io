@@ -103,7 +103,7 @@ export default function IntroScreen({ onRecruiter, recruiterRef }) {
       <p className={s.introLinks}>
         <a href="#work">View my work<ArrowDown size={14} aria-hidden="true" /></a>
         <span aria-hidden="true">·</span>
-        <button ref={recruiterRef} type="button" onClick={onRecruiter} data-recruiter-entry="true">60-sec recruiter view</button>
+        <button ref={recruiterRef} type="button" onClick={onRecruiter} data-recruiter-entry="true">60 sec recruiter view</button>
       </p>
     </div>
 

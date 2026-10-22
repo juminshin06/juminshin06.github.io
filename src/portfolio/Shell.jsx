@@ -8,18 +8,6 @@ import s from './Portfolio.module.css'
 
 export const resumeUrl = '/assets/JuminShin_Resume.pdf'
 
-// Jumin's local time (Los Angeles); it fills in on the client so prerendered pages never go stale.
-function LiveClock() {
-  const [time, setTime] = useState('')
-  useEffect(() => {
-    const format = new Intl.DateTimeFormat('en-US', { timeZone: 'America/Los_Angeles', hour: 'numeric', minute: '2-digit', second: '2-digit' })
-    const update = () => setTime(format.format(new Date()))
-    update()
-    const timer = window.setInterval(update, 1000)
-    return () => window.clearInterval(timer)
-  }, [])
-  return <p className={s.localTime} data-local-time="true">{time && <time>{time}</time>}</p>
-}
 export function TextLink({ href, children, external = false, className = '' }) {
   return <a className={`${s.textLink} ${className}`} href={href} {...(external ? { target: '_blank', rel: 'noreferrer' } : {})}>
     {children}<ArrowUpRight size={17} aria-hidden="true" />
@@ -54,7 +42,6 @@ export function Header({ active }) {
         <a href="/research/" aria-current={active === 'research' ? 'page' : undefined}>Research</a>
         <a href={resumeUrl} target="_blank" rel="noreferrer">Resume<ArrowUpRight size={16} aria-hidden="true" /></a>
       </nav>
-      <LiveClock />
     </div>
     <div className={s.mobileTools}>
       <a href={resumeUrl} target="_blank" rel="noreferrer" aria-label="Open resume PDF" title="Resume PDF"><Download size={21} /></a>

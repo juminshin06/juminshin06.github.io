@@ -59,7 +59,7 @@ test('the prerendered homepage offers the recruiter view and role filter in the 
     const { render } = await server.ssrLoadModule('/src/entry-server.jsx')
     const html = render('/')
     assert.match(html, /data-recruiter-entry="true"/)
-    assert.match(html, /60-sec recruiter view/)
+    assert.match(html, /60 sec recruiter view/)
     assert.match(html, /data-role-filter="true"/)
     assert.equal((html.match(/data-role-option=/g) || []).length, 5)
     assert.match(html, /data-role-option="all"[^>]*aria-pressed="true"|aria-pressed="true"[^>]*data-role-option="all"/)
