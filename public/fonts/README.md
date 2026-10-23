@@ -17,16 +17,3 @@ The Google Fonts CSS was requested with a modern Chrome user agent, which
 returns WOFF2 and declares `font-weight: 400 700` for the Latin subset.
 Use `/fonts/Geist-Latin-Variable.woff2` with normal style and weights 400-700.
 
-# Boska
-
-`Boska-BoldItalic.woff2` is the unmodified Boska Bold Italic (weight 700,
-italic) WOFF2 served by Fontshare. It is used only for the hero name.
-
-- CSS source: https://api.fontshare.com/v2/css?f[]=boska@701&display=swap
-- Binary source: https://cdn.fontshare.com/wf/FOVWXOQZ7BLFYDLZRNSQ77YOMKH3VQ3Z/QLVQDC6JEMEBTL6WHQ2WB2GGK6NCRURV/IXMM5CYHRZWXGCBFQ5BG5JVOP2J2QR6Q.woff2
-- Designer: Indian Type Foundry, via https://www.fontshare.com/fonts/boska
-- Retrieved: 2026-10-22
-- License: ITF Free Font License (free for personal and commercial use, including web embedding): https://www.fontshare.com/licenses/itf-ffl
-- Font SHA-256: `f64c796acd3f5c99b07bf1d054e56997c29910e1adc16a98a2b617c4693d8792`
-
-Use `/fonts/Boska-BoldItalic.woff2` as `font-family: 'Boska'` with weight 700 and italic style.

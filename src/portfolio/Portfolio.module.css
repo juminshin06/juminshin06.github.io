@@ -2209,11 +2209,10 @@
 .introLinks { margin-top: 28px; }
 @media (width <= 600px) { .introLinks { margin-top: 24px; } }
 
-/* Hero name: Boska Bold Italic in near-black, so the prompt's gradient ring is the one accent. */
-.introContent h1 { font-family: 'Boska', 'Times New Roman', serif; font-style: italic; font-weight: 700; font-size: 112px; line-height: 1; letter-spacing: -0.015em; color: #1d1d1f; padding: 0 0.06em; }
-.introContent .introRole { margin-top: 22px; }
-@media (width <= 900px) { .introContent h1 { font-size: 84px; } .introContent .introRole { margin-top: 18px; } }
-@media (width <= 600px) { .introContent h1 { font-size: 60px; } .introContent .introRole { margin-top: 14px; } }
+/* Hero name: the system display sans in semibold, tightly tracked and sized so the prompt below
+   stays the focus; it scales smoothly from phones to large screens. */
+.introContent h1 { font-family: -apple-system, 'SF Pro Display', BlinkMacSystemFont, 'Geist', 'Helvetica Neue', Arial, sans-serif; font-style: normal; font-weight: 600; font-size: clamp(44px, calc(4.2vw + 26px), 88px); line-height: 1.02; letter-spacing: -0.035em; color: #1d1d1f; padding: 0; }
+.introContent .introRole { margin-top: 14px; font-size: clamp(19px, 1.7vw, 24px); font-weight: 500; letter-spacing: -0.015em; color: #6e6e73; }
 
 /* Corner chat button: her face and "Ask about Jumin" as one quiet control, no extra glow or sparkle.
    It shows only while the hero prompt is off screen and the chat is closed. */
