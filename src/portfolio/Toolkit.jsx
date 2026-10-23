@@ -48,19 +48,32 @@ const tools = [
   { name: 'Prompt Design', lucide: MessageSquareText, color: '#c2410c' },
 ]
 
+export const FEED_EVENT = 'jumin:feed'
+
+// Each tool is a button: clicking drops a crumb in that tool's color onto the footer line, where
+// the pixel critters come to eat it (see Critters).
+const feed = (tool, event) => {
+  const box = event.currentTarget.querySelector('svg').getBoundingClientRect()
+  window.dispatchEvent(new CustomEvent(FEED_EVENT, { detail: { name: tool.name, color: tool.color, x: box.left + box.width / 2, y: box.top + box.height / 2 } }))
+}
+
 export default function TechTools({ home = false }) {
   return <ul className={s.techTools}>
-    {tools.map(tool => <li
-      className={s.techTool}
-      data-tech-tool="true"
-      data-home-tech-tool={home ? 'true' : undefined}
-      key={tool.name}
-      style={{ '--tool-color': tool.color }}
-    >
-      {tool.lucide
-        ? <tool.lucide aria-hidden="true" focusable="false" />
-        : <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d={tool.icon.path} /></svg>}
-      <span>{tool.name}</span>
+    {tools.map(tool => <li key={tool.name} className={s.techToolItem}>
+      <button
+        type="button"
+        className={s.techTool}
+        data-tech-tool="true"
+        data-home-tech-tool={home ? 'true' : undefined}
+        style={{ '--tool-color': tool.color }}
+        aria-label={`${tool.name}: drop a crumb for the critters`}
+        onClick={event => feed(tool, event)}
+      >
+        {tool.lucide
+          ? <tool.lucide aria-hidden="true" focusable="false" />
+          : <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d={tool.icon.path} /></svg>}
+        <span>{tool.name}</span>
+      </button>
     </li>)}
   </ul>
 }

@@ -2358,3 +2358,11 @@ html:not([data-guide]) [data-chat-launcher], html[data-guide='hero'] [data-chat-
 
 /* Smallest labels never drop below 11px at any width. */
 .copyright, .coverAnnotation { font-size: 11px; }
+
+/* Tools are buttons that feed the footer critters; they keep the plain icon-and-label look. */
+.techToolItem { min-width: 0; list-style: none; }
+button.techTool { width: 100%; font: inherit; text-align: inherit; background: none; cursor: pointer; }
+button.techTool:focus-visible { outline: 2px solid #0071e3; outline-offset: 4px; border-radius: 10px; }
+button.techTool:active svg { transform: translateY(1px) scale(.94); }
+/* A tiny pixel crumb in the tool's color, sitting on the footer line. */
+.critterCrumb { position: absolute; bottom: 0; width: 8px; height: 8px; margin-left: -4px; border-radius: 2px; background: var(--crumb, #c9a26b); box-shadow: inset -2px -2px 0 rgba(0, 0, 0, .18), 0 1px 0 rgba(0, 0, 0, .12); pointer-events: none; }
