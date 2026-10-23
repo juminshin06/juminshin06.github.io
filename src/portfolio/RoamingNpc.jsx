@@ -19,7 +19,7 @@ const NEAR = 64         // how close she comes to the pointer without standing u
 // beside their short last lines.
 const AVOID = [
   'a', 'button', 'input', 'textarea', 'select', 'form', 'table',
-  'img', 'picture', 'video', 'svg', 'model-viewer', 'iframe', 'canvas:not([data-npc-floor])',
+  'img', 'picture', 'video', 'svg', 'model-viewer', 'iframe', 'canvas',
   'footer', '[data-chat-panel]', '[data-npc-avoid]',
 ].join(',')
 

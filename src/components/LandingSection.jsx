@@ -93,7 +93,7 @@ export default function LandingSection() {
         <div className={styles.social}>
           <a href="https://www.linkedin.com/in/juminshin" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
           <a href="https://github.com/juminshin06/juminshin06" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
-          <a href="https://scholar.google.com/citations?user=RxmsjhAAAAAJ&hl=ko" target="_blank" rel="noopener noreferrer">Scholar ↗</a>
+          <a href="https://scholar.google.com/citations?user=RxmsjhAAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">Scholar ↗</a>
         </div>
       </div>
     </section>

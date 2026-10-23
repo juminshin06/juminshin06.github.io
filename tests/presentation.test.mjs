@@ -81,9 +81,9 @@ test('the homepage prioritizes projects by UX Design Engineer relevance and stat
       'bubbas-production',
       'pacepop',
       'honda-spatial',
-      'ethicon-care',
     ]
     const expectedSupportingOrder = [
+      'ethicon-care',
       'swim-up-hill',
       'haily',
       'ars-pharma',
@@ -106,7 +106,7 @@ test('the homepage prioritizes projects by UX Design Engineer relevance and stat
   } finally { await server.close() }
 })
 
-test('homepage project covers use four lead and eight gallery presentations', async () => {
+test('homepage project covers use three lead and nine gallery presentations', async () => {
   const server = await createServer({ server: { middlewareMode: true, ws: false }, appType: 'custom', logLevel: 'error' })
   try {
     const { render } = await server.ssrLoadModule('/src/entry-server.jsx')
@@ -115,8 +115,8 @@ test('homepage project covers use four lead and eight gallery presentations', as
     const supporting = html.slice(html.indexOf('aria-labelledby="more-work-heading"'), html.indexOf('aria-labelledby="home-about-heading"'))
 
     assert.equal((html.match(/data-project-cover="micro"/g) || []).length, 0)
-    assert.equal((featured.match(/data-project-cover="lead"/g) || []).length, 4)
-    assert.equal((supporting.match(/data-project-cover="gallery"/g) || []).length, 8)
+    assert.equal((featured.match(/data-project-cover="lead"/g) || []).length, 3)
+    assert.equal((supporting.match(/data-project-cover="gallery"/g) || []).length, 9)
     assert.match(featured, /data-cover-tone="bubbas-blue"/)
     assert.match(featured, /data-cover-layout="immersive"/)
     assert.match(featured, /bubbas-assist-media/)
@@ -180,7 +180,7 @@ test('Honda and J&J covers foreground the product without template overlays', as
   } finally { await server.close() }
 })
 
-test('homepage project framing keeps company names concise and roles visible', async () => {
+test('homepage project framing keeps company names concise and gallery cards short', async () => {
   const server = await createServer({ server: { middlewareMode: true, ws: false }, appType: 'custom', logLevel: 'error' })
   try {
     const { render } = await server.ssrLoadModule('/src/entry-server.jsx')
@@ -194,8 +194,7 @@ test('homepage project framing keeps company names concise and roles visible', a
     assert.match(featured, />Ethicon R&amp;D, Johnson &amp; Johnson MedTech</)
     assert.doesNotMatch(featured, /American Honda x USC Iovine and Young Academy/)
     assert.doesNotMatch(featured, /Ethicon R&amp;D, Johnson &amp; Johnson MedTech x USC Iovine and Young Academy/)
-    assert.equal((supporting.match(/data-project-role="true"/g) || []).length, 8)
-    assert.match(supporting, /Package, service, and UI designer/)
+    assert.equal((supporting.match(/data-project-role="true"/g) || []).length, 0)
     assert.doesNotMatch(supporting, /ARS Pharma x USC Iovine and Young Academy/)
   } finally { await server.close() }
 })
@@ -281,24 +280,24 @@ test('PACEPOP presents dense phone evidence as a responsive visual gallery', asy
   } finally { await server.close() }
 })
 
-test('more product work uses a balanced four-column gallery with the requested final projects', async () => {
+test('more product work uses a balanced three-column gallery with the requested final projects', async () => {
   const server = await createServer({ server: { middlewareMode: true, ws: false }, appType: 'custom', logLevel: 'error' })
   try {
     const { render } = await server.ssrLoadModule('/src/entry-server.jsx')
     const html = render('/')
     const supporting = html.slice(html.indexOf('aria-labelledby="more-work-heading"'), html.indexOf('aria-labelledby="home-about-heading"'))
 
-    assert.equal((supporting.match(/data-more-work-project="true"/g) || []).length, 8)
-    assert.equal((supporting.match(/data-project-cover="gallery"/g) || []).length, 8)
+    assert.equal((supporting.match(/data-more-work-project="true"/g) || []).length, 9)
+    assert.equal((supporting.match(/data-project-cover="gallery"/g) || []).length, 9)
     for (const slug of ['learning-mobility', 'samsung-podcast', 'b4q4-widgets']) assert.match(supporting, new RegExp(`/work/${slug}/`))
     for (const removedSlug of ['handsign', 'wood-chip']) assert.doesNotMatch(supporting, new RegExp(`/work/${removedSlug}/`))
     for (const image of ['Portfolio_Mobility.webp', 'Portfolio_Podcast.webp', 'Portfolio_B4Q4.webp']) assert.match(supporting, new RegExp(image.replace('.', '\\.')))
-    assert.equal((supporting.match(/data-project-slug=/g) || []).length, 8)
+    assert.equal((supporting.match(/data-project-slug=/g) || []).length, 9)
     assert.doesNotMatch(supporting, /Web delivery \/ UX evaluation \/ Internal tools \/ Service design/)
 
     const moduleCss = readFileSync(new URL('../src/portfolio/Portfolio.module.css', import.meta.url), 'utf8')
     const currentCss = moduleCss.slice(moduleCss.indexOf('/* UX Design Engineer portfolio */'))
-    assert.match(currentCss, /\.productWorkGrid\s*{[^}]*grid-template-columns:\s*repeat\(4,\s*minmax\(0,\s*1fr\)\)/s)
+    assert.match(currentCss, /\.productWorkGrid\s*{[^}]*grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\)/s)
     assert.match(currentCss, /\.productWorkMedia \.projectCover\s*{[^}]*aspect-ratio:\s*1\.5/s)
     assert.match(currentCss, /\.productWorkCaption\s*{[^}]*border-bottom:\s*0/s)
   } finally { await server.close() }
@@ -311,15 +310,15 @@ test('homepage projects preserve their original media sizing with editorial text
     const html = render('/')
     const featured = html.slice(html.indexOf('id="work"'), html.indexOf('aria-labelledby="capability-heading"'))
 
-    assert.equal((featured.match(/data-case-study-entry="true"/g) || []).length, 4)
-    assert.equal((featured.match(/data-project-caption="true"/g) || []).length, 4)
+    assert.equal((featured.match(/data-case-study-entry="true"/g) || []).length, 3)
+    assert.equal((featured.match(/data-project-caption="true"/g) || []).length, 3)
     assert.doesNotMatch(featured, /caseStudyTopline|caseStudyEvidence/)
     assert.match(featured, /My role/)
     assert.doesNotMatch(featured, /Read project/)
 
     const moduleCss = readFileSync(new URL('../src/portfolio/Portfolio.module.css', import.meta.url), 'utf8')
     const currentCss = moduleCss.slice(moduleCss.indexOf('/* UX Design Engineer portfolio */'))
-    assert.match(currentCss, /\.caseStudyList\s*{[^}]*display:\s*grid[^}]*grid-template-columns:\s*repeat\(4,\s*minmax\(0,\s*1fr\)\)/s)
+    assert.match(currentCss, /\.caseStudyList\s*{[^}]*display:\s*grid[^}]*grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\)/s)
     assert.match(currentCss, /\.caseStudyRow\s*{[^}]*display:\s*grid[^}]*grid-template-rows:\s*auto\s+1fr/s)
     assert.match(currentCss, /\.caseStudyCaption\s*{[^}]*display:\s*grid[^}]*grid-template-rows:\s*auto\s+1fr\s+auto/s)
     assert.match(currentCss, /\.caseStudyDetails\s*{[^}]*display:\s*grid[^}]*grid-template-rows:\s*1fr\s+auto/s)
@@ -332,7 +331,7 @@ test('homepage projects preserve their original media sizing with editorial text
   } finally { await server.close() }
 })
 
-test('the homepage opens with a clean portrait and presents four lead projects together', async () => {
+test('the homepage opens with a clean portrait and presents three lead projects together', async () => {
   const server = await createServer({ server: { middlewareMode: true, ws: false }, appType: 'custom', logLevel: 'error' })
   try {
     const { render } = await server.ssrLoadModule('/src/entry-server.jsx')
@@ -361,8 +360,8 @@ test('the homepage opens with a clean portrait and presents four lead projects t
     assert.match(currentCss, /\.heroPortraitFrame\s*{[^}]*background:\s*(?:transparent|#fff(?:fff)?)[^}]*border:\s*0/s)
     assert.doesNotMatch(currentCss, /\.heroPortraitMark\s*{/)
     assert.doesNotMatch(currentCss, /\.projectIndexStrip\s*{|\.heroProjectGrid\s*{/)
-    assert.match(currentCss, /\.caseStudyList\s*{[^}]*grid-template-columns:\s*repeat\(4,\s*minmax\(0,\s*1fr\)\)/s)
-    assert.match(currentCss, /\.productWorkGrid\s*{[^}]*grid-template-columns:\s*repeat\(4,\s*minmax\(0,\s*1fr\)\)/s)
+    assert.match(currentCss, /\.caseStudyList\s*{[^}]*grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\)/s)
+    assert.match(currentCss, /\.productWorkGrid\s*{[^}]*grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\)/s)
     assert.match(currentCss, /@media\s*\(max-width:\s*1024px\)\s+and\s+\(min-width:\s*601px\)[\s\S]*?\.hero\s*{[^}]*grid-template-columns:\s*minmax\(0,\s*1\.15fr\)\s+minmax\(260px,\s*\.85fr\)/s)
     assert.match(currentCss, /@media\s*\(max-width:\s*760px\)\s+and\s+\(min-width:\s*601px\)[\s\S]*?\.caseStudyList\s*{[^}]*grid-template-columns:\s*1fr/s)
     assert.match(currentCss, /@media\s*\(max-width:\s*600px\)[\s\S]*?\.hero\s*{[^}]*grid-template-columns:\s*minmax\(0,\s*1fr\)\s+clamp\(88px,\s*24vw,\s*108px\)/s)
@@ -500,14 +499,13 @@ test('contact links use familiar icons in an open editorial list', async () => {
   } finally { await server.close() }
 })
 
-test('lead project cards use one consistent team-size fact', async () => {
+test('lead project cards keep only the role, not a team-size fact', async () => {
   const server = await createServer({ server: { middlewareMode: true, ws: false }, appType: 'custom', logLevel: 'error' })
   try {
     const { render } = await server.ssrLoadModule('/src/entry-server.jsx')
     const html = render('/')
     const featured = html.slice(html.indexOf('id="work"'), html.indexOf('aria-labelledby="more-work-heading"'))
-    assert.equal((featured.match(/<dt>Team size<\/dt>/g) || []).length, 4)
-    for (const value of ['1 person', '2 people', '8 people', '9 people']) assert.match(featured, new RegExp(`>${value}<`))
+    assert.equal((featured.match(/<dt>Team size<\/dt>/g) || []).length, 0)
     assert.doesNotMatch(featured, /Role-specific flows|People in the sprint|People on the cross-functional team|Videos in the initial prototype/)
   } finally { await server.close() }
 })

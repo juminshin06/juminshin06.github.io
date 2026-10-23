@@ -43,14 +43,29 @@ main:focus { outline: none; }
 .skip-link { position: fixed; left: 20px; top: -100px; z-index: 100; background: var(--ink); color: white; padding: 16px; }
 .skip-link:focus { top: 12px; }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
-@media (min-width: 1600px) { :root { --gutter: 64px; } }
+@media (min-width: 1376px) { :root { --gutter: calc((100vw - 1280px) / 2); } }
 @media (max-width: 900px) { :root { --gutter: 32px; } }
 @media (max-width: 600px) { :root { --gutter: 20px; } }
-/* The small clover pointer on mouse and trackpad devices. */
-@media (hover: hover) and (pointer: fine) {
-  html, a, button, model-viewer, [data-cursor] { cursor: url('/assets/cursor.svg') 12 12, auto; }
-}
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+/* Page changes cross-fade like an app: the old page eases back and fades, the new one rises in,
+   and the header stays put. Browsers without cross-document view transitions just load normally. */
+@view-transition { navigation: auto; }
+#root > header { view-transition-name: site-header; }
+::view-transition-old(root) { animation: page-out 220ms cubic-bezier(.4, 0, 1, 1) both; }
+::view-transition-new(root) { animation: page-in 380ms cubic-bezier(.2, .7, .2, 1) both; }
+@keyframes page-out { to { opacity: 0; transform: scale(.985); } }
+@keyframes page-in { from { opacity: 0; transform: translateY(14px); } }
+@media (prefers-reduced-motion: reduce) {
+  @view-transition { navigation: none; }
+}
+/* A crisp custom arrow on mouse and trackpad devices: near-black normally, the prompt's
+   blue-violet-pink gradient over anything clickable. Text fields keep the native caret. */
+@media (hover: hover) and (pointer: fine) {
+  html { cursor: url('/assets/cursor-arrow.svg') 3 2, auto; }
+  a, button, summary, label[for], select, [role='button'], [data-cursor] { cursor: url('/assets/cursor-pointer.svg') 3 2, pointer; }
+  input:not([type='button']):not([type='submit']), textarea, [contenteditable='true'] { cursor: text; }
+  button:disabled { cursor: url('/assets/cursor-arrow.svg') 3 2, default; }
 }

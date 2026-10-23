@@ -5,7 +5,7 @@ import profileHoverPhoto from '../assets/profile_hover2.png'
 
 const links = [
   { label: 'LinkedIn',  href: 'https://www.linkedin.com/in/juminshin' },
-  { label: 'Scholar',   href: 'https://scholar.google.com/citations?user=RxmsjhAAAAAJ&hl=ko' },
+  { label: 'Scholar',   href: 'https://scholar.google.com/citations?user=RxmsjhAAAAAJ&hl=en' },
   { label: 'Instagram', href: 'https://www.instagram.com/jumin_shin?igsh=NTc4MTIwNjQ2YQ%3D%3D&utm_source=qr' },
   { label: 'Portfolio', href: '/assets/Jumin_portfolio.pdf' },
   { label: 'Resume',    href: 'https://docs.google.com/document/d/1S925pLZ2bRjcGABGZNrovpaGZyxQBGNV11ETtSXMSLw/edit?usp=sharing' },

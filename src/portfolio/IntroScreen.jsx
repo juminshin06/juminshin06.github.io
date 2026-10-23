@@ -3,7 +3,6 @@ import { ArrowDown } from 'lucide-react'
 import { homepageProjects } from '../data/portfolio'
 import AgentHero from './AgentHero'
 import { setGuide } from './guide'
-import IntroBackdrop from './IntroBackdrop'
 import { ProjectImage } from './Shell'
 import s from './Portfolio.module.css'
 
@@ -94,7 +93,6 @@ export default function IntroScreen({ onRecruiter, recruiterRef }) {
   }, [])
 
   return <section ref={sectionRef} className={s.intro} aria-labelledby="intro-heading" data-intro="true">
-    <IntroBackdrop />
     <div className={s.introCards} aria-hidden="true">
       {floating.map((project, index) => <FloatingCard key={project.slug} project={project} index={index} />)}
     </div>

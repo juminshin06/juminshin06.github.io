@@ -6,7 +6,6 @@ import { EditorialPortrait, ProjectImage, SectionHeading, TextLink } from './She
 import ProjectCover from './ProjectCover'
 import IntroScreen from './IntroScreen'
 import TechTools from './Toolkit'
-import RoleFilter from './RoleFilter'
 import RecruiterView from './RecruiterView'
 import useHiringView from './useHiringView'
 import { rankForRole, roleLabel } from './hiring'
@@ -24,7 +23,7 @@ const caseStudyTitles = {
   pacepop: 'PACEPOP',
 }
 
-const LEAD_COUNT = 4
+const LEAD_COUNT = 3
 
 const homeSchools = [
   { name: 'USC Iovine and Young Academy', degree: 'M.S. Integrated Design, Business & Technology', logo: '/assets/logo-usc.png' },
@@ -33,7 +32,6 @@ const homeSchools = [
 ]
 
 function CaseStudyRow({ project, index }) {
-  const primaryFact = project.facts?.[0]
   return <article data-reveal data-case-study-entry="true" className={s.caseStudyRow}>
     <a href={`/work/${project.slug}/`} className={s.caseStudyMedia} data-project-slug={project.slug} aria-label={`View case study: ${project.title}`}>
       <ProjectCover project={project} variant="lead" eager={index === 0} />
@@ -51,7 +49,6 @@ function CaseStudyRow({ project, index }) {
       <div className={s.caseStudyDetails}>
         <dl>
           <div><dt>My role</dt><dd>{project.role}</dd></div>
-          {primaryFact && <div><dt>{primaryFact.label}</dt><dd>{primaryFact.value}</dd></div>}
         </dl>
       </div>
     </div>
@@ -67,7 +64,6 @@ function ProductWorkCard({ project }) {
         <span>{project.year}</span>
       </span>
       <strong>{caseStudyTitles[project.slug] || project.title}</strong>
-      <span className={s.productWorkRole} data-project-role="true">{project.role}</span>
       <ArrowUpRight size={22} aria-hidden="true" />
     </span>
   </a>
@@ -115,8 +111,6 @@ export default function Home() {
     <section className={s.caseStudies} id="work" aria-label="Selected work" data-work-start="true">
       <div className={s.workToolbar}>
         <h2 className={s.workHeading}>Selected work</h2>
-        <RoleFilter role={role} onChange={setRole} />
-        <p className="sr-only" aria-live="polite">{role === 'all' ? 'Showing all work in curated order.' : `Showing ${roleLabel(role)} work first.`}</p>
       </div>
       <div className={s.caseStudyList} key={role} data-role-ranked={role}>
         {leadProjects.map((project, index) => <CaseStudyRow key={project.id} project={project} index={index} />)}

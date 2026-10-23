@@ -1124,7 +1124,7 @@
       "resources": [
         { "label": "Research background", "href": "/assets/projects/StoryAuthoring_1.png" },
         { "label": "Authoring interface", "href": "/assets/projects/StoryAuthoring_2.png" },
-        { "label": "Google Scholar profile", "href": "https://scholar.google.com/citations?user=RxmsjhAAAAAJ&hl=ko" }
+        { "label": "Google Scholar profile", "href": "https://scholar.google.com/citations?user=RxmsjhAAAAAJ&hl=en" }
       ],
       "source": "proj-013; resume: JuminShin_Resume (4).pdf, Hongik University research appointment and publications",
       "diagram": {

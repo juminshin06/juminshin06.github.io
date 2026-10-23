@@ -60,9 +60,8 @@ export function About() {
     <section className={s.capabilities} aria-labelledby="capabilities-heading">
       <SectionHeading id="capabilities-heading" title="UX skills & capabilities" />
       <div>
-        {profile.capabilities.map(capability => <article key={capability.title}>
+        {profile.capabilities.map(capability => <article key={capability.title} title={capability.description}>
           <h3>{capability.title}</h3>
-          <p className={s.bodyText}>{capability.description}</p>
         </article>)}
       </div>
     </section>
@@ -74,7 +73,7 @@ export function About() {
           <h3>{experience.organization}</h3>
           <p className={s.experienceRole}>{experience.title}</p>
         </div>
-        <p className={s.bodyText}>{experience.description}</p>
+        <p className={s.bodyText}>{experience.summary || experience.description}</p>
       </article>)}
     </section>
     <section className={s.education} aria-labelledby="education-heading">

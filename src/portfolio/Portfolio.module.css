@@ -619,7 +619,7 @@
 .caseStudies { padding: 58px var(--gutter) 76px; border-top: 1px solid var(--line); scroll-margin-top: 72px; }
 .caseStudyList {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 48px 20px;
 }
 .caseStudyRow {
@@ -828,7 +828,7 @@
 .moreWork .sectionHeading h2 { font-size: 44px; line-height: 1.04; font-weight: 560; }
 .productWorkGrid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 54px 18px;
 }
 .productWorkCard { display: flex; min-width: 0; flex-direction: column; }
@@ -1860,9 +1860,8 @@
   min-height: calc(100svh - 72px);
   padding: 56px var(--gutter) 96px;
   overflow: hidden;
-  background: linear-gradient(180deg, #eef3f7 0%, #f3f6ee 58%, #faf8f2 100%);
+  background: #fff;
 }
-.introBackdrop { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; }
 .introContent { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; width: min(760px, 100%); text-align: center; }
 .introContent h1 { font-size: 72px; line-height: 1; font-weight: 650; letter-spacing: -0.032em; }
 .introContent h1:focus { outline: none; }
@@ -2210,8 +2209,8 @@
 .introLinks { margin-top: 28px; }
 @media (width <= 600px) { .introLinks { margin-top: 24px; } }
 
-/* Hero name: Boska Bold Italic in a bright, lively pink. */
-.introContent h1 { font-family: 'Boska', 'Times New Roman', serif; font-style: italic; font-weight: 700; font-size: 112px; line-height: 1; letter-spacing: -0.015em; color: #f47aab; padding: 0 0.06em; }
+/* Hero name: Boska Bold Italic in near-black, so the prompt's gradient ring is the one accent. */
+.introContent h1 { font-family: 'Boska', 'Times New Roman', serif; font-style: italic; font-weight: 700; font-size: 112px; line-height: 1; letter-spacing: -0.015em; color: #1d1d1f; padding: 0 0.06em; }
 .introContent .introRole { margin-top: 22px; }
 @media (width <= 900px) { .introContent h1 { font-size: 84px; } .introContent .introRole { margin-top: 18px; } }
 @media (width <= 600px) { .introContent h1 { font-size: 60px; } .introContent .introRole { margin-top: 14px; } }
@@ -2334,3 +2333,28 @@ html:not([data-guide]) [data-chat-launcher], html[data-guide='hero'] [data-chat-
   .bentoExperience .miniExperience small { grid-column: 1; grid-row: 3; font-size: 12px; }
 }
 @media (width <= 900px) { .copyright, .coverAnnotation { font-size: 11px; } }
+
+/* Neutral, Apple-style surfaces: white pages, #f5f5f7 for quiet sections, cool grays for avatars. */
+.homeAbout { background: #f5f5f7; }
+.footer { background: #f5f5f7; border-top-color: #e8e8ed; }
+.chatAvatar, .agentAvatar, .chatLauncher .chatAvatar, .logoCharacter { background: #f2f2f7; }
+
+/* Intro actions as Apple-style buttons: a filled primary pill and a quiet gray secondary pill. */
+.introLinks { gap: 12px; }
+.introLinks > span[aria-hidden='true'] { display: none; }
+.introLinks a, .introLinks button { min-height: 46px; padding: 0 22px; border-radius: 999px; font-size: 15px; font-weight: 600; letter-spacing: -0.01em; transition: background-color 200ms ease, transform 200ms cubic-bezier(.2, .7, .2, 1), box-shadow 200ms ease; }
+.introLinks a { gap: 7px; background: #1d1d1f; color: #fff; box-shadow: 0 6px 18px rgba(0, 0, 0, .14); }
+.introLinks a:hover { background: #000; color: #fff; transform: translateY(-1px); box-shadow: 0 10px 24px rgba(0, 0, 0, .18); }
+.introLinks button { background: #f5f5f7; color: #1d1d1f; }
+.introLinks button:hover { background: #e8e8ed; color: #1d1d1f; transform: translateY(-1px); }
+.introLinks a:focus-visible, .introLinks button:focus-visible { outline: 2px solid #0071e3; outline-offset: 3px; }
+@media (width <= 600px) { .introLinks a, .introLinks button { min-height: 44px; padding: 0 18px; font-size: 14px; } }
+
+/* Less to read: lead summaries stop at three lines, and About capabilities are a compact list
+   of titles. */
+.caseStudySummary { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; }
+.capabilities article { padding-top: 18px; padding-bottom: 18px; }
+.capabilities article h3 { margin: 0; }
+
+/* Smallest labels never drop below 11px at any width. */
+.copyright, .coverAnnotation { font-size: 11px; }

@@ -9,7 +9,7 @@
   ],
   "email": "juminshi@usc.edu",
   "linkedin": "https://www.linkedin.com/in/juminshin",
-  "scholar": "https://scholar.google.com/citations?user=RxmsjhAAAAAJ&hl=ko",
+  "scholar": "https://scholar.google.com/citations?user=RxmsjhAAAAAJ&hl=en",
   "github": "https://github.com/juminshin06",
   "location": "Los Angeles, CA",
   "experience": [
@@ -17,42 +17,49 @@
       "organization": "Swim Up Hill Foundation",
       "title": "Web Development & Internal Systems Intern",
       "period": "Jun - Aug 2026, Oct 2026 - Present",
+      "summary": "Designed and built the foundation’s website end to end, with six user journeys live.",
       "description": "Designed and built the foundation's website end to end, owning UX, visual design and development; six user journeys now run live, from a 4-step enrollment to donations, shop, webinar, newsletter and school inquiry. Building My Portal with email-verified and Google/Apple sign-in and six role-based dashboards, and running usability tests with parents and swimmers that set the accessibility fixes."
     },
     {
       "organization": "USC Thomas Lord Department of Computer Science",
       "title": "Program Teaching Assistant, Summer CS Program",
       "period": "Jul 2026",
+      "summary": "Co-developed an AI coding curriculum for 70 students and mentored hackathon teams.",
       "description": "Co-developed a Vibe Coding curriculum on prompt engineering, multi-agent workflows and AI automation for 70 students across three sections, and advised final-hackathon teams on UX, interface design, build and debugging."
     },
     {
       "organization": "Bubba's LA",
       "title": "AI Research Intern",
       "period": "May - Jul 2026",
+      "summary": "Scaled an AI rough-cut platform from 10 to 300+ videos per batch, owning UX/UI and front end.",
       "description": "Scaled an AI rough-cut platform 30×, from a 10-video prototype to 300+ videos per batch in production, owning its UX/UI design and front-end build. Designed and built a real-time monitoring dashboard for timeline, media, 3D scene and lighting status, put 11,500+ contacts into a mobile lead dashboard, and led an AI SEO / JSON-LD audit that became the site-growth roadmap."
     },
     {
       "organization": "USC Iovine and Young Academy",
       "title": "Student Assistant",
       "period": "Sep - Dec 2025",
+      "summary": "Curated UI/UX case studies and coached student critiques for ACAD-325.",
       "description": "Restructured lecture content, curated industry UI/UX case studies, and coached students through project critiques and presentations for ACAD-325, Human Technology Interaction and the User Experience."
     },
     {
       "organization": "Macromill Embrain",
       "title": "Researcher & Designer Intern",
       "period": "Nov 2023 - Jun 2024",
+      "summary": "Ran mixed-method UX research with about 100 participants for Samsung, Hyundai and SK.",
       "description": "Conducted mixed-method UX research with about 100 participants (interviews, surveys, usability tests) for Samsung, Hyundai and SK, then translated the insights into UI prototypes for Galaxy personalization, Hyundai SUV camping and an SK employee platform."
     },
     {
       "organization": "Zephframe",
       "title": "Web Developer Intern",
       "period": "Aug - Dec 2022",
+      "summary": "Built scroll-driven JavaScript animations and Unreal Engine virtual spaces.",
       "description": "Built scroll-responsive JavaScript frontend animations and developed Unreal Engine virtual spaces showcasing an AI-powered modular smart-door concept."
     },
     {
       "organization": "Cheil Worldwide",
       "title": "UX Designer Intern",
       "period": "Mar - Jun 2022",
+      "summary": "Shipped localized Galaxy Z Fold4 and Flip4 campaign sites across about 10 markets.",
       "description": "Shipped localized campaign websites and promotional UI for Samsung Galaxy Z Fold4 and Flip4 across about 10 international markets, including the UK, Germany and France, adapting each global launch concept to local audiences."
     }
   ],
@@ -106,7 +113,7 @@
       "venue": "Proceedings of ICIDS 2023",
       "year": 2023,
       "projectId": "proj-013",
-      "href": "https://scholar.google.com/citations?user=RxmsjhAAAAAJ&hl=ko"
+      "href": "https://scholar.google.com/citations?user=RxmsjhAAAAAJ&hl=en"
     },
     {
       "title": "Designing a Prototype for an Interactive Story Authoring Tool Utilizing Generative Language Models",
@@ -114,14 +121,14 @@
       "venue": "Proceedings of the KIISE Conference, Jeju Island, South Korea",
       "year": 2023,
       "projectId": "proj-013",
-      "href": "https://scholar.google.com/citations?user=RxmsjhAAAAAJ&hl=ko"
+      "href": "https://scholar.google.com/citations?user=RxmsjhAAAAAJ&hl=en"
     },
     {
       "title": "A Study on the Design of Exterior Doors and Indicators for Improved Usability of Electric Vehicle Charging Ports",
       "authors": "Kim, H., Shin, J., Cho, S., and Park, K.",
       "venue": "Proceedings of the KSDS Conference, Sejong, South Korea",
       "year": 2023,
-      "href": "https://scholar.google.com/citations?user=RxmsjhAAAAAJ&hl=ko"
+      "href": "https://scholar.google.com/citations?user=RxmsjhAAAAAJ&hl=en"
     },
     {
       "title": "Sing In Sign",
@@ -129,7 +136,7 @@
       "venue": "Proceedings of the HCI Korea Conference",
       "year": 2022,
       "projectId": "proj-005",
-      "href": "https://scholar.google.com/citations?user=RxmsjhAAAAAJ&hl=ko"
+      "href": "https://scholar.google.com/citations?user=RxmsjhAAAAAJ&hl=en"
     }
   ],
   "recognition": [
