@@ -33,6 +33,28 @@ const pickSuggestions = (asked, count = 3) => {
   return picked
 }
 
+// While an answer is on its way, a short status names what the assistant is doing, then the
+// text streams in. These are the real steps: the reply is drawn from Jumin's portfolio index.
+const THINKING_STEPS = ['Reading Jumin’s portfolio', 'Finding the most relevant work', 'Writing an answer']
+function ThinkingStatus() {
+  const [step, setStep] = useState(0)
+  useEffect(() => {
+    const timer = window.setInterval(() => setStep(current => Math.min(current + 1, THINKING_STEPS.length - 1)), 1300)
+    return () => window.clearInterval(timer)
+  }, [])
+  return <span className={s.chatThinking} role="status">
+    <span className={s.chatThinkingDot} aria-hidden="true" />
+    <span key={step} className={s.chatThinkingText}>{THINKING_STEPS[step]}…</span>
+  </span>
+}
+
+// Mid-stream text can end inside **bold** or a [link](…); hide the unfinished markup until it closes.
+const tidyPartial = text => {
+  let clean = text.replace(/\[([^\]\n]*)\]\([^)\n]*$/, '$1').replace(/\[[^\]\n]*$/, '')
+  if ((clean.match(/\*\*/g) || []).length % 2) clean = clean.replace(/\*\*(?!.*\*\*)/s, '')
+  return clean
+}
+
 // Markdown-lite for answers: paragraphs, "- " bullets, **bold** and [text](href).
 function renderInline(text, keyBase) {
   const pattern = /\*\*(.+?)\*\*|\[([^\]]+)\]\(([^)\s]+)\)/g
@@ -194,10 +216,10 @@ export default function ChatBot() {
 
       <div ref={logRef} className={s.chatLog} aria-live="polite">
         <div className={`${s.chatMsg} ${s.chatMsgBot}`}><p>{GREETING}</p>{note && <p className={s.chatValue}><span>Design note</span>{note}</p>}</div>
-        {messages.map(message => <div key={message.id} className={`${s.chatMsg} ${message.role === 'user' ? s.chatMsgUser : s.chatMsgBot}`} data-source={message.source}>
+        {messages.map(message => <div key={message.id} className={`${s.chatMsg} ${message.role === 'user' ? s.chatMsgUser : s.chatMsgBot}`} data-source={message.source} data-streaming={message.pending && message.content ? 'true' : undefined}>
           {message.pending && !message.content
-            ? <span className={s.chatTyping} aria-label="The assistant is typing"><i /><i /><i /></span>
-            : message.role === 'user' ? <p>{message.content}</p> : renderMarkdown(message.content)}
+            ? <ThinkingStatus />
+            : message.role === 'user' ? <p>{message.content}</p> : renderMarkdown(message.pending ? tidyPartial(message.content) : message.content)}
           {message.source === 'local' && !message.pending && chatApiUrl && <small className={s.chatNote}>Answered from the portfolio index</small>}
         </div>)}
       </div>

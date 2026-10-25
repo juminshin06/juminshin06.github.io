@@ -2392,3 +2392,16 @@ button.techTool:active svg { transform: translateY(1px) scale(.94); }
 .productWorkCard:focus-visible .productWorkMedia { outline: 2px solid #0071e3; outline-offset: 3px; }
 .productWorkCard:is(:hover, :focus-visible) .productWorkCaption > strong, .productWorkCard:is(:hover, :focus-visible) .productWorkCaption > svg { color: var(--ink); }
 @media (width <= 600px) { .productWorkMedia { border-radius: 16px; } .productWorkGrid { gap: 36px; } }
+
+/* Chat answer states: a shimmering status line while waiting, then a caret at the end of the
+   text as it streams in. */
+.chatThinking { display: inline-flex; align-items: center; gap: 9px; padding: 2px 0; font-size: 14px; }
+.chatThinkingDot { width: 8px; height: 8px; border-radius: 50%; background: linear-gradient(135deg, #0a84ff, #bf5af2 55%, #ff375f); animation: chat-pulse 1.1s ease-in-out infinite; }
+.chatThinkingText { background: linear-gradient(90deg, #8e8e93 0%, #8e8e93 35%, #1d1d1f 50%, #8e8e93 65%, #8e8e93 100%); background-size: 220% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: chat-shimmer 1.6s linear infinite, chat-step-in 260ms ease both; }
+.chatMsg[data-streaming='true'] > :last-child::after { content: ''; display: inline-block; width: 7px; height: 1em; margin-left: 3px; vertical-align: -0.12em; border-radius: 2px; background: currentColor; opacity: .55; animation: agent-caret 1s steps(1) infinite; }
+.chatMsg[data-streaming='true'] > ul:last-child > li:last-child::after { content: ''; display: inline-block; width: 7px; height: 1em; margin-left: 3px; vertical-align: -0.12em; border-radius: 2px; background: currentColor; opacity: .55; animation: agent-caret 1s steps(1) infinite; }
+.chatMsg[data-streaming='true'] > ul:last-child::after { content: none; }
+@keyframes chat-pulse { 0%, 100% { transform: scale(.8); opacity: .7; } 50% { transform: scale(1.1); opacity: 1; } }
+@keyframes chat-shimmer { from { background-position: 110% 0; } to { background-position: -110% 0; } }
+@keyframes chat-step-in { from { opacity: 0; transform: translateY(3px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .chatThinkingText { color: #6e6e73; background: none; } }
