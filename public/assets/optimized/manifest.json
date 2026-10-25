@@ -1,12 +1,12 @@
 {
   "summary": {
-    "sourceCount": 169,
-    "uniqueImageCount": 168,
-    "derivativeCount": 336,
-    "originalBytes": 282910900,
-    "selectedOriginalBytes": 282868640,
-    "webp1600Bytes": 9923440,
-    "webp800Bytes": 4862636,
+    "sourceCount": 196,
+    "uniqueImageCount": 195,
+    "derivativeCount": 390,
+    "originalBytes": 289250430,
+    "selectedOriginalBytes": 289208170,
+    "webp1600Bytes": 11956008,
+    "webp800Bytes": 5739406,
     "quality": 82
   },
   "collisions": [
@@ -173,6 +173,32 @@
           "width": 800,
           "height": 533,
           "bytes": 29178
+        }
+      ]
+    },
+    {
+      "source": "public/assets/life/life-007.jpg",
+      "aliases": [
+        "public/assets/life/life-007.jpg"
+      ],
+      "sha256": "89ce39ded3a0bb55f61cb4a189c1e2433cf07b228c56cb4bb9072ca2ff6706c6",
+      "originalBytes": 412132,
+      "originalWidth": 1600,
+      "originalHeight": 1200,
+      "variants": [
+        {
+          "path": "/assets/optimized/life-007.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 1200,
+          "bytes": 188922
+        },
+        {
+          "path": "/assets/optimized/life-007-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 600,
+          "bytes": 72970
         }
       ]
     },
@@ -1348,6 +1374,318 @@
       ]
     },
     {
+      "source": "public/assets/projects/aot-slide-01.jpg",
+      "aliases": [
+        "public/assets/projects/aot-slide-01.jpg"
+      ],
+      "sha256": "229a8742559faf08ec888f5bd6922d2380752d2ef5f168b41a7f0e53216b0260",
+      "originalBytes": 126567,
+      "originalWidth": 1600,
+      "originalHeight": 900,
+      "variants": [
+        {
+          "path": "/assets/optimized/aot-slide-01.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 900,
+          "bytes": 34844
+        },
+        {
+          "path": "/assets/optimized/aot-slide-01-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 16614
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/aot-slide-03.jpg",
+      "aliases": [
+        "public/assets/projects/aot-slide-03.jpg"
+      ],
+      "sha256": "aea167d5acfce54fb24b538041dee3f33ae191a5cff46963d74fc6040413a580",
+      "originalBytes": 110447,
+      "originalWidth": 1600,
+      "originalHeight": 900,
+      "variants": [
+        {
+          "path": "/assets/optimized/aot-slide-03.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 900,
+          "bytes": 29642
+        },
+        {
+          "path": "/assets/optimized/aot-slide-03-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 14598
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/aot-slide-04.jpg",
+      "aliases": [
+        "public/assets/projects/aot-slide-04.jpg"
+      ],
+      "sha256": "06cc2e1ab46e7c73abdccbba3ade65dbd174943af3e0cdf9f6976b0ba357ad48",
+      "originalBytes": 138109,
+      "originalWidth": 1600,
+      "originalHeight": 900,
+      "variants": [
+        {
+          "path": "/assets/optimized/aot-slide-04.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 900,
+          "bytes": 37474
+        },
+        {
+          "path": "/assets/optimized/aot-slide-04-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 17698
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/aot-slide-05.jpg",
+      "aliases": [
+        "public/assets/projects/aot-slide-05.jpg"
+      ],
+      "sha256": "7f7e5f35ab9fff474113d960abd536f3305cfa82046634567831b209ea7eb727",
+      "originalBytes": 84632,
+      "originalWidth": 1600,
+      "originalHeight": 900,
+      "variants": [
+        {
+          "path": "/assets/optimized/aot-slide-05.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 900,
+          "bytes": 22794
+        },
+        {
+          "path": "/assets/optimized/aot-slide-05-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 10210
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/aot-slide-06.jpg",
+      "aliases": [
+        "public/assets/projects/aot-slide-06.jpg"
+      ],
+      "sha256": "71e8eaa142d86db3d2f4f2593720c7fcbd45a2ce68a9c6c9806cc908381b8020",
+      "originalBytes": 117097,
+      "originalWidth": 1600,
+      "originalHeight": 900,
+      "variants": [
+        {
+          "path": "/assets/optimized/aot-slide-06.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 900,
+          "bytes": 32228
+        },
+        {
+          "path": "/assets/optimized/aot-slide-06-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 15552
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/aot-slide-08.jpg",
+      "aliases": [
+        "public/assets/projects/aot-slide-08.jpg"
+      ],
+      "sha256": "db89f8a0578b7b2cd4c3973ea5bdf565abab995cd674b5bbfed64ed12aaf46a1",
+      "originalBytes": 132699,
+      "originalWidth": 1600,
+      "originalHeight": 900,
+      "variants": [
+        {
+          "path": "/assets/optimized/aot-slide-08.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 900,
+          "bytes": 36764
+        },
+        {
+          "path": "/assets/optimized/aot-slide-08-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 15882
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/aot-slide-09.jpg",
+      "aliases": [
+        "public/assets/projects/aot-slide-09.jpg"
+      ],
+      "sha256": "b90da9d69e0416cac1927f1373d1dd3b04410eef0fa6c7c241a6b626c61c8c72",
+      "originalBytes": 186974,
+      "originalWidth": 1600,
+      "originalHeight": 900,
+      "variants": [
+        {
+          "path": "/assets/optimized/aot-slide-09.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 900,
+          "bytes": 54532
+        },
+        {
+          "path": "/assets/optimized/aot-slide-09-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 24538
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/aot-slide-10.jpg",
+      "aliases": [
+        "public/assets/projects/aot-slide-10.jpg"
+      ],
+      "sha256": "b1397e664465db85723bff81f9d9e1ec0e4047db65d7a56d31d0561a17997891",
+      "originalBytes": 378956,
+      "originalWidth": 1600,
+      "originalHeight": 900,
+      "variants": [
+        {
+          "path": "/assets/optimized/aot-slide-10.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 900,
+          "bytes": 143926
+        },
+        {
+          "path": "/assets/optimized/aot-slide-10-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 57566
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/aot-slide-11.jpg",
+      "aliases": [
+        "public/assets/projects/aot-slide-11.jpg"
+      ],
+      "sha256": "448415e5e5d0eed777fc1a7042e75eb88caebd30a536c77767f72d771eaaba43",
+      "originalBytes": 114590,
+      "originalWidth": 1600,
+      "originalHeight": 900,
+      "variants": [
+        {
+          "path": "/assets/optimized/aot-slide-11.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 900,
+          "bytes": 32618
+        },
+        {
+          "path": "/assets/optimized/aot-slide-11-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 15204
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/aot-slide-16.jpg",
+      "aliases": [
+        "public/assets/projects/aot-slide-16.jpg"
+      ],
+      "sha256": "bbc89d7e2fd2e5f846c0f56e113dae5177a16e3ee88d682908fd4cc692b36d53",
+      "originalBytes": 252645,
+      "originalWidth": 1600,
+      "originalHeight": 900,
+      "variants": [
+        {
+          "path": "/assets/optimized/aot-slide-16.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 900,
+          "bytes": 77756
+        },
+        {
+          "path": "/assets/optimized/aot-slide-16-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 33850
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/aot-slide-17.jpg",
+      "aliases": [
+        "public/assets/projects/aot-slide-17.jpg"
+      ],
+      "sha256": "cb17b8cf675bbb0a284eeffd3c31a07ecc4bd47e9cece28cff45073eda67f2ad",
+      "originalBytes": 239474,
+      "originalWidth": 1600,
+      "originalHeight": 900,
+      "variants": [
+        {
+          "path": "/assets/optimized/aot-slide-17.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 900,
+          "bytes": 78648
+        },
+        {
+          "path": "/assets/optimized/aot-slide-17-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 33848
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/aot-slide-23.jpg",
+      "aliases": [
+        "public/assets/projects/aot-slide-23.jpg"
+      ],
+      "sha256": "b597a2916b4b49429f46ca891d70567d7fbc1b1e9f673a5875e232f6586ce45c",
+      "originalBytes": 196835,
+      "originalWidth": 1600,
+      "originalHeight": 900,
+      "variants": [
+        {
+          "path": "/assets/optimized/aot-slide-23.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 900,
+          "bytes": 61572
+        },
+        {
+          "path": "/assets/optimized/aot-slide-23-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 26582
+        }
+      ]
+    },
+    {
       "source": "public/assets/projects/ars-brand-system.png",
       "aliases": [
         "public/assets/projects/ars-brand-system.png"
@@ -1604,6 +1942,344 @@
           "width": 800,
           "height": 450,
           "bytes": 6904
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/brickify-slide-01.jpg",
+      "aliases": [
+        "public/assets/projects/brickify-slide-01.jpg"
+      ],
+      "sha256": "f78430c3be9fcb4734b4478b003af3243d3f0170fa8c6c7248dde42263ec0d6f",
+      "originalBytes": 376666,
+      "originalWidth": 1600,
+      "originalHeight": 899,
+      "variants": [
+        {
+          "path": "/assets/optimized/brickify-slide-01.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 899,
+          "bytes": 138268
+        },
+        {
+          "path": "/assets/optimized/brickify-slide-01-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 56896
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/brickify-slide-05.jpg",
+      "aliases": [
+        "public/assets/projects/brickify-slide-05.jpg"
+      ],
+      "sha256": "f02443712b912484fb622ccd8128720a8ebeb7bd25e7df17334a7741128e43c0",
+      "originalBytes": 400879,
+      "originalWidth": 1600,
+      "originalHeight": 899,
+      "variants": [
+        {
+          "path": "/assets/optimized/brickify-slide-05.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 899,
+          "bytes": 139082
+        },
+        {
+          "path": "/assets/optimized/brickify-slide-05-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 58468
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/brickify-slide-06.jpg",
+      "aliases": [
+        "public/assets/projects/brickify-slide-06.jpg"
+      ],
+      "sha256": "ad93fe88f529932cd26619a1fd361a33f3a60c7338f904ad9ba1fba982009590",
+      "originalBytes": 346057,
+      "originalWidth": 1600,
+      "originalHeight": 899,
+      "variants": [
+        {
+          "path": "/assets/optimized/brickify-slide-06.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 899,
+          "bytes": 118348
+        },
+        {
+          "path": "/assets/optimized/brickify-slide-06-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 50414
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/brickify-slide-08.jpg",
+      "aliases": [
+        "public/assets/projects/brickify-slide-08.jpg"
+      ],
+      "sha256": "5c1bf91b8734ecf27c7d60aea867e90c8ae71a51167a49ca8be947a1edb11c9c",
+      "originalBytes": 237598,
+      "originalWidth": 1600,
+      "originalHeight": 899,
+      "variants": [
+        {
+          "path": "/assets/optimized/brickify-slide-08.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 899,
+          "bytes": 67330
+        },
+        {
+          "path": "/assets/optimized/brickify-slide-08-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 30652
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/brickify-slide-10.jpg",
+      "aliases": [
+        "public/assets/projects/brickify-slide-10.jpg"
+      ],
+      "sha256": "c0e36be0e39968b2e55bab166edb0a0bafa9f5885b1c180add1e7e1b97d115a8",
+      "originalBytes": 322419,
+      "originalWidth": 1600,
+      "originalHeight": 899,
+      "variants": [
+        {
+          "path": "/assets/optimized/brickify-slide-10.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 899,
+          "bytes": 116780
+        },
+        {
+          "path": "/assets/optimized/brickify-slide-10-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 48798
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/brickify-slide-11.jpg",
+      "aliases": [
+        "public/assets/projects/brickify-slide-11.jpg"
+      ],
+      "sha256": "90b737306b788c92e31bcfb691af14801825d971f78f520649c020e4cef05dbe",
+      "originalBytes": 309352,
+      "originalWidth": 1600,
+      "originalHeight": 899,
+      "variants": [
+        {
+          "path": "/assets/optimized/brickify-slide-11.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 899,
+          "bytes": 109960
+        },
+        {
+          "path": "/assets/optimized/brickify-slide-11-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 45744
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/brickify-slide-12.jpg",
+      "aliases": [
+        "public/assets/projects/brickify-slide-12.jpg"
+      ],
+      "sha256": "a75ce5d90d08939112d143c35eac381b844fab12ee97bf3e93b9b78b84950159",
+      "originalBytes": 282522,
+      "originalWidth": 1600,
+      "originalHeight": 899,
+      "variants": [
+        {
+          "path": "/assets/optimized/brickify-slide-12.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 899,
+          "bytes": 88578
+        },
+        {
+          "path": "/assets/optimized/brickify-slide-12-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 41058
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/brickify-slide-14.jpg",
+      "aliases": [
+        "public/assets/projects/brickify-slide-14.jpg"
+      ],
+      "sha256": "5f692f96bf5ec624b75877796ac2fd267e4dc248a4e26f3978aab8cc9cc7a772",
+      "originalBytes": 212142,
+      "originalWidth": 1600,
+      "originalHeight": 899,
+      "variants": [
+        {
+          "path": "/assets/optimized/brickify-slide-14.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 899,
+          "bytes": 59062
+        },
+        {
+          "path": "/assets/optimized/brickify-slide-14-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 28742
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/brickify-slide-15.jpg",
+      "aliases": [
+        "public/assets/projects/brickify-slide-15.jpg"
+      ],
+      "sha256": "05bb1071ba9adc81d67a65f6f16a6b80af3f27167bc10a494d068c155ef6ba7f",
+      "originalBytes": 308235,
+      "originalWidth": 1600,
+      "originalHeight": 899,
+      "variants": [
+        {
+          "path": "/assets/optimized/brickify-slide-15.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 899,
+          "bytes": 102484
+        },
+        {
+          "path": "/assets/optimized/brickify-slide-15-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 44740
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/brickify-slide-16.jpg",
+      "aliases": [
+        "public/assets/projects/brickify-slide-16.jpg"
+      ],
+      "sha256": "e7499e9ceb153eef628d0cc68755c45cd2f557220aef89a992a063d6927b6bc6",
+      "originalBytes": 122227,
+      "originalWidth": 1600,
+      "originalHeight": 899,
+      "variants": [
+        {
+          "path": "/assets/optimized/brickify-slide-16.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 899,
+          "bytes": 30628
+        },
+        {
+          "path": "/assets/optimized/brickify-slide-16-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 12590
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/brickify-slide-17.jpg",
+      "aliases": [
+        "public/assets/projects/brickify-slide-17.jpg"
+      ],
+      "sha256": "f77aa1df02a8ad5801f0449d53ef47565cdedfdd96a5388bc61209dd321c9f8d",
+      "originalBytes": 247810,
+      "originalWidth": 1600,
+      "originalHeight": 899,
+      "variants": [
+        {
+          "path": "/assets/optimized/brickify-slide-17.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 899,
+          "bytes": 73210
+        },
+        {
+          "path": "/assets/optimized/brickify-slide-17-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 32062
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/brickify-slide-18.jpg",
+      "aliases": [
+        "public/assets/projects/brickify-slide-18.jpg"
+      ],
+      "sha256": "df4ba1d01115b9c0f32c4000c72d0cf0dc6f4905ee4b1dbf55fb48b29259f1ad",
+      "originalBytes": 251947,
+      "originalWidth": 1600,
+      "originalHeight": 899,
+      "variants": [
+        {
+          "path": "/assets/optimized/brickify-slide-18.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 899,
+          "bytes": 82566
+        },
+        {
+          "path": "/assets/optimized/brickify-slide-18-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 37728
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/brickify-slide-20.jpg",
+      "aliases": [
+        "public/assets/projects/brickify-slide-20.jpg"
+      ],
+      "sha256": "26743972fd5ac4c009cea33ec4929be46b6a8cfe8dfe4fa9eb179299419e1754",
+      "originalBytes": 183481,
+      "originalWidth": 1600,
+      "originalHeight": 899,
+      "variants": [
+        {
+          "path": "/assets/optimized/brickify-slide-20.webp",
+          "maxWidth": 1600,
+          "width": 1600,
+          "height": 899,
+          "bytes": 59576
+        },
+        {
+          "path": "/assets/optimized/brickify-slide-20-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 25380
         }
       ]
     },
@@ -3164,6 +3840,32 @@
           "width": 800,
           "height": 450,
           "bytes": 23808
+        }
+      ]
+    },
+    {
+      "source": "public/assets/projects/honda-omniverse-poc.png",
+      "aliases": [
+        "public/assets/projects/honda-omniverse-poc.png"
+      ],
+      "sha256": "5d73db0f101cc73f26d5deb0c4485acfd9ae4ec0ddf2d2604033634ac226abff",
+      "originalBytes": 247038,
+      "originalWidth": 1280,
+      "originalHeight": 720,
+      "variants": [
+        {
+          "path": "/assets/optimized/honda-omniverse-poc.webp",
+          "maxWidth": 1600,
+          "width": 1280,
+          "height": 720,
+          "bytes": 14966
+        },
+        {
+          "path": "/assets/optimized/honda-omniverse-poc-800.webp",
+          "maxWidth": 800,
+          "width": 800,
+          "height": 450,
+          "bytes": 8182
         }
       ]
     },

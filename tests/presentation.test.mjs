@@ -85,7 +85,9 @@ test('the homepage prioritizes projects by UX Design Engineer relevance and stat
     const expectedSupportingOrder = [
       'ethicon-care',
       'swim-up-hill',
+      'america-on-tech',
       'haily',
+      'brickify',
       'ars-pharma',
       'story-authoring',
       'bubbas-daily-target',
@@ -106,7 +108,7 @@ test('the homepage prioritizes projects by UX Design Engineer relevance and stat
   } finally { await server.close() }
 })
 
-test('homepage project covers use three lead and nine gallery presentations', async () => {
+test('homepage project covers use three lead and eleven gallery presentations', async () => {
   const server = await createServer({ server: { middlewareMode: true, ws: false }, appType: 'custom', logLevel: 'error' })
   try {
     const { render } = await server.ssrLoadModule('/src/entry-server.jsx')
@@ -116,7 +118,7 @@ test('homepage project covers use three lead and nine gallery presentations', as
 
     assert.equal((html.match(/data-project-cover="micro"/g) || []).length, 0)
     assert.equal((featured.match(/data-project-cover="lead"/g) || []).length, 3)
-    assert.equal((supporting.match(/data-project-cover="gallery"/g) || []).length, 9)
+    assert.equal((supporting.match(/data-project-cover="gallery"/g) || []).length, 11)
     assert.match(featured, /data-cover-tone="bubbas-blue"/)
     assert.match(featured, /data-cover-layout="immersive"/)
     assert.match(featured, /bubbas-assist-media/)
@@ -287,12 +289,12 @@ test('more product work uses a balanced three-column gallery with the requested 
     const html = render('/')
     const supporting = html.slice(html.indexOf('aria-labelledby="more-work-heading"'), html.indexOf('aria-labelledby="home-about-heading"'))
 
-    assert.equal((supporting.match(/data-more-work-project="true"/g) || []).length, 9)
-    assert.equal((supporting.match(/data-project-cover="gallery"/g) || []).length, 9)
+    assert.equal((supporting.match(/data-more-work-project="true"/g) || []).length, 11)
+    assert.equal((supporting.match(/data-project-cover="gallery"/g) || []).length, 11)
     for (const slug of ['learning-mobility', 'samsung-podcast', 'b4q4-widgets']) assert.match(supporting, new RegExp(`/work/${slug}/`))
     for (const removedSlug of ['handsign', 'wood-chip']) assert.doesNotMatch(supporting, new RegExp(`/work/${removedSlug}/`))
     for (const image of ['Portfolio_Mobility.webp', 'Portfolio_Podcast.webp', 'Portfolio_B4Q4.webp']) assert.match(supporting, new RegExp(image.replace('.', '\\.')))
-    assert.equal((supporting.match(/data-project-slug=/g) || []).length, 9)
+    assert.equal((supporting.match(/data-project-slug=/g) || []).length, 11)
     assert.doesNotMatch(supporting, /Web delivery \/ UX evaluation \/ Internal tools \/ Service design/)
 
     const moduleCss = readFileSync(new URL('../src/portfolio/Portfolio.module.css', import.meta.url), 'utf8')

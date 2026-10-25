@@ -1,5 +1,149 @@
 {
   "designProcesses": {
+    "america-on-tech": {
+      "processCue": "Unheard stories → student-run channel",
+      "designProcess": {
+        "problem": {
+          "context": "America On Tech LA students build real projects and careers in tech.",
+          "friction": "Prospective students rarely see those stories, so the program's value stays hard to picture.",
+          "consequence": "The organization misses a natural way to reach and convince future applicants.",
+          "statement": "How might we make student stories visible in a way the organization can sustain, measure and keep safe?"
+        },
+        "stages": [
+          {
+            "id": "empathize",
+            "title": "Find the gap between the work and its visibility",
+            "activity": "We looked at what students already create and how little of it reaches people deciding whether to apply.",
+            "insight": "The stories already existed; what was missing was a reliable way to share them.",
+            "decision": "Frame the challenge around visibility rather than a new recruitment campaign.",
+            "evidenceSectionIds": [
+              "unheard-stories"
+            ]
+          },
+          {
+            "id": "define",
+            "title": "Ground the idea and name the audiences",
+            "activity": "We gathered precedent from other programs and separated the needs of prospective students, current students and alumni.",
+            "insight": "One channel can serve several audiences if each post has a clear purpose.",
+            "decision": "Make prospective students the primary audience and require every post to fit an approved category.",
+            "evidenceSectionIds": [
+              "precedent",
+              "audiences"
+            ]
+          },
+          {
+            "id": "ideate",
+            "title": "Let students tell their own stories",
+            "activity": "We compared staff-run promotion with a student-led channel and an internship that produces the content.",
+            "insight": "Student voices feel more credible to prospective students, but the organization still needs control.",
+            "decision": "Propose a student-run Instagram page that America On Tech LA owns and approves.",
+            "evidenceSectionIds": [
+              "channel"
+            ]
+          },
+          {
+            "id": "prototype",
+            "title": "Turn the idea into a runnable pilot",
+            "activity": "We defined the team, weekly cadence, tools, four-step content flow and a 12–16-week roadmap.",
+            "insight": "A small, bounded pilot is easier for staff to approve and evaluate.",
+            "decision": "Package the pilot as a playbook with ownership, workload limits and a next-cycle decision.",
+            "evidenceSectionIds": [
+              "operating-model"
+            ]
+          },
+          {
+            "id": "test",
+            "title": "Pressure-test it against safety and staff review",
+            "activity": "We refined workflows, accessibility guidelines and recruitment measures with America On Tech LA staff feedback.",
+            "insight": "Consent, privacy and clear role boundaries had to be designed in, not added later.",
+            "decision": "Build safeguards into every post and judge the pilot on recruitment and community measures.",
+            "evidenceSectionIds": [
+              "safeguards",
+              "reach"
+            ]
+          }
+        ],
+        "resolution": {
+          "before": "Student stories were real but rarely reached prospective applicants.",
+          "response": "A student-run, organization-owned Instagram channel with a bounded internship pilot and playbook.",
+          "after": "Staff have a documented way to launch, measure and continue the program safely.",
+          "evidence": "Delivered as a proposal and playbook to America On Tech LA staff; not yet launched.",
+          "reflection": "A community channel is only as strong as the ownership, consent and workload rules behind it."
+        }
+      }
+    },
+    "brickify": {
+      "processCue": "Photo file → buildable memory gift",
+      "designProcess": {
+        "problem": {
+          "context": "People want gifts that hold a real memory.",
+          "friction": "Photo gifts feel ordinary, and custom gifts are costly and hard to make.",
+          "consequence": "Meaningful moments end up as one more printed photo.",
+          "statement": "How might we turn a favorite photo into a personal gift people can build, without asking them to learn a new skill?"
+        },
+        "stages": [
+          {
+            "id": "empathize",
+            "title": "Start from the memory, not the technology",
+            "activity": "We looked at how people give personal gifts and where photo gifts fall short.",
+            "insight": "The emotional value is in the memory; the format just has to make it tangible.",
+            "decision": "Frame Brickify as a way to build a memory rather than a 3D tool.",
+            "evidenceSectionIds": [
+              "memories"
+            ]
+          },
+          {
+            "id": "define",
+            "title": "Let the survey redirect the product",
+            "activity": "A 51-response survey tested the original CAD-file concept and who would use it.",
+            "insight": "Most people had no 3D printer and expected a delivered product, often as a gift.",
+            "decision": "Pivot to a print-on-demand gifting service and design for two refined personas.",
+            "evidenceSectionIds": [
+              "survey-pivot",
+              "personas"
+            ]
+          },
+          {
+            "id": "ideate",
+            "title": "Explore value propositions for each persona",
+            "activity": "We drafted several value-proposition visuals and scenarios for the Gift Giver and the Casual Maker.",
+            "insight": "A simple upload, preview and order path served both, with options for makers.",
+            "decision": "Center the experience on one three-step flow with optional customization.",
+            "evidenceSectionIds": [
+              "product-flow"
+            ]
+          },
+          {
+            "id": "prototype",
+            "title": "Give the idea a product and a brand",
+            "activity": "We designed app and website concepts, storyboards and a design system with its own visual voice.",
+            "insight": "Rounded shapes and a single stud mark let Brickify feel familiar without copying the category leader.",
+            "decision": "Use soft, rounded forms, Poppins and a bright palette across product and brand.",
+            "evidenceSectionIds": [
+              "brand"
+            ]
+          },
+          {
+            "id": "test",
+            "title": "Check that it can work as a business",
+            "activity": "We compared Brickify with existing services and modeled operations, revenue and a launch roadmap for the final pitch.",
+            "insight": "Standardized inventory and modular kit sizes keep custom kits affordable and predictable.",
+            "decision": "Present a phased plan from incubator to beta and launch rather than claiming a finished product.",
+            "evidenceSectionIds": [
+              "business",
+              "roadmap"
+            ]
+          }
+        ],
+        "resolution": {
+          "before": "Personal photo gifts were ordinary, and custom alternatives were costly and difficult.",
+          "response": "An AI photo-to-brick kit service with a simple order flow, its own brand and a buildable business model.",
+          "after": "A memory can become a personal, buildable gift in a few steps.",
+          "evidence": "Presented as the IDSN 523 final venture pitch on April 27, 2026; a concept, not a launched product.",
+          "reflection": "Listening to the survey early saved the team from building the wrong product."
+        }
+      }
+    },
     "bubbas-production": {
       "processCue": "Internal editor friction → unified workspace",
       "designProcess": {
@@ -1635,6 +1779,379 @@
       ],
       "resources": [],
       "source": "resume: JuminShin_Resume (4).pdf, Wood Chip Solid Wood Desk Tray"
+    },
+    {
+      "id": "america-on-tech",
+      "slug": "america-on-tech",
+      "title": "Student-powered stories",
+      "organization": "America On Tech LA x USC Iovine and Young Academy",
+      "category": "Product",
+      "year": 2026,
+      "duration": "Sep 2026, five-day residential",
+      "role": "Design & web development",
+      "team": "4 people",
+      "status": "Community platform proposal and pilot playbook",
+      "caseStudyMode": "detailed",
+      "introLead": "Students' stories at America On Tech LA were real but unheard.",
+      "introSupport": "We proposed a student-run Instagram channel and a bounded internship pilot that the organization can launch, measure and own.",
+      "descriptors": [
+        "Service design",
+        "Content strategy",
+        "Program design"
+      ],
+      "summary": "A student-run Instagram channel and a 12–16-week internship pilot that make America On Tech LA's student stories visible to prospective applicants.",
+      "contribution": "In a five-day, four-person sprint for the Professional Practices Residential, I worked on design and web development: co-developing the student-led Instagram proposal and pilot, and refining its workflows, accessibility guidelines and recruitment metrics with America On Tech LA staff feedback.",
+      "outcome": "We delivered a proposal and a question-ready playbook to America On Tech LA staff. It is a proposal, not a launched program, so no engagement or application results are claimed; the figures in the deck are reference cases from other organizations.",
+      "accent": "#5b4fe9",
+      "art": "image",
+      "image": "/assets/projects/aot-slide-10.jpg",
+      "imageAlt": "America On Tech LA proposal slide showing the student-centered Instagram channel concept",
+      "visualCaption": "Proposal slide showing posts, Reels and the profile of the student-run channel.",
+      "cover": {
+        "tone": "research",
+        "layout": "primary-right",
+        "primary": "/assets/projects/aot-slide-10.jpg",
+        "primaryFrame": "plain",
+        "secondary": "/assets/projects/aot-slide-09.jpg",
+        "secondaryFrame": "plain",
+        "annotation": "Community platform proposal"
+      },
+      "sections": [
+        {
+          "id": "unheard-stories",
+          "phase": "Problem",
+          "title": "The work already exists, but the stories go unheard",
+          "body": "America On Tech LA helps students build skills, projects and futures in tech. The challenge area was how to increase applications, and the team reframed it around visibility: prospective students rarely see what current students actually learn, build and go on to do."
+        },
+        {
+          "id": "precedent",
+          "phase": "Research",
+          "title": "Precedent shows social channels can move recruitment",
+          "body": "The proposal grounded its direction in reference cases, including a YouthBuild program that reported a 67% increase in applications through social media and student-run campaigns that raised engagement. These were cited as precedent for the approach, not as projected results for America On Tech LA."
+        },
+        {
+          "id": "audiences",
+          "phase": "Define",
+          "title": "One channel, three audiences",
+          "body": "Prospective students are the primary audience and need credible examples of what the program is like. Current students need recognition and connection across cohorts, and alumni need a way to share their pathways and stay involved. Every post should help at least one of them."
+        },
+        {
+          "id": "channel",
+          "phase": "Design response",
+          "title": "A student-centered channel, owned by the organization",
+          "body": "The proposal is a student-facing Instagram page that showcases opportunities, alumni pathways, program experiences, student projects and community events. Student interns create the content; America On Tech LA owns the account, credentials, approvals and archive."
+        },
+        {
+          "id": "operating-model",
+          "phase": "System",
+          "title": "Small enough to start, structured enough to last",
+          "body": "The pilot is built around one supervisor and one to three student interns, one short weekly meeting, two feed posts or Reels and three to five Stories a week, using an Instagram Business account and Google Forms, Sheets and Drive. Content moves through four steps (submit, develop, post, learn) across a 12–16-week roadmap from setup to a final decision."
+        },
+        {
+          "id": "safeguards",
+          "phase": "Constraint",
+          "title": "Protection is built into every post",
+          "body": "Participation is voluntary, consent is documented before identifiable content is published, parent or guardian permission covers minors, and privacy takes priority over posting speed. Posts use readable text, strong contrast, alt text and captions, and interns never give final approval or handle sensitive situations."
+        },
+        {
+          "id": "reach",
+          "phase": "Outcome",
+          "title": "Each story travels farther",
+          "body": "The pitch closed on reach: every impression builds awareness among prospective students, a few views can turn into an applicant, and each applicant grows the community. Performance is judged through recruitment and community measures, not follower count alone."
+        }
+      ],
+      "facts": [
+        {
+          "value": "5 days",
+          "label": "Residential sprint"
+        },
+        {
+          "value": "12–16 wk",
+          "label": "Proposed pilot"
+        },
+        {
+          "value": "4",
+          "label": "Team members"
+        }
+      ],
+      "resources": [],
+      "content": [
+        {
+          "type": "image",
+          "src": "/assets/projects/aot-slide-01.jpg",
+          "sectionId": "unheard-stories",
+          "presentation": "slide",
+          "caption": "Proposal cover / Student-powered stories that keep moving."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/aot-slide-03.jpg",
+          "sectionId": "unheard-stories",
+          "presentation": "slide",
+          "caption": "Challenge area: increase applications by making student stories more visible."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/aot-slide-05.jpg",
+          "sectionId": "precedent",
+          "presentation": "slide",
+          "caption": "Reference case: a YouthBuild program reported a 67% increase in applications through social media."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/aot-slide-06.jpg",
+          "sectionId": "precedent",
+          "presentation": "slide",
+          "caption": "The student social media marketing internship at the heart of the proposal."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/aot-slide-17.jpg",
+          "sectionId": "audiences",
+          "presentation": "slide",
+          "caption": "Prospective students, current students and alumni, each with distinct needs and value."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/aot-slide-04.jpg",
+          "sectionId": "channel",
+          "presentation": "slide",
+          "caption": "Five content pillars for a student-facing Instagram page."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/aot-slide-10.jpg",
+          "sectionId": "channel",
+          "presentation": "slide",
+          "caption": "The channel: posts, Reels and a profile organized around projects, stories and events."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/aot-slide-08.jpg",
+          "sectionId": "operating-model",
+          "presentation": "slide",
+          "caption": "Four easy steps: submit, develop, post and learn, with the organization owning the account."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/aot-slide-09.jpg",
+          "sectionId": "operating-model",
+          "presentation": "slide",
+          "caption": "Internship roadmap from approval to evidence in 12–16 weeks."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/aot-slide-23.jpg",
+          "sectionId": "operating-model",
+          "presentation": "slide",
+          "caption": "Interns manage intake, accessible content and publishing in one production loop."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/aot-slide-16.jpg",
+          "sectionId": "safeguards",
+          "presentation": "slide",
+          "caption": "Voluntary participation, documented consent, minor safeguards and accessible publishing."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/aot-slide-11.jpg",
+          "sectionId": "reach",
+          "presentation": "slide",
+          "caption": "Each impression builds awareness among prospective students."
+        }
+      ],
+      "source": "America On Tech Presentation (2).pdf and the Figma Slides deck; resume: America On Tech LA Community Platform, USC IYA (PPR), Sep 2026."
+    },
+    {
+      "id": "brickify",
+      "slug": "brickify",
+      "title": "Brickify",
+      "organization": "USC Iovine and Young Academy, IDSN 523",
+      "category": "Human-AI",
+      "year": 2026,
+      "duration": "Spring 2026",
+      "role": "Five-person product team",
+      "team": "5 people",
+      "status": "Course venture concept, final pitch Apr 2026",
+      "caseStudyMode": "detailed",
+      "introLead": "Memories deserve more than photos.",
+      "introSupport": "Brickify turns a favorite photo into a custom, buildable brick kit, and survey research reshaped it from a file generator into a gift people can order.",
+      "descriptors": [
+        "AI product",
+        "User research",
+        "Brand & business design"
+      ],
+      "summary": "An AI photo-to-brick service that turns a favorite memory into a custom buildable kit, pivoted by survey research from a CAD-file generator to a print-on-demand gift.",
+      "contribution": "A five-person team project for IDSN 523. We ran the user research, refined two personas, designed the product flow, brand and design system, and built the business model and launch roadmap presented at the final pitch.",
+      "outcome": "Brickify was presented as the IDSN 523 final venture pitch on April 27, 2026. It is a concept with app and website mockups and concept visuals, not a launched product.",
+      "accent": "#f2c230",
+      "art": "image",
+      "image": "/assets/projects/brickify-slide-01.jpg",
+      "imageAlt": "Brickify pitch cover with a custom memory kit box",
+      "visualCaption": "Pitch cover: photo-to-brick kits that turn memories into buildable sets.",
+      "cover": {
+        "tone": "paper",
+        "layout": "primary-right",
+        "primary": "/assets/projects/brickify-slide-01.jpg",
+        "primaryFrame": "plain",
+        "secondary": "/assets/projects/brickify-slide-06.jpg",
+        "secondaryFrame": "plain",
+        "annotation": "AI photo-to-brick kits"
+      },
+      "sections": [
+        {
+          "id": "memories",
+          "phase": "Problem",
+          "title": "Memories deserve more than photos",
+          "body": "Typical photo gifts feel ordinary, while custom gifts are costly and hard to make. Brickify started from the idea that a meaningful moment could become something people build together."
+        },
+        {
+          "id": "survey-pivot",
+          "phase": "Research",
+          "title": "Research turned a file generator into a gift",
+          "body": "The team first pitched Brickify as a CAD-file generation service. A 51-response Qualtrics survey changed that: 79% did not own a 3D printer, 36% had no clear use case, 45% would use it as a gift, cost was the second-largest barrier for 48%, and physical delivery was the most preferred output. The key insight was that people imagined a delivery service, not a file tool, so the product pivoted to a print-on-demand gifting experience."
+        },
+        {
+          "id": "personas",
+          "phase": "Define",
+          "title": "Two people to design for",
+          "body": "The data narrowed the design to two users. The Gift Giver (36% self-identified as gift givers) wants a finished, personal product without learning a skill: upload a photo, preview the figure, order, done. The Casual Maker (41% make things occasionally, 30% have built with LEGO) wants mockup options and a low-commitment starting point for their own creations."
+        },
+        {
+          "id": "product-flow",
+          "phase": "Design response",
+          "title": "From photo to brick kit in one flow",
+          "body": "The product flow is three steps: upload a photo memory, let AI create a brick version with a preview, then build and keep it. Storyboards for both personas tested the flow end to end, from choosing a photo to unboxing the kit."
+        },
+        {
+          "id": "brand",
+          "phase": "Design response",
+          "title": "A voice of its own inside a powerful category",
+          "body": "The design challenge was finding a distinct voice next to a very strong toy brand. The team chose soft, rounded shapes instead of sharp brick corners, with a single round stud as the hero mark, Poppins for type, and a bright, youthful palette that still ties into a familiar brick yellow."
+        },
+        {
+          "id": "business",
+          "phase": "System",
+          "title": "A business that can actually ship kits",
+          "body": "Operations pair image-to-brick software with a standardized brick library, modular kit sizes and automated fulfillment. Revenue comes from direct-to-consumer kits, tiered custom pieces and company packages, with a comparison against existing mosaic and custom-figure services."
+        },
+        {
+          "id": "roadmap",
+          "phase": "Outcome",
+          "title": "Building Brickify, one brick at a time",
+          "body": "The roadmap runs from the USC IYA 523 UX incubator through product development, a beta, gift-season sales and the USC New Venture Seed Competition in 2027. The final pitch presented the concept, research, brand and plan."
+        }
+      ],
+      "facts": [
+        {
+          "value": "51",
+          "label": "Survey responses"
+        },
+        {
+          "value": "2",
+          "label": "Refined personas"
+        },
+        {
+          "value": "5",
+          "label": "Team members"
+        }
+      ],
+      "resources": [],
+      "content": [
+        {
+          "type": "image",
+          "src": "/assets/projects/brickify-slide-01.jpg",
+          "sectionId": "memories",
+          "presentation": "slide",
+          "caption": "Pitch cover / Brickify, photo-to-brick kits."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/brickify-slide-08.jpg",
+          "sectionId": "survey-pivot",
+          "presentation": "slide",
+          "caption": "Survey findings (N = 51) that pivoted the product from a file generator to a delivered gift."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/brickify-slide-10.jpg",
+          "sectionId": "personas",
+          "presentation": "slide",
+          "caption": "Persona: the Gift Giver, who wants the final product without learning a skill."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/brickify-slide-11.jpg",
+          "sectionId": "personas",
+          "presentation": "slide",
+          "caption": "Persona: the Casual Maker, who wants a starting point for their own creations."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/brickify-slide-05.jpg",
+          "sectionId": "product-flow",
+          "presentation": "slide",
+          "caption": "Three-step flow: upload a photo, AI creates the brick version, build and keep it."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/brickify-slide-12.jpg",
+          "sectionId": "product-flow",
+          "presentation": "slide",
+          "caption": "Gift Giver storyboard, from choosing a photo to giving the kit."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/brickify-slide-06.jpg",
+          "sectionId": "product-flow",
+          "presentation": "slide",
+          "caption": "Product concept: from your photo to your brick, with a 3D preview."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/brickify-slide-16.jpg",
+          "sectionId": "product-flow",
+          "presentation": "slide",
+          "caption": "Mobile app concept for creating and previewing a brick memory."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/brickify-slide-14.jpg",
+          "sectionId": "brand",
+          "presentation": "slide",
+          "caption": "Design system: Poppins type, rounded brick marks and the color palette."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/brickify-slide-15.jpg",
+          "sectionId": "brand",
+          "presentation": "slide",
+          "caption": "Design challenge and solution: soft, rounded shapes and an original palette."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/brickify-slide-17.jpg",
+          "sectionId": "business",
+          "presentation": "slide",
+          "caption": "Comparison chart against existing photo-to-brick and mosaic services."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/brickify-slide-18.jpg",
+          "sectionId": "business",
+          "presentation": "slide",
+          "caption": "Operations: image-to-brick software, standardized inventory, modular kits and automated fulfillment."
+        },
+        {
+          "type": "image",
+          "src": "/assets/projects/brickify-slide-20.jpg",
+          "sectionId": "roadmap",
+          "presentation": "slide",
+          "caption": "Progress and milestones from the UX incubator to a full launch."
+        }
+      ],
+      "source": "Brickify Presentation (final and old version, old at back).pdf, IDSN 523 final, April 27, 2026. Jumin's individual role is not specified in the deck."
     }
   ]
 }

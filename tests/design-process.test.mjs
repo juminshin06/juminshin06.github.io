@@ -40,8 +40,8 @@ test('navigation always contains five stages and resolution', () => {
   ])
 })
 
-test('all twelve homepage projects have a complete design process', () => {
-  assert.equal(homepageProjects.length, 12)
+test('all fourteen homepage projects have a complete design process', () => {
+  assert.equal(homepageProjects.length, 14)
   for (const project of homepageProjects) {
     assert.deepEqual(validateDesignProcess(project), [], project.slug)
     assert.equal(project.designProcess.stages.length, 5, project.slug)
