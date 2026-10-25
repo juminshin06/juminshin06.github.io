@@ -2365,3 +2365,14 @@ button.techTool:focus-visible { outline: 2px solid #0071e3; outline-offset: 4px;
 button.techTool:active svg { transform: translateY(1px) scale(.94); }
 /* A tiny pixel crumb in the tool's color, sitting on the footer line. */
 .critterCrumb { position: absolute; bottom: 0; width: 8px; height: 8px; margin-left: -4px; border-radius: 2px; background: var(--crumb, #c9a26b); box-shadow: inset -2px -2px 0 rgba(0, 0, 0, .18), 0 1px 0 rgba(0, 0, 0, .12); pointer-events: none; }
+
+/* More product work: each image fills its card edge to edge, like the Selected work covers.
+   UI screenshots anchor to the top so the interface's header stays in view. */
+.productWorkMedia .projectCover[data-project-cover='gallery'] .coverPrimary { inset: 0; top: 0; left: 0; width: 100%; height: 100%; max-height: none; padding: 0; border: 0; border-radius: 0; box-shadow: none; transform: none; background: none; }
+.productWorkMedia .projectCover[data-project-cover='gallery'] .coverPrimary img { width: 100%; height: 100%; max-height: none; object-fit: cover; object-position: center; border-radius: 0; }
+.productWorkMedia .projectCover[data-project-cover='gallery'] .coverPrimary[data-cover-frame='browser'] img,
+.productWorkMedia .projectCover[data-project-cover='gallery'] .coverPrimary[data-cover-frame='document'] img { object-position: center top; }
+.productWorkMedia .projectCover[data-project-cover='gallery'] .coverBrowserBar { display: none; }
+.productWorkMedia .projectCover[data-project-cover='gallery'] { box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .05); }
+.productWorkCard:is(:hover, :focus-visible) .productWorkMedia .coverPrimary img { transform: scale(1.03); }
+.productWorkMedia .coverPrimary img { transition: transform 600ms cubic-bezier(.2, .7, .2, 1); }

@@ -28,9 +28,18 @@ const LINES = {
 }
 const SAY_MS = 3600
 const SEEK = { ant: 2.4, snail: 3 }   // how much faster they move when there's food
+// What the critters say after a crumb: Jumin keeps using and learning each tool, told playfully.
 const MEALS = {
-  ant: [name => `Yum, ${name}! Teamwork tastes better.`, name => `${name} crumbs? We’ll carry these home together.`, name => `Shared ${name} snack. Every team needs one.`],
-  snail: [name => `Mmm, ${name}… worth the slow trip.`, name => `Slow and steady gets the ${name}.`],
+  ant: [
+    name => `+1 ${name} XP! Jumin levels this up every week.`,
+    name => `Fresh ${name}! Jumin uses it so often we never run out.`,
+    name => `${name} again? Jumin’s always learning a new trick with it.`,
+    name => `We carry ${name} home daily. Jumin keeps it in her toolbox.`,
+  ],
+  snail: [
+    name => `${name}… slow and steady, Jumin never stops practicing.`,
+    name => `A little more ${name} every day. That’s how Jumin learns.`,
+  ],
 }
 
 function AntSprite() {
