@@ -2376,3 +2376,19 @@ button.techTool:active svg { transform: translateY(1px) scale(.94); }
 .productWorkMedia .projectCover[data-project-cover='gallery'] { box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .05); }
 .productWorkCard:is(:hover, :focus-visible) .productWorkMedia .coverPrimary img { transform: scale(1.03); }
 .productWorkMedia .coverPrimary img { transition: transform 600ms cubic-bezier(.2, .7, .2, 1); }
+
+/* More product work speaks the same language as Selected work: a rounded, full-bleed image tile
+   with the caption below it on the page. A faint inner hairline keeps white screenshots from
+   melting into the white page; hover lifts the tile. */
+.productWorkGrid { gap: 48px 24px; }
+.productWorkCard { background: none; border-radius: 0; overflow: visible; }
+.productWorkMedia { position: relative; border-radius: 20px; overflow: hidden; background: #f5f5f7; box-shadow: none; transform: none; transition: transform 360ms cubic-bezier(.2, .7, .2, 1), box-shadow 360ms ease; }
+.productWorkMedia::after { content: ''; position: absolute; inset: 0; z-index: 3; border-radius: inherit; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .06); pointer-events: none; }
+.productWorkCard:is(:hover, :focus-visible) .productWorkMedia { transform: translateY(-4px); box-shadow: 0 2px 4px rgba(0, 0, 0, .03), 0 20px 40px rgba(0, 0, 0, .09); }
+.productWorkMedia .projectCover, .productWorkMedia .projectCover[data-project-cover='gallery'] { aspect-ratio: 16 / 10; border-radius: 0; box-shadow: none; }
+.productWorkMedia .projectCover[data-project-cover='gallery'] .coverPrimary img { object-position: left top; }
+.productWorkCaption { padding: 14px 2px 0; }
+.productWorkCard:focus-visible { outline: none; }
+.productWorkCard:focus-visible .productWorkMedia { outline: 2px solid #0071e3; outline-offset: 3px; }
+.productWorkCard:is(:hover, :focus-visible) .productWorkCaption > strong, .productWorkCard:is(:hover, :focus-visible) .productWorkCaption > svg { color: var(--ink); }
+@media (width <= 600px) { .productWorkMedia { border-radius: 16px; } .productWorkGrid { gap: 36px; } }
